@@ -4,55 +4,45 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
-
     private Rigidbody2D rb;
     private Transform tf;
-    private Vector2 moveVelocity;
 
-    private const float FACE_UP = 0;
-    private const float FACE_UP_LEFT = 45;
-    private const float FACE_LEFT = 90;
-    private const float FACE_DOWN_LEFT = 135;
-    private const float FACE_DOWN = 180;
-    private const float FACE_DOWN_RIGHT = -135;
-    private const float FACE_RIGHT = -90;
-    private const float FACE_UP_RIGHT = -45;
-
+    public float speedFactor;
     private float rotationValue;
     private Vector2 positionValue; 
+
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         tf = GetComponent<Transform>();
     }
 
     void Update() {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (moveInput.x != 0 || moveInput.y != 0)
         {
-            Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            moveVelocity = moveInput.normalized * speed;
-            positionValue = rb.position + moveVelocity * Time.fixedDeltaTime;
+            positionValue = rb.position + moveInput.normalized * Time.fixedDeltaTime * speedFactor;
+            if (moveInput.x == 0 && moveInput.y == 1)
+                rotationValue = 0;
+            else if (moveInput.x == -1 && moveInput.y == 1)
+                rotationValue = 45;
+            else if (moveInput.x == -1 && moveInput.y == 0)
+                rotationValue = 90;
+            else if (moveInput.x == -1 && moveInput.y == -1)
+                rotationValue = 135;
+            else if (moveInput.x == 0 && moveInput.y == -1)
+                rotationValue = 180;
+            else if (moveInput.x == 1 && moveInput.y == -1)
+                rotationValue = -135;
+            else if (moveInput.x == 1 && moveInput.y == 0)
+                rotationValue = -90;
+            else if (moveInput.x == 1 && moveInput.y == 1)
+                rotationValue = -45;
         }
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 1)
-            rotationValue = FACE_UP;
-        else if (Input.GetAxis("Horizontal") == -1 && Input.GetAxis("Vertical") == 1)
-            rotationValue = FACE_UP_LEFT;
-        else if (Input.GetAxis("Horizontal") == -1 && Input.GetAxis("Vertical") == 0)
-            rotationValue = FACE_LEFT;
-        else if (Input.GetAxis("Horizontal") == -1 && Input.GetAxis("Vertical") == -1)
-            rotationValue = FACE_DOWN_LEFT;
-        else if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == -1)
-            rotationValue = FACE_DOWN;
-        else if (Input.GetAxis("Horizontal") == 1 && Input.GetAxis("Vertical") == -1)
-            rotationValue = FACE_DOWN_RIGHT;
-        else if (Input.GetAxis("Horizontal") == 1 && Input.GetAxis("Vertical") == 0)
-            rotationValue = FACE_RIGHT;
-        else if (Input.GetAxis("Horizontal") == 1 && Input.GetAxis("Vertical") == 1)
-            rotationValue = FACE_UP_RIGHT;
+        
     }
 
     void FixedUpdate() {
-        rb.MovePosition(positionValue);
         tf.localRotation = Quaternion.Euler(0, 0, rotationValue);
+        rb.MovePosition(positionValue);
     }
 }
