@@ -20,14 +20,19 @@ public class PlayerMovement : MonoBehaviour
     private const float FACE_UP_RIGHT = -45;
 
     private float rotationValue;
+    private Vector2 positionValue; 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         tf = GetComponent<Transform>();
     }
 
     void Update() {
-        Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        moveVelocity = moveInput.normalized * speed;
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            moveVelocity = moveInput.normalized * speed;
+            positionValue = rb.position + moveVelocity * Time.fixedDeltaTime;
+        }
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 1)
             rotationValue = FACE_UP;
         else if (Input.GetAxis("Horizontal") == -1 && Input.GetAxis("Vertical") == 1)
@@ -47,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+        rb.MovePosition(positionValue);
         tf.localRotation = Quaternion.Euler(0, 0, rotationValue);
     }
 }
