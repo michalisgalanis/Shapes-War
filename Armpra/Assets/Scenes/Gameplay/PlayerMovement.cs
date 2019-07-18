@@ -18,27 +18,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Update() {
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if (moveInput.x != 0 || moveInput.y != 0)
-        {
-            positionValue = rb.position + moveInput.normalized * Time.fixedDeltaTime * speedFactor;
-            if (moveInput.x == 0 && moveInput.y == 1)
-                rotationValue = 0;
-            else if (moveInput.x == -1 && moveInput.y == 1)
-                rotationValue = 45;
-            else if (moveInput.x == -1 && moveInput.y == 0)
-                rotationValue = 90;
-            else if (moveInput.x == -1 && moveInput.y == -1)
-                rotationValue = 135;
-            else if (moveInput.x == 0 && moveInput.y == -1)
-                rotationValue = 180;
-            else if (moveInput.x == 1 && moveInput.y == -1)
-                rotationValue = -135;
-            else if (moveInput.x == 1 && moveInput.y == 0)
-                rotationValue = -90;
-            else if (moveInput.x == 1 && moveInput.y == 1)
-                rotationValue = -45;
-        }
-        
+        if (moveInput.x == -1 && moveInput.y != 0)
+            rotationValue = Vector2.Angle(new Vector2(0, 1), moveInput);
+        else if (moveInput.x == 1 && moveInput.y != 0)
+            rotationValue = 0 - Vector2.Angle(new Vector2(0, 1), moveInput);
+        else if (moveInput.y == -1)
+            rotationValue = 180;
+        else if (moveInput.y == 1)
+            rotationValue = 0;
+        positionValue = rb.position + moveInput.normalized * Time.fixedDeltaTime * speedFactor;
     }
 
     void FixedUpdate() {
