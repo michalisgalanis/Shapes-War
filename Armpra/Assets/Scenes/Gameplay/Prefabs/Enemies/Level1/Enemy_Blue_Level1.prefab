@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2604750384703334887}
   - component: {fileID: 8892638086597556796}
   - component: {fileID: 8077886968535918163}
+  - component: {fileID: 1495727685920682529}
   m_Layer: 0
   m_Name: Enemy_Blue_Level1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3184249036334268208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.156, y: -2.734, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -126,5 +127,19 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &1495727685920682529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3184249036334268208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30b1947b9c70e242b20a0924b8cd820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 9078791362861770084, guid: 0101abeeb393106469baea63fda18b24, type: 3}
+  speedFactor: 2
