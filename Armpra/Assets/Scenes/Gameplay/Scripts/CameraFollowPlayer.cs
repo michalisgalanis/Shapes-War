@@ -5,13 +5,14 @@ using UnityEngine;
 public class CameraFollowPlayer : MonoBehaviour
 {
     private Transform tf;
-    public GameObject player;
+    private GameObject player;
 
     Vector3 position;
     
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         tf = GetComponent<Transform>();
     }
 
