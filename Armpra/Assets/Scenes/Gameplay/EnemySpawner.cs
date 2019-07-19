@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float difficulty;
-    public GameObject[] enemy_level1;
+    //access to other objects and components
+    public GameObject[] enemies;
+    public Camera camera;
 
-    public float spawn_timer = 0.3f;
-    private float current_timer;
-    //public float min_X = -19, max_X = 19, min_Y = -19, max_Y = 19;
+    //public properties
+    public float difficulty;
+    public float spawnTimer = 0.3f;
+    
+    //constants
+    private const float MIN_BORDER = -19;
+    private const float MAX_BORDER = 19;
+    private const float HORIZONTAL_CAMERA_OFFSET = 4;
+    private const float VERTICAL_CAMERA_OFFSET = 6;
+
+    //other essential variables
     private int enemyCounter;
     private float maxEnemyCount;
+    private float currentTimer;
+    private bool positionConflict;
 
     // Start is called before the first frame update
     void Start()
     {
-        current_timer = spawn_timer;
+        currentTimer = spawnTimer;
         enemyCounter = 0;
     }
 
@@ -29,23 +40,38 @@ public class EnemySpawner : MonoBehaviour
 
     void EstimateWave()
     {
-        maxEnemyCount = difficulty * 100;
+        maxEnemyCount = difficulty * 10;
     }
 
-    void SpawnEnemies()
-    {
-        current_timer += Time.deltaTime;
-
-        if (current_timer >= spawn_timer && enemyCounter < maxEnemyCount)
-        {
-            Vector3 temp = new Vector3(0, 0, 0);
-            temp.x = (Random.Range(1, 3) == 1) ? Random.Range(-19, -4) : Random.Range(4, 19);
-            temp.y = (Random.Range(1, 3) == 1) ? Random.Range(-19, -6) : Random.Range(6, 19);
-            GameObject newEnemy = null;
-            newEnemy = Instantiate(enemy_level1[Random.Range(0, enemy_level1.Length)], temp, Quaternion.identity);
-            enemyCounter++;
+    void SpawnEnemies(){
+        currentTimer += Time.deltaTime;
+        if (currentTimer >= spawnTimer && enemyCounter < maxEnemyCount){
+            //Generate Enemy
+            positionConflict = false;
+            Vector3 temp = new Vector3(GenerateX(), GenerateY(), 0);
+            GameObject newEnemy = Instantiate(enemies[Random.Range(0, enemies.Length)], temp, Quaternion.identity);
             newEnemy.transform.parent = transform;
-            current_timer = 0f;
+            //Resetting timer & counter
+            enemyCounter++;
+            currentTimer = 0f;
         }
+    }
+
+    float GenerateX(){
+        float temp_X = Random.Range(MIN_BORDER, MAX_BORDER);
+        if (temp_X > camera.transform.position.x - HORIZONTAL_CAMERA_OFFSET && temp_X < camera.transform.position.x + HORIZONTAL_CAMERA_OFFSET)
+            if (positionConflict)
+                temp_X = GenerateX();
+            else positionConflict = true;
+        return temp_X;
+    }
+
+    float GenerateY(){
+        float temp_Y = Random.Range(MIN_BORDER, MAX_BORDER);
+        if (temp_Y > camera.transform.position.y - VERTICAL_CAMERA_OFFSET && temp_Y < camera.transform.position.y + VERTICAL_CAMERA_OFFSET)
+            if (positionConflict)
+                temp_Y = GenerateY();
+            else positionConflict = true;
+        return temp_Y;
     }
 }

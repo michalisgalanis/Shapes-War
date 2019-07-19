@@ -163,8 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae98432cbe081469642a83866cd9e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 1
-  enemy_level1:
+  enemies:
   - {fileID: 3184249036334268208, guid: f1b35bc4f2faf634aa49dfa14b72a412, type: 3}
   - {fileID: 5721148708883706509, guid: 8cabc8068a1108d48adc5e119d8dcbb9, type: 3}
   - {fileID: 8624017702363208357, guid: 3a4d353b8e7f1e14ca670bdef9455034, type: 3}
@@ -172,7 +171,9 @@ MonoBehaviour:
   - {fileID: 2357524956198856866, guid: 8b18f65de8467fb43bdd28d34f048799, type: 3}
   - {fileID: 816201293513520057, guid: f3afb5c2db868d240a5e87ff92832b10, type: 3}
   - {fileID: 3218224383850963682, guid: 3759b5ea63b4efe40853b77b4f17f5e0, type: 3}
-  spawn_timer: 0.3
+  camera: {fileID: 1186524367}
+  difficulty: 10
+  spawnTimer: 0.3
 --- !u!1 &970282961 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9078791362861770084, guid: 0101abeeb393106469baea63fda18b24,
