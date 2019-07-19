@@ -12,29 +12,24 @@ public class PlayerMovement : MonoBehaviour
     private float rotationValue;
     private Vector2 positionValue;
     private const float PIXEL_TO_POSITION_FACTOR = 2048 / 19.2f;
-    private float horizontalBound;
-    private float verticalBound;
+    private float horizontalMapBound, verticalMapBound;
+    private float horizontalPlayerSize, verticalPlayerSize;
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         tf = GetComponent<Transform>();
-        horizontalBound = background.sprite.texture.width / PIXEL_TO_POSITION_FACTOR;
-        verticalBound = background.sprite.texture.height / PIXEL_TO_POSITION_FACTOR;
+        horizontalMapBound = background.sprite.texture.width / PIXEL_TO_POSITION_FACTOR;
+        verticalMapBound = background.sprite.texture.height / PIXEL_TO_POSITION_FACTOR;
+        horizontalPlayerSize = GetComponent<SpriteRenderer>().sprite.texture.width / PIXEL_TO_POSITION_FACTOR * tf.localScale.x;
+        verticalPlayerSize = GetComponent<SpriteRenderer>().sprite.texture.height / PIXEL_TO_POSITION_FACTOR * tf.localScale.y;
     }
 
     void Update() {
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if (moveInput.x == -1 && moveInput.y != 0)
-            rotationValue = Vector2.Angle(new Vector2(0, 1), moveInput);
-        else if (moveInput.x == 1 && moveInput.y != 0)
-            rotationValue = 0 - Vector2.Angle(new Vector2(0, 1), moveInput);
-        else if (moveInput.y == -1)
-            rotationValue = 180;
-        else if (moveInput.y == 1)
-            rotationValue = 0;
+        if (moveInput.x != 0 || moveInput.y != 0) rotationValue = Vector2.SignedAngle(new Vector2(0, 1), moveInput);
         positionValue = rb.position + moveInput.normalized * Time.fixedDeltaTime * speedFactor;
-        positionValue.x = Mathf.Clamp(positionValue.x, 0 - horizontalBound, horizontalBound);
-        positionValue.y = Mathf.Clamp(positionValue.y, 0 - verticalBound, verticalBound);
+        positionValue.x = Mathf.Clamp(positionValue.x, 0 - horizontalMapBound + horizontalPlayerSize/2, horizontalMapBound - horizontalPlayerSize/2);
+        positionValue.y = Mathf.Clamp(positionValue.y, 0 - verticalMapBound + verticalPlayerSize/2, verticalMapBound - verticalPlayerSize/2);
     }
 
     void FixedUpdate() {
