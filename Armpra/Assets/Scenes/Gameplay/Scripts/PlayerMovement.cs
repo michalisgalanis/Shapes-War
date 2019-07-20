@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float speedFactor;
     private float rotationValue;
     private Vector2 positionValue;
-    private const float PIXEL_TO_POSITION_FACTOR = 2048 / 19.2f;
+    private const float PIXEL_TO_POSITION_FACTOR = 200f;
     private float horizontalMapBound, verticalMapBound;
     private float horizontalPlayerSize, verticalPlayerSize;
 
@@ -28,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         if (moveInput.x != 0 || moveInput.y != 0) rotationValue = Vector2.SignedAngle(new Vector2(0, 1), moveInput);
         positionValue = rb.position + moveInput.normalized * Time.fixedDeltaTime * speedFactor;
-        positionValue.x = Mathf.Clamp(positionValue.x, 0 - horizontalMapBound + horizontalPlayerSize/2, horizontalMapBound - horizontalPlayerSize/2);
-        positionValue.y = Mathf.Clamp(positionValue.y, 0 - verticalMapBound + verticalPlayerSize/2, verticalMapBound - verticalPlayerSize/2);
+        positionValue.x = Mathf.Clamp(positionValue.x, 0 - horizontalMapBound + horizontalPlayerSize, horizontalMapBound - horizontalPlayerSize);
+        positionValue.y = Mathf.Clamp(positionValue.y, 0 - verticalMapBound + verticalPlayerSize, verticalMapBound - verticalPlayerSize);
     }
 
     void FixedUpdate() {
