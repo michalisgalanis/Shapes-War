@@ -172,7 +172,7 @@ MonoBehaviour:
   - {fileID: 816201293513520057, guid: f3afb5c2db868d240a5e87ff92832b10, type: 3}
   - {fileID: 3218224383850963682, guid: 3759b5ea63b4efe40853b77b4f17f5e0, type: 3}
   camera: {fileID: 1186524367}
-  difficulty: 0
+  difficulty: 10
   spawnTimer: 0.3
 --- !u!1 &812471949
 GameObject:
@@ -358,7 +358,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 22.251728}
+  m_Offset: {x: -1.0194578, y: 22.251728}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -369,7 +369,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 38.4, y: 6.1892853}
+  m_Size: {x: 53.43495, y: 6.1892853}
   m_EdgeRadius: 0
 --- !u!61 &1023104568
 BoxCollider2D:
@@ -410,7 +410,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -22.732567}
+  m_Offset: {x: -1.0189419, y: -22.732567}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -421,7 +421,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 38.4, y: 7.0524216}
+  m_Size: {x: 53.46047, y: 7.0524216}
   m_EdgeRadius: 0
 --- !u!61 &1023104570
 BoxCollider2D:
@@ -1283,11 +1283,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6812783224244447049, guid: 0101abeeb393106469baea63fda18b24,
-        type: 3}
-      propertyPath: firepoint
-      value: 
-      objectReference: {fileID: 1640177483}
     - target: {fileID: 1695799618037917160, guid: 0101abeeb393106469baea63fda18b24,
         type: 3}
       propertyPath: m_Name
@@ -1348,6 +1343,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6812783224244447049, guid: 0101abeeb393106469baea63fda18b24,
+        type: 3}
+      propertyPath: firepoint
+      value: 
+      objectReference: {fileID: 1640177483}
     - target: {fileID: 1695799618037917163, guid: 0101abeeb393106469baea63fda18b24,
         type: 3}
       propertyPath: background
