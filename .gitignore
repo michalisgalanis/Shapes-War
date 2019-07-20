@@ -27,9 +27,8 @@ sysinfo.txt
 *.userprefs
 *.pidb
 .DS_Store
-.ide
-.ide-shm
-.ide-wal
+# Visual Studio 2015/2017 cache/options directory
+*.vs/
 
 ###
 # OS generated
