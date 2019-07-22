@@ -9,7 +9,6 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firepoint;
 
-    // Update is called once per frame
     void Update(){
         currentTimer += Time.deltaTime;
         if (currentTimer >= shootingTime)
