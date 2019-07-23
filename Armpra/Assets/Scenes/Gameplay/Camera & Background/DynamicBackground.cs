@@ -6,10 +6,10 @@ public class DynamicBackground : MonoBehaviour
 {
     public Camera camera;
     public GameObject layerBack;
-    public GameObject shape;
+    public GameObject[] shapes;
 
     public int numberOfShapes;
-    public float speedOfShapes;
+    public float sizeRange;
 
     private int shapesCounter;
     private float currentTimer;
@@ -32,16 +32,28 @@ public class DynamicBackground : MonoBehaviour
         currentTimer += Time.deltaTime;
         if (currentTimer >= spawnTimer && shapesCounter < numberOfShapes)
         {
+            //Selecting shape
+            int shapeType = Random.Range(0, shapes.Length);
+            GameObject shape = shapes[shapeType];
+            //Customizing Position
             positionConflict = false;
+            //Generating Shape
             Vector3 temp = new Vector3(GenerateX(), GenerateY(), 0);
             GameObject newShape = Instantiate(shape, temp, Quaternion.identity);
             newShape.transform.parent = transform;
-
             //Customizing Color
             SpriteRenderer sr = shape.GetComponent<SpriteRenderer>();
-            float h = Random.Range(0f, 360f) / 360f, s = 0.75f, v = 0.6f;
-            sr.color = Color.HSVToRGB(h, s, v);
-
+            float h = Random.Range(0f, 360f) / 360f, s = 0.75f, v = 0.6f, a = 0.3f;
+            float r = Color.HSVToRGB(h, s, v).r;
+            float g = Color.HSVToRGB(h, s, v).g;
+            float b = Color.HSVToRGB(h, s, v).b;
+            sr.color = new Color(r,g,b,a);
+            //Customizing Size
+            float scaleRandom = Random.Range(0.4f, 0.4f + sizeRange);
+            newShape.transform.localScale = new Vector3(scaleRandom, scaleRandom, 0);
+            //Customiziing Rotation
+            float rotationRandom = Random.Range(0f, 360f);
+            newShape.transform.localRotation = Quaternion.Euler(0, 0, rotationRandom);
             //Resetting timer & counter
             shapesCounter++;
             currentTimer = 0f;
