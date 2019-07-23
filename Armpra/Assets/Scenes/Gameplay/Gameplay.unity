@@ -204,6 +204,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1023104562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8856123811305796504, guid: 03632b48accafce4fa61c9e27f12a497,
+    type: 3}
+  m_PrefabInstance: {fileID: 8856123812303463850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1023104563 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8856123811305796505, guid: 03632b48accafce4fa61c9e27f12a497,
@@ -1083,6 +1089,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023810, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023810, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023810, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023810, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023810, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2835013691163023837, guid: 056fa24de101ab346b0f2de8063c6290,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1383,6 +1414,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1450495750344213492, guid: 5fb5f88eb63cc41408dc654e9cb16759,
         type: 3}
+    - target: {fileID: 8856123811902659008, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: backLayer
+      value: 
+      objectReference: {fileID: 1023104562}
+    - target: {fileID: 8856123811305796508, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 83b4bff9dda5e0f46b7deb892675c192, type: 2}
+    - target: {fileID: 8856123811305796509, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 83b4bff9dda5e0f46b7deb892675c192, type: 2}
+    - target: {fileID: 8856123811305796496, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 83b4bff9dda5e0f46b7deb892675c192, type: 2}
+    - target: {fileID: 8856123811305796499, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 83b4bff9dda5e0f46b7deb892675c192, type: 2}
+    - target: {fileID: 8856123811305796498, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 83b4bff9dda5e0f46b7deb892675c192, type: 2}
     - target: {fileID: 8856123812041020878, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
       propertyPath: InitialModule.startColor.maxGradient.key0.a

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DynamicBackground : MonoBehaviour
 {
     public Camera camera;
-    public GameObject layerBack;
+    public GameObject backLayer;
     public GameObject[] shapes;
 
     public int numberOfShapes;
@@ -23,7 +23,7 @@ public class DynamicBackground : MonoBehaviour
     private const float VERTICAL_CAMERA_OFFSET = 6;
 
     void Start(){
-        layerBack.SetActive(true);
+        backLayer.SetActive(true);
 
         currentTimer = spawnTimer;
         shapesCounter = 0;

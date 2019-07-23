@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8856123811305796499}
   - component: {fileID: 8856123811305796498}
   m_Layer: 0
-  m_Name: LayerBack
+  m_Name: BackLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,9 +256,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
   layerBack: {fileID: 8856123811305796504}
-  shape: {fileID: 5564042477769656160, guid: f6530453415b3b644a751c51dd3a2235, type: 3}
+  shapes: []
   numberOfShapes: 20
-  speedOfShapes: 2
+  sizeRange: 0
 --- !u!1 &8856123812041020875
 GameObject:
   m_ObjectHideFlags: 0
