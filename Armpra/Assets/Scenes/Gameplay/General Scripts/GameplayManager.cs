@@ -9,12 +9,16 @@ public class GameplayManager : MonoBehaviour
     public GameObject gameUI;
     public GameObject pauseMenu;
     public GameObject lostMenu;
+    public GameObject movementJoystick;
+    public GameObject attackJoystick;
 
     void Start(){
         dimmer.SetActive(false);
         pauseMenu.SetActive(false);
         lostMenu.SetActive(false);
         gameUI.SetActive(true);
+        movementJoystick.SetActive(true);
+        attackJoystick.SetActive(true);
     }
 
     public void Pause(){
@@ -22,6 +26,8 @@ public class GameplayManager : MonoBehaviour
         dimmer.SetActive(true);
         gameUI.SetActive(false);
         pauseMenu.SetActive(true);
+        movementJoystick.SetActive(false);
+        attackJoystick.SetActive(false);
     }
 
     public void Resume(){
@@ -29,6 +35,8 @@ public class GameplayManager : MonoBehaviour
         dimmer.SetActive(false);
         pauseMenu.gameObject.SetActive(false);
         gameUI.gameObject.SetActive(true);
+        movementJoystick.SetActive(true);
+        attackJoystick.SetActive(true);
     }
 
     public void Lose(){
