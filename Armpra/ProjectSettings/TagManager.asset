@@ -14,10 +14,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Background Particles
+  - Shield
+  - Projectiles
+  - Map Bounds
   - 
   - 
   - 
@@ -48,6 +48,6 @@ TagManager:
   - name: Block
     uniqueID: 3714548217
     locked: 0
-  - name: Buttons
+  - name: UI
     uniqueID: 3923221235
     locked: 0

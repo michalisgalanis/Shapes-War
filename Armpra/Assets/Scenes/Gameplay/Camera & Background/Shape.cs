@@ -32,6 +32,9 @@ public class Shape : MonoBehaviour
         rotationRandX = Random.Range(-1f, 1f);
         rotationRandY = Random.Range(-1f, 1f);
         rotationDirection = new Vector2(rotationRandX, rotationRandY);
+        //Ignore Collision
+        Physics2D.IgnoreLayerCollision(0, 8);
+        Physics2D.IgnoreLayerCollision(8, 8);
     }
 
     void Update(){

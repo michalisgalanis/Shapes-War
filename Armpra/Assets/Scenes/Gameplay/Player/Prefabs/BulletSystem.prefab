@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1431479655548104854}
   - component: {fileID: 1431479655548104852}
   - component: {fileID: 1431479655548104853}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4763,7 +4763,7 @@ GameObject:
   - component: {fileID: 1431479656984164289}
   - component: {fileID: 1431479656984164303}
   - component: {fileID: 1431479656984164288}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MuzzleParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9575,7 +9575,7 @@ GameObject:
   - component: {fileID: 1431479657208786341}
   - component: {fileID: 1431479657208786342}
   - component: {fileID: 1431479657208786343}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BulletSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
