@@ -11,8 +11,11 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer enemyBorder;
     public SpriteRenderer enemyHead;
     public ParticleSystem trails;
+
     public float maxHealth;
     private float currentHealth;
+    public int points;
+    public int coins;
 
     void Start(){
         ParticleSystem.MainModule settings = trails.main;
@@ -25,8 +28,6 @@ public class Enemy : MonoBehaviour
         float h, s, v;
         Color.RGBToHSV(enemyBorder.color, out h, out s, out v);
         h = 0f; v = 1f; s = 1f - currentHealth / maxHealth;
-        Debug.Log(currentHealth);
-        Debug.Log(s);
         enemyBorder.color = (Color.HSVToRGB(h, s, v));
         enemyHead.color = (Color.HSVToRGB(h, s, v));
     }
@@ -35,6 +36,9 @@ public class Enemy : MonoBehaviour
         if (currentHealth <= 0){
             deathExplosionParticles = Instantiate(deathExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            GameObject manager = GameObject.FindWithTag("GameController");
+            manager.gameObject.GetComponent<ScoreSystem>().addPoints(points);
+            manager.gameObject.GetComponent<CoinSystem>().addCoins(coins);
         }
     }
 }

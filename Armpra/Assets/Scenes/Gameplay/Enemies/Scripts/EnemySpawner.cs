@@ -27,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        positionConflict = false;
         currentTimer = spawnTimer;
         enemyCounter = 0;
     }

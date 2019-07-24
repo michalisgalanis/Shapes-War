@@ -388,13 +388,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathExplosionParticlesPrefab: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
     type: 3}
-  hitExplosionParticlesPrefab: {fileID: 2720002162805827168, guid: 1fa619fc97f3a00409100fba5bed68cb,
-    type: 3}
   enemyBody: {fileID: 6045932644250585599}
   enemyBorder: {fileID: 6045932645396103648}
   enemyHead: {fileID: 6045932644448489343}
   trails: {fileID: 2364917576958521748}
   maxHealth: 100
+  points: 100
+  coins: 10
 --- !u!1001 &7067210419981304585
 PrefabInstance:
   m_ObjectHideFlags: 0

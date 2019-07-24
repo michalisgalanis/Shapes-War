@@ -17,14 +17,14 @@ public class DynamicBackground : MonoBehaviour
     private bool positionConflict;
 
     //constants
-    private const float MIN_BORDER = -19;
-    private const float MAX_BORDER = 19;
-    private const float HORIZONTAL_CAMERA_OFFSET = 4;
-    private const float VERTICAL_CAMERA_OFFSET = 6;
+    private const float MIN_BORDER = -19f;
+    private const float MAX_BORDER = 19f;
+    private const float HORIZONTAL_CAMERA_OFFSET = 4f;
+    private const float VERTICAL_CAMERA_OFFSET = 6f;
 
     void Start(){
         backLayer.SetActive(true);
-
+        positionConflict = false;
         currentTimer = spawnTimer;
         shapesCounter = 0;
     }
