@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
     public ParticleSystem deathExplosionParticlesPrefab;
     private ParticleSystem deathExplosionParticles;
-    public int health;
 
-    public void Update()
-    {
-        if (deathExplosionParticles)
-        {
-            if (!deathExplosionParticles.IsAlive())
-            {
+    public SpriteRenderer enemyBody;
+    public SpriteRenderer enemyBorder;
+    public SpriteRenderer enemyHead;
+    public ParticleSystem trails;
+    public float maxHealth;
+    private float currentHealth;
+
+    void Start(){
+        ParticleSystem.MainModule settings = trails.main;
+        settings.startColor = new ParticleSystem.MinMaxGradient(enemyBody.color);
+        currentHealth = maxHealth;
+    }
+    void Update(){
+        if (deathExplosionParticles && !deathExplosionParticles.IsAlive())
                 Destroy(deathExplosionParticles);
-            }
-        }
+        float h, s, v;
+        Color.RGBToHSV(enemyBorder.color, out h, out s, out v);
+        h = 0f; v = 1f; s = 1f - currentHealth / maxHealth;
+        Debug.Log(currentHealth);
+        Debug.Log(s);
+        enemyBorder.color = (Color.HSVToRGB(h, s, v));
+        enemyHead.color = (Color.HSVToRGB(h, s, v));
     }
     public void TakeDamage(int damage){
-        health -= damage;
-        if (health <= 0){
+        currentHealth -= damage;
+        if (currentHealth <= 0){
             deathExplosionParticles = Instantiate(deathExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

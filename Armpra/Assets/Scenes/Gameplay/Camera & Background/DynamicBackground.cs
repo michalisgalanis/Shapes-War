@@ -13,7 +13,7 @@ public class DynamicBackground : MonoBehaviour
 
     private int shapesCounter;
     private float currentTimer;
-    private float spawnTimer = 0.05f;
+    private float spawnTimer = 0.01f;
     private bool positionConflict;
 
     //constants

@@ -9,8 +9,8 @@ public class EnemySpawner : MonoBehaviour
     public Camera camera;
 
     //public properties
-    public float difficulty;
-    public float spawnTimer = 0.3f;
+    //public float difficulty;
+    public float spawnTimer;
     
     //constants
     private const float MIN_BORDER = -19;
@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     //other essential variables
     private int enemyCounter;
-    private float maxEnemyCount;
+    public float maxEnemyCount;
     private float currentTimer;
     private bool positionConflict;
 
@@ -34,13 +34,13 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EstimateWave();
+        //EstimateWave();
         SpawnEnemies();
     }
 
     void EstimateWave()
     {
-        maxEnemyCount = difficulty * 10;
+        //maxEnemyCount = difficulty * 10;
     }
 
     void SpawnEnemies(){

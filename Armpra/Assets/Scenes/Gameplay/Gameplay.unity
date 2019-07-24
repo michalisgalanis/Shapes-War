@@ -998,6 +998,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3281312623515010731, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: maxEnemyCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281312623515010731, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: spawnTimer
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab378c802f2e1c94294275728b790b9c, type: 3}
 --- !u!1001 &4388488694214808635
@@ -1731,7 +1741,7 @@ PrefabInstance:
     - target: {fileID: 8856123811902659008, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
       propertyPath: numberOfShapes
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8856123811902659008, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
