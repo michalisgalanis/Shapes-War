@@ -760,6 +760,36 @@ PrefabInstance:
       propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8324479347543770860, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324479347543770860, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324479347543770860, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: ShapeModule.m_Rotation.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324479347543770860, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: ShapeModule.randomPositionAmount
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324479347543770860, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: ShapeModule.sphericalDirectionAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324479347543770860, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: ShapeModule.randomDirectionAmount
+      value: 0.08
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 257e7ec0a2f5fad4797e11892f7cbd35, type: 3}
 --- !u!1001 &2835013690130756877
@@ -873,6 +903,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: dimmer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: gameUI
+      value: 
+      objectReference: {fileID: 1374556034}
+    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 2121775933}
+    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: lostMenu
+      value: 
+      objectReference: {fileID: 297138982548453481}
+    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: movementJoystick
+      value: 
+      objectReference: {fileID: 1638400441}
+    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: attackJoystick
+      value: 
+      objectReference: {fileID: 1049580844}
     - target: {fileID: 3281312623515010730, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -928,36 +988,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: dimmer
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: gameUI
-      value: 
-      objectReference: {fileID: 1374556034}
-    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 2121775933}
-    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: lostMenu
-      value: 
-      objectReference: {fileID: 297138982548453481}
-    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: movementJoystick
-      value: 
-      objectReference: {fileID: 1638400441}
-    - target: {fileID: 3281312623325724856, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: attackJoystick
-      value: 
-      objectReference: {fileID: 1049580844}
     - target: {fileID: 3281312623515010731, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: camera
@@ -1608,6 +1638,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8856123811305796504, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856123811305796505, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.11320752
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856123811305796505, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.11320752
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856123811305796505, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.11320752
+      objectReference: {fileID: 0}
     - target: {fileID: 8856123811902659011, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1700,26 +1750,6 @@ PrefabInstance:
       propertyPath: backLayer
       value: 
       objectReference: {fileID: 1023104562}
-    - target: {fileID: 8856123811305796504, guid: 03632b48accafce4fa61c9e27f12a497,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 8856123811305796505, guid: 03632b48accafce4fa61c9e27f12a497,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.11320752
-      objectReference: {fileID: 0}
-    - target: {fileID: 8856123811305796505, guid: 03632b48accafce4fa61c9e27f12a497,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.11320752
-      objectReference: {fileID: 0}
-    - target: {fileID: 8856123811305796505, guid: 03632b48accafce4fa61c9e27f12a497,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.11320752
-      objectReference: {fileID: 0}
     - target: {fileID: 8856123811305796508, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
       propertyPath: m_Material

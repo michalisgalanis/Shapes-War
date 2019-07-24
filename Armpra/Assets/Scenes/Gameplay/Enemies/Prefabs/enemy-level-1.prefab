@@ -335,6 +335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82878e851de10be47b30f2d7c641147e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathExplosionParticlesPrefab: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
+    type: 3}
   health: 100
 --- !u!114 &6045932645883520106
 MonoBehaviour:
