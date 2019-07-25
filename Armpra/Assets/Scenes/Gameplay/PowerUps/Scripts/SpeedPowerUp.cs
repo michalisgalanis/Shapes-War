@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpA : MonoBehaviour
+public class SpeedPowerUp : MonoBehaviour
 { 
     private float initialMovementSpeed; //Used to reset player stat after powerup ends
     public float powerupDuration = 5.0f;

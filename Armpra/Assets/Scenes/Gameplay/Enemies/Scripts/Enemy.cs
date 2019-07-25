@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
             if (player != null)
                     player.TakeDamage(damage);
         }else if (hitInfo.CompareTag("Shield")){
-            ShieldStats shield = hitInfo.GetComponent<ShieldStats>();
+            ShieldPowerUp shield = hitInfo.GetComponent<ShieldPowerUp>();
             if (shield != null)
                 shield.TakeDamage(damage);
         }
