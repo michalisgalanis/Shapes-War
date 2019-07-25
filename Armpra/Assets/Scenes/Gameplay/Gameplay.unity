@@ -417,6 +417,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2107116754149386338, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107116754535421672, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107116754535421672, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -580419079
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107116754535421672, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2107116754607933117, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -533,11 +553,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.2
       objectReference: {fileID: 0}
-    - target: {fileID: 2107116754149386338, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2107116755311790968, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -557,21 +572,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107116754535421672, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107116754535421672, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -580419079
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107116754535421672, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 748664526433673409, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
         type: 3}
@@ -652,16 +652,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2835013691163023808, guid: 056fa24de101ab346b0f2de8063c6290,
-        type: 3}
-      propertyPath: m_Name
-      value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835013691163023808, guid: 056fa24de101ab346b0f2de8063c6290,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2835013691163023810, guid: 056fa24de101ab346b0f2de8063c6290,
         type: 3}
       propertyPath: m_BackGroundColor.r
@@ -685,6 +675,16 @@ PrefabInstance:
     - target: {fileID: 2835013691163023810, guid: 056fa24de101ab346b0f2de8063c6290,
         type: 3}
       propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023808, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023808, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2835013691163023837, guid: 056fa24de101ab346b0f2de8063c6290,
@@ -768,6 +768,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: gameUI
+      value: 
+      objectReference: {fileID: 1374556034}
+    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 2121775933}
+    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: lostMenu
+      value: 
+      objectReference: {fileID: 1586735634}
+    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: movementJoystick
+      value: 
+      objectReference: {fileID: 1638400441}
+    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: attackJoystick
+      value: 
+      objectReference: {fileID: 1049580844}
     - target: {fileID: 8643191348888787552, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -823,31 +848,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: gameUI
-      value: 
-      objectReference: {fileID: 1374556034}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 2121775933}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: lostMenu
-      value: 
-      objectReference: {fileID: 1586735634}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: movementJoystick
-      value: 
-      objectReference: {fileID: 1638400441}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: attackJoystick
-      value: 
-      objectReference: {fileID: 1049580844}
     - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: camera

@@ -5007,6 +5007,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3396940085168429806}
+  - component: {fileID: 4553600651191978088}
+  - component: {fileID: -7513171909143351413}
   m_Layer: 0
   m_Name: PowerUpC
   m_TagString: Untagged
@@ -5032,3 +5034,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4553600651191978088
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3396940085168429807}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.56
+--- !u!114 &-7513171909143351413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3396940085168429807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf85198c50fb89478e5fee43b3bf07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupDuration: 5
+  powerupMultiplier: 1.5
+  timeLeft: 0
