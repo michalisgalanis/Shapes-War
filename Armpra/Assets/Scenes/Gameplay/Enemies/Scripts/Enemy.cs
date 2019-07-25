@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
     }
     void Update(){
-        Debug.Log("Enemy: " + currentHealth);
         if (deathExplosionParticles && !deathExplosionParticles.IsAlive())
                 Destroy(deathExplosionParticles);
         float h, s, v;

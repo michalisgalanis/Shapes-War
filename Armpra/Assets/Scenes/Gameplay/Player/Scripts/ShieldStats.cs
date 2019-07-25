@@ -24,7 +24,6 @@ public class ShieldStats : MonoBehaviour
 
 
     void Update(){
-        Debug.Log("Shield: " + currentHealth);
         if (shieldDestroyExplosionParticles && !shieldDestroyExplosionParticles.IsAlive())
             Destroy(shieldDestroyExplosionParticles);
         float h = (currentHealth / maxShieldHealth) / 3.6f;

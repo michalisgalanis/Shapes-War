@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+
     public int maxHealth;
     public int attackSpeed;
     public float movementSpeed;
     public float damageReduction; //0 equals to full damage taken, 1 equals to zero damage taken
 
     private float currentHealth;
+
+    public Weapon weapon;
+    public float weaponDamage;
+    public double XP;
+    public int playerLevel;
+
 
     public SpriteRenderer playerBorder;
     public SpriteRenderer playerHead;

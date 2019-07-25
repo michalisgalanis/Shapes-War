@@ -8,20 +8,40 @@ public class CameraFollowPlayer : MonoBehaviour
     private GameObject player;
 
     private Vector3 position;
-    
-    // Start is called before the first frame update
+
+
+    //constants
+    private const float MIN_BORDER = -19f;
+    private const float MAX_BORDER = 19f;
+    private const float HORIZONTAL_CAMERA_OFFSET = 2.6f;
+    private const float VERTICAL_CAMERA_OFFSET = 4.8f;
+
+    private float lastPositionX;
+    private float lastPositionY;
+
     void Start(){
-        player = GameObject.FindGameObjectWithTag("Player");
         tf = GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
+
     void Update(){
-        if (player != null)
-        {
-            position = player.transform.position;
-            position.z = -10;
+        if (player != null){
+            if (followX())
+                lastPositionX = player.transform.position.x;
+            if (followY())
+                lastPositionY = player.transform.position.y;
+            position = new Vector3(lastPositionX, lastPositionY, -10);
             tf.position = position;
         }
+    }
+
+    bool followX(){
+        return (player.transform.position.x + HORIZONTAL_CAMERA_OFFSET <= MAX_BORDER) && (player.transform.position.x - HORIZONTAL_CAMERA_OFFSET >= MIN_BORDER);
+    }
+
+    bool followY()
+    {
+        return (player.transform.position.y + VERTICAL_CAMERA_OFFSET <= MAX_BORDER) && (player.transform.position.y - VERTICAL_CAMERA_OFFSET >= MIN_BORDER);
     }
 }

@@ -178,6 +178,10 @@ MonoBehaviour:
   attackSpeed: 1
   movementSpeed: 3
   damageReduction: 0
+  weapon: {fileID: 0}
+  weaponDamage: 0
+  XP: 0
+  playerLevel: 0
   playerBorder: {fileID: 622130990}
   playerHead: {fileID: 1248053844}
   playerDeathExplosionParticlesPrefab: {fileID: 5998843538783815061, guid: a83a4aebe6bad794e88c4364f7c2f361,
@@ -308,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxShieldHealth: 80
   shieldDamageReduction: 0
-  shieldDamage: 0
+  shieldDamage: 1
   shieldDestroyExplosionParticlesPrefab: {fileID: 1766086259938547595, guid: ed15474e90ebcc644823c32fd23a4a0b,
     type: 3}
   trails: {fileID: 1209868525}
@@ -652,7 +656,7 @@ PrefabInstance:
     - target: {fileID: 748664526433673409, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 748664526433673409, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
         type: 3}
