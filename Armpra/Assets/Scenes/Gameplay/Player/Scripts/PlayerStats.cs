@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-
+    public int playerLevel;
+    public double XP;
+    public Weapon weapon;
+    public float weaponDamage;
     public int maxHealth;
     public int attackSpeed;
     public float movementSpeed;

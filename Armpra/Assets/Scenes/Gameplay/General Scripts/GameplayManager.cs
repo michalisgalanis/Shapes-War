@@ -11,12 +11,10 @@ public class GameplayManager : MonoBehaviour
     public GameObject movementJoystick;
     public GameObject attackJoystick;
     public int level;
-    public int score;
-    public double XP;
-    public int shieldArmor;
-    public float powerupADuration;
+    public float bestAttemptPercentage=0; //Defines the best attempt to defeat current level in a 0-99% percentage.
 
     void Start(){
+        SavingSystem.LoadData();
         pauseMenu.SetActive(false);
         lostMenu.SetActive(false);
         gameUI.SetActive(true);

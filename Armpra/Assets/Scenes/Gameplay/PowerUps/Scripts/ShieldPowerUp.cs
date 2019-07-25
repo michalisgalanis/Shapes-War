@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldStats : MonoBehaviour
+public class ShieldPowerUp : MonoBehaviour
 {
     public float maxShieldHealth;
-    public float shieldDamageReduction; //0 equals to full damage taken, 1 equals to zero damage taken
     public int shieldDamage;
 
     public ParticleSystem shieldDestroyExplosionParticlesPrefab;
@@ -45,7 +44,7 @@ public class ShieldStats : MonoBehaviour
     }
 
     public void TakeDamage(float damage){
-        currentHealth -= (damage - damage * shieldDamageReduction);
+        currentHealth -= damage;
         if (currentHealth <= 0){
             shieldDestroyExplosionParticles = Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);

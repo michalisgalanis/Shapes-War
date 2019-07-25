@@ -3,31 +3,26 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SavingSystem
-{
-    
-    public static void SaveProgress(PlayerStats player, GameplayManager gManager)
+{    
+    public static void SaveProgress(PlayerStats player, GameplayManager gManager,ShieldPowerUp shield,SpeedPowerUp rushB)
     {
         string path = Application.persistentDataPath + "/progress.stoopid";
         BinaryFormatter formatter = new BinaryFormatter();
-
         FileStream stream = new FileStream(path, FileMode.Create);
-
-        Data data = new Data(player, gManager);
-
+        Data data = new Data(player, gManager, shield, rushB);
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public static Data loadData()
+    public static Data LoadData()
     {
         string path = Application.persistentDataPath + "/progress.stoopid";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
-            stream.Close();
-
             Data data = formatter.Deserialize(stream) as Data;
+            stream.Close();
             return data;
         }else
         {
