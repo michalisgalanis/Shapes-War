@@ -10,6 +10,11 @@ public class GameplayManager : MonoBehaviour
     public GameObject lostMenu;
     public GameObject movementJoystick;
     public GameObject attackJoystick;
+    public int level;
+    public int score;
+    public double XP;
+    public int shieldArmor;
+    public float powerupADuration;
 
     void Start(){
         pauseMenu.SetActive(false);
