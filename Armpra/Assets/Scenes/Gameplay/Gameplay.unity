@@ -174,14 +174,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac2d88959fa364eaa806430fa5c66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLevel: 0
+  XP: 0
+  weapon: {fileID: 0}
+  weaponDamage: 0
   maxHealth: 100
   attackSpeed: 1
   movementSpeed: 3
   damageReduction: 0
-  weapon: {fileID: 0}
-  weaponDamage: 0
-  XP: 0
-  playerLevel: 0
   playerBorder: {fileID: 622130990}
   playerHead: {fileID: 1248053844}
   playerDeathExplosionParticlesPrefab: {fileID: 5998843538783815061, guid: a83a4aebe6bad794e88c4364f7c2f361,
@@ -311,7 +311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxShieldHealth: 80
-  shieldDamageReduction: 0
   shieldDamage: 1
   shieldDestroyExplosionParticlesPrefab: {fileID: 1766086259938547595, guid: ed15474e90ebcc644823c32fd23a4a0b,
     type: 3}
@@ -473,6 +472,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 244974769}
+    - target: {fileID: 1468862023405402968, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1468862023676944775, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -483,6 +487,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 244974769}
+    - target: {fileID: 1468862023953017463, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1468862022783036964, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 244974769}
+    - target: {fileID: 1468862022783036964, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dbde5f525335d3449034fbbbe53e954, type: 3}
 --- !u!1001 &2107116754085026047

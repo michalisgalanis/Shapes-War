@@ -15,11 +15,6 @@ public class PlayerStats : MonoBehaviour
 
     private float currentHealth;
 
-    public Weapon weapon;
-    public float weaponDamage;
-    public double XP;
-    public int playerLevel;
-
 
     public SpriteRenderer playerBorder;
     public SpriteRenderer playerHead;

@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -38,6 +40,11 @@ public class GameplayManager : MonoBehaviour
         attackJoystick.SetActive(true);
     }
 
+    public void Restart(){
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Gameplay");
+    }
+
     public void Lose(){
         lostMenu.gameObject.SetActive(true);
         Time.timeScale = 0;
@@ -45,8 +52,9 @@ public class GameplayManager : MonoBehaviour
 
     public void ReturnHome(){
         Time.timeScale = 1;
+        
         SceneManager.LoadScene("MainMenu");
+        EditorSceneManager.OpenScene("MainMenu");
         SceneManager.UnloadSceneAsync("Gameplay");
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainMenu"));
     }
 }
