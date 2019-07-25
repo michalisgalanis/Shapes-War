@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
     }
     void Update(){
+        Debug.Log("Enemy: " + currentHealth);
         if (deathExplosionParticles && !deathExplosionParticles.IsAlive())
                 Destroy(deathExplosionParticles);
         float h, s, v;
@@ -43,12 +44,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D hitInfo)
-    {
-        PlayerStats player = hitInfo.GetComponent<PlayerStats>();
-        if (player != null)
-        {
-            player.TakeDamage(damage);
+    void OnTriggerStay2D(Collider2D hitInfo){
+        if (hitInfo.CompareTag("Player")){
+            PlayerStats player = hitInfo.GetComponent<PlayerStats>();
+            if (player != null)
+                    player.TakeDamage(damage);
+        }else if (hitInfo.CompareTag("Shield")){
+            ShieldStats shield = hitInfo.GetComponent<ShieldStats>();
+            if (shield != null)
+                shield.TakeDamage(damage);
         }
     }
 

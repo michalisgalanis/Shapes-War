@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     void Start(){
         rb.velocity = transform.up * speed;
         Physics2D.IgnoreLayerCollision(8, 10);
+        Physics2D.IgnoreLayerCollision(9, 10);
     }
 
     void Update(){
