@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  layerBack: {fileID: 8856123811305796504}
+  backLayer: {fileID: 0}
   shapes: []
   numberOfShapes: 20
   sizeRange: 0
