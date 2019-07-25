@@ -12,6 +12,7 @@ public class ShieldPowerUp : MonoBehaviour
     public ParticleSystem trails;
 
     private float currentHealth;
+    private bool markedForDestroy;
 
     public SpriteRenderer outerShield;
     public SpriteRenderer innerShield;
@@ -19,6 +20,7 @@ public class ShieldPowerUp : MonoBehaviour
     void Start(){
         currentHealth = maxShieldHealth;
         Physics2D.IgnoreLayerCollision(8, 9);
+        markedForDestroy = false;
     }
 
 
@@ -45,7 +47,8 @@ public class ShieldPowerUp : MonoBehaviour
 
     public void TakeDamage(float damage){
         currentHealth -= damage;
-        if (currentHealth <= 0){
+        if (currentHealth <= 0 && !markedForDestroy){
+            markedForDestroy = true;
             shieldDestroyExplosionParticles = Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

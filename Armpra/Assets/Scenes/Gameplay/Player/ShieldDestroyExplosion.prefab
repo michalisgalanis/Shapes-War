@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8482018376034579110}
   - component: {fileID: 1766086259938547595}
   - component: {fileID: 7084449747299089964}
+  - component: {fileID: -3691888899467397151}
   m_Layer: 0
   m_Name: ShieldDestroyExplosion
   m_TagString: Untagged
@@ -4810,3 +4811,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-3691888899467397151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170410804367006552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2713586299bd364491c3a1d2ebef9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

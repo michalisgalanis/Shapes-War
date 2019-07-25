@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public float maxHealth;
     public float damage;
     private float currentHealth;
+    private bool markedForDestruction;
     public int points;
     public int coins;
 
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
         ParticleSystem.MainModule settings = trails.main;
         settings.startColor = new ParticleSystem.MinMaxGradient(enemyBody.color);
         currentHealth = maxHealth;
+        markedForDestruction = false;
     }
     void Update(){
         if (deathExplosionParticles && !deathExplosionParticles.IsAlive())
@@ -34,7 +36,8 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage){
         currentHealth -= damage;
-        if (currentHealth <= 0){
+        if (currentHealth <= 0 && !markedForDestruction){
+            markedForDestruction = true;
             deathExplosionParticles = Instantiate(deathExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             GameObject manager = GameObject.FindWithTag("GameController");

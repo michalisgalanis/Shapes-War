@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     public float damageReduction; //0 equals to full damage taken, 1 equals to zero damage taken
 
     private float currentHealth;
+    private bool markedForDestruction;
 
 
     public SpriteRenderer playerBorder;
@@ -25,6 +26,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        markedForDestruction = false;
     }
 
     // Update is called once per frame
@@ -43,8 +45,9 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= (damage - damage * damageReduction);
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !markedForDestruction)
         {
+            markedForDestruction = true;
             playerDeathExplosionParticles = Instantiate(playerDeathExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             lostMenu.SetActive(true);
