@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public ParticleSystem trails;
 
     public float maxHealth;
+    public float damage;
     private float currentHealth;
     public int points;
     public int coins;
@@ -41,4 +42,14 @@ public class Enemy : MonoBehaviour
             manager.gameObject.GetComponent<CoinSystem>().addCoins(coins);
         }
     }
+
+    void OnTriggerStay2D(Collider2D hitInfo)
+    {
+        PlayerStats player = hitInfo.GetComponent<PlayerStats>();
+        if (player != null)
+        {
+            player.TakeDamage(damage);
+        }
+    }
+
 }

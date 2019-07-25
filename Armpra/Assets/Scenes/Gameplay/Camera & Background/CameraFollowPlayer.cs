@@ -13,13 +13,15 @@ public class CameraFollowPlayer : MonoBehaviour
     void Start(){
         player = GameObject.FindGameObjectWithTag("Player");
         tf = GetComponent<Transform>();
-        
     }
 
     // Update is called once per frame
     void Update(){
-        position = player.transform.position;
-        position.z = -10;
-        tf.position = position;
+        if (player != null)
+        {
+            position = player.transform.position;
+            position.z = -10;
+            tf.position = position;
+        }
     }
 }

@@ -21,9 +21,12 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     
     void Update(){
-        Vector2 moveInput = new Vector2(player.transform.position.x - tf.position.x, player.transform.position.y - tf.position.y);
-        rotationValue = (moveInput.x < 0) ? Vector2.Angle(new Vector2(0, 1), moveInput) : 0 - Vector2.Angle(new Vector2(0, 1), moveInput);
-        positionValue = rb.position + moveInput.normalized * Time.fixedDeltaTime * speedFactor;
+        if(player != null)
+        {
+            Vector2 moveInput = new Vector2(player.transform.position.x - tf.position.x, player.transform.position.y - tf.position.y);
+            rotationValue = (moveInput.x < 0) ? Vector2.Angle(new Vector2(0, 1), moveInput) : 0 - Vector2.Angle(new Vector2(0, 1), moveInput);
+            positionValue = rb.position + moveInput.normalized * Time.fixedDeltaTime * speedFactor;
+        }
     }
 
     void FixedUpdate(){
