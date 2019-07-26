@@ -9615,6 +9615,7 @@ MonoBehaviour:
   speed: 10
   rb: {fileID: 1431479657208786341}
   damage: 40
+  playerFired: 0
 --- !u!50 &1431479657208786341
 Rigidbody2D:
   serializedVersion: 4

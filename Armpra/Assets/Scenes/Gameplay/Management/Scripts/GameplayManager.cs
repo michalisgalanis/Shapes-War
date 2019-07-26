@@ -41,13 +41,11 @@ public class GameplayManager : MonoBehaviour
     }
 
     public void Restart(){
-        Time.timeScale = 1;
         SceneManager.LoadScene("Gameplay");
     }
 
     public void Lose(){
         lostMenu.gameObject.SetActive(true);
-        Time.timeScale = 0;
     }
 
     public void ReturnHome(){

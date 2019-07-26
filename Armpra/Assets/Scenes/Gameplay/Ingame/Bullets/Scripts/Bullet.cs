@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
             /*Physics2D.IgnoreLayerCollision(10, 13, false); //Ignore Enemy Bullet Colliding with other Enemies
             Physics2D.IgnoreLayerCollision(10, 9, false); //Ignore Enemy Bullet Colliding with other Enemies*/
         }
-        Debug.Log(playerFired);
+        //Debug.Log(playerFired);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo){
