@@ -17,8 +17,6 @@ public class ShieldPowerUp : MonoBehaviour
     public SpriteRenderer outerShield;
     public SpriteRenderer innerShield;
 
-    public Transform playerT;
-
     void Start(){
         currentHealth = maxShieldHealth;
         Physics2D.IgnoreLayerCollision(8, 9);

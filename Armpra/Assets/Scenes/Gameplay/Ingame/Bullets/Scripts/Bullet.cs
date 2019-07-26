@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo){
-        if (!hitInfo.CompareTag("Untagged")) Debug.Log(hitInfo.tag);
+        Debug.Log(gameObject.name + " SAYS i've been fired by " + ((playerFired) ? "a PLAYER" : "an ENEMY") + " and i hit " + hitInfo.name);
         if (playerFired && hitInfo.CompareTag("Enemy"))
         {
             Enemy enemy = hitInfo.GetComponent<Enemy>();
@@ -36,22 +36,22 @@ public class Bullet : MonoBehaviour
                 enemy.TakeDamage(damage);
             }
         }
-        else if (!playerFired && hitInfo.CompareTag("Player"))
-        {
-            PlayerStats player = hitInfo.GetComponent<PlayerStats>();
-            if (player != null)
-            {
-                hitExplosionParticles = Instantiate(hitExplosionParticlesPrefab, transform.position, Quaternion.identity);
-                player.TakeDamage(damage);
-            }
-        }
-        else if (!playerFired && hitInfo.CompareTag("Shield"))
+        if (!playerFired && hitInfo.CompareTag("Shield"))
         {
             ShieldPowerUp shield = hitInfo.GetComponent<ShieldPowerUp>();
             if (shield != null)
             {
                 hitExplosionParticles = Instantiate(hitExplosionParticlesPrefab, transform.position, Quaternion.identity);
                 shield.TakeDamage(damage);
+            }
+        }
+        if (!playerFired && hitInfo.CompareTag("Player"))
+        {
+            PlayerStats player = hitInfo.GetComponent<PlayerStats>();
+            if (player != null)
+            {
+                hitExplosionParticles = Instantiate(hitExplosionParticlesPrefab, transform.position, Quaternion.identity);
+                player.TakeDamage(damage);
             }
         }
         Destroy(gameObject);
