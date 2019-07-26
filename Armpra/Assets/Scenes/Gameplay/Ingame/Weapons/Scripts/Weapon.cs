@@ -7,9 +7,12 @@ public class Weapon : MonoBehaviour
     public float shootingTime;
     private float currentTimer;
     public GameObject bulletPrefab;
-    public Transform firepoint;
+    public Transform[] firepoints;
     private bool playerFires;
     public int bulletDamage;
+    public float bulletSpeed;
+    public float range;
+    private GameObject target;
 
     void Start()
     {
@@ -22,9 +25,17 @@ public class Weapon : MonoBehaviour
             Shoot();
     }
     void Shoot(){
-        GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-        bullet.GetComponent<Bullet>().playerFired = playerFires;
-        bullet.GetComponent<Bullet>().damage = bulletDamage;
-        currentTimer = 0;
+        if (playerFires || (!playerFires && Vector2.Distance(target.GetComponent<Transform>().position, transform.position) <= range))
+        {
+            foreach (Transform firepoint in firepoints)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+                bullet.GetComponent<Bullet>().playerFired = playerFires;
+                bullet.GetComponent<Bullet>().damage = bulletDamage;
+                bullet.GetComponent<Bullet>().speed = bulletSpeed;
+                currentTimer = 0;
+            }
+            
+        }
     }
 }

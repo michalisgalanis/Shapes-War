@@ -14,8 +14,6 @@ public class Enemy : MonoBehaviour
 
     public float maxHealth;
     public float meleeDamage;
-    public float rangedDamage;
-    public float range;
     private float currentHealth;
     private bool markedForDestruction;
     public int points;

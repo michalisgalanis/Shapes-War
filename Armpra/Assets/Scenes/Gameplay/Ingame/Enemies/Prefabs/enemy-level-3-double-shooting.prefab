@@ -23,12 +23,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700242736522102515}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 2.5000005, y: 0, z: 0}
+  m_LocalScale: {x: 6.6666675, y: 12.500003, z: 1}
   m_Children: []
-  m_Father: {fileID: 8381024625815381997}
-  m_RootOrder: 2
+  m_Father: {fileID: 8381024627201117438}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8381024625815381993
 GameObject:
@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 8381024625815381994}
   - component: {fileID: 6100362267604980972}
   - component: {fileID: 8384220116062390971}
-  - component: {fileID: 8888414207526527101}
   m_Layer: 12
   m_Name: enemy-level-3-double-shooting
   m_TagString: Enemy
@@ -67,9 +66,7 @@ Transform:
   m_Children:
   - {fileID: 8381024626000527967}
   - {fileID: 8381024627403213438}
-  - {fileID: 4735684718185522375}
   - {fileID: 8381024627201117438}
-  - {fileID: 6629340990290397072}
   - {fileID: 671322043068105257}
   - {fileID: 2618627326543333869}
   m_Father: {fileID: 0}
@@ -213,8 +210,6 @@ MonoBehaviour:
   trails: {fileID: 538732981513450004}
   maxHealth: 150
   meleeDamage: 0.25
-  rangedDamage: 20
-  range: 2.5
   points: 20
   coins: 2
 --- !u!114 &8384220116062390971
@@ -232,25 +227,12 @@ MonoBehaviour:
   shootingTime: 3
   bulletPrefab: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
     type: 3}
-  firepoint: {fileID: 4735684718185522375}
-  bulletDamage: 0
---- !u!114 &8888414207526527101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381024625815381993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46123ef3b8f9d2b4fb1c96017a418e1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootingTime: 6
-  bulletPrefab: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
-    type: 3}
-  firepoint: {fileID: 6629340990290397072}
+  firepoints:
+  - {fileID: 4735684718185522375}
+  - {fileID: 6629340990290397072}
   bulletDamage: 12
+  bulletSpeed: 12
+  range: 2
 --- !u!1 &8381024626000527966
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,9 +339,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0.05, y: 0.2, z: 0}
   m_LocalScale: {x: 0.08, y: 0.15, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4735684718185522375}
   m_Father: {fileID: 8381024625815381997}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &8381024627201117439
 SpriteRenderer:
@@ -511,12 +494,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8396547158255495805}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05000005, y: 0.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 2.4999995, y: 0, z: 0}
+  m_LocalScale: {x: 6.6666665, y: 12.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 8381024625815381997}
-  m_RootOrder: 4
+  m_Father: {fileID: 671322043068105257}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9088850178609175145
 GameObject:
@@ -545,9 +528,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.05, y: 0.20000002, z: 0}
   m_LocalScale: {x: 0.08000003, y: 0.15000005, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6629340990290397072}
   m_Father: {fileID: 8381024625815381997}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &870032417742718886
 SpriteRenderer:
@@ -657,7 +641,7 @@ PrefabInstance:
     - target: {fileID: 7056273137654434148, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7056273137654434148, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}

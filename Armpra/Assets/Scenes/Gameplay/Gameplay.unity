@@ -750,7 +750,7 @@ PrefabInstance:
     - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: enemies.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
@@ -773,6 +773,12 @@ PrefabInstance:
       propertyPath: enemies.Array.data[2]
       value: 
       objectReference: {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c,
+        type: 3}
+    - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: enemies.Array.data[3]
+      value: 
+      objectReference: {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534,
         type: 3}
     - target: {fileID: 2195109817190476714, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}

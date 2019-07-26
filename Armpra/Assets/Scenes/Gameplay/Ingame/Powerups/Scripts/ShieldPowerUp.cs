@@ -24,7 +24,7 @@ public class ShieldPowerUp : MonoBehaviour
     }
 
 
-    void Update(){
+    void FixedUpdate(){
         float h = (currentHealth / maxShieldHealth) / 3.6f;
         float outerS = 1f, outerV = 1f, outerA = 0.7f;
         float innerS = 1f, innerV = 0.7f, innerA = 0.2f;
@@ -45,7 +45,6 @@ public class ShieldPowerUp : MonoBehaviour
 
     public void TakeDamage(float damage){
         currentHealth -= damage;
-        Debug.Log(gameObject.name + ": i got hit!");
         if (currentHealth <= 0 && !markedForDestroy){
             markedForDestroy = true;
             shieldDestroyExplosionParticles = Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);
