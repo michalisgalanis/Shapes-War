@@ -9591,7 +9591,7 @@ Transform:
   m_GameObject: {fileID: 1431479657208786360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.4, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.4, z: 1}
   m_Children:
   - {fileID: 1431479656984164289}
   - {fileID: 1431479655548104854}
@@ -9615,7 +9615,7 @@ MonoBehaviour:
   speed: 10
   rb: {fileID: 1431479657208786341}
   damage: 40
-  playerFired: 0
+  playerFired: 1
 --- !u!50 &1431479657208786341
 Rigidbody2D:
   serializedVersion: 4

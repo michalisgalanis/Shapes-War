@@ -51,7 +51,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.56
+  m_Radius: 1.02
 --- !u!58 &7925451690687199478
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.56
+  m_Radius: 1.02
 --- !u!114 &2568014812048570403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +89,7 @@ MonoBehaviour:
     type: 3}
   innerShield: {fileID: 9029424972776305118, guid: dda4dc66a55e3bd4aaa9ac731f3b0020,
     type: 3}
+  playerT: {fileID: 2107116754607933117, guid: 257e7ec0a2f5fad4797e11892f7cbd35, type: 3}
 --- !u!1001 &3549172378760021120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -160,6 +161,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705676657033462489, guid: 099a960c6dd53b64a973213d7b4d6e5d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705676657033462489, guid: 099a960c6dd53b64a973213d7b4d6e5d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4535762244661864167, guid: 099a960c6dd53b64a973213d7b4d6e5d,
         type: 3}
@@ -355,6 +366,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824224407484457513, guid: dda4dc66a55e3bd4aaa9ac731f3b0020,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824224407484457513, guid: dda4dc66a55e3bd4aaa9ac731f3b0020,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 9029424972776305118, guid: dda4dc66a55e3bd4aaa9ac731f3b0020,
         type: 3}

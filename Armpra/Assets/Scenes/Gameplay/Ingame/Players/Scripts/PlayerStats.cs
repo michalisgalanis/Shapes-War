@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
 
     public SpriteRenderer playerBorder;
     public SpriteRenderer[] playerHeads;
+    public GameObject shieldPrefab;
 
     public ParticleSystem playerDeathExplosionParticles;
     public GameObject gm;
@@ -28,6 +29,9 @@ public class PlayerStats : MonoBehaviour
         markedForDestruction = false;
         Physics2D.IgnoreLayerCollision(8, 13);
         gm = GameObject.FindGameObjectWithTag("GameController");
+        GameObject shield = Instantiate(shieldPrefab, transform.localPosition, Quaternion.identity);
+        shield.transform.parent = gameObject.transform;
+
     }
 
     // Update is called once per frame
