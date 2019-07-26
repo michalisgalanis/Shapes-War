@@ -8,6 +8,8 @@ public class EnemyFollowPlayer : MonoBehaviour
     private GameObject player;
     private Rigidbody2D rb;
     private Transform tf;
+    public ParticleSystem deathExplosionParticlesPrefab;
+    private ParticleSystem deathExplosionParticles;
 
     public float speedFactor;
     private float rotationValue;
@@ -26,6 +28,10 @@ public class EnemyFollowPlayer : MonoBehaviour
             Vector2 moveInput = new Vector2(player.transform.position.x - tf.position.x, player.transform.position.y - tf.position.y);
             rotationValue = (moveInput.x < 0) ? Vector2.Angle(new Vector2(0, 1), moveInput) : 0 - Vector2.Angle(new Vector2(0, 1), moveInput);
             positionValue = rb.position + moveInput.normalized * Time.fixedDeltaTime * speedFactor;
+        } else
+        {
+            deathExplosionParticles = Instantiate(deathExplosionParticlesPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 

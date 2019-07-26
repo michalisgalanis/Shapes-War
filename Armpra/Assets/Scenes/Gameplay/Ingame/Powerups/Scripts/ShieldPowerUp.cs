@@ -45,6 +45,7 @@ public class ShieldPowerUp : MonoBehaviour
 
     public void TakeDamage(float damage){
         currentHealth -= damage;
+        Debug.Log(gameObject.name + ": i got hit!");
         if (currentHealth <= 0 && !markedForDestroy){
             markedForDestroy = true;
             shieldDestroyExplosionParticles = Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);

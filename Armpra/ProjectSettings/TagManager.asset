@@ -8,6 +8,7 @@ TagManager:
   - MovementJoystick
   - AttackJoystick
   - Shield
+  - MapBounds
   layers:
   - Default
   - TransparentFX

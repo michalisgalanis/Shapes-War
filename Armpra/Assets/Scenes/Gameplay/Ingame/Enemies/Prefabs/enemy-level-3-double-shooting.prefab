@@ -40,11 +40,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8381024625815381997}
   - component: {fileID: 8381024625815381996}
-  - component: {fileID: 8381024625815381994}
   - component: {fileID: 8381024625815381999}
   - component: {fileID: 8381024625815381998}
-  - component: {fileID: 6100362267604980972}
   - component: {fileID: 5067661490633188227}
+  - component: {fileID: 8381024625815381994}
+  - component: {fileID: 6100362267604980972}
   - component: {fileID: 8384220116062390971}
   - component: {fileID: 8888414207526527101}
   m_Layer: 12
@@ -123,19 +123,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8381024625815381994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381024625815381993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30b1947b9c70e242b20a0924b8cd820, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedFactor: 2
 --- !u!50 &8381024625815381999
 Rigidbody2D:
   serializedVersion: 4
@@ -173,6 +160,37 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
+--- !u!58 &5067661490633188227
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8381024625815381993}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.32
+--- !u!114 &8381024625815381994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8381024625815381993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30b1947b9c70e242b20a0924b8cd820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathExplosionParticlesPrefab: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
+    type: 3}
+  speedFactor: 1.3
 --- !u!114 &6100362267604980972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,22 +217,6 @@ MonoBehaviour:
   range: 2.5
   points: 20
   coins: 2
---- !u!58 &5067661490633188227
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381024625815381993}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.32
 --- !u!114 &8384220116062390971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46123ef3b8f9d2b4fb1c96017a418e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingTime: 3
+  shootingTime: 6
   bulletPrefab: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
     type: 3}
   firepoint: {fileID: 6629340990290397072}

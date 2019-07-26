@@ -474,6 +474,11 @@ PrefabInstance:
       propertyPath: background
       value: 
       objectReference: {fileID: 1023104563}
+    - target: {fileID: 6070453714078794851, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2107116755674466229, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
         type: 3}
       propertyPath: m_TagString
@@ -813,10 +818,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 8856123811902659010, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_TagString
+      value: MapBounds
+      objectReference: {fileID: 0}
     - target: {fileID: 8856123811305796504, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856123811305796504, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_TagString
+      value: MapBounds
       objectReference: {fileID: 0}
     - target: {fileID: 8856123811902659011, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
@@ -878,6 +893,11 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1186524367}
+    - target: {fileID: 8856123812041020875, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: m_TagString
+      value: MapBounds
+      objectReference: {fileID: 0}
     - target: {fileID: 8856123812041020878, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
       propertyPath: CollisionModule.collisionMode

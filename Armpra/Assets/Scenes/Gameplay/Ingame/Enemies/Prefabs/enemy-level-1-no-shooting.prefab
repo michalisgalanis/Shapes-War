@@ -390,7 +390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30b1947b9c70e242b20a0924b8cd820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedFactor: 1.5
+  deathExplosionParticlesPrefab: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
+    type: 3}
+  speedFactor: 2.5
 --- !u!114 &8286836491835889516
 MonoBehaviour:
   m_ObjectHideFlags: 0
