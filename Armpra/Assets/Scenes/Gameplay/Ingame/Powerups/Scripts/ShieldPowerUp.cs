@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShieldPowerUp : MonoBehaviour
 {
     public float maxShieldHealth;
-    public int shieldDamage;
+    public float shieldDamage;
 
     public ParticleSystem shieldDestroyExplosionParticlesPrefab;
     private ParticleSystem shieldDestroyExplosionParticles;
@@ -25,8 +25,6 @@ public class ShieldPowerUp : MonoBehaviour
 
 
     void Update(){
-        if (shieldDestroyExplosionParticles && !shieldDestroyExplosionParticles.IsAlive())
-            Destroy(shieldDestroyExplosionParticles);
         float h = (currentHealth / maxShieldHealth) / 3.6f;
         float outerS = 1f, outerV = 1f, outerA = 0.7f;
         float innerS = 1f, innerV = 0.7f, innerA = 0.2f;

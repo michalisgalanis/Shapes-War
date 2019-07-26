@@ -8,7 +8,13 @@ public class Weapon : MonoBehaviour
     private float currentTimer;
     public GameObject bulletPrefab;
     public Transform firepoint;
-    public bool playerFires;
+    private bool playerFires;
+    public int bulletDamage;
+
+    void Start()
+    {
+        playerFires = gameObject.CompareTag("Player");
+    }
 
     void Update(){
         currentTimer += Time.deltaTime;
@@ -18,6 +24,7 @@ public class Weapon : MonoBehaviour
     void Shoot(){
         GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
         bullet.GetComponent<Bullet>().playerFired = playerFires;
+        bullet.GetComponent<Bullet>().damage = bulletDamage;
         currentTimer = 0;
     }
 }

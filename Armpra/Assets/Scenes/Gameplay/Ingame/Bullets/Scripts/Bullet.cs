@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
     public float speed = 20f;
     public Rigidbody2D rb;
-    public int damage = 40;
+    public int damage;
     public bool playerFired;
 
     void Start(){
@@ -17,20 +17,17 @@ public class Bullet : MonoBehaviour
         Physics2D.IgnoreLayerCollision(10,8); //Ignore Collisions with bg particles
         if (playerFired)
         {
-            Physics2D.IgnoreLayerCollision(10, 13); //Ignore Player Bullet Colliding with Player
             Physics2D.IgnoreLayerCollision(10, 9);  //Ignore Player Bullet Colliding with Shield
         }
         else
         {
             Physics2D.IgnoreLayerCollision(10, 12); //Ignore Enemy Bullet Colliding with other Enemies
-            /*Physics2D.IgnoreLayerCollision(10, 13, false); //Ignore Enemy Bullet Colliding with other Enemies
-            Physics2D.IgnoreLayerCollision(10, 9, false); //Ignore Enemy Bullet Colliding with other Enemies*/
         }
-        //Debug.Log(playerFired);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo){
-        if (playerFired)
+        Debug.Log(hitInfo.tag);
+        if (playerFired && hitInfo.CompareTag("Enemy"))
         {
             Enemy enemy = hitInfo.GetComponent<Enemy>();
             if (enemy != null)
@@ -39,7 +36,7 @@ public class Bullet : MonoBehaviour
                 enemy.TakeDamage(damage);
             }
         }
-        else
+        else if (!playerFired && hitInfo.CompareTag("Player"))
         {
             PlayerStats player = hitInfo.GetComponent<PlayerStats>();
             if (player != null)
@@ -48,7 +45,15 @@ public class Bullet : MonoBehaviour
                 player.TakeDamage(damage);
             }
         }
+        else if (!playerFired && hitInfo.CompareTag("Shield"))
+        {
+            ShieldPowerUp shield = hitInfo.GetComponent<ShieldPowerUp>();
+            if (shield != null)
+            {
+                hitExplosionParticles = Instantiate(hitExplosionParticlesPrefab, transform.position, Quaternion.identity);
+                shield.TakeDamage(damage);
+            }
+        }
         Destroy(gameObject);
-
     }
 }

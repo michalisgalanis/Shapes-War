@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4220764096275036720}
   - component: {fileID: 5283264560837641036}
   - component: {fileID: 7925451690687199478}
-  - component: {fileID: 6026313492339466763}
+  - component: {fileID: 2568014812048570403}
   m_Layer: 9
   m_Name: Shield
   m_TagString: Shield
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7923466100961731369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 2804324853081523801}
   - {fileID: 2303494361038977039}
@@ -68,7 +68,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.56
---- !u!114 &6026313492339466763
+--- !u!114 &2568014812048570403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxShieldHealth: 80
-  shieldDamage: 1
+  shieldDamage: 0.05
   shieldDestroyExplosionParticlesPrefab: {fileID: 1766086259938547595, guid: ed15474e90ebcc644823c32fd23a4a0b,
     type: 3}
   trails: {fileID: 1265617331986371635, guid: 92c3704664ef6c3409bb894d177bc3b5, type: 3}
@@ -100,6 +100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OuterShield
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091632010453621776, guid: 099a960c6dd53b64a973213d7b4d6e5d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Shield
       objectReference: {fileID: 0}
     - target: {fileID: 1705676657033462489, guid: 099a960c6dd53b64a973213d7b4d6e5d,
         type: 3}
@@ -156,6 +161,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4535762244661864167, guid: 099a960c6dd53b64a973213d7b4d6e5d,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.69803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535762244661864167, guid: 099a960c6dd53b64a973213d7b4d6e5d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535762244661864167, guid: 099a960c6dd53b64a973213d7b4d6e5d,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.33333325
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 099a960c6dd53b64a973213d7b4d6e5d, type: 3}
 --- !u!4 &2804324853081523801 stripped
@@ -175,6 +195,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trails
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290659889737446289, guid: 92c3704664ef6c3409bb894d177bc3b5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Shield
       objectReference: {fileID: 0}
     - target: {fileID: 9100640473755210598, guid: 92c3704664ef6c3409bb894d177bc3b5,
         type: 3}
@@ -231,6 +256,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1265617331986371635, guid: 92c3704664ef6c3409bb894d177bc3b5,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.623955
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265617331986371635, guid: 92c3704664ef6c3409bb894d177bc3b5,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265617331986371635, guid: 92c3704664ef6c3409bb894d177bc3b5,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265617331986371635, guid: 92c3704664ef6c3409bb894d177bc3b5,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c3704664ef6c3409bb894d177bc3b5, type: 3}
 --- !u!4 &2826504943639764202 stripped
@@ -250,6 +295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InnerShield
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170430620980852706, guid: dda4dc66a55e3bd4aaa9ac731f3b0020,
+        type: 3}
+      propertyPath: m_TagString
+      value: Shield
       objectReference: {fileID: 0}
     - target: {fileID: 4824224407484457513, guid: dda4dc66a55e3bd4aaa9ac731f3b0020,
         type: 3}
@@ -305,6 +355,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9029424972776305118, guid: dda4dc66a55e3bd4aaa9ac731f3b0020,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.2326797
+      objectReference: {fileID: 0}
+    - target: {fileID: 9029424972776305118, guid: dda4dc66a55e3bd4aaa9ac731f3b0020,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.69803923
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dda4dc66a55e3bd4aaa9ac731f3b0020, type: 3}

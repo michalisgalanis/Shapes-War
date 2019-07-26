@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
             enemyHead.color = (Color.HSVToRGB(h, s, v));
         }
     }
-    public void TakeDamage(int damage){
+    public void TakeDamage(float damage){
         currentHealth -= damage;
         if (currentHealth <= 0 && !markedForDestruction){
             markedForDestruction = true;
