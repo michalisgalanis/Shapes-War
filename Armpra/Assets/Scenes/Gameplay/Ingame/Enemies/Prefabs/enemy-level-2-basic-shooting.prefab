@@ -397,7 +397,7 @@ MonoBehaviour:
   - {fileID: 126859742949324902}
   trails: {fileID: 8283287358018700941}
   maxHealth: 120
-  meleeDamage: 0.8
+  meleeDamage: 0.15
   rangedDamage: 10
   range: 2
   points: 20
@@ -434,6 +434,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
     type: 3}
   firepoint: {fileID: 2905178819820688135}
+  playerFires: 0
 --- !u!1 &280264873815778452
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,12 +540,17 @@ PrefabInstance:
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 805c87d8379d23941b30520d439825cc, type: 3}

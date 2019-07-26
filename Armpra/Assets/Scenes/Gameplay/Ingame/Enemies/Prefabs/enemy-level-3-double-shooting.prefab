@@ -194,7 +194,7 @@ MonoBehaviour:
   - {fileID: 870032417742718886}
   trails: {fileID: 538732981513450004}
   maxHealth: 150
-  meleeDamage: 1
+  meleeDamage: 0.25
   rangedDamage: 20
   range: 2.5
   points: 20
@@ -231,6 +231,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
     type: 3}
   firepoint: {fileID: 4735684718185522375}
+  playerFires: 0
 --- !u!114 &8888414207526527101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +248,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
     type: 3}
   firepoint: {fileID: 6629340990290397072}
+  playerFires: 0
 --- !u!1 &8381024626000527966
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,12 +670,17 @@ PrefabInstance:
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 805c87d8379d23941b30520d439825cc, type: 3}

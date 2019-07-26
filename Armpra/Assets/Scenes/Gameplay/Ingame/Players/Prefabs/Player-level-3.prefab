@@ -510,7 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLevel: 0
   XP: 0
-  weapon: {fileID: 0}
+  weapon: {fileID: 1379332013534329252}
   weaponDamage: 0
   maxHealth: 100
   attackSpeed: 1
@@ -521,8 +521,9 @@ MonoBehaviour:
   - {fileID: 6496215770707274543}
   - {fileID: 4112456899839074101}
   - {fileID: 4172519732889053111}
-  playerDeathExplosionParticles: {fileID: 0}
-  gm: {fileID: 0}
+  playerDeathExplosionParticles: {fileID: 5998843538783815061, guid: a83a4aebe6bad794e88c4364f7c2f361,
+    type: 3}
+  gm: {fileID: 8643191348888787484, guid: ab378c802f2e1c94294275728b790b9c, type: 3}
 --- !u!1 &6496215771553052349
 GameObject:
   m_ObjectHideFlags: 0

@@ -411,7 +411,7 @@ MonoBehaviour:
   - {fileID: 2450688613817788333}
   trails: {fileID: 2364917576958521748}
   maxHealth: 100
-  meleeDamage: 0.5
+  meleeDamage: 0.1
   rangedDamage: 0
   range: 0
   points: 10
@@ -497,6 +497,16 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: ShapeModule.angle
+      value: 9.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 805c87d8379d23941b30520d439825cc, type: 3}
