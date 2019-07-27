@@ -433,7 +433,8 @@ MonoBehaviour:
   shootingTime: 4
   bulletPrefab: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
     type: 3}
-  firepoints: []
+  firepoints:
+  - {fileID: 2905178819820688135}
   bulletDamage: 10
   bulletSpeed: 10
   range: 1.5

@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         playerFires = gameObject.CompareTag("Player");
+        if (!playerFires) target = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update(){

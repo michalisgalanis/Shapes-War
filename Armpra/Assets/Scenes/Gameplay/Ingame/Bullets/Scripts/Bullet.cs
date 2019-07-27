@@ -32,7 +32,13 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
             else if (hitInfo.CompareTag("Shield"))
-                Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), hitInfo);
+            {
+                ShieldPowerUp shield = hitInfo.GetComponent<ShieldPowerUp>();
+                if (shield != null)
+                {
+                    Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), hitInfo);
+                }
+            }  
         }
         else
         {
