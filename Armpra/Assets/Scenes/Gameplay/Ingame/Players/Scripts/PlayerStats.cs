@@ -58,4 +58,9 @@ public class PlayerStats : MonoBehaviour
             gm.GetComponent<GameplayManager>().Lose();
         }
     }
+
+    public void RefillStats()
+    {
+        currentHealth = maxHealth;
+    }
 }

@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
     //access to other objects and components
     public GameObject[] enemies;
+    public GameObject enemiesRemainingText;
     public Camera camera;
+    private LevelGeneration lg;
 
     //public properties
     //public float difficulty;
     public float spawnTimer;
+    private bool spawningTime;
     
     //constants
     private const float MIN_BORDER = -19;
@@ -19,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     private const float VERTICAL_CAMERA_OFFSET = 6;
 
     //other essential variables
-    private int enemyCounter;
+    public int enemyCounter;
     public float maxEnemyCount;
     private float currentTimer;
     private bool positionConflict;
@@ -27,21 +31,33 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawningTime = true;
         positionConflict = false;
         currentTimer = spawnTimer;
         enemyCounter = 0;
+        lg = gameObject.GetComponent<LevelGeneration>();
+        lg.currentLevel = 1;
+        lg.EstimateLevel();
+        maxEnemyCount = lg.enemyCount;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //EstimateWave();
-        SpawnEnemies();
-    }
-
-    void EstimateWave()
-    {
-        //maxEnemyCount = difficulty * 10;
+        enemiesRemainingText.GetComponent<TextMeshProUGUI>().text = enemyCounter.ToString();
+        if (spawningTime == true && enemyCounter < maxEnemyCount)
+        {
+            SpawnEnemies();
+        }
+        else if (spawningTime == false && enemyCounter == 0)
+        {
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().CompleteLevel();
+            Debug.Log("Spawning Time!");
+            lg.currentLevel++;
+            lg.EstimateLevel();
+            maxEnemyCount = lg.enemyCount;
+            spawningTime = true;
+        }
     }
 
     void SpawnEnemies(){
@@ -50,14 +66,14 @@ public class EnemySpawner : MonoBehaviour
             //Generate Enemy
             positionConflict = false;
             Vector3 temp = new Vector3(GenerateX(), GenerateY(), 0);
-            GameObject newEnemy = Instantiate(enemies[Random.Range(0, enemies.Length)], temp, Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemies[lg.PickRandomEnemy()], temp, Quaternion.identity);
             newEnemy.transform.parent = transform;
             //Customizing Color
             SpriteRenderer sr = newEnemy.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>();
             float h = Random.Range(0f, 360f) / 360f, s = 0.75f, v = 0.6f;
             sr.color = Color.HSVToRGB(h, s, v);
             //Resetting timer & counter
-            enemyCounter++;
+            if (++enemyCounter == maxEnemyCount) spawningTime = false;
             currentTimer = 0f;
         }
     }

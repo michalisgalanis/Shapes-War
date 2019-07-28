@@ -18,7 +18,6 @@ public class Bullet : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo){
-        Debug.Log(gameObject.name + ": " + ((playerFired) ? "a PLAYER" : "an ENEMY") + " -> " + hitInfo.name);
         if (playerFired)
         {
             if (hitInfo.CompareTag("Enemy"))

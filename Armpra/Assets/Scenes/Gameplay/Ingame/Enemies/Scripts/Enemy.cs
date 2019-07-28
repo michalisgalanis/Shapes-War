@@ -44,8 +44,9 @@ public class Enemy : MonoBehaviour
             deathExplosionParticles = Instantiate(deathExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             GameObject manager = GameObject.FindWithTag("GameController");
-            manager.gameObject.GetComponent<ScoreSystem>().addPoints(points);
-            manager.gameObject.GetComponent<CoinSystem>().addCoins(coins);
+            manager.GetComponent<EnemySpawner>().enemyCounter--;
+            manager.GetComponent<ScoreSystem>().addPoints(points);
+            manager.GetComponent<CoinSystem>().addCoins(coins);
         }
     }
 
