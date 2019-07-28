@@ -11,21 +11,16 @@ public class LevelGeneration : MonoBehaviour
     private float[] enemyPropabilities;
     private List<float> propabilityArray;
 
-    void Start()
-    {
-        currentLevel = 0;
+    public void EstimateLevel() {
         enemyPropabilities = new float[enemyTypes.Length];
         propabilityArray = new List<float>();
-    }
-
-    public void EstimateLevel() {
         enemyCount = (int)Mathf.Round(4f + Mathf.Pow(currentLevel, 1.5f));
         Debug.Log("Current Level: " + currentLevel + ", Enemy Count: " + enemyCount);
         int totalTypesOfEnemies = enemyTypes.Length;
         if (enemyCount < 15) {
-            enemyPropabilities[0] = 1;
+            enemyPropabilities[0] = 1f;
             for (int i = 1; i < enemyTypes.Length; i++) {
-                enemyPropabilities[i] = 0;
+                enemyPropabilities[i] = 0f;
             }
         }
         else if (enemyCount < 25)
@@ -86,7 +81,7 @@ public class LevelGeneration : MonoBehaviour
                 propabilityArray.Add(enemyPropabilities[i]);
             }
         }
-        //DisplayStats();
+        DisplayStats();
     }
 
     public int PickRandomEnemy()
