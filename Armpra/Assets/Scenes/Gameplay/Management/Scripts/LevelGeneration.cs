@@ -8,14 +8,14 @@ public class LevelGeneration : MonoBehaviour
     public int enemyCount;
     public GameObject[] enemyTypes;
 
-    private int[] enemyPropabilities;
-    private List<int> propabilityArray;
+    private float[] enemyPropabilities;
+    private List<float> propabilityArray;
 
     void Start()
     {
         currentLevel = 0;
-        enemyPropabilities = new int[enemyTypes.Length];
-        propabilityArray = new List<int>();
+        enemyPropabilities = new float[enemyTypes.Length];
+        propabilityArray = new List<float>();
     }
 
     public void EstimateLevel() {
@@ -28,15 +28,39 @@ public class LevelGeneration : MonoBehaviour
                 enemyPropabilities[i] = 0;
             }
         }
+        else if (enemyCount < 25)
+        {
+            enemyPropabilities[0] = 0.8f;
+            enemyPropabilities[1] = 0.2f;
+            for (int i = 2; i < enemyTypes.Length; i++)
+            {
+                enemyPropabilities[i] = 0;
+            }
+        }
+        else if (enemyCount < 50)
+        {
+            enemyPropabilities[0] = 0.5f;
+            enemyPropabilities[1] = 0.3f;
+            enemyPropabilities[2] = 0.1f;
+            for (int i = 3; i < enemyTypes.Length; i++)
+            {
+                enemyPropabilities[i] = 0;
+            }
+        }
         else if (enemyCount < 100) {
-            int sumFactors = 0;
+            float sumFactors = 0;
             for (int i = 0; i < enemyTypes.Length; i++) {
-                int factor = enemyTypes.Length - i;
+                float factor = enemyTypes.Length - i;
+                Debug.Log("Factor: " + factor);
                 enemyPropabilities[i] = factor / enemyTypes.Length;
+                Debug.Log("Enemy Prop: " + enemyPropabilities[i]);
                 sumFactors += factor;
             }
             for (int i = 0; i < enemyTypes.Length; i++)
+            {
                 enemyPropabilities[i] *= sumFactors;
+                Debug.Log("New Enemy Prop: " + enemyPropabilities[i]);
+            }
         }
         else if (enemyCount < 500)
             for (int i = 0; i < enemyTypes.Length; i++)
@@ -62,14 +86,14 @@ public class LevelGeneration : MonoBehaviour
                 propabilityArray.Add(enemyPropabilities[i]);
             }
         }
-        DisplayStats();
+        //DisplayStats();
     }
 
     public int PickRandomEnemy()
     {
         int random = Random.Range(0, propabilityArray.ToArray().Length);
         Debug.Log("Random: " + random);
-        int randomPropability = propabilityArray[random];
+        float randomPropability = propabilityArray[random];
         Debug.Log("Random Prop: " + randomPropability);
         int index = 0;
         for (int i = 0; i < enemyPropabilities.Length; i++)
