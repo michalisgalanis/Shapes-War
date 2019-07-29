@@ -91,8 +91,8 @@ GameObject:
   - component: {fileID: 4994483783184125011}
   - component: {fileID: -3498957439382946648}
   m_Layer: 0
-  m_Name: PowerUpB
-  m_TagString: Untagged
+  m_Name: SpeedPowerupPrefab
+  m_TagString: Powerups
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupDuration: 5
   powerupMultiplier: 1.5
-  timeLeft: 0
 --- !u!1 &895830066382851302
 GameObject:
   m_ObjectHideFlags: 0

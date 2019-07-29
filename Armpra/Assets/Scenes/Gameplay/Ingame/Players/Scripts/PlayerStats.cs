@@ -7,9 +7,9 @@ public class PlayerStats : MonoBehaviour
     public int playerLevel;
     public double XP;
     public Weapon weapon;
-    public float weaponDamage;
+    public float rangedDamage;
     public int maxHealth;
-    public int attackSpeed;
+    public float attackSpeed;
     public float movementSpeed;
     public float damageReduction; //0 equals to full damage taken, 1 equals to zero damage taken
 

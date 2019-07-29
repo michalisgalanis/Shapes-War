@@ -14,16 +14,36 @@ public class GameplayManager : MonoBehaviour
     public GameObject movementJoystick;
     public GameObject attackJoystick;
 
-    public PlayerStats player;
-    public GameplayManager gManager;
-    public Shield shield;
-    public SpeedPowerUp rushB;
-    public int level;
-    public float bestAttemptPercentage;
 
-    void Start(){
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        //SavingSystem.LoadData();
+    private GameObject gameManager;
+    private PlayerStats playerStatsComponent;
+    public Shield shield;
+    public SpeedPowerUp speedPowerUp;
+    public float bestAttemptPercentage;
+    public Data loadedData;
+
+    void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
+        playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        loadedData = SavingSystem.LoadData();
+        //Load General Stats
+        gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.level;
+        gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = loadedData.bestAttemptPercentage;
+
+        //Load Player Stats
+        playerStatsComponent.playerLevel = loadedData.level;
+        playerStatsComponent.damageReduction = loadedData.damageReduction;
+        playerStatsComponent.attackSpeed = loadedData.attackSpeed;
+        playerStatsComponent.rangedDamage = loadedData.rangedDamage;
+        //Load Powerup Upgrades
+        //Shield Powerup
+        shield.maxShieldHealth = loadedData.maxShieldHealth;
+        shield.shieldDamage = loadedData.shieldDamage;
+        //Speed Powerup
+        speedPowerUp.powerupDuration = loadedData.speedPowerupDuration;
+        speedPowerUp.powerupMultiplier = loadedData.speedPowerUpMultiplier;
+
         pauseMenu.SetActive(false);
         lostMenu.SetActive(false);
         wonMenu.SetActive(false);
@@ -53,13 +73,14 @@ public class GameplayManager : MonoBehaviour
     }
 
     public void Lose(){
+        //bestAttemptPercentage = ;
         lostMenu.gameObject.SetActive(true);
     }
 
     public void CompleteLevel()
     {
+        SavingSystem.SaveProgress(playerStatsComponent, shield, speedPowerUp, gameManager);
         Time.timeScale = 0;
-        SavingSystem.SaveProgress(player, gManager, shield, rushB);
         gameUI.SetActive(false);
         wonMenu.SetActive(true);
     }
@@ -67,7 +88,7 @@ public class GameplayManager : MonoBehaviour
     public void ProceedToNextLevel()
     {
         Time.timeScale = 1;
-        player.RefillStats();
+        playerStatsComponent.RefillStats();
         gameUI.SetActive(true);
         wonMenu.SetActive(false);
     }

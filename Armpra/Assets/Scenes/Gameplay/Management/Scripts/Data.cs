@@ -12,7 +12,7 @@ public class Data
     public int playerLevel;
     public float damageReduction;
     //public Weapon weapon;
-    public float weaponDamage;
+    public float rangedDamage;
     public float attackSpeed;
     public double XP;
 
@@ -25,18 +25,19 @@ public class Data
     public float speedPowerupDuration;
     public float speedPowerUpMultiplier;
 
-    public Data(PlayerStats player, GameplayManager gmanager, Shield shield, SpeedPowerUp rushB)
+    public Data(PlayerStats playerStatsComponent, Shield shield, SpeedPowerUp speedPowerUp, GameObject gameManager)
     {
+
         //General variables
-        level = gmanager.level;
-        bestAttemptPercentage = gmanager.bestAttemptPercentage;
+        level = gameManager.GetComponent<LevelGeneration>().currentLevel + 1;
+        bestAttemptPercentage = gameManager.GetComponent<GameplayManager>().bestAttemptPercentage;
         //Player variables
-        playerLevel = player.playerLevel;
-        damageReduction = player.damageReduction;
+        playerLevel = playerStatsComponent.playerLevel;
+        damageReduction = playerStatsComponent.damageReduction;
         //weapon = player.weapon;
-        weaponDamage = player.weaponDamage;
-        attackSpeed = player.attackSpeed;
-        XP = player.XP;
+        rangedDamage = playerStatsComponent.rangedDamage;
+        attackSpeed = playerStatsComponent.attackSpeed;
+        XP = playerStatsComponent.XP;
 
         //Powerup variables
 
@@ -44,8 +45,8 @@ public class Data
         maxShieldHealth = shield.maxShieldHealth;
         shieldDamage = shield.shieldDamage;
         //Speed powerup
-        speedPowerupDuration = rushB.powerupDuration;
-        speedPowerUpMultiplier = rushB.powerupDuration;
+        speedPowerupDuration = speedPowerUp.powerupDuration;
+        speedPowerUpMultiplier = speedPowerUp.powerupMultiplier;
 
 
     }

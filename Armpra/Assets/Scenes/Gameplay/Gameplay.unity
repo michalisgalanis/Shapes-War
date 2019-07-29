@@ -1062,6 +1062,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -358526174379180828, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f,
         type: 3}
+    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: speedPowerUp
+      value: 
+      objectReference: {fileID: -3498957439382946648, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c,
+        type: 3}
     - target: {fileID: 8643191348888787552, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: m_LocalPosition.x

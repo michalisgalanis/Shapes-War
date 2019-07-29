@@ -4,14 +4,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SavingSystem{    
     private static string path =  Application.dataPath + "/progress.stpd";
-    public static void SaveProgress(PlayerStats player, GameplayManager gManager,Shield shield,SpeedPowerUp rushB){
-        if (!File.Exists(path)){
-            FileStream stream = new FileStream(path, FileMode.Create);
-            Data data = new Data(player, gManager, shield, rushB);
+    public static void SaveProgress(PlayerStats playerStatsComponent, Shield shield, SpeedPowerUp speedPowerUp, GameObject gameManager)
+    {
+            FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
+            Data data = new Data(playerStatsComponent,shield,speedPowerUp,gameManager);
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(stream, data);
             stream.Close();
-        }   
     }
 
     public static Data LoadData(){
