@@ -210,8 +210,8 @@ MonoBehaviour:
   trails: {fileID: 538732981513450004}
   maxHealth: 150
   meleeDamage: 0.25
-  points: 20
-  coins: 2
+  points: 50
+  coins: 5
 --- !u!114 &8384220116062390971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,12 +661,12 @@ PrefabInstance:
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}

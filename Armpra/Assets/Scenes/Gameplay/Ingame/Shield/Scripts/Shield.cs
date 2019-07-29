@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+    //Shield Stats
     public float maxShieldHealth;
     public float shieldDamage;
+    public float duration;
 
-    public ParticleSystem shieldDestroyExplosionParticlesPrefab;
-    private ParticleSystem shieldDestroyExplosionParticles;
-    public ParticleSystem trails;
-
+    //Dynamic Stats
     private float currentHealth;
     private bool markedForDestroy;
 
-    public SpriteRenderer outerShield;
-    public SpriteRenderer innerShield;
+    //Essential References
+    private SpriteRenderer outerShield;
+    private SpriteRenderer innerShield;
+    private ParticleSystem movingTrails;
+    private ParticleSystem localTrails;
+    public ParticleSystem shieldDestroyExplosionParticlesPrefab;
+    
 
     void Start()
     {
+        outerShield = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(0).GetComponent<SpriteRenderer>();
+        innerShield = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(1).GetComponent<SpriteRenderer>();
+        movingTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(2).GetComponent<ParticleSystem>();
+        localTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(3).GetComponent<ParticleSystem>();
         currentHealth = maxShieldHealth;
         Physics2D.IgnoreLayerCollision(8, 9);
         markedForDestroy = false;
@@ -42,7 +50,9 @@ public class Shield : MonoBehaviour
             innerG = Color.HSVToRGB(h, innerS, innerV).g;
             innerB = Color.HSVToRGB(h, innerS, innerV).b;
             innerShield.color = new Color(innerR, innerG, innerB, innerA);
-            ParticleSystem.MainModule ps = trails.main;
+            ParticleSystem.MainModule ps = movingTrails.main;
+            ps.startColor = new ParticleSystem.MinMaxGradient(outerShield.color);
+            ps = localTrails.main;
             ps.startColor = new ParticleSystem.MinMaxGradient(outerShield.color);
         }
     }
@@ -53,8 +63,9 @@ public class Shield : MonoBehaviour
         if (currentHealth <= 0 && !markedForDestroy)
         {
             markedForDestroy = true;
-            shieldDestroyExplosionParticles = Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);
+            Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            markedForDestroy = false;
         }
     }
 

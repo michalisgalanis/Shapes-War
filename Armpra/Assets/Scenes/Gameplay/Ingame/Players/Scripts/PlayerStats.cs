@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    //General Stats
     public int playerLevel;
-    public double XP;
-    public Weapon weapon;
-    public float weaponDamage;
-    public int maxHealth;
+    public double xP;
+
+    //Attack Stats
+    public float rangedDamage;
+    public float meleeDamage;
     public int attackSpeed;
-    public float movementSpeed;
+
+    //Defense Stats
+    public int maxHealth;
     public float damageReduction; //0 equals to full damage taken, 1 equals to zero damage taken
 
+    //Neutral Stats
+    public float movementSpeed;
+
+    //Other Essential Real Time Stats
     private float currentHealth;
     private bool markedForDestruction;
 
-
+    //Needed References
     public SpriteRenderer playerBorder;
     public SpriteRenderer[] playerHeads;
     public GameObject shieldPrefab;
-
     public ParticleSystem playerDeathExplosionParticles;
     public GameObject gm;
     void Start()
@@ -29,9 +36,7 @@ public class PlayerStats : MonoBehaviour
         markedForDestruction = false;
         Physics2D.IgnoreLayerCollision(8, 13);
         gm = GameObject.FindGameObjectWithTag("GameController");
-        GameObject shield = Instantiate(shieldPrefab, transform.localPosition, Quaternion.identity);
-        shield.transform.parent = gameObject.transform;
-
+        Instantiate(shieldPrefab, transform.localPosition, Quaternion.identity).transform.parent = gameObject.transform;
     }
 
     // Update is called once per frame
@@ -56,11 +61,13 @@ public class PlayerStats : MonoBehaviour
             playerDeathExplosionParticles = Instantiate(playerDeathExplosionParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
             gm.GetComponent<GameplayManager>().Lose();
+            markedForDestruction = false;
         }
     }
 
     public void RefillStats()
     {
         currentHealth = maxHealth;
+       
     }
 }

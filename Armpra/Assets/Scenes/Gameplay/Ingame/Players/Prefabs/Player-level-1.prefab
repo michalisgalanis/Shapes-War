@@ -354,13 +354,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLevel: 0
-  XP: 0
-  weapon: {fileID: 6070453714078794851}
-  weaponDamage: 0
-  maxHealth: 1500
+  xP: 0
+  rangedDamage: 0
+  meleeDamage: 0
   attackSpeed: 1
-  movementSpeed: 3
+  maxHealth: 1500
   damageReduction: 0
+  movementSpeed: 3
   playerBorder: {fileID: 2107116754149386338}
   playerHeads:
   - {fileID: 2107116754535421672}

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Data
 {
     //General Info
-    public int level;
+    public int currentLevel;
     public float bestAttemptPercentage;
     //Player Data
     public int playerLevel;
@@ -28,15 +28,15 @@ public class Data
     public Data(PlayerStats player, GameplayManager gmanager, Shield shield, SpeedPowerUp rushB)
     {
         //General variables
-        level = gmanager.level;
+        currentLevel = gmanager.level;
         bestAttemptPercentage = gmanager.bestAttemptPercentage;
         //Player variables
         playerLevel = player.playerLevel;
         damageReduction = player.damageReduction;
         //weapon = player.weapon;
-        weaponDamage = player.weaponDamage;
+        weaponDamage = player.rangedDamage;
         attackSpeed = player.attackSpeed;
-        XP = player.XP;
+        XP = player.xP;
 
         //Powerup variables
 

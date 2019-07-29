@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour
                 GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
                 bullet.GetComponent<Bullet>().playerFired = playerFires;
                 bullet.GetComponent<Bullet>().damage = bulletDamage;
-                bullet.GetComponent<Bullet>().speed = bulletSpeed;
+                bullet.GetComponent<Bullet>().maxSpeed = bulletSpeed;
                 currentTimer = 0;
             }
             

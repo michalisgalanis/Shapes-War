@@ -7,14 +7,23 @@ public class Bullet : MonoBehaviour
     public ParticleSystem hitExplosionParticlesPrefab;
     private ParticleSystem hitExplosionParticles;
 
-    public float speed = 20f;
+    public float maxSpeed = 20f;
+    public float acceleration;
+    private float currentSpeed;
     public Rigidbody2D rb;
     public int damage;
     public bool playerFired;
 
     void Start(){
-        rb.velocity = transform.up * speed;
         Physics2D.IgnoreLayerCollision(10,8); //Ignore Collisions with bg particles
+        currentSpeed = 0;
+    }
+
+    void Update()
+    {
+        currentSpeed += acceleration;
+        if (currentSpeed > maxSpeed) currentSpeed = maxSpeed;
+        rb.velocity = transform.up * currentSpeed;
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo){

@@ -9659,7 +9659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitExplosionParticlesPrefab: {fileID: 2720002162805827168, guid: 1fa619fc97f3a00409100fba5bed68cb,
     type: 3}
-  speed: 10
+  maxSpeed: 20
+  acceleration: 2.5
   rb: {fileID: 1431479657208786341}
   damage: 40
   playerFired: 1

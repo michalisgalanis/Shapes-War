@@ -46,15 +46,15 @@ public class LevelGeneration : MonoBehaviour
             float sumFactors = 0;
             for (int i = 0; i < enemyTypes.Length; i++) {
                 float factor = enemyTypes.Length - i;
-                Debug.Log("Factor: " + factor);
+                //Debug.Log("Factor: " + factor);
                 enemyPropabilities[i] = factor / enemyTypes.Length;
-                Debug.Log("Enemy Prop: " + enemyPropabilities[i]);
+                //Debug.Log("Enemy Prop: " + enemyPropabilities[i]);
                 sumFactors += factor;
             }
             for (int i = 0; i < enemyTypes.Length; i++)
             {
                 enemyPropabilities[i] *= sumFactors;
-                Debug.Log("New Enemy Prop: " + enemyPropabilities[i]);
+                //Debug.Log("New Enemy Prop: " + enemyPropabilities[i]);
             }
         }
         else if (enemyCount < 500)
@@ -87,9 +87,9 @@ public class LevelGeneration : MonoBehaviour
     public int PickRandomEnemy()
     {
         int random = Random.Range(0, propabilityArray.ToArray().Length);
-        Debug.Log("Random: " + random);
+        //Debug.Log("Random: " + random);
         float randomPropability = propabilityArray[random];
-        Debug.Log("Random Prop: " + randomPropability);
+        //Debug.Log("Random Prop: " + randomPropability);
         int index = 0;
         for (int i = 0; i < enemyPropabilities.Length; i++)
         {
@@ -98,7 +98,7 @@ public class LevelGeneration : MonoBehaviour
                 index = i;
             }
         }
-        Debug.Log("Index: " + index);
+        //Debug.Log("Index: " + index);
         return index;
     }
 
