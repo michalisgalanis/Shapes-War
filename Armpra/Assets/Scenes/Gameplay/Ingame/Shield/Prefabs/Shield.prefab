@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4220764096275036720}
   - component: {fileID: 5283264560837641036}
   - component: {fileID: 7925451690687199478}
-  - component: {fileID: 2568014812048570403}
+  - component: {fileID: -358526174379180828}
   m_Layer: 9
   m_Name: Shield
   m_TagString: Shield
@@ -68,7 +68,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.02
---- !u!114 &2568014812048570403
+--- !u!114 &-358526174379180828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxShieldHealth: 80
-  shieldDamage: 0.05
+  shieldDamage: 0.5
   shieldDestroyExplosionParticlesPrefab: {fileID: 1766086259938547595, guid: ed15474e90ebcc644823c32fd23a4a0b,
     type: 3}
   trails: {fileID: 1265617331986371635, guid: 92c3704664ef6c3409bb894d177bc3b5, type: 3}
@@ -89,7 +89,6 @@ MonoBehaviour:
     type: 3}
   innerShield: {fileID: 9029424972776305118, guid: dda4dc66a55e3bd4aaa9ac731f3b0020,
     type: 3}
-  playerT: {fileID: 2107116754607933117, guid: 257e7ec0a2f5fad4797e11892f7cbd35, type: 3}
 --- !u!1001 &3549172378760021120
 PrefabInstance:
   m_ObjectHideFlags: 0

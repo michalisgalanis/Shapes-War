@@ -2,25 +2,22 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public static class SavingSystem
-{    
-    public static void SaveProgress(PlayerStats player, GameplayManager gManager,ShieldPowerUp shield,SpeedPowerUp rushB)
-    {
-        string path = Application.dataPath + "/progress.stoopid";
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Create);
-        Data data = new Data(player, gManager, shield, rushB);
-        formatter.Serialize(stream, data);
-        stream.Close();
+public static class SavingSystem{    
+    private static string path =  Application.dataPath + "/progress.stpd";
+    public static void SaveProgress(PlayerStats player, GameplayManager gManager,Shield shield,SpeedPowerUp rushB){
+        if (!File.Exists(path)){
+            FileStream stream = new FileStream(path, FileMode.Create);
+            Data data = new Data(player, gManager, shield, rushB);
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, data);
+            stream.Close();
+        }   
     }
 
-    public static Data LoadData()
-    {
-        string path = Application.dataPath + "/progress.stoopid";
-        if (File.Exists(path))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
+    public static Data LoadData(){
+        if (File.Exists(path)){
             FileStream stream = new FileStream(path, FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
             Data data = formatter.Deserialize(stream) as Data;
             stream.Close();
             return data;

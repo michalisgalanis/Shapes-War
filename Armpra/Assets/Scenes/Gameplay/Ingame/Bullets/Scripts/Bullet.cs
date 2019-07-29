@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
             }
             else if (hitInfo.CompareTag("Shield"))
             {
-                ShieldPowerUp shield = hitInfo.GetComponent<ShieldPowerUp>();
+                Shield shield = hitInfo.GetComponent<Shield>();
                 if (shield != null)
                 {
                     Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), hitInfo);
@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
         else
         {
             if (hitInfo.CompareTag("Shield")){
-                ShieldPowerUp shield = hitInfo.GetComponent<ShieldPowerUp>();
+                Shield shield = hitInfo.GetComponent<Shield>();
                 if (shield != null)
                 {
                     hitExplosionParticles = Instantiate(hitExplosionParticlesPrefab, transform.position, Quaternion.identity);

@@ -4850,9 +4850,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8653061549976029954}
   - component: {fileID: 3708594487011694250}
-  - component: {fileID: 2716536995310849659}
+  - component: {fileID: -7671551835985042055}
   m_Layer: 0
-  m_Name: PowerUpA
+  m_Name: ShieldPowerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4892,7 +4892,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.56
---- !u!114 &2716536995310849659
+--- !u!114 &-7671551835985042055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4901,12 +4901,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8653061549976029955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf85198c50fb89478e5fee43b3bf07f, type: 3}
+  m_Script: {fileID: 11500000, guid: 54ff726b419f7854b836ed6a810f0231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0
-  powerupDuration: 5
-  powerupMultiplier: 1.5
+  maxShieldHealth: 0
+  shieldDamage: 0
+  shieldDestroyExplosionParticlesPrefab: {fileID: 0}
+  trails: {fileID: 0}
+  outerShield: {fileID: 0}
+  innerShield: {fileID: 0}
 --- !u!1 &8653061550526393393
 GameObject:
   m_ObjectHideFlags: 0

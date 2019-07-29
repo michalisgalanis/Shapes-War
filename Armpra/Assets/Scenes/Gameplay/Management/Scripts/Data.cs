@@ -11,7 +11,7 @@ public class Data
     //Player Data
     public int playerLevel;
     public float damageReduction;
-    public Weapon weapon;
+    //public Weapon weapon;
     public float weaponDamage;
     public float attackSpeed;
     public double XP;
@@ -25,7 +25,7 @@ public class Data
     public float speedPowerupDuration;
     public float speedPowerUpMultiplier;
 
-    public Data(PlayerStats player, GameplayManager gmanager, ShieldPowerUp shield, SpeedPowerUp rushB)
+    public Data(PlayerStats player, GameplayManager gmanager, Shield shield, SpeedPowerUp rushB)
     {
         //General variables
         level = gmanager.level;
@@ -33,7 +33,7 @@ public class Data
         //Player variables
         playerLevel = player.playerLevel;
         damageReduction = player.damageReduction;
-        weapon = player.weapon;
+        //weapon = player.weapon;
         weaponDamage = player.weaponDamage;
         attackSpeed = player.attackSpeed;
         XP = player.XP;

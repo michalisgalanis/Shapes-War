@@ -14,13 +14,16 @@ public class GameplayManager : MonoBehaviour
     public GameObject movementJoystick;
     public GameObject attackJoystick;
 
-    private PlayerStats player;
+    public PlayerStats player;
+    public GameplayManager gManager;
+    public Shield shield;
+    public SpeedPowerUp rushB;
     public int level;
     public float bestAttemptPercentage;
 
     void Start(){
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        SavingSystem.LoadData();
+        //SavingSystem.LoadData();
         pauseMenu.SetActive(false);
         lostMenu.SetActive(false);
         wonMenu.SetActive(false);
@@ -56,6 +59,7 @@ public class GameplayManager : MonoBehaviour
     public void CompleteLevel()
     {
         Time.timeScale = 0;
+        SavingSystem.SaveProgress(player, gManager, shield, rushB);
         gameUI.SetActive(false);
         wonMenu.SetActive(true);
     }
