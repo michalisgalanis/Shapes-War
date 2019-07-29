@@ -9,6 +9,7 @@ TagManager:
   - AttackJoystick
   - Shield
   - MapBounds
+  - Powerups
   layers:
   - Default
   - TransparentFX

@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
     private float currentTimer;
     private bool positionConflict;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +37,8 @@ public class EnemySpawner : MonoBehaviour
         currentTimer = spawnTimer;
         enemyCounter = 0;
         lg = gameObject.GetComponent<LevelGeneration>();
-        lg.currentLevel = 1;
+        //lg.currentLevel = 1;
+        lg.currentLevel = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().loadedData.level;
         lg.EstimateLevel();
         maxEnemyCount = lg.enemyCount;
     }
