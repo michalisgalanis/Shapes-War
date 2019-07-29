@@ -12,6 +12,7 @@ public class Shield : MonoBehaviour
     //Dynamic Stats
     private float currentHealth;
     private bool markedForDestroy;
+    private float timeLeft;
 
     //Essential References
     private SpriteRenderer outerShield;
@@ -29,6 +30,8 @@ public class Shield : MonoBehaviour
         movingTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(2).GetComponent<ParticleSystem>();
         localTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(3).GetComponent<ParticleSystem>();
         currentHealth = maxShieldHealth;
+        timeLeft = duration;
+
         Physics2D.IgnoreLayerCollision(8, 9);
         Physics2D.IgnoreLayerCollision(9, 14);
         markedForDestroy = false;
@@ -57,6 +60,9 @@ public class Shield : MonoBehaviour
             ps = localTrails.main;
             ps.startColor = new ParticleSystem.MinMaxGradient(outerShield.color);
         }
+        timeLeft -= Time.deltaTime;
+        if (timeLeft <= 0)
+            Destroy(gameObject);
     }
 
     public void TakeDamage(float damage)

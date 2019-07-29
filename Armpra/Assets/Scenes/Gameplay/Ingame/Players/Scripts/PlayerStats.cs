@@ -28,7 +28,7 @@ public class PlayerStats : MonoBehaviour
     public SpriteRenderer playerBorder;
     public SpriteRenderer[] playerHeads;
     public GameObject shockwavePrefab;
-    public GameObject shieldPrefab;
+    //public GameObject shieldPrefab;
     public ParticleSystem playerDeathExplosionParticles;
     public GameObject gm;
     void Start()
@@ -40,7 +40,7 @@ public class PlayerStats : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GameController");
         GameObject shockwave = Instantiate(shockwavePrefab, transform.localPosition, Quaternion.identity);
         shockwave.transform.parent = gameObject.transform;
-        Instantiate(shieldPrefab, transform.localPosition, Quaternion.identity).transform.parent = gameObject.transform;
+        //Instantiate(shieldPrefab, transform.localPosition, Quaternion.identity).transform.parent = gameObject.transform;
         
     }
 

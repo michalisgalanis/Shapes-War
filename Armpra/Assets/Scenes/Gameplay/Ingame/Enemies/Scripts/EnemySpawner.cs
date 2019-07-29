@@ -54,7 +54,6 @@ public class EnemySpawner : MonoBehaviour
         else if (spawningTime == false && enemyCounter == 0)
         {
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().CompleteLevel();
-            Debug.Log("Spawning Time!");
             lg.currentLevel++;
             lg.EstimateLevel();
             maxEnemyCount = lg.enemyCount;
