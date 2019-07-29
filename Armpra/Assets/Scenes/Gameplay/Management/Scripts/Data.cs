@@ -29,7 +29,7 @@ public class Data
     {
 
         //General variables
-        level = gameManager.GetComponent<LevelGeneration>().currentLevel + 1;
+        currentLevel = gameManager.GetComponent<LevelGeneration>().currentLevel + 1;
         bestAttemptPercentage = gameManager.GetComponent<GameplayManager>().bestAttemptPercentage;
         //Player variables
         playerLevel = playerStatsComponent.playerLevel;
@@ -37,7 +37,7 @@ public class Data
         //weapon = player.weapon;
         rangedDamage = playerStatsComponent.rangedDamage;
         attackSpeed = playerStatsComponent.attackSpeed;
-        XP = playerStatsComponent.XP;
+        XP = playerStatsComponent.xP;
 
         //Powerup variables
 

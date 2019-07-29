@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
         enemyCounter = 0;
         lg = gameObject.GetComponent<LevelGeneration>();
         //lg.currentLevel = 1;
-        lg.currentLevel = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().loadedData.level;
+        lg.currentLevel = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().loadedData.currentLevel;
         lg.EstimateLevel();
         maxEnemyCount = lg.enemyCount;
     }

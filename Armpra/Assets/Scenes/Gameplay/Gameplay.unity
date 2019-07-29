@@ -760,6 +760,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 2000
       objectReference: {fileID: 0}
+    - target: {fileID: 829581828, guid: 257e7ec0a2f5fad4797e11892f7cbd35, type: 3}
+      propertyPath: shockwavePrefab
+      value: 
+      objectReference: {fileID: 5261163578460684603, guid: d6703ea4eba38c04d927a158feb5e6cd,
+        type: 3}
     - target: {fileID: 2107116754607933117, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
         type: 3}
       propertyPath: m_LocalPosition.x

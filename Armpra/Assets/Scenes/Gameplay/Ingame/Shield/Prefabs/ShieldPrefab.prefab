@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7925451690687199478}
   - component: {fileID: -358526174379180828}
   m_Layer: 9
-  m_Name: Shield
+  m_Name: ShieldPrefab
   m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 7923466100961731369}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 83b4bff9dda5e0f46b7deb892675c192, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -62,7 +62,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 7923466100961731369}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 83b4bff9dda5e0f46b7deb892675c192, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -81,9 +81,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ff726b419f7854b836ed6a810f0231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShieldHealth: 100
+  maxShieldHealth: 80
   shieldDamage: 0.5
   duration: 10
+  shieldShockwavePrefab: {fileID: 1097285291547384642, guid: 33bfbf4460e414b408506436c6eee027,
+    type: 3}
   shieldDestroyExplosionParticlesPrefab: {fileID: 1766086259938547595, guid: ed15474e90ebcc644823c32fd23a4a0b,
     type: 3}
 --- !u!1001 &3549172378760021120

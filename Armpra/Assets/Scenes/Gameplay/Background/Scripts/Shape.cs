@@ -39,6 +39,7 @@ public class Shape : MonoBehaviour
         Physics2D.IgnoreLayerCollision(8, 11);
         Physics2D.IgnoreLayerCollision(8, 12);
         Physics2D.IgnoreLayerCollision(8, 13);
+        Physics2D.IgnoreLayerCollision(8, 14);
 
     }
 

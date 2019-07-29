@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviour
     //Attack Stats
     public float rangedDamage;
     public float meleeDamage;
-    public int attackSpeed;
+    public float attackSpeed;
 
     //Defense Stats
     public int maxHealth;
@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour
     //Needed References
     public SpriteRenderer playerBorder;
     public SpriteRenderer[] playerHeads;
+    public GameObject shockwavePrefab;
     public GameObject shieldPrefab;
     public ParticleSystem playerDeathExplosionParticles;
     public GameObject gm;
@@ -35,8 +36,12 @@ public class PlayerStats : MonoBehaviour
         currentHealth = maxHealth;
         markedForDestruction = false;
         Physics2D.IgnoreLayerCollision(8, 13);
+        Physics2D.IgnoreLayerCollision(13, 14);
         gm = GameObject.FindGameObjectWithTag("GameController");
+        GameObject shockwave = Instantiate(shockwavePrefab, transform.localPosition, Quaternion.identity);
+        shockwave.transform.parent = gameObject.transform;
         Instantiate(shieldPrefab, transform.localPosition, Quaternion.identity).transform.parent = gameObject.transform;
+        
     }
 
     // Update is called once per frame

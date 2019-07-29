@@ -18,6 +18,7 @@ public class Shield : MonoBehaviour
     private SpriteRenderer innerShield;
     private ParticleSystem movingTrails;
     private ParticleSystem localTrails;
+    public GameObject shieldShockwavePrefab;
     public ParticleSystem shieldDestroyExplosionParticlesPrefab;
     
 
@@ -29,6 +30,7 @@ public class Shield : MonoBehaviour
         localTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(3).GetComponent<ParticleSystem>();
         currentHealth = maxShieldHealth;
         Physics2D.IgnoreLayerCollision(8, 9);
+        Physics2D.IgnoreLayerCollision(9, 14);
         markedForDestroy = false;
     }
 
@@ -63,6 +65,7 @@ public class Shield : MonoBehaviour
         if (currentHealth <= 0 && !markedForDestroy)
         {
             markedForDestroy = true;
+            Instantiate(shieldShockwavePrefab, transform.localPosition, Quaternion.identity);
             Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             markedForDestroy = false;

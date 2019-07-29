@@ -28,11 +28,11 @@ public class GameplayManager : MonoBehaviour
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         loadedData = SavingSystem.LoadData();
         //Load General Stats
-        gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.level;
+        gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
         gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = loadedData.bestAttemptPercentage;
 
         //Load Player Stats
-        playerStatsComponent.playerLevel = loadedData.level;
+        playerStatsComponent.playerLevel = loadedData.playerLevel;
         playerStatsComponent.damageReduction = loadedData.damageReduction;
         playerStatsComponent.attackSpeed = loadedData.attackSpeed;
         playerStatsComponent.rangedDamage = loadedData.rangedDamage;

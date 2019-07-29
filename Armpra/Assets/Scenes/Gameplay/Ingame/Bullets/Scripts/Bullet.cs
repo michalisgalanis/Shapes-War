@@ -68,7 +68,7 @@ public class Bullet : MonoBehaviour
                 }
                 Destroy(gameObject);
             } else if (hitInfo.CompareTag("Enemy"))
-                Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), hitInfo);
+                Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), hitInfo);
         }
         if (hitInfo.CompareTag("MapBounds"))
             Destroy(gameObject);
