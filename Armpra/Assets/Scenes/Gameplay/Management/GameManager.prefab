@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8643191348888787487}
   - component: {fileID: 2195109817190476714}
   - component: {fileID: 4323194168433894170}
+  - component: {fileID: 1237041086}
+  - component: {fileID: 1237041087}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -48,15 +50,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f877e9725c222644d80271af0d775110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 5037609890376579088, guid: 2a99e65de2c4e0b4cb4299040c080d9d, type: 3}
-  pauseMenu: {fileID: 8898359906539963142, guid: cc83e4775edb1084f89b1dae96f3395e,
+  gameUI: {fileID: 6687433574806607479, guid: fd2d48c944109004b97ed98e397f27ae, type: 3}
+  pauseMenu: {fileID: 522621711325983628, guid: bcb843c6da3b01d419346f437a4cfb0c,
     type: 3}
-  lostMenu: {fileID: 5726853112046768029, guid: 063448ac0ed409e4aa80581ea63c1d58,
+  lostMenu: {fileID: 3804810407189486445, guid: d8f4f503dde8d04419e0158f458f3e84,
     type: 3}
-  movementJoystick: {fileID: 4558686052797858584, guid: 609e29a868fbbf84592e6585f30491e4,
+  wonMenu: {fileID: 522621711325983628, guid: 2f6d87e655299b742acb157314fdaecf, type: 3}
+  movementJoystick: {fileID: 3342886427447392987, guid: 0f79d36dd9c753848823199f9d122e5c,
     type: 3}
-  attackJoystick: {fileID: 4388488694524444951, guid: 79367dde544de7c488437e67d9083528,
+  attackJoystick: {fileID: 8534683565166153147, guid: eade3379724912c45974e3c2e3602128,
     type: 3}
+  background: {fileID: 8856123811902659008, guid: 03632b48accafce4fa61c9e27f12a497,
+    type: 3}
+  shield: {fileID: -358526174379180828, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f, type: 3}
+  speedPowerUp: {fileID: -3498957439382946648, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c,
+    type: 3}
+  bestAttemptPercentage: 0
+  loadedData:
+    currentLevel: 0
+    bestAttemptPercentage: 0
+    playerLevel: 0
+    damageReduction: 0
+    rangedDamage: 0
+    attackSpeed: 0
+    XP: 0
+    maxShieldHealth: 0
+    shieldDamage: 0
+    speedPowerupDuration: 0
+    speedPowerUpMultiplier: 0
 --- !u!114 &8643191348888787553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,8 +92,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 6045932645883520105, guid: 919d40c11ddd8ba47b139b05da2f6095, type: 3}
-  camera: {fileID: 2835013691163023810, guid: 056fa24de101ab346b0f2de8063c6290, type: 3}
+  - {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c, type: 3}
+  - {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c, type: 3}
+  - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
+  enemiesRemainingText: {fileID: 0}
+  camera: {fileID: 0}
   spawnTimer: 0.01
+  enemyCounter: 0
   maxEnemyCount: 10
 --- !u!114 &8643191348888787486
 MonoBehaviour:
@@ -123,6 +149,7 @@ MonoBehaviour:
   scoreText:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &4323194168433894170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +165,40 @@ MonoBehaviour:
   coinsText:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &1237041086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643191348888787484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a8fe3748be7ee44a936e82d3c883bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTimer: 10
+  powerUps:
+  - {fileID: 8653061549976029955, guid: 8cacc47ff8cbc6843ac276719ac82242, type: 3}
+  - {fileID: 895830065856883668, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c, type: 3}
+  - {fileID: 3396940085168429807, guid: 7dd788bebb2efd446b6fbd75e5b9fbca, type: 3}
+--- !u!114 &1237041087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643191348888787484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed076585cdad3d4caf88b432c09cb84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: 1
+  enemyCount: 5
+  enemyTypes:
+  - {fileID: 6045932645883520105, guid: 919d40c11ddd8ba47b139b05da2f6095, type: 3}
+  - {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c, type: 3}
+  - {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c, type: 3}
+  - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}

@@ -132,7 +132,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8643191347702228385}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237041085}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f877e9725c222644d80271af0d775110, type: 3}
@@ -174,66 +174,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1468862022569705573}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1108418741 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 829581828, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
-    type: 3}
-  m_PrefabInstance: {fileID: 2107116754085026047}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ac2d88959fa364eaa806430fa5c66f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &1186524367 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2835013691163023810, guid: 056fa24de101ab346b0f2de8063c6290,
     type: 3}
   m_PrefabInstance: {fileID: 2835013690130756877}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1237041085 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8643191348888787484, guid: ab378c802f2e1c94294275728b790b9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8643191347702228385}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1237041086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237041085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28a8fe3748be7ee44a936e82d3c883bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnTimer: 10
-  powerUps:
-  - {fileID: 8653061549976029955, guid: 8cacc47ff8cbc6843ac276719ac82242, type: 3}
-  - {fileID: 895830065856883668, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c, type: 3}
-  - {fileID: 3396940085168429807, guid: 7dd788bebb2efd446b6fbd75e5b9fbca, type: 3}
---- !u!114 &1237041087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237041085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed076585cdad3d4caf88b432c09cb84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLevel: 1
-  enemyCount: 0
-  enemyTypes:
-  - {fileID: 6045932645883520105, guid: 919d40c11ddd8ba47b139b05da2f6095, type: 3}
-  - {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c, type: 3}
-  - {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c, type: 3}
-  - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
 --- !u!1 &1374556034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1468862023901794279, guid: 5dbde5f525335d3449034fbbbe53e954,
@@ -816,6 +762,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1280881705162739161, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 162.70001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dbde5f525335d3449034fbbbe53e954, type: 3}
 --- !u!1001 &2107116754085026047
@@ -1115,6 +1066,11 @@ PrefabInstance:
       objectReference: {fileID: 1586735634}
     - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
+      propertyPath: wonMenu
+      value: 
+      objectReference: {fileID: 403283301}
+    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
       propertyPath: movementJoystick
       value: 
       objectReference: {fileID: 1638400441}
@@ -1123,39 +1079,6 @@ PrefabInstance:
       propertyPath: attackJoystick
       value: 
       objectReference: {fileID: 1049580844}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: wonMenu
-      value: 
-      objectReference: {fileID: 403283301}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1108418741}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: gManager
-      value: 
-      objectReference: {fileID: 244974769}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: rushB
-      value: 
-      objectReference: {fileID: -3498957439382946648, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c,
-        type: 3}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: -358526174379180828, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f,
-        type: 3}
-    - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: speedPowerUp
-      value: 
-      objectReference: {fileID: -3498957439382946648, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c,
-        type: 3}
     - target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: background
@@ -1218,52 +1141,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
-      propertyPath: enemies.Array.size
-      value: 4
-      objectReference: {fileID: 0}
+      propertyPath: enemiesRemainingText
+      value: 
+      objectReference: {fileID: 763106878}
     - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1186524367}
-    - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: maxEnemyCount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: enemies.Array.data[1]
-      value: 
-      objectReference: {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c,
-        type: 3}
-    - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: enemies.Array.data[2]
-      value: 
-      objectReference: {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c,
-        type: 3}
-    - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: enemies.Array.data[3]
-      value: 
-      objectReference: {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534,
-        type: 3}
-    - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: lg
-      value: 
-      objectReference: {fileID: 1237041087}
-    - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: enemiesRemainingText
-      value: 
-      objectReference: {fileID: 763106878}
-    - target: {fileID: 2195109817190476714, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: scoreText.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2195109817190476714, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: scoreText.Array.data[0]
@@ -1279,11 +1164,6 @@ PrefabInstance:
       propertyPath: scoreText.Array.data[2]
       value: 
       objectReference: {fileID: 1480867738}
-    - target: {fileID: 4323194168433894170, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: coinsText.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4323194168433894170, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: coinsText.Array.data[0]
