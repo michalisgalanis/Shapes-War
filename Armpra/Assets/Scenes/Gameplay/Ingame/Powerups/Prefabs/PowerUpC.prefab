@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9016208026148287080}
   - component: {fileID: 7511914381794774613}
   - component: {fileID: 7768927655924183786}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4771,7 +4771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3396940083676636911}
   - component: {fileID: 3396940083676636910}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4850,7 +4850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3396940084475176890}
   - component: {fileID: 3396940084475176893}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4929,7 +4929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3396940084583415260}
   - component: {fileID: 3396940084583415263}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5009,7 +5009,7 @@ GameObject:
   - component: {fileID: 3396940085168429806}
   - component: {fileID: 4553600651191978088}
   - component: {fileID: -7513171909143351413}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: PowerUpC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5064,4 +5064,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupDuration: 5
   powerupMultiplier: 1.5
-  timeLeft: 0

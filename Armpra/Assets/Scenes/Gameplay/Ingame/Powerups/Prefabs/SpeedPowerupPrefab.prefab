@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 895830064672315348}
   - component: {fileID: 895830064672315349}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 895830065856883669}
   - component: {fileID: 4994483783184125011}
   - component: {fileID: -3498957439382946648}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SpeedPowerupPrefab
   m_TagString: Powerups
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupDuration: 5
-  powerupMultiplier: 1.5
+  powerupMultiplier: 5
 --- !u!1 &895830066382851302
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 895830066382851303}
   - component: {fileID: 895830066382851300}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 895830066541483649}
   - component: {fileID: 895830066541483654}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 1012712028711016656}
   - component: {fileID: 5467852607160060988}
   - component: {fileID: 906689802669371272}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

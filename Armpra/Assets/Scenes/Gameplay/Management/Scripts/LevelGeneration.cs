@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelGeneration : MonoBehaviour
 {
-    public int currentLevel;
+    public int currentLevel=1;
     public int enemyCount;
     public GameObject[] enemyTypes;
 

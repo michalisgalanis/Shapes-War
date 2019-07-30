@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemies;
     public GameObject enemiesRemainingText;
     public Camera camera;
-    private LevelGeneration lg;
+    public LevelGeneration lg;
 
     //public properties
     //public float difficulty;
@@ -29,8 +29,7 @@ public class EnemySpawner : MonoBehaviour
     private bool positionConflict;
 
 
-    // Start is called before the first frame update
-    void Start()
+    public void BeginSpawning()
     {
         spawningTime = true;
         positionConflict = false;
@@ -38,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
         enemyCounter = 0;
         lg = gameObject.GetComponent<LevelGeneration>();
         //lg.currentLevel = 1;
-        lg.currentLevel = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().loadedData.currentLevel;
+        //lg.currentLevel = currentLevel;
         lg.EstimateLevel();
         maxEnemyCount = lg.enemyCount;
     }

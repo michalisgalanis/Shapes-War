@@ -32,7 +32,7 @@ public class SpeedPowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.name=="Player") //The player gets the powerup
+        if (hitInfo.tag=="Player") //The player gets the powerup
         {
             timeLeft = powerupDuration;
             stats = hitInfo.GetComponent<PlayerStats>();

@@ -13,6 +13,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject wonMenu;
     public GameObject movementJoystick;
     public GameObject attackJoystick;
+    private LevelGeneration lg;
 
 
     private GameObject gameManager;
@@ -23,6 +24,7 @@ public class GameplayManager : MonoBehaviour
     public float bestAttemptPercentage;
     public Data loadedData;
     private GameObject shieldObject=null;
+    public int currentLevel;
 
     void Start()
     {
@@ -30,22 +32,48 @@ public class GameplayManager : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         loadedData = SavingSystem.LoadData();
-        //Load General Stats
-        gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
-        gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = loadedData.bestAttemptPercentage;
+        if (loadedData != null)
+        {
+            //Load General Stats
+            gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
+            currentLevel = loadedData.currentLevel;
+            gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = loadedData.bestAttemptPercentage;
 
-        //Load Player Stats
-        playerStatsComponent.playerLevel = loadedData.playerLevel;
-        playerStatsComponent.damageReduction = loadedData.damageReduction;
-        playerStatsComponent.attackSpeed = loadedData.attackSpeed;
-        playerStatsComponent.rangedDamage = loadedData.rangedDamage;
-        //Load Powerup Upgrades
-        //Shield Powerup
-        shield.maxShieldHealth = loadedData.maxShieldHealth;
-        shield.shieldDamage = loadedData.shieldDamage;
-        //Speed Powerup
-        speedPowerUp.powerupDuration = loadedData.speedPowerupDuration;
-        speedPowerUp.powerupMultiplier = loadedData.speedPowerUpMultiplier;
+            //Load Player Stats
+            playerStatsComponent.playerLevel = loadedData.playerLevel;
+            playerStatsComponent.damageReduction = loadedData.damageReduction;
+            playerStatsComponent.attackSpeed = loadedData.attackSpeed;
+            playerStatsComponent.rangedDamage = loadedData.rangedDamage;
+            //Load Powerup Upgrades
+            //Shield Powerup
+            shield.maxShieldHealth = loadedData.maxShieldHealth;
+            shield.shieldDamage = loadedData.shieldDamage;
+            //Speed Powerup
+            speedPowerUp.powerupDuration = loadedData.speedPowerupDuration;
+            speedPowerUp.powerupMultiplier = loadedData.speedPowerUpMultiplier;
+        }
+        else //First time the game is launched/Save file is missing. All variables are set to default values.
+        {
+            gameManager.GetComponent<LevelGeneration>().currentLevel = 1;
+            gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = 1;
+            //Player variables
+            playerStatsComponent.playerLevel = 0;
+            playerStatsComponent.damageReduction = 0;
+            playerStatsComponent.rangedDamage = 1;
+            playerStatsComponent.attackSpeed = 1;
+            playerStatsComponent.XP = 0;
+
+            //Powerup variables
+
+            //Shield powerup
+            shield.maxShieldHealth = 80;
+            shield.shieldDamage = 0.5f;
+            //Speed powerup
+            speedPowerUp.powerupDuration = 7;
+            speedPowerUp.powerupMultiplier = 1.5f;
+        }
+
+        gameManager.GetComponent<EnemySpawner>().BeginSpawning();
 
         pauseMenu.SetActive(false);
         lostMenu.SetActive(false);
@@ -92,14 +120,12 @@ public class GameplayManager : MonoBehaviour
     {
         shieldObject = GameObject.FindGameObjectWithTag("Shield");
         if (shieldObject != null)
-        {
-            Debug.Log("THERE IS A SHIELD!");
             Destroy(shieldObject);
-        }
         SavingSystem.SaveProgress(playerStatsComponent, shield, speedPowerUp, gameManager);
         Time.timeScale = 0;
         gameUI.SetActive(false);
         wonMenu.SetActive(true);
+        GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(Vector3.zero,Quaternion.identity);
     }
 
     public void ProceedToNextLevel()
