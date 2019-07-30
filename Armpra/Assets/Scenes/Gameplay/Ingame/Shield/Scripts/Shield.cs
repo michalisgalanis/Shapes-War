@@ -65,7 +65,7 @@ public class Shield : MonoBehaviour
         if (currentHealth <= 0 && !markedForDestroy)
         {
             markedForDestroy = true;
-            Instantiate(shieldShockwavePrefab, transform.localPosition, Quaternion.identity);
+            //Instantiate(shieldShockwavePrefab, transform.localPosition, Quaternion.identity);
             Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             markedForDestroy = false;

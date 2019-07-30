@@ -16,6 +16,7 @@ public class GameplayManager : MonoBehaviour
 
 
     private GameObject gameManager;
+    public DynamicBackground background;
     private PlayerStats playerStatsComponent;
     public Shield shield;
     public SpeedPowerUp speedPowerUp;
@@ -24,6 +25,7 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
+        background.ChangeBlackgroundColor();
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         loadedData = SavingSystem.LoadData();
@@ -88,6 +90,7 @@ public class GameplayManager : MonoBehaviour
     public void ProceedToNextLevel()
     {
         Time.timeScale = 1;
+        background.ChangeBlackgroundColor();
         playerStatsComponent.RefillStats();
         gameUI.SetActive(true);
         wonMenu.SetActive(false);

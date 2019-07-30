@@ -59,7 +59,10 @@ public class LevelGeneration : MonoBehaviour
         }
         else if (enemyCount < 500)
             for (int i = 0; i < enemyTypes.Length; i++)
-                enemyPropabilities[i] = 1 / enemyTypes.Length;
+            {
+                enemyPropabilities[i] = 1f / enemyTypes.Length;
+                //Debug.Log("Enemy Prop: " + enemyPropabilities[i]);
+            }
         else {
             int sumFactors = 0;
             for (int i = 0; i < enemyTypes.Length; i++) {
@@ -81,24 +84,27 @@ public class LevelGeneration : MonoBehaviour
                 propabilityArray.Add(enemyPropabilities[i]);
             }
         }
-        DisplayStats();
     }
 
     public int PickRandomEnemy()
     {
+        DisplayStats();
         int random = Random.Range(0, propabilityArray.ToArray().Length);
-        //Debug.Log("Random: " + random);
+        Debug.Log("Random: " + random);
         float randomPropability = propabilityArray[random];
-        //Debug.Log("Random Prop: " + randomPropability);
+        Debug.Log("Random Prop: " + randomPropability);
         int index = 0;
+        List<int> indexes = new List<int>();
         for (int i = 0; i < enemyPropabilities.Length; i++)
         {
             if (enemyPropabilities[i] == randomPropability)
             {
                 index = i;
+                indexes.Add(index);
             }
         }
-        //Debug.Log("Index: " + index);
+        index = indexes[Random.Range(0, indexes.ToArray().Length)];
+        Debug.Log("Index: " + index);
         return index;
     }
 

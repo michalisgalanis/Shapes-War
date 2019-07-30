@@ -60,6 +60,13 @@ public class DynamicBackground : MonoBehaviour
         }
     }
 
+    public void ChangeBlackgroundColor()
+    {
+        SpriteRenderer sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        float hRand = Random.Range(0f, 1f), sRand = 1f, vRand = 0.1f;
+        sr.color = Color.HSVToRGB(hRand, sRand, vRand);
+    }
+
 
     float GenerateX()
     {

@@ -364,6 +364,7 @@ MonoBehaviour:
   playerBorder: {fileID: 2107116754149386338}
   playerHeads:
   - {fileID: 2107116754535421672}
+  shockwavePrefab: {fileID: 0}
   shieldPrefab: {fileID: 7923466100961731369, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f,
     type: 3}
   playerDeathExplosionParticles: {fileID: 5998843538783815061, guid: a83a4aebe6bad794e88c4364f7c2f361,
@@ -494,6 +495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 934686539404239062, guid: 902caaade9772d144bfad7d118a06d3a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8110677805975180285, guid: 902caaade9772d144bfad7d118a06d3a,
         type: 3}
