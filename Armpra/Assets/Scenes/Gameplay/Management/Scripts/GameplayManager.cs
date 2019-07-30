@@ -22,6 +22,7 @@ public class GameplayManager : MonoBehaviour
     public SpeedPowerUp speedPowerUp;
     public float bestAttemptPercentage;
     public Data loadedData;
+    private GameObject shieldObject=null;
 
     void Start()
     {
@@ -75,12 +76,26 @@ public class GameplayManager : MonoBehaviour
     }
 
     public void Lose(){
-        //bestAttemptPercentage = ;
+        shieldObject = GameObject.FindGameObjectWithTag("Shield");
+        if (shieldObject)
+            Destroy(shieldObject);
+        float maxEC = gameManager.GetComponent<EnemySpawner>().maxEnemyCount;
+        float EC = gameManager.GetComponent<EnemySpawner>().enemyCounter;
+        bestAttemptPercentage = ((maxEC - EC )/ maxEC)*100;
+        bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
+        bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
+        SavingSystem.SaveProgress(playerStatsComponent, shield, speedPowerUp, gameManager);
         lostMenu.gameObject.SetActive(true);
     }
 
     public void CompleteLevel()
     {
+        shieldObject = GameObject.FindGameObjectWithTag("Shield");
+        if (shieldObject != null)
+        {
+            Debug.Log("THERE IS A SHIELD!");
+            Destroy(shieldObject);
+        }
         SavingSystem.SaveProgress(playerStatsComponent, shield, speedPowerUp, gameManager);
         Time.timeScale = 0;
         gameUI.SetActive(false);

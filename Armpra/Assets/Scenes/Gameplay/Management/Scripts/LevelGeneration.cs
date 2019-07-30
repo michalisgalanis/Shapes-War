@@ -111,12 +111,12 @@ public class LevelGeneration : MonoBehaviour
     public void DisplayStats(){
         for (int i = 0; i < enemyPropabilities.Length; i++)
         {
-            Debug.Log("Enemy Propability of enemy " + i + ": " + enemyPropabilities[i]);
+            //Debug.Log("Enemy Propability of enemy " + i + ": " + enemyPropabilities[i]);
         }
 
         for (int i = 0; i < propabilityArray.ToArray().Length; i++)
         {
-            Debug.Log("Propability Array " + i + ": " + propabilityArray[i]);
+            //Debug.Log("Propability Array " + i + ": " + propabilityArray[i]);
         }
     }
 }
