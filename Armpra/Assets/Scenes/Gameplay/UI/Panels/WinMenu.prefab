@@ -595,7 +595,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
+          type: 3}
         m_MethodName: ReturnHome
         m_Mode: 1
         m_Arguments:
@@ -728,8 +729,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Resume
+      - m_Target: {fileID: 8643191347796205840, guid: ab378c802f2e1c94294275728b790b9c,
+          type: 3}
+        m_MethodName: ProceedToNextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
