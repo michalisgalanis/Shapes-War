@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
     //General Stats
     public int playerLevel;
-    public double xP;
+    public double XP;
 
     //Attack Stats
     public float rangedDamage;

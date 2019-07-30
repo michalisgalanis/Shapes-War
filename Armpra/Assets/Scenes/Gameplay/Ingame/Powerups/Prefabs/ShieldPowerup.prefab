@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4852079127530786897}
   - component: {fileID: 2793055538351795677}
   - component: {fileID: 3648581654769274482}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4771,7 +4771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8653061549281425155}
   - component: {fileID: 8653061549281425154}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4851,7 +4851,7 @@ GameObject:
   - component: {fileID: 8653061549976029954}
   - component: {fileID: 3708594487011694250}
   - component: {fileID: 983757418128305152}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ShieldPowerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4915,7 +4915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8653061550526393392}
   - component: {fileID: 8653061550526393395}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4994,7 +4994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8653061550618965590}
   - component: {fileID: 8653061550618965585}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
