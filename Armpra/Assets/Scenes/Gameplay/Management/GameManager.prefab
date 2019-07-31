@@ -78,6 +78,7 @@ MonoBehaviour:
     shieldDamage: 0
     speedPowerupDuration: 0
     speedPowerUpMultiplier: 0
+  currentLevel: 0
 --- !u!114 &8643191348888787553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +98,7 @@ MonoBehaviour:
   - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
   enemiesRemainingText: {fileID: 0}
   camera: {fileID: 0}
+  lg: {fileID: 0}
   spawnTimer: 0.01
   enemyCounter: 0
   maxEnemyCount: 10
@@ -183,6 +185,7 @@ MonoBehaviour:
   - {fileID: 8653061549976029955, guid: 8cacc47ff8cbc6843ac276719ac82242, type: 3}
   - {fileID: 895830065856883668, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c, type: 3}
   - {fileID: 3396940085168429807, guid: 7dd788bebb2efd446b6fbd75e5b9fbca, type: 3}
+  - {fileID: 5488035428199748708, guid: 15ce86f007041594fbcb3c9c6d9a0cd0, type: 3}
 --- !u!114 &1237041087
 MonoBehaviour:
   m_ObjectHideFlags: 0

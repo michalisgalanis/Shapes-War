@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 8381024625815381993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.65, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 8381024626000527967}
   - {fileID: 8381024627403213438}
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathExplosionParticlesPrefab: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
     type: 3}
-  speedFactor: 1.3
+  speedFactor: 1.4
 --- !u!114 &6100362267604980972
 MonoBehaviour:
   m_ObjectHideFlags: 0

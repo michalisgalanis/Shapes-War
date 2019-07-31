@@ -226,7 +226,7 @@ SpriteRenderer:
   m_SortingLayerID: -580419079
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0be6070c47736024da29bde924d62ca7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91c6cc6f973784249a1991e48b546115, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -414,8 +414,6 @@ MonoBehaviour:
   trails: {fileID: 2364917576958521748}
   maxHealth: 100
   meleeDamage: 0.1
-  rangedDamage: 0
-  range: 0
   points: 10
   coins: 1
 --- !u!1001 &7067210419981304585

@@ -9576,7 +9576,7 @@ GameObject:
   - component: {fileID: 1431479657208786340}
   - component: {fileID: 1431479657208786343}
   m_Layer: 10
-  m_Name: BulletSystem
+  m_Name: NormalBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9660,7 +9660,7 @@ MonoBehaviour:
   hitExplosionParticlesPrefab: {fileID: 2720002162805827168, guid: 1fa619fc97f3a00409100fba5bed68cb,
     type: 3}
   maxSpeed: 20
-  acceleration: 2.5
+  acceleration: 1.5
   rb: {fileID: 1431479657208786341}
   damage: 40
   playerFired: 1

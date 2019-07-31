@@ -4850,7 +4850,7 @@ MonoBehaviour:
   hitExplosionParticlesPrefab: {fileID: 2720002162805827168, guid: 1fa619fc97f3a00409100fba5bed68cb,
     type: 3}
   maxSpeed: 40
-  acceleration: 2.5
+  acceleration: 1.5
   rb: {fileID: 9132529803182020240}
   damage: 30
   playerFired: 1

@@ -29,14 +29,14 @@ public class PowerUpsSpawner : MonoBehaviour
         Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER), Random.Range(MIN_BORDER, MAX_BORDER), 0);
         GameObject newEnemy = Instantiate(powerUps[0/*Random.Range(0, powerUps.Length)*/], temp, Quaternion.identity);
         newEnemy.transform.parent = transform;
-        //Customizing Body & Particles Color
+        /*//Customizing Body & Particles Color
         SpriteRenderer sr = newEnemy.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>();
         float h = Random.Range(90f, 360f)/ 360f, s = 0.50f, v = 1f;
         sr.color = Color.HSVToRGB(h, s, v);
         effectMultiplier = h * 4;
         ParticleSystem ps = newEnemy.transform.GetChild(3).gameObject.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule settings = ps.main;
-        settings.startColor = new ParticleSystem.MinMaxGradient(sr.color);
+        settings.startColor = new ParticleSystem.MinMaxGradient(sr.color);*/
          //Resetting timer
          currentTimer = 0f;
     }
