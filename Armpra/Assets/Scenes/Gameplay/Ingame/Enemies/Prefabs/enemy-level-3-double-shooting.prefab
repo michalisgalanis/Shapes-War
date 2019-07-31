@@ -208,6 +208,8 @@ MonoBehaviour:
   - {fileID: 8381024627201117439}
   - {fileID: 870032417742718886}
   trails: {fileID: 538732981513450004}
+  frictionParticles: {fileID: 5557098316843854156, guid: ae27cd8796f1eb94d83f7eaf1e25c3a4,
+    type: 3}
   maxHealth: 150
   meleeDamage: 0.25
   points: 50

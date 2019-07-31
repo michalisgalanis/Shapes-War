@@ -267,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6045932645883520105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.65, y: 0, z: 0}
+  m_LocalPosition: {x: 3.67, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6045932645396103647}
@@ -412,6 +412,8 @@ MonoBehaviour:
   enemyHeads:
   - {fileID: 2450688613817788333}
   trails: {fileID: 2364917576958521748}
+  frictionParticles: {fileID: 5557098316843854156, guid: ae27cd8796f1eb94d83f7eaf1e25c3a4,
+    type: 3}
   maxHealth: 100
   meleeDamage: 0.1
   points: 10

@@ -11,6 +11,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject lostMenu;
     public GameObject wonMenu;
+    public GameObject storeMenu;
     public GameObject movementJoystick;
     public GameObject attackJoystick;
     private LevelGeneration lg;
@@ -79,24 +80,25 @@ public class GameplayManager : MonoBehaviour
         lostMenu.SetActive(false);
         wonMenu.SetActive(false);
         gameUI.SetActive(true);
-        //movementJoystick.SetActive(true);
-        //attackJoystick.SetActive(true);
+        storeMenu.SetActive(false);
+        movementJoystick.SetActive(true);
+        attackJoystick.SetActive(true);
     }
 
     public void Pause(){
         Time.timeScale = 0;
         gameUI.SetActive(false);
         pauseMenu.SetActive(true);
-        //movementJoystick.SetActive(false);
-        //attackJoystick.SetActive(false);
+        movementJoystick.SetActive(false);
+        attackJoystick.SetActive(false);
     }
 
     public void Resume(){
         Time.timeScale = 1;
-        pauseMenu.gameObject.SetActive(false);
-        gameUI.gameObject.SetActive(true);
-        //movementJoystick.SetActive(true);
-        //attackJoystick.SetActive(true);
+        pauseMenu.SetActive(false);
+        gameUI.SetActive(true);
+        movementJoystick.SetActive(true);
+        attackJoystick.SetActive(true);
     }
 
     public void Restart(){
@@ -113,7 +115,10 @@ public class GameplayManager : MonoBehaviour
         bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
         bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
         SavingSystem.SaveProgress(playerStatsComponent, shield, speedPowerUp, gameManager);
-        lostMenu.gameObject.SetActive(true);
+        lostMenu.SetActive(true);
+        gameUI.SetActive(false);
+        movementJoystick.SetActive(false);
+        attackJoystick.SetActive(false);
     }
 
     public void CompleteLevel()
@@ -126,6 +131,8 @@ public class GameplayManager : MonoBehaviour
         gameUI.SetActive(false);
         wonMenu.SetActive(true);
         GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(Vector3.zero,Quaternion.identity);
+        movementJoystick.SetActive(false);
+        attackJoystick.SetActive(false);
     }
 
     public void ProceedToNextLevel()
@@ -135,6 +142,23 @@ public class GameplayManager : MonoBehaviour
         playerStatsComponent.RefillStats();
         gameUI.SetActive(true);
         wonMenu.SetActive(false);
+        movementJoystick.SetActive(true);
+        attackJoystick.SetActive(true);
+    }
+
+    public void VisitStore()
+    {
+        storeMenu.SetActive(true);
+        gameUI.SetActive(false);
+        wonMenu.SetActive(false);
+        Time.timeScale = 0;
+    }
+
+    public void ReturnToCompleteLevel()
+    {
+        wonMenu.SetActive(true);
+        storeMenu.SetActive(false);
+        Time.timeScale = 0;
     }
 
     public void ReturnHome(){
