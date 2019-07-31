@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public ParticleSystem deathExplosionParticlesPrefab;
-    private ParticleSystem deathExplosionParticles;
+    //Enemy Stats
+    public float maxHealth;
+    public float meleeDamage;
+    public int xpOnDeath;
+    public int coinsOnDeath;
 
+    //Essential Assets
     public SpriteRenderer enemyBody;
     public SpriteRenderer enemyBorder;
     public SpriteRenderer[] enemyHeads;
+    public ParticleSystem deathExplosionParticlesPrefab;
+    private ParticleSystem deathExplosionParticles;
     public ParticleSystem trails;
     public ParticleSystem frictionParticles;
     public ParticleSystem friction;
 
-    private bool isEmittingFriction;
-    public float maxHealth;
-    public float meleeDamage;
-    private float currentHealth;
-    private bool markedForDestruction;
-    public int points;
-    public int coins;
-
+    //Internal variables
     private float currentTimer;
+    private float currentHealth;
+    private bool isEmittingFriction;
+    private bool markedForDestruction;
+
     void Start(){
         currentTimer = 0f;
         ParticleSystem.MainModule settings = trails.main;
@@ -52,8 +55,8 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             GameObject manager = GameObject.FindWithTag("GameController");
             manager.GetComponent<EnemySpawner>().enemyCounter--;
-            manager.GetComponent<ScoreSystem>().addPoints(points);
-            manager.GetComponent<CoinSystem>().addCoins(coins);
+            manager.GetComponent<ExperienceSystem>().addPoints(xpOnDeath);
+            manager.GetComponent<CoinSystem>().addCoins(coinsOnDeath);
         }
     }
 
