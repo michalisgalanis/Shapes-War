@@ -278,7 +278,7 @@ PrefabInstance:
     - target: {fileID: 1468862022343660873, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1468862023953017463, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
@@ -288,7 +288,7 @@ PrefabInstance:
     - target: {fileID: 1468862023100809692, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1468862023405402968, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
@@ -589,6 +589,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -410.90002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167071787935916444, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -132.05005
       objectReference: {fileID: 0}
     - target: {fileID: 5167071787212673872, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
@@ -1498,6 +1503,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023836, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: speedFactor
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023836, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: acceleration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023836, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: offset.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023836, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023836, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835013691163023836, guid: 056fa24de101ab346b0f2de8063c6290,
+        type: 3}
+      propertyPath: smoothSpeed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 056fa24de101ab346b0f2de8063c6290, type: 3}
 --- !u!1 &4388488694214808636 stripped
@@ -1684,6 +1719,20 @@ PrefabInstance:
       propertyPath: coinsText.Array.data[3]
       value: 
       objectReference: {fileID: 129924831}
+    - target: {fileID: 1237041086, guid: ab378c802f2e1c94294275728b790b9c, type: 3}
+      propertyPath: powerUps.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237041086, guid: ab378c802f2e1c94294275728b790b9c, type: 3}
+      propertyPath: powerUps.Array.data[4]
+      value: 
+      objectReference: {fileID: 4376832576236916223, guid: 8e7024e22bb855a40bc857a45a51c271,
+        type: 3}
+    - target: {fileID: 1237041086, guid: ab378c802f2e1c94294275728b790b9c, type: 3}
+      propertyPath: powerUps.Array.data[5]
+      value: 
+      objectReference: {fileID: 3846954032451277862, guid: da9d7329f268e4a40959a4b11f531491,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab378c802f2e1c94294275728b790b9c, type: 3}
 --- !u!1001 &8856123812303463850

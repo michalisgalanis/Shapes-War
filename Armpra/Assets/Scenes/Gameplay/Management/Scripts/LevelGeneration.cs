@@ -14,7 +14,7 @@ public class LevelGeneration : MonoBehaviour
     public void EstimateLevel() {
         enemyPropabilities = new float[enemyTypes.Length];
         propabilityArray = new List<float>();
-        enemyCount = (int)Mathf.Round(4f + Mathf.Pow(currentLevel, 1.5f));
+        enemyCount = (int)Mathf.Round(4f + Mathf.Pow(currentLevel, 1.2f));
         Debug.Log("Current Level: " + currentLevel + ", Enemy Count: " + enemyCount);
         int totalTypesOfEnemies = enemyTypes.Length;
         if (enemyCount < 15) {
@@ -88,11 +88,10 @@ public class LevelGeneration : MonoBehaviour
 
     public int PickRandomEnemy()
     {
-        DisplayStats();
         int random = Random.Range(0, propabilityArray.ToArray().Length);
-        Debug.Log("Random: " + random);
+        //Debug.Log("Random: " + random);
         float randomPropability = propabilityArray[random];
-        Debug.Log("Random Prop: " + randomPropability);
+        //Debug.Log("Random Prop: " + randomPropability);
         int index = 0;
         List<int> indexes = new List<int>();
         for (int i = 0; i < enemyPropabilities.Length; i++)
@@ -104,7 +103,7 @@ public class LevelGeneration : MonoBehaviour
             }
         }
         index = indexes[Random.Range(0, indexes.ToArray().Length)];
-        Debug.Log("Index: " + index);
+        //Debug.Log("Index: " + index);
         return index;
     }
 

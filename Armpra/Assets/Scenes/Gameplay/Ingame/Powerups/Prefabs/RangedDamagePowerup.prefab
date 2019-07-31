@@ -147,7 +147,7 @@ SpriteRenderer:
   m_SortingLayerID: -580419079
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f9bb58f5cd5d74e6f8b342a51fa10128, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b04c3c1c10ac4afb990af705d26c1bc, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -168,7 +168,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5488035428199748709}
   - component: {fileID: 6646349387388421859}
-  - component: {fileID: 8410166450302755072}
   m_Layer: 15
   m_Name: AttackDamagePowerup
   m_TagString: Untagged
@@ -210,20 +209,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.56
---- !u!114 &8410166450302755072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5488035428199748708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf85198c50fb89478e5fee43b3bf07f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerupDuration: 5
-  powerupMultiplier: 1.5
 --- !u!1 &5488035429698627687
 GameObject:
   m_ObjectHideFlags: 0

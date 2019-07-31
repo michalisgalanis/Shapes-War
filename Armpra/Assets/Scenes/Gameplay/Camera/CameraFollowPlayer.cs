@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CameraFollowPlayer : MonoBehaviour
 {
-    private Transform tf;
     private GameObject player;
 
-    private Vector3 position;
-
+    private Vector3 desiredPosition;
+    
+    public Vector3 offset;
+    public float smoothSpeed;
 
     //constants
     private const float MIN_BORDER = -19f;
@@ -20,19 +21,20 @@ public class CameraFollowPlayer : MonoBehaviour
     private float lastPositionY;
 
     void Start(){
-        tf = GetComponent<Transform>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
 
-    void Update(){
-        if (player != null){
+    void FixedUpdate(){
+       if (player != null)
+        {
             if (followX())
                 lastPositionX = player.transform.position.x;
             if (followY())
                 lastPositionY = player.transform.position.y;
-            position = new Vector3(lastPositionX, lastPositionY, -10);
-            tf.position = position;
+            desiredPosition = new Vector3(lastPositionX, lastPositionY, -10);
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.fixedDeltaTime);
+            transform.position = smoothedPosition;
         }
     }
 

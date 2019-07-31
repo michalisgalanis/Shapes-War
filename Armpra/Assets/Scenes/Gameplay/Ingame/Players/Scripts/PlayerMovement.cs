@@ -14,10 +14,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float velocityFactor;
     public float acceleration;
-    private float currentSpeed;
+    public float currentSpeed;
     private float rotationValue;
     private Vector2 positionValue;
     private Vector2 lastMoveInput;
+    private Vector2 totalInput;
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
@@ -28,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
         Vector2 joystickInput = (new Vector2(movementJoystickButton.GetComponent<Transform>().localPosition.x, movementJoystickButton.GetComponent<Transform>().localPosition.y) * JOYSTICK_TO_VECTOR_FACTOR).normalized;
         Vector2 keyboardInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Vector2 totalInput;
 
         //Chosing Input
         if (joystickInput != Vector2.zero && keyboardInput != Vector2.zero)
