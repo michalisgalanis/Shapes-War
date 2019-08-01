@@ -5,8 +5,8 @@ using TMPro;
 
 public class ExperienceSystem : MonoBehaviour
 {
-    public GameObject[] xpText;
-    public int currentXP;
+    public GameObject[] xpText;     //output texts
+    public double currentXP;
 
     void Start(){
         currentXP = 0;
@@ -19,7 +19,7 @@ public class ExperienceSystem : MonoBehaviour
         }
     }
 
-    public void addPoints(int points){
+    public void addPoints(double points){
         currentXP += points;
     }
 }

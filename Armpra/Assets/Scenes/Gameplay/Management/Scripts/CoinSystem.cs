@@ -14,12 +14,16 @@ public class CoinSystem : MonoBehaviour
 
     void Update(){
         for (int i = 0; i < coinsText.Length; i++)
-        {
             coinsText[i].GetComponent<TextMeshProUGUI>().text = currentCoins.ToString();
-        }
+        
     }
 
-    public void addCoins(int points){
-        currentCoins += points;
+    public void addCoins(int coins){
+        currentCoins += coins;
+    }
+
+    public void removeCoints(int coins)
+    {
+        currentCoins -= coins;
     }
 }

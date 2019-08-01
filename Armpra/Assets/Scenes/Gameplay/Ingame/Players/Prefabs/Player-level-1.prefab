@@ -104,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107116754535421674}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.18, z: 0}
+  m_LocalPosition: {x: 0, y: 1.15, z: 0}
   m_LocalScale: {x: 0.3, y: 0.4000002, z: 1}
   m_Children:
   - {fileID: 2107116755674466228}
@@ -313,14 +313,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c47331fe745db4db6ef779f4756aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementJoystickButton: {fileID: 4558686052797858584, guid: 609e29a868fbbf84592e6585f30491e4,
+  movementJoystickButton: {fileID: 3342886427447392987, guid: 0f79d36dd9c753848823199f9d122e5c,
     type: 3}
-  attackJoystickButton: {fileID: 4388488694524444951, guid: 79367dde544de7c488437e67d9083528,
+  attackJoystickButton: {fileID: 8534683565166153147, guid: eade3379724912c45974e3c2e3602128,
     type: 3}
   background: {fileID: 410093875190128833, guid: a1b684a0fa704bf438d3ada42d7be1f6,
     type: 3}
   velocityFactor: 3.5
   acceleration: 0.15
+  currentSpeed: 0
 --- !u!114 &6070453714078794851
 MonoBehaviour:
   m_ObjectHideFlags: 0
