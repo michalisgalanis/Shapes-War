@@ -29,7 +29,6 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-        background.ChangeBlackgroundColor();
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         loadedData = SavingSystem.LoadData();
@@ -114,7 +113,7 @@ public class GameplayManager : MonoBehaviour
         bestAttemptPercentage = ((maxEC - EC )/ maxEC)*100;
         bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
         bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
-        SavingSystem.SaveProgress(playerStatsComponent, shield, speedPowerUp, gameManager);
+        SavingSystem.SaveProgress(playerStatsComponent, shield, speedPowerUp, gameObject);
         lostMenu.SetActive(true);
         gameUI.SetActive(false);
         movementJoystick.SetActive(false);

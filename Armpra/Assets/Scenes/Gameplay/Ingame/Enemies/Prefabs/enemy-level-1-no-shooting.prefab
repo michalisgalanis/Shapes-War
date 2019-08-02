@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1328090801553713747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6058389775198643446}
+  m_Layer: 0
+  m_Name: HeadSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6058389775198643446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328090801553713747}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2418282, y: -0.0012069717, z: -14.633636}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6940271916596073521}
+  m_Father: {fileID: 6045932645883520109}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2702122779666269764
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,12 +55,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2702122779666269764}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.099999994, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.2418282, y: 0.25120696, z: 14.633636}
+  m_LocalScale: {x: 0.040000014, y: 0.10000005, z: 1}
   m_Children: []
-  m_Father: {fileID: 6045932645883520109}
-  m_RootOrder: 2
+  m_Father: {fileID: 6058389775198643446}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &2450688613817788333
 SpriteRenderer:
@@ -108,7 +139,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6045932645883520109}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6045932644250585599
 SpriteRenderer:
@@ -187,7 +218,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 6045932645883520109}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6045932645396103648
 SpriteRenderer:
@@ -270,9 +301,9 @@ Transform:
   m_LocalPosition: {x: 3.67, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 6058389775198643446}
   - {fileID: 6045932645396103647}
   - {fileID: 6045932644250585598}
-  - {fileID: 6940271916596073521}
   - {fileID: 287998819900770925}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -405,19 +436,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82878e851de10be47b30f2d7c641147e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathExplosionParticlesPrefab: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
-    type: 3}
+  maxHealth: 100
+  meleeDamage: 0.1
+  xpOnDeath: 5
+  coinsOnDeath: 1
   enemyBody: {fileID: 6045932644250585599}
   enemyBorder: {fileID: 6045932645396103648}
   enemyHeads:
   - {fileID: 2450688613817788333}
+  deathExplosionParticlesPrefab: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
+    type: 3}
   trails: {fileID: 2364917576958521748}
   frictionParticles: {fileID: 5557098316843854156, guid: ae27cd8796f1eb94d83f7eaf1e25c3a4,
     type: 3}
-  maxHealth: 100
-  meleeDamage: 0.1
-  points: 10
-  coins: 1
+  friction: {fileID: 0}
 --- !u!1001 &7067210419981304585
 PrefabInstance:
   m_ObjectHideFlags: 0

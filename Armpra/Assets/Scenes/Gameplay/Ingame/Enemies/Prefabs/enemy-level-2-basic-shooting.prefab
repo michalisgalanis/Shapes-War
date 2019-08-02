@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 126859744367596404}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &126859742751391462
 SpriteRenderer:
@@ -103,13 +103,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126859742949324900}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.15, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.52106476, y: 0.123027354, z: 2.6705606}
+  m_LocalScale: {x: 0.08800003, y: 0.16500007, z: 1.1}
   m_Children:
   - {fileID: 2905178819820688135}
-  m_Father: {fileID: 126859744367596404}
-  m_RootOrder: 2
+  m_Father: {fileID: 2460199826422902963}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &126859742949324902
 SpriteRenderer:
@@ -188,7 +188,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 126859744367596404}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &126859743880099577
 SpriteRenderer:
@@ -272,9 +272,9 @@ Transform:
   m_LocalPosition: {x: 3.65, y: 0, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
+  - {fileID: 2460199826422902963}
   - {fileID: 126859743880099526}
   - {fileID: 126859742751391463}
-  - {fileID: 126859742949324903}
   - {fileID: 5898282367594413428}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -391,19 +391,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82878e851de10be47b30f2d7c641147e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathExplosionParticlesPrefab: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
-    type: 3}
+  maxHealth: 120
+  meleeDamage: 0.15
+  xpOnDeath: 9
+  coinsOnDeath: 2
   enemyBody: {fileID: 126859742751391462}
   enemyBorder: {fileID: 126859743880099577}
   enemyHeads:
   - {fileID: 126859742949324902}
+  deathExplosionParticlesPrefab: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
+    type: 3}
   trails: {fileID: 8283287358018700941}
   frictionParticles: {fileID: 5557098316843854156, guid: ae27cd8796f1eb94d83f7eaf1e25c3a4,
     type: 3}
-  maxHealth: 120
-  meleeDamage: 0.15
-  points: 20
-  coins: 2
+  friction: {fileID: 0}
 --- !u!58 &3737460454957192986
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -435,8 +436,6 @@ MonoBehaviour:
   shootingTime: 4
   bulletPrefab: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
     type: 3}
-  firepoints:
-  - {fileID: 2905178819820688135}
   bulletDamage: 10
   bulletSpeed: 10
   range: 1.5
@@ -468,6 +467,37 @@ Transform:
   m_LocalScale: {x: 6.6666684, y: 12.500005, z: 1}
   m_Children: []
   m_Father: {fileID: 126859742949324903}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3539573792973527238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2460199826422902963}
+  m_Layer: 0
+  m_Name: HeadSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2460199826422902963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3539573792973527238}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.47369525, y: 0.08815697, z: -2.4277823}
+  m_LocalScale: {x: 0.90909094, y: 0.90909094, z: 0.90909094}
+  m_Children:
+  - {fileID: 126859742949324903}
+  m_Father: {fileID: 126859744367596404}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3473968115701527568

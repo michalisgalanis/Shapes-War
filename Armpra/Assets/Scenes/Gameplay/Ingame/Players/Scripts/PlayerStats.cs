@@ -5,47 +5,64 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     //General Stats
-    public int playerLevel;
-    public double XP;
+    public int playerLevel;                     //input from PlayerExperience
+    public double XP;                           //input from PlayerExperience
+    public float movementSpeed;                 //input from PlayerMovement
 
     //Attack Stats
-    public float rangedDamage;
-    public float meleeDamage;
-    public float attackSpeed;
+    public float rangedDamage;                  //generated here
+    public float meleeDamage;                   //generated here
+    public float attackSpeed;                   //generated here
 
     //Defense Stats
-    public int maxHealth;
-    public float damageReduction; //0 equals to full damage taken, 1 equals to zero damage taken
-
-    //Neutral Stats
-    public float movementSpeed;
-
+    public int maxHealth;                       //generated here
+    public float damageReduction;               //generated here - 0 equals to full damage taken, 1 equals to zero damage taken
+    
     //Other Essential Real Time Stats
     private float currentHealth;
     private bool markedForDestruction;
 
     //Needed References
+    private GameObject gameManager;
     public SpriteRenderer playerBorder;
-    public SpriteRenderer[] playerHeads;
+    private List<SpriteRenderer> playerHeads;
     public GameObject shockwavePrefab;
-    //public GameObject shieldPrefab;
     public ParticleSystem playerDeathExplosionParticles;
-    public GameObject gm;
+    
+
+
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
         currentHealth = maxHealth;
         markedForDestruction = false;
         Physics2D.IgnoreLayerCollision(8, 13);
         Physics2D.IgnoreLayerCollision(13, 14);
-        gm = GameObject.FindGameObjectWithTag("GameController");
         GameObject shockwave = Instantiate(shockwavePrefab, transform.localPosition, Quaternion.identity);
         shockwave.transform.parent = gameObject.transform;
-        //Instantiate(shieldPrefab, transform.localPosition, Quaternion.identity).transform.parent = gameObject.transform;
-        
+        playerHeads = new List<SpriteRenderer>();
+        for (int i = 0; i < GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).childCount; i++)
+           playerHeads.Add(GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetChild(i).gameObject.GetComponent<SpriteRenderer>());
+    }
+    void Update()
+    {
+        EstimateGeneralStats();
+        EstimateAttackStats();
+        EstimateDefenceStats();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void EstimateGeneralStats()
+    {
+
+    }
+
+    void EstimateAttackStats()
+    {
+
+    }
+
+    void EstimateDefenceStats()
     {
         float h, s, v;
         Color.RGBToHSV(playerBorder.color, out h, out s, out v);
@@ -65,7 +82,7 @@ public class PlayerStats : MonoBehaviour
             markedForDestruction = true;
             playerDeathExplosionParticles = Instantiate(playerDeathExplosionParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            gm.GetComponent<GameplayManager>().Lose();
+            gameManager.GetComponent<GameplayManager>().Lose();
             markedForDestruction = false;
         }
     }

@@ -22,7 +22,11 @@ public class DynamicBackground : MonoBehaviour
     private const float HORIZONTAL_CAMERA_OFFSET = 4f;
     private const float VERTICAL_CAMERA_OFFSET = 6f;
 
+    private PlayerGenerator player;
+
     void Start(){
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGenerator>();
+        ChangeBlackgroundColor();
         backLayer.SetActive(true);
         positionConflict = false;
         currentTimer = spawnTimer;
@@ -61,10 +65,11 @@ public class DynamicBackground : MonoBehaviour
     }
 
     public void ChangeBlackgroundColor()
-    {
+    { 
         SpriteRenderer sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        float hRand = Random.Range(0f, 1f), sRand = 1f, vRand = 0.1f;
-        sr.color = Color.HSVToRGB(hRand, sRand, vRand);
+        float hRand = Random.Range(0f, 1f), sRand = 1f, vRandBG = 0.1f, vRandDE = 0.7f;
+        sr.color = Color.HSVToRGB(hRand, sRand, vRandBG);
+        player.UpdateStripeVisuals(Color.HSVToRGB(hRand, sRand, vRandDE));
     }
 
 

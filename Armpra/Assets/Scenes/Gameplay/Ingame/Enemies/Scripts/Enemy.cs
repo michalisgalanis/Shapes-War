@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             GameObject manager = GameObject.FindWithTag("GameController");
             manager.GetComponent<EnemySpawner>().enemyCounter--;
-            manager.GetComponent<ExperienceSystem>().addPoints(xpOnDeath);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerExperience>().addXP(xpOnDeath);
             manager.GetComponent<CoinSystem>().addCoins(coinsOnDeath);
         }
     }

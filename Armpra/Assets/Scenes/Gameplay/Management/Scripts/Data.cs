@@ -28,7 +28,8 @@ public class Data
     public Data(PlayerStats playerStatsComponent, Shield shield, SpeedPowerUp speedPowerUp, GameObject gameManager)
     {
         //General variables
-        currentLevel = gameManager.GetComponent<LevelGeneration>().currentLevel + 1;
+        currentLevel = gameManager.GetComponent<LevelGeneration>().currentLevel;
+        Debug.Log(currentLevel);
         bestAttemptPercentage = gameManager.GetComponent<GameplayManager>().bestAttemptPercentage;
         //Player variables
         playerLevel = playerStatsComponent.playerLevel;

@@ -69,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject newEnemy = Instantiate(enemies[lg.PickRandomEnemy()], temp, Quaternion.identity);
             newEnemy.transform.parent = transform;
             //Customizing Color
-            SpriteRenderer sr = newEnemy.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>();
+            SpriteRenderer sr = newEnemy.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
             float h = Random.Range(0f, 360f) / 360f, s = 0.75f, v = 0.6f;
             sr.color = Color.HSVToRGB(h, s, v);
             //Resetting timer & counter
