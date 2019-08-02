@@ -10,9 +10,9 @@ public class Shield : MonoBehaviour
     public float duration;
 
     //Dynamic Stats
-    private float currentHealth;
+    public float currentHealth;
     private bool markedForDestroy;
-    private float timeLeft;
+    public float timeLeft;
 
     //Essential References
     private SpriteRenderer outerShield;
@@ -86,5 +86,11 @@ public class Shield : MonoBehaviour
             if (enemy != null)
                 enemy.TakeDamage(shieldDamage);
         }
+    }
+
+    public void RestoreShieldStats()
+    {
+        shield.currentHealth = maxShieldHealth;
+        shield.timeLeft = shield.duration;
     }
 }
