@@ -12,7 +12,6 @@ public class Data
     public int playerLevel;
     public float damageReduction;
     //public Weapon weapon;
-    public float rangedDamage;
     public float attackSpeed;
     public double XP;
 
@@ -29,13 +28,11 @@ public class Data
     {
         //General variables
         currentLevel = gameManager.GetComponent<LevelGeneration>().currentLevel;
-        Debug.Log(currentLevel);
         bestAttemptPercentage = gameManager.GetComponent<GameplayManager>().bestAttemptPercentage;
         //Player variables
         playerLevel = playerStatsComponent.playerLevel;
         damageReduction = playerStatsComponent.damageReduction;
         //weapon = player.weapon;
-        rangedDamage = playerStatsComponent.rangedDamage;
         attackSpeed = playerStatsComponent.attackSpeed;
         XP = playerStatsComponent.XP;
 

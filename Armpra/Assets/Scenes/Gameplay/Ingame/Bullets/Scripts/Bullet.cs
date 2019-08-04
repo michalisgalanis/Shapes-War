@@ -58,8 +58,7 @@ public class Bullet : MonoBehaviour
                     shield.TakeDamage(damage);
                 }
                 Destroy(gameObject);
-            } else if (hitInfo.CompareTag("Player"))
-            {
+            } else if (hitInfo.CompareTag("Player")) {
                 PlayerStats player = hitInfo.GetComponent<PlayerStats>();
                 if (player != null)
                 {

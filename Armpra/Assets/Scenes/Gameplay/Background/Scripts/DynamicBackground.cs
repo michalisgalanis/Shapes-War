@@ -6,7 +6,8 @@ public class DynamicBackground : MonoBehaviour
 {
     public Camera camera;
     public GameObject backLayer;
-    public GameObject[] shapes;
+    public GameObject[] shapesPrefabs;
+    private List<GameObject> shapes;
 
     public int numberOfShapes;
     public float sizeRange;
@@ -26,6 +27,8 @@ public class DynamicBackground : MonoBehaviour
 
     void Start(){
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGenerator>();
+        shapes = new List<GameObject>();
+        foreach (GameObject shape in shapesPrefabs) shapes.Add(shape);
         ChangeBlackgroundColor();
         backLayer.SetActive(true);
         positionConflict = false;
@@ -37,7 +40,7 @@ public class DynamicBackground : MonoBehaviour
         if (currentTimer >= spawnTimer && shapesCounter < numberOfShapes)
         {
             //Selecting shape
-            int shapeType = Random.Range(0, shapes.Length);
+            int shapeType = Random.Range(0, shapes.ToArray().Length);
             GameObject shape = shapes[shapeType];
             //Customizing Position
             positionConflict = false;

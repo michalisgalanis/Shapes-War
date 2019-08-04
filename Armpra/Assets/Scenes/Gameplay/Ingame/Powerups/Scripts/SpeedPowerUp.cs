@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class SpeedPowerUp : MonoBehaviour
 { 
-    private float initialMovementSpeed; //Used to reset player stat after powerup ends
     public float powerupDuration = 5.0f;
-    public float powerupMultiplier=1.5f;
+    public float powerupMultiplier = 0.4f;        //0f is (100% effect), 1f is (200% effect)
     private float timeLeft;
     private bool isActive;
-    PlayerStats stats;
+    private PlayerMovement player;
 
     void Start()
     {
         isActive = false;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -23,8 +23,8 @@ public class SpeedPowerUp : MonoBehaviour
             timeLeft -= Time.deltaTime; //Countdown
             if (timeLeft <= 0)  //The powerup's effect is over
             {
+                player.velocityFactor *= powerupMultiplier;
                 isActive = false;
-                stats.movementSpeed = initialMovementSpeed; //Resetting speed
                 Destroy(gameObject);
             }
         }
@@ -32,12 +32,9 @@ public class SpeedPowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.tag=="Player") //The player gets the powerup
+        if (hitInfo.CompareTag("Player")) //The player gets the powerup
         {
             timeLeft = powerupDuration;
-            stats = hitInfo.GetComponent<PlayerStats>();
-            initialMovementSpeed = stats.movementSpeed; //Saves initial stat (speed) of the player so that it can be reset to it after the powerup's effect is over
-            stats.movementSpeed *= powerupMultiplier;   //Modifying player's stat (speed) to start powerup's effect
             isActive = true;
             //Disabling all sprite renderers (Can't delete the gameobject itself until we want the powerup's effect to stop)
             for (int i = 0; i < 3; i++)
