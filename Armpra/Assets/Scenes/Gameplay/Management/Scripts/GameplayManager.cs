@@ -14,7 +14,6 @@ public class GameplayManager : MonoBehaviour
     public GameObject storeMenu;
     public GameObject movementJoystick;
     public GameObject attackJoystick;
-    private LevelGeneration lg;
 
 
     private GameObject gameManager;
@@ -139,6 +138,7 @@ public class GameplayManager : MonoBehaviour
         wonMenu.SetActive(false);
         movementJoystick.SetActive(true);
         attackJoystick.SetActive(true);
+        playerStatsComponent.UpdateEveryLevel();
     }
 
     public void VisitStore()

@@ -438,7 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   meleeDamage: 0.1
-  xpOnDeath: 5
+  xpOnDeath: 500
   coinsOnDeath: 1
   enemyBody: {fileID: 6045932644250585599}
   enemyBorder: {fileID: 6045932645396103648}

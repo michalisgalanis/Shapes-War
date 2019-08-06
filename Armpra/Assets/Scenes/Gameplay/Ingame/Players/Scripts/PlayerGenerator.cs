@@ -10,6 +10,7 @@ public class PlayerGenerator : MonoBehaviour
     private float size;
     private int firepoints;
     private int[,] firepointsEnabled;
+    private int[] stripesEnabled;
 
     void Start(){
 
@@ -33,10 +34,12 @@ public class PlayerGenerator : MonoBehaviour
                                                                         {1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0},  //level 14* /^\/^\
                                                                         {1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0},  //level 15
                                                                         {1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0},  //level 16
-                                                                        {1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0},  //leve  17
+                                                                        {1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0},  //level 17
                                                                         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},  //level 18
                                                                         {1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1},  //level 19
                                                                         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}}; //level 20
+
+        stripesEnabled = new int[8] { 3, 6, 10, 14, 21, 22, 23, 24 };
     }
 
     void Update()
@@ -59,6 +62,8 @@ public class PlayerGenerator : MonoBehaviour
             tempFirepointsEnabled[j] = firepointsEnabled[currentLevel - 1, j];
             transform.GetChild(0).GetChild(j).gameObject.SetActive(((tempFirepointsEnabled[j] == 1)));
         }
+        for (int i = 0; i < stripesEnabled.Length; i++)
+            if (currentLevel >= stripesEnabled[i]) transform.Find("DesignElements").GetChild(i).gameObject.SetActive(true);
     }
 
     public void UpdateStripeVisuals(Color stripeColor){

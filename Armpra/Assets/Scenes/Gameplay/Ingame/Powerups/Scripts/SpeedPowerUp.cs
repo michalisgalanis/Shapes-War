@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class SpeedPowerUp : MonoBehaviour
 { 
-    public float powerupDuration = 5.0f;
-    public float powerupMultiplier = 0.4f;        //0f is (100% effect), 1f is (200% effect)
+    public float powerupDuration;
+    public float powerupMultiplier;        //0f is 100% stock + 0%, 1f is 100% stock + 100% total
     private float timeLeft;
     private bool isActive;
-    private PlayerMovement player;
 
     void Start()
     {
         isActive = false;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -23,8 +21,8 @@ public class SpeedPowerUp : MonoBehaviour
             timeLeft -= Time.deltaTime; //Countdown
             if (timeLeft <= 0)  //The powerup's effect is over
             {
-                player.velocityFactor *= powerupMultiplier;
                 isActive = false;
+                powerupMultiplier = 0f;
                 Destroy(gameObject);
             }
         }
