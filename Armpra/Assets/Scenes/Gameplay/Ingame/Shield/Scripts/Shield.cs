@@ -90,7 +90,7 @@ public class Shield : MonoBehaviour
 
     public void RestoreShieldStats()
     {
-        shield.currentHealth = maxShieldHealth;
-        shield.timeLeft = shield.duration;
+        currentHealth = maxShieldHealth;
+        timeLeft = duration;
     }
 }

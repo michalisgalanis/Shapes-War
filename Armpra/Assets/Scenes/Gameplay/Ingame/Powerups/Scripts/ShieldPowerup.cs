@@ -23,13 +23,7 @@ public class ShieldPowerup : MonoBehaviour
                 Instantiate(shield, player.GetComponent<Transform>().localPosition, Quaternion.identity).transform.parent = player.transform;
             }
             else
-            {
                 exShield.GetComponent<Shield>().RestoreShieldStats();
-                /*shield.GetComponent<Shield>().timeLeft = shield.GetComponent<Shield>().duration;
-                shield.GetComponent<Shield>().currentHealth = shield.GetComponent<Shield>().maxShieldHealth;*/
-
-            }
-
             Destroy(gameObject);
         }
     }
