@@ -63,8 +63,7 @@ public class Enemy : MonoBehaviour
     void OnTriggerStay2D(Collider2D hitInfo){
         if (hitInfo.CompareTag("Player")){
             PlayerStats player = hitInfo.GetComponent<PlayerStats>();
-            if (!player)
-            {
+            if (player != null){
                 player.TakeDamage(meleeDamage);
                /* if (!isEmittingFriction)
                 {

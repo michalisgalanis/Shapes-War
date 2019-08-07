@@ -14,7 +14,6 @@ public class GameplayManager : MonoBehaviour
     public GameObject storeMenu;
     public GameObject movementJoystick;
     public GameObject attackJoystick;
-    private LevelGeneration lg;
 
 
     private GameObject gameManager;
@@ -31,9 +30,9 @@ public class GameplayManager : MonoBehaviour
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        loadedData = SavingSystem.LoadData();
-        if (loadedData != null)
+        if (SavingSystem.LoadData() != null)
         {
+            loadedData = SavingSystem.LoadData();
             //Load General Stats
             gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
             currentLevel = loadedData.currentLevel;
@@ -43,7 +42,6 @@ public class GameplayManager : MonoBehaviour
             playerStatsComponent.playerLevel = loadedData.playerLevel;
             playerStatsComponent.damageReduction = loadedData.damageReduction;
             playerStatsComponent.attackSpeed = loadedData.attackSpeed;
-            playerStatsComponent.rangedDamage = loadedData.rangedDamage;
             //Load Powerup Upgrades
             //Shield Powerup
             shield.maxShieldHealth = loadedData.maxShieldHealth;
@@ -57,10 +55,7 @@ public class GameplayManager : MonoBehaviour
             gameManager.GetComponent<LevelGeneration>().currentLevel = 1;
             gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = 1;
             //Player variables
-            playerStatsComponent.playerLevel = 0;
-            playerStatsComponent.damageReduction = 0;
-            playerStatsComponent.rangedDamage = 1;
-            playerStatsComponent.attackSpeed = 1;
+            playerStatsComponent.playerLevel = 1;
             playerStatsComponent.XP = 0;
 
             //Powerup variables
@@ -143,6 +138,7 @@ public class GameplayManager : MonoBehaviour
         wonMenu.SetActive(false);
         movementJoystick.SetActive(true);
         attackJoystick.SetActive(true);
+        playerStatsComponent.UpdateEveryLevel();
     }
 
     public void VisitStore()

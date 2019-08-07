@@ -2461,7 +2461,7 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 829581828, guid: 257e7ec0a2f5fad4797e11892f7cbd35, type: 3}
       propertyPath: maxHealth
-      value: 2000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 829581828, guid: 257e7ec0a2f5fad4797e11892f7cbd35, type: 3}
       propertyPath: shockwavePrefab
@@ -2604,6 +2604,11 @@ PrefabInstance:
       propertyPath: progressBar
       value: 
       objectReference: {fileID: 1468862022569705574}
+    - target: {fileID: 3579714925290494129, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
+        type: 3}
+      propertyPath: currentLevel
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 257e7ec0a2f5fad4797e11892f7cbd35, type: 3}
 --- !u!1001 &2835013690130756877
@@ -3009,9 +3014,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8856123811902659008, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
+      propertyPath: shapesPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856123811902659008, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1186524367}
+    - target: {fileID: 8856123811902659008, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: shapesPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 5564042477769656160, guid: f6530453415b3b644a751c51dd3a2235,
+        type: 3}
+    - target: {fileID: 8856123811902659008, guid: 03632b48accafce4fa61c9e27f12a497,
+        type: 3}
+      propertyPath: shapesPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1450495750344213492, guid: 5fb5f88eb63cc41408dc654e9cb16759,
+        type: 3}
     - target: {fileID: 8856123811305796504, guid: 03632b48accafce4fa61c9e27f12a497,
         type: 3}
       propertyPath: m_Layer
