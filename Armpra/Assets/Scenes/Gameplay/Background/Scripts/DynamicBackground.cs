@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class DynamicBackground : MonoBehaviour
-{
+public class DynamicBackground : MonoBehaviour {
     public Camera camera;
     public GameObject backLayer;
     public GameObject[] shapesPrefabs;
@@ -14,7 +12,7 @@ public class DynamicBackground : MonoBehaviour
 
     private int shapesCounter;
     private float currentTimer;
-    private float spawnTimer = 0.01f;
+    private readonly float spawnTimer = 0.01f;
     private bool positionConflict;
 
     //constants
@@ -25,20 +23,23 @@ public class DynamicBackground : MonoBehaviour
 
     private PlayerGenerator player;
 
-    void Start(){
+    private void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGenerator>();
         shapes = new List<GameObject>();
-        foreach (GameObject shape in shapesPrefabs) shapes.Add(shape);
+        foreach (GameObject shape in shapesPrefabs) {
+            shapes.Add(shape);
+        }
+
         ChangeBlackgroundColor();
         backLayer.SetActive(true);
         positionConflict = false;
         currentTimer = spawnTimer;
         shapesCounter = 0;
     }
-    void Update(){
+
+    private void Update() {
         currentTimer += Time.deltaTime;
-        if (currentTimer >= spawnTimer && shapesCounter < numberOfShapes)
-        {
+        if (currentTimer >= spawnTimer && shapesCounter < numberOfShapes) {
             //Selecting shape
             int shapeType = Random.Range(0, shapes.ToArray().Length);
             GameObject shape = shapes[shapeType];
@@ -54,7 +55,7 @@ public class DynamicBackground : MonoBehaviour
             float r = Color.HSVToRGB(h, s, v).r;
             float g = Color.HSVToRGB(h, s, v).g;
             float b = Color.HSVToRGB(h, s, v).b;
-            sr.color = new Color(r,g,b,a);
+            sr.color = new Color(r, g, b, a);
             //Customizing Size
             float scaleRandom = Random.Range(0.4f, 0.4f + sizeRange);
             newShape.transform.localScale = new Vector3(scaleRandom, scaleRandom, 0);
@@ -67,32 +68,36 @@ public class DynamicBackground : MonoBehaviour
         }
     }
 
-    public void ChangeBlackgroundColor()
-    { 
+    public void ChangeBlackgroundColor() {
         SpriteRenderer sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         float hRand = Random.Range(0f, 1f), sRand = 1f, vRandBG = 0.1f, vRandDE = 0.7f;
         sr.color = Color.HSVToRGB(hRand, sRand, vRandBG);
         player.UpdateStripeVisuals(Color.HSVToRGB(hRand, sRand, vRandDE));
     }
 
-
-    float GenerateX()
-    {
+    private float GenerateX() {
         float temp_X = Random.Range(MIN_BORDER, MAX_BORDER);
-        if (temp_X > camera.transform.position.x - HORIZONTAL_CAMERA_OFFSET && temp_X < camera.transform.position.x + HORIZONTAL_CAMERA_OFFSET)
-            if (positionConflict)
+        if (temp_X > camera.transform.position.x - HORIZONTAL_CAMERA_OFFSET && temp_X < camera.transform.position.x + HORIZONTAL_CAMERA_OFFSET) {
+            if (positionConflict) {
                 temp_X = GenerateX();
-            else positionConflict = true;
+            } else {
+                positionConflict = true;
+            }
+        }
+
         return temp_X;
     }
 
-    float GenerateY()
-    {
+    private float GenerateY() {
         float temp_Y = Random.Range(MIN_BORDER, MAX_BORDER);
-        if (temp_Y > camera.transform.position.y - VERTICAL_CAMERA_OFFSET && temp_Y < camera.transform.position.y + VERTICAL_CAMERA_OFFSET)
-            if (positionConflict)
+        if (temp_Y > camera.transform.position.y - VERTICAL_CAMERA_OFFSET && temp_Y < camera.transform.position.y + VERTICAL_CAMERA_OFFSET) {
+            if (positionConflict) {
                 temp_Y = GenerateY();
-            else positionConflict = true;
+            } else {
+                positionConflict = true;
+            }
+        }
+
         return temp_Y;
     }
 }

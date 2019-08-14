@@ -1,19 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Shockwave : MonoBehaviour
-{
-    void Start()
-    {
+public class Shockwave : MonoBehaviour {
+    private void Start() {
         StartCoroutine(wait());
     }
 
-    IEnumerator wait()
-    {
+    private IEnumerator wait() {
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
-    
-    
+
+
 }

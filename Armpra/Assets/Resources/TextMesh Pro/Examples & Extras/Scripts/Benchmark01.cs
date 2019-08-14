@@ -1,12 +1,10 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 
-namespace TMPro.Examples
-{
-    
-    public class Benchmark01 : MonoBehaviour
-    {
+namespace TMPro.Examples {
+
+    public class Benchmark01 : MonoBehaviour {
 
         public int BenchmarkType = 0;
 
@@ -14,7 +12,7 @@ namespace TMPro.Examples
         public Font TextMeshFont;
 
         private TextMeshPro m_textMeshPro;
-        private TextContainer m_textContainer;
+        private readonly TextContainer m_textContainer;
         private TextMesh m_textMesh;
 
         private const string label01 = "The <#0050FF>count is: </color>{0}";
@@ -26,10 +24,7 @@ namespace TMPro.Examples
         private Material m_material01;
         private Material m_material02;
 
-
-
-        IEnumerator Start()
-        {
+        private IEnumerator Start() {
 
 
 
@@ -40,8 +35,9 @@ namespace TMPro.Examples
 
                 //m_textMeshPro.anchorDampening = true;
 
-                if (TMProFont != null)
+                if (TMProFont != null) {
                     m_textMeshPro.font = TMProFont;
+                }
 
                 //m_textMeshPro.font = Resources.Load("Fonts & Materials/Anton SDF", typeof(TextMeshProFont)) as TextMeshProFont; // Make sure the Anton SDF exists before calling this...
                 //m_textMeshPro.fontSharedMaterial = Resources.Load("Fonts & Materials/Anton SDF", typeof(Material)) as Material; // Same as above make sure this material exists.
@@ -54,7 +50,7 @@ namespace TMPro.Examples
                 //m_textMeshPro.fontSharedMaterial.SetFloat("_OutlineWidth", 0.2f);
                 //m_textMeshPro.fontSharedMaterial.EnableKeyword("UNDERLAY_ON");
                 //m_textMeshPro.lineJustification = LineJustificationTypes.Center;
-                m_textMeshPro.enableWordWrapping = false;    
+                m_textMeshPro.enableWordWrapping = false;
                 //m_textMeshPro.lineLength = 60;          
                 //m_textMeshPro.characterSpacing = 0.2f;
                 //m_textMeshPro.fontColor = new Color32(255, 255, 255, 255);
@@ -63,18 +59,14 @@ namespace TMPro.Examples
                 m_material02 = Resources.Load<Material>("Fonts & Materials/LiberationSans SDF - Drop Shadow"); // Make sure the LiberationSans SDF exists before calling this...  
 
 
-            }
-            else if (BenchmarkType == 1) // TextMesh
-            {
+            } else if (BenchmarkType == 1) // TextMesh
+              {
                 m_textMesh = gameObject.AddComponent<TextMesh>();
 
-                if (TextMeshFont != null)
-                {
+                if (TextMeshFont != null) {
                     m_textMesh.font = TextMeshFont;
                     m_textMesh.GetComponent<Renderer>().sharedMaterial = m_textMesh.font.material;
-                }
-                else
-                {
+                } else {
                     m_textMesh.font = Resources.Load("Fonts/ARIAL", typeof(Font)) as Font;
                     m_textMesh.GetComponent<Renderer>().sharedMaterial = m_textMesh.font.material;
                 }
@@ -87,19 +79,15 @@ namespace TMPro.Examples
 
 
 
-            for (int i = 0; i <= 1000000; i++)
-            {
-                if (BenchmarkType == 0)
-                {
+            for (int i = 0; i <= 1000000; i++) {
+                if (BenchmarkType == 0) {
                     m_textMeshPro.SetText(label01, i % 1000);
-                    if (i % 1000 == 999)
+                    if (i % 1000 == 999) {
                         m_textMeshPro.fontSharedMaterial = m_textMeshPro.fontSharedMaterial == m_material01 ? m_textMeshPro.fontSharedMaterial = m_material02 : m_textMeshPro.fontSharedMaterial = m_material01;
-
-
-
-                }
-                else if (BenchmarkType == 1)
+                    }
+                } else if (BenchmarkType == 1) {
                     m_textMesh.text = label02 + (i % 1000).ToString();
+                }
 
                 yield return null;
             }

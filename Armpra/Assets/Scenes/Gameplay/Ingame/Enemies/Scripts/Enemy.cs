@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{
+public class Enemy : MonoBehaviour {
     //Enemy Stats
     public float maxHealth;
     public float meleeDamage;
@@ -26,7 +23,7 @@ public class Enemy : MonoBehaviour
     private bool isEmittingFriction;
     private bool markedForDestruction;
 
-    void Start(){
+    private void Start() {
         currentTimer = 0f;
         ParticleSystem.MainModule settings = trails.main;
         settings.startColor = new ParticleSystem.MinMaxGradient(enemyBody.color);
@@ -35,21 +32,23 @@ public class Enemy : MonoBehaviour
         isEmittingFriction = false;
         Physics2D.IgnoreLayerCollision(8, 12);
     }
-    void Update(){
+
+    private void Update() {
         currentTimer += Time.deltaTime;
-        if (deathExplosionParticles && !deathExplosionParticles.IsAlive())
-                Destroy(deathExplosionParticles);
-        float h, s, v;
-        Color.RGBToHSV(enemyBorder.color, out h, out s, out v);
+        if (deathExplosionParticles && !deathExplosionParticles.IsAlive()) {
+            Destroy(deathExplosionParticles);
+        }
+
+        Color.RGBToHSV(enemyBorder.color, out float h, out float s, out float v);
         h = 0f; v = 1f; s = 1f - currentHealth / maxHealth;
         enemyBorder.color = (Color.HSVToRGB(h, s, v));
-        foreach  (SpriteRenderer enemyHead in enemyHeads){
+        foreach (SpriteRenderer enemyHead in enemyHeads) {
             enemyHead.color = (Color.HSVToRGB(h, s, v));
         }
     }
-    public void TakeDamage(float damage){
+    public void TakeDamage(float damage) {
         currentHealth -= damage;
-        if (currentHealth <= 0 && !markedForDestruction){
+        if (currentHealth <= 0 && !markedForDestruction) {
             markedForDestruction = true;
             deathExplosionParticles = Instantiate(deathExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
@@ -60,24 +59,24 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D hitInfo){
-        if (hitInfo.CompareTag("Player")){
+    private void OnTriggerStay2D(Collider2D hitInfo) {
+        if (hitInfo.CompareTag("Player")) {
             PlayerStats player = hitInfo.GetComponent<PlayerStats>();
-            if (player != null){
+            if (player != null) {
                 player.TakeDamage(meleeDamage);
-               /* if (!isEmittingFriction)
-                {
-                    Debug.Log("SPAWNED FRICTIOn");
-                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2, 0);
-                    friction = Instantiate(frictionParticles, pos, Quaternion.identity);
-                    //isEmittingFriction = true;
-                }*/
-            }  
-        }
-        else if (hitInfo.CompareTag("Shield")){
+                /* if (!isEmittingFriction)
+                 {
+                     Debug.Log("SPAWNED FRICTIOn");
+                     Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2, 0);
+                     friction = Instantiate(frictionParticles, pos, Quaternion.identity);
+                     //isEmittingFriction = true;
+                 }*/
+            }
+        } else if (hitInfo.CompareTag("Shield")) {
             Shield shield = hitInfo.GetComponent<Shield>();
-            if (shield != null)
+            if (shield != null) {
                 shield.TakeDamage(meleeDamage);
+            }
         } /*else if (!friction)
         {
             if (currentTimer >= 2f)

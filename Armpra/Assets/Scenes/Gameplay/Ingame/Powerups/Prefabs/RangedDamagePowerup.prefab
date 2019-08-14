@@ -168,6 +168,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5488035428199748709}
   - component: {fileID: 6646349387388421859}
+  - component: {fileID: 468816137500431456}
+  - component: {fileID: 5502660953226755965}
+  - component: {fileID: 6648523746019265172}
   m_Layer: 15
   m_Name: RangedDamagePowerup
   m_TagString: Untagged
@@ -209,6 +212,44 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.56
+--- !u!114 &468816137500431456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488035428199748708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604345f2857b57b4b81ecb1cf0828359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5502660953226755965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488035428199748708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a585d4e2d5ef684ea91e195692ef3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6648523746019265172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488035428199748708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b62fed05580ce488fbacdfb3be26a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeSelected: 4
+  powerupMultiplier: 0
 --- !u!1 &5488035429698627687
 GameObject:
   m_ObjectHideFlags: 0

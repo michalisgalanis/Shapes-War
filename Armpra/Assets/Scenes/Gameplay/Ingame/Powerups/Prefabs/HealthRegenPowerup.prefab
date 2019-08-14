@@ -5087,6 +5087,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3846954032451277863}
   - component: {fileID: 2699583515711047329}
+  - component: {fileID: 1661771532053856603}
+  - component: {fileID: 8721410365492183135}
+  - component: {fileID: 851898497449520640}
   m_Layer: 15
   m_Name: HealthRegenPowerup
   m_TagString: Untagged
@@ -5130,6 +5133,44 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.56
+--- !u!114 &1661771532053856603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846954032451277862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604345f2857b57b4b81ecb1cf0828359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8721410365492183135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846954032451277862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a585d4e2d5ef684ea91e195692ef3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &851898497449520640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846954032451277862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b62fed05580ce488fbacdfb3be26a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeSelected: 2
+  powerupMultiplier: 0
 --- !u!1 &7395900220629004381
 GameObject:
   m_ObjectHideFlags: 0

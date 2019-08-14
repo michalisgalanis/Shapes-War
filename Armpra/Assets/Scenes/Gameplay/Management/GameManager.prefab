@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4323194168433894170}
   - component: {fileID: 1237041086}
   - component: {fileID: 1237041087}
+  - component: {fileID: 591277591}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -50,31 +51,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f877e9725c222644d80271af0d775110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 6687433574806607479, guid: fd2d48c944109004b97ed98e397f27ae, type: 3}
-  pauseMenu: {fileID: 522621711325983628, guid: bcb843c6da3b01d419346f437a4cfb0c,
-    type: 3}
-  lostMenu: {fileID: 3804810407189486445, guid: d8f4f503dde8d04419e0158f458f3e84,
-    type: 3}
-  wonMenu: {fileID: 522621711325983628, guid: 2f6d87e655299b742acb157314fdaecf, type: 3}
+  gameUI: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  lostMenu: {fileID: 0}
+  wonMenu: {fileID: 0}
   storeMenu: {fileID: 0}
-  movementJoystick: {fileID: 3342886427447392987, guid: 0f79d36dd9c753848823199f9d122e5c,
-    type: 3}
-  attackJoystick: {fileID: 8534683565166153147, guid: eade3379724912c45974e3c2e3602128,
-    type: 3}
-  playerRenderer: {fileID: 2107116754607933122, guid: 257e7ec0a2f5fad4797e11892f7cbd35,
-    type: 3}
-  background: {fileID: 8856123811902659008, guid: 03632b48accafce4fa61c9e27f12a497,
-    type: 3}
+  movementJoystick: {fileID: 0}
+  attackJoystick: {fileID: 0}
+  background: {fileID: 0}
   shield: {fileID: -358526174379180828, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f, type: 3}
-  speedPowerUp: {fileID: -3498957439382946648, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c,
-    type: 3}
   bestAttemptPercentage: 0
   loadedData:
     currentLevel: 0
     bestAttemptPercentage: 0
     playerLevel: 0
     damageReduction: 0
-    rangedDamage: 0
     attackSpeed: 0
     XP: 0
     maxShieldHealth: 0
@@ -101,8 +92,8 @@ MonoBehaviour:
   - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
   enemiesRemainingText: {fileID: 0}
   camera: {fileID: 0}
-  lg: {fileID: 0}
-  spawnTimer: 0.01
+  lg: {fileID: 1237041087}
+  spawnTimer: 0.5
   enemyCounter: 0
   maxEnemyCount: 10
 --- !u!114 &8643191348888787486
@@ -151,10 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44226617c6bd404782ca95f2fe045c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText:
+  xpText:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  currentXP: 0
 --- !u!114 &4323194168433894170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -210,3 +205,33 @@ MonoBehaviour:
   - {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c, type: 3}
   - {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c, type: 3}
   - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
+--- !u!114 &591277591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643191348888787484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7410dcdb4c5a04886b4a07dbbcfd6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeDamageUpgradeCounter: 0
+  attackSpeedUpgradeCounter: 0
+  maxHealthUpgradeCounter: 0
+  damageReductionUpgradeCounter: 0
+  movementSpeedUpgradeCounter: 0
+  powerupEffectCounter: 1
+  powerupDurationCounter: 1
+  powerupSpawnFrequencyCounter: 1
+  meleeDamageUpgradeButton: {fileID: 0}
+  attackSpeedUpgradeButton: {fileID: 0}
+  maxHealthUpgradeButton: {fileID: 0}
+  damageReductionUpgradeButton: {fileID: 0}
+  movementSpeedUpgradeButton: {fileID: 0}
+  meleeDamageLevelText: {fileID: 0}
+  attackSpeedLevelText: {fileID: 0}
+  maxHealthLevelText: {fileID: 0}
+  damageReductionLevelText: {fileID: 0}
+  movementSpeedLevelText: {fileID: 0}

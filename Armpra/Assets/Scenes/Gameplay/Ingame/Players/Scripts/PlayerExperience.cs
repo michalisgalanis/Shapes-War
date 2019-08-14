@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-public class PlayerExperience : MonoBehaviour
-{
+public class PlayerExperience : MonoBehaviour {
     //Experience Stats
     private int playerLevel = 1;                //generated here
     public double currentPlayerXP = 0f;         //generated here
@@ -13,6 +9,7 @@ public class PlayerExperience : MonoBehaviour
     private double xpBetweenMilestones;         //output
     private double remainingXP;                 //output
     private double accumulatedXP = 0f;          //output
+    private float sizeIncrease;                 //input
 
     private ExperienceSystem es;                //input
     private PlayerStats ps;                     //output
@@ -20,17 +17,24 @@ public class PlayerExperience : MonoBehaviour
     public GameObject progressBar;
     public ParticleSystem levelUpParticles;
 
-    void Start(){
+    private void Start() {
         es = GameObject.FindGameObjectWithTag("GameController").GetComponent<ExperienceSystem>();
         ps = GetComponent<PlayerStats>();
         pg = GetComponent<PlayerGenerator>();
     }
 
-    void Update(){
+    private void Update() {
         es.currentXP = playerLevel; //output
         ps.playerLevel = playerLevel;   //output
         ps.XP = currentPlayerXP;        //output
-        pg.currentLevel = playerLevel;  //output
+        if (pg.currentLevel != playerLevel) {
+            float prevSize = pg.size;
+            pg.currentLevel = playerLevel;  //output
+            pg.ForceUpdate();
+            float currSize = pg.size;
+            sizeIncrease = currSize / prevSize;
+        }
+        
         prevXPMilestone = 200f * Mathf.Pow(playerLevel, 1.5f) - 100f;
         nextXPMilestone = 200f * Mathf.Pow(playerLevel + 1, 1.5f) - 100f;
         xpBetweenMilestones = nextXPMilestone - prevXPMilestone;
@@ -49,7 +53,8 @@ public class PlayerExperience : MonoBehaviour
         if (currentPlayerXP >= xpBetweenMilestones)
             LevelUp();
     }
-    void LevelUp(){
+
+    private void LevelUp() {
         playerLevel++;
         accumulatedXP += currentPlayerXP;
         currentPlayerXP -= xpBetweenMilestones;
@@ -57,12 +62,22 @@ public class PlayerExperience : MonoBehaviour
         //Debug.Log("prevXPMilestone: " + prevXPMilestone);
         //Debug.Log("currentPlayerXP: " + currentPlayerXP);
         //Debug.Log("Player Level " + playerLevel + ": " + remainingXP + " XP remaining to Level Up!");
+        //levelUpParticles.gameObject.transform.localScale *= sizeIncrease;
         ParticleSystem lvlUpParticles = Instantiate(levelUpParticles, transform.position, Quaternion.identity);
+        Debug.Log("Size Increase: " + sizeIncrease);
+        Debug.Log("New Local Scale of Object: " + lvlUpParticles.transform.localScale);
+        Debug.Log("New Local Scale of Prefab: " + levelUpParticles.transform.localScale);
         lvlUpParticles.transform.parent = gameObject.transform;
+        ps.playerLevel = playerLevel;   //output
+        ps.ForceUpdate();
+        ps.RefillStats();
     }
 
-    public void addXP(double xp)
-    {
+    public void addXP(double xp) {
+        currentPlayerXP += xp;
+    }
+
+    public void addXp(int xp) {
         currentPlayerXP += xp;
     }
 }

@@ -1,18 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Shield : MonoBehaviour
-{
+public class Shield : MonoBehaviour {
     //Shield Stats
     public float maxShieldHealth;
     public float shieldDamage;
-    public float duration;
 
     //Dynamic Stats
     public float currentHealth;
     private bool markedForDestroy;
-    public float timeLeft;
 
     //Essential References
     private SpriteRenderer outerShield;
@@ -21,27 +16,21 @@ public class Shield : MonoBehaviour
     private ParticleSystem localTrails;
     public GameObject shieldShockwavePrefab;
     public ParticleSystem shieldDestroyExplosionParticlesPrefab;
-    
 
-    void Start()
-    {
+    private void Start() {
         outerShield = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(0).GetComponent<SpriteRenderer>();
         innerShield = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(1).GetComponent<SpriteRenderer>();
         movingTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(2).GetComponent<ParticleSystem>();
         localTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(3).GetComponent<ParticleSystem>();
         currentHealth = maxShieldHealth;
-        timeLeft = duration;
 
         Physics2D.IgnoreLayerCollision(8, 9);
         Physics2D.IgnoreLayerCollision(9, 14);
         markedForDestroy = false;
     }
 
-
-    void Update()
-    {
-        if (outerShield && innerShield)
-        {
+    private void Update() {
+        if (outerShield && innerShield) {
             float h = (currentHealth / maxShieldHealth) / 3.6f;
             float outerS = 1f, outerV = 1f, outerA = 0.7f;
             float innerS = 1f, innerV = 0.7f, innerA = 0.2f;
@@ -60,16 +49,11 @@ public class Shield : MonoBehaviour
             ps = localTrails.main;
             ps.startColor = new ParticleSystem.MinMaxGradient(outerShield.color);
         }
-        timeLeft -= Time.deltaTime;
-        if (timeLeft <= 0)
-            Destroy(gameObject);
     }
 
-    public void TakeDamage(float damage)
-    {
+    public void TakeDamage(float damage) {
         currentHealth -= damage;
-        if (currentHealth <= 0 && !markedForDestroy)
-        {
+        if (currentHealth <= 0 && !markedForDestroy) {
             markedForDestroy = true;
             //Instantiate(shieldShockwavePrefab, transform.localPosition, Quaternion.identity);
             Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);
@@ -78,19 +62,16 @@ public class Shield : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D hitInfo)
-    {
-        if (hitInfo.CompareTag("Enemy"))
-        {
+    private void OnTriggerStay2D(Collider2D hitInfo) {
+        if (hitInfo.CompareTag("Enemy")) {
             Enemy enemy = hitInfo.GetComponent<Enemy>();
-            if (enemy != null)
+            if (enemy != null) {
                 enemy.TakeDamage(shieldDamage);
+            }
         }
     }
 
-    public void RestoreShieldStats()
-    {
+    public void RestoreShieldStats() {
         currentHealth = maxShieldHealth;
-        timeLeft = duration;
     }
 }

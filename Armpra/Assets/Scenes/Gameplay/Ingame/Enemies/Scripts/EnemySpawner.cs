@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 
-public class EnemySpawner : MonoBehaviour
-{
+public class EnemySpawner : MonoBehaviour {
     //access to other objects and components
     public GameObject[] enemies;
     public GameObject enemiesRemainingText;
@@ -15,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     //public float difficulty;
     public float spawnTimer;
     private bool spawningTime;
-    
+
     //constants
     private const float MIN_BORDER = -19;
     private const float MAX_BORDER = 19;
@@ -29,8 +26,7 @@ public class EnemySpawner : MonoBehaviour
     private bool positionConflict;
 
 
-    public void BeginSpawning()
-    {
+    public void BeginSpawning() {
         spawningTime = true;
         positionConflict = false;
         currentTimer = spawnTimer;
@@ -43,15 +39,11 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    private void Update() {
         enemiesRemainingText.GetComponent<TextMeshProUGUI>().text = enemyCounter.ToString();
-        if (spawningTime == true && enemyCounter < maxEnemyCount)
-        {
+        if (spawningTime == true && enemyCounter < maxEnemyCount) {
             SpawnEnemies();
-        }
-        else if (spawningTime == false && enemyCounter == 0)
-        {
+        } else if (spawningTime == false && enemyCounter == 0) {
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().CompleteLevel();
             lg.currentLevel++;
             lg.EstimateLevel();
@@ -60,9 +52,9 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemies(){
+    private void SpawnEnemies() {
         currentTimer += Time.deltaTime;
-        if (currentTimer >= spawnTimer && enemyCounter < maxEnemyCount){
+        if (currentTimer >= spawnTimer && enemyCounter < maxEnemyCount) {
             //Generate Enemy
             positionConflict = false;
             Vector3 temp = new Vector3(GenerateX(), GenerateY(), 0);
@@ -73,26 +65,37 @@ public class EnemySpawner : MonoBehaviour
             float h = Random.Range(0f, 360f) / 360f, s = 0.75f, v = 0.6f;
             sr.color = Color.HSVToRGB(h, s, v);
             //Resetting timer & counter
-            if (++enemyCounter == maxEnemyCount) spawningTime = false;
+            if (++enemyCounter == maxEnemyCount) {
+                spawningTime = false;
+            }
+
             currentTimer = 0f;
         }
     }
 
-    float GenerateX(){
+    private float GenerateX() {
         float temp_X = Random.Range(MIN_BORDER, MAX_BORDER);
-        if (temp_X > camera.transform.position.x - HORIZONTAL_CAMERA_OFFSET && temp_X < camera.transform.position.x + HORIZONTAL_CAMERA_OFFSET)
-            if (positionConflict)
+        if (temp_X > camera.transform.position.x - HORIZONTAL_CAMERA_OFFSET && temp_X < camera.transform.position.x + HORIZONTAL_CAMERA_OFFSET) {
+            if (positionConflict) {
                 temp_X = GenerateX();
-            else positionConflict = true;
+            } else {
+                positionConflict = true;
+            }
+        }
+
         return temp_X;
     }
 
-    float GenerateY(){
+    private float GenerateY() {
         float temp_Y = Random.Range(MIN_BORDER, MAX_BORDER);
-        if (temp_Y > camera.transform.position.y - VERTICAL_CAMERA_OFFSET && temp_Y < camera.transform.position.y + VERTICAL_CAMERA_OFFSET)
-            if (positionConflict)
+        if (temp_Y > camera.transform.position.y - VERTICAL_CAMERA_OFFSET && temp_Y < camera.transform.position.y + VERTICAL_CAMERA_OFFSET) {
+            if (positionConflict) {
                 temp_Y = GenerateY();
-            else positionConflict = true;
+            } else {
+                positionConflict = true;
+            }
+        }
+
         return temp_Y;
     }
 }

@@ -1,28 +1,21 @@
 using UnityEngine;
-using System.Collections;
 
 
-namespace TMPro.Examples
-{
-    
-    public class Benchmark02 : MonoBehaviour
-    {
+namespace TMPro.Examples {
+
+    public class Benchmark02 : MonoBehaviour {
 
         public int SpawnType = 0;
         public int NumberOfNPC = 12;
 
         private TextMeshProFloatingText floatingText_Script;
 
+        private void Start() {
 
-        void Start()
-        {
-
-            for (int i = 0; i < NumberOfNPC; i++)
-            {
+            for (int i = 0; i < NumberOfNPC; i++) {
 
 
-                if (SpawnType == 0)
-                {
+                if (SpawnType == 0) {
                     // TextMesh Pro Implementation
                     GameObject go = new GameObject();
                     go.transform.position = new Vector3(Random.Range(-95f, 95f), 0.25f, Random.Range(-95f, 95f));
@@ -38,13 +31,11 @@ namespace TMPro.Examples
 
                     textMeshPro.color = new Color32(255, 255, 0, 255);
                     textMeshPro.text = "!";
-                       
+
                     // Spawn Floating Text
                     floatingText_Script = go.AddComponent<TextMeshProFloatingText>();
                     floatingText_Script.SpawnType = 0;
-                }
-                else if (SpawnType == 1)
-                {
+                } else if (SpawnType == 1) {
                     // TextMesh Implementation
                     GameObject go = new GameObject();
                     go.transform.position = new Vector3(Random.Range(-95f, 95f), 0.25f, Random.Range(-95f, 95f));
@@ -62,9 +53,7 @@ namespace TMPro.Examples
                     // Spawn Floating Text
                     floatingText_Script = go.AddComponent<TextMeshProFloatingText>();
                     floatingText_Script.SpawnType = 1;
-                }
-                else if (SpawnType == 2)
-                {
+                } else if (SpawnType == 2) {
                     // Canvas WorldSpace Camera
                     GameObject go = new GameObject();
                     Canvas canvas = go.AddComponent<Canvas>();
@@ -86,8 +75,8 @@ namespace TMPro.Examples
                     floatingText_Script.SpawnType = 0;
                 }
 
-                   
-           
+
+
             }
         }
     }

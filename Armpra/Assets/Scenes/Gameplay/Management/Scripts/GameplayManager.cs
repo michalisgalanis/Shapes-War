@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
 
-public class GameplayManager : MonoBehaviour
-{
+public class GameplayManager : MonoBehaviour {
     public GameObject gameUI;
     public GameObject pauseMenu;
     public GameObject lostMenu;
@@ -20,18 +16,15 @@ public class GameplayManager : MonoBehaviour
     public DynamicBackground background;
     private PlayerStats playerStatsComponent;
     public Shield shield;
-    public SpeedPowerUp speedPowerUp;
     public float bestAttemptPercentage;
     public Data loadedData;
-    private GameObject shieldObject=null;
+    private GameObject shieldObject = null;
     public int currentLevel;
 
-    void Start()
-    {
+    private void Start() {
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        if (SavingSystem.LoadData() != null)
-        {
+        if (SavingSystem.LoadData() != null) {
             loadedData = SavingSystem.LoadData();
             //Load General Stats
             gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
@@ -46,12 +39,8 @@ public class GameplayManager : MonoBehaviour
             //Shield Powerup
             shield.maxShieldHealth = loadedData.maxShieldHealth;
             shield.shieldDamage = loadedData.shieldDamage;
-            //Speed Powerup
-            speedPowerUp.powerupDuration = loadedData.speedPowerupDuration;
-            speedPowerUp.powerupMultiplier = loadedData.speedPowerUpMultiplier;
-        }
-        else //First time the game is launched/Save file is missing. All variables are set to default values.
-        {
+        } else //First time the game is launched/Save file is missing. All variables are set to default values.
+          {
             gameManager.GetComponent<LevelGeneration>().currentLevel = 1;
             gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = 1;
             //Player variables
@@ -63,9 +52,6 @@ public class GameplayManager : MonoBehaviour
             //Shield powerup
             shield.maxShieldHealth = 80;
             shield.shieldDamage = 0.5f;
-            //Speed powerup
-            speedPowerUp.powerupDuration = 7;
-            speedPowerUp.powerupMultiplier = 1.5f;
         }
 
         gameManager.GetComponent<EnemySpawner>().BeginSpawning();
@@ -79,7 +65,7 @@ public class GameplayManager : MonoBehaviour
         attackJoystick.SetActive(true);
     }
 
-    public void Pause(){
+    public void Pause() {
         Time.timeScale = 0;
         gameUI.SetActive(false);
         pauseMenu.SetActive(true);
@@ -87,7 +73,7 @@ public class GameplayManager : MonoBehaviour
         attackJoystick.SetActive(false);
     }
 
-    public void Resume(){
+    public void Resume() {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         gameUI.SetActive(true);
@@ -95,42 +81,44 @@ public class GameplayManager : MonoBehaviour
         attackJoystick.SetActive(true);
     }
 
-    public void Restart(){
+    public void Restart() {
         SceneManager.LoadScene("Gameplay");
     }
 
-    public void Lose(){
+    public void Lose() {
         shieldObject = GameObject.FindGameObjectWithTag("Shield");
-        if (shieldObject)
+        if (shieldObject) {
             Destroy(shieldObject);
+        }
+
         float maxEC = gameManager.GetComponent<EnemySpawner>().maxEnemyCount;
         float EC = gameManager.GetComponent<EnemySpawner>().enemyCounter;
-        bestAttemptPercentage = ((maxEC - EC )/ maxEC)*100;
+        bestAttemptPercentage = ((maxEC - EC) / maxEC) * 100;
         bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
         bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
-        SavingSystem.SaveProgress(playerStatsComponent, shield, speedPowerUp, gameObject);
+        SavingSystem.SaveProgress(playerStatsComponent, shield, gameObject);
         lostMenu.SetActive(true);
         gameUI.SetActive(false);
         movementJoystick.SetActive(false);
         attackJoystick.SetActive(false);
     }
 
-    public void CompleteLevel()
-    {
+    public void CompleteLevel() {
         shieldObject = GameObject.FindGameObjectWithTag("Shield");
-        if (shieldObject != null)
+        if (shieldObject != null) {
             Destroy(shieldObject);
-        SavingSystem.SaveProgress(playerStatsComponent, shield, speedPowerUp, gameManager);
+        }
+
+        SavingSystem.SaveProgress(playerStatsComponent, shield, gameManager);
         Time.timeScale = 0;
         gameUI.SetActive(false);
         wonMenu.SetActive(true);
-        GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(Vector3.zero,Quaternion.identity);
+        GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         movementJoystick.SetActive(false);
         attackJoystick.SetActive(false);
     }
 
-    public void ProceedToNextLevel()
-    {
+    public void ProceedToNextLevel() {
         Time.timeScale = 1;
         background.ChangeBlackgroundColor();
         playerStatsComponent.RefillStats();
@@ -138,27 +126,24 @@ public class GameplayManager : MonoBehaviour
         wonMenu.SetActive(false);
         movementJoystick.SetActive(true);
         attackJoystick.SetActive(true);
-        playerStatsComponent.UpdateEveryLevel();
     }
 
-    public void VisitStore()
-    {
+    public void VisitStore() {
         storeMenu.SetActive(true);
         gameUI.SetActive(false);
         wonMenu.SetActive(false);
         Time.timeScale = 0;
     }
 
-    public void ReturnToCompleteLevel()
-    {
+    public void ReturnToCompleteLevel() {
         wonMenu.SetActive(true);
         storeMenu.SetActive(false);
         Time.timeScale = 0;
     }
 
-    public void ReturnHome(){
+    public void ReturnHome() {
         Time.timeScale = 1;
-        
+
         SceneManager.LoadScene("MainMenu");
         EditorSceneManager.OpenScene("MainMenu");
         SceneManager.UnloadSceneAsync("Gameplay");

@@ -4850,6 +4850,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9199731685675298013}
   - component: {fileID: 8050742409717497435}
+  - component: {fileID: 2144307728658353491}
+  - component: {fileID: 2765962818814250294}
+  - component: {fileID: 7218108535878686974}
   m_Layer: 15
   m_Name: ImmunityPowerup
   m_TagString: Untagged
@@ -4891,6 +4894,44 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.56
+--- !u!114 &2144307728658353491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199731685675298012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604345f2857b57b4b81ecb1cf0828359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2765962818814250294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199731685675298012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a585d4e2d5ef684ea91e195692ef3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7218108535878686974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199731685675298012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b62fed05580ce488fbacdfb3be26a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeSelected: 3
+  powerupMultiplier: 0
 --- !u!1 &9199731686232427502
 GameObject:
   m_ObjectHideFlags: 0

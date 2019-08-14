@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraFollowPlayer : MonoBehaviour
-{
+public class CameraFollowPlayer : MonoBehaviour {
     private GameObject player;
 
     private Vector3 desiredPosition;
-    
+
     public Vector3 offset;
     public float smoothSpeed;
 
@@ -20,30 +17,31 @@ public class CameraFollowPlayer : MonoBehaviour
     private float lastPositionX;
     private float lastPositionY;
 
-    void Start(){
+    private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-
-    void FixedUpdate(){
-       if (player != null)
-        {
-            if (followX())
+    private void FixedUpdate() {
+        if (player != null) {
+            if (followX()) {
                 lastPositionX = player.transform.position.x;
-            if (followY())
+            }
+
+            if (followY()) {
                 lastPositionY = player.transform.position.y;
+            }
+
             desiredPosition = new Vector3(lastPositionX, lastPositionY, -10);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.fixedDeltaTime);
             transform.position = smoothedPosition;
         }
     }
 
-    bool followX(){
+    private bool followX() {
         return (player.transform.position.x + HORIZONTAL_CAMERA_OFFSET <= MAX_BORDER) && (player.transform.position.x - HORIZONTAL_CAMERA_OFFSET >= MIN_BORDER);
     }
 
-    bool followY()
-    {
+    private bool followY() {
         return (player.transform.position.y + VERTICAL_CAMERA_OFFSET <= MAX_BORDER) && (player.transform.position.y - VERTICAL_CAMERA_OFFSET >= MIN_BORDER);
     }
 }

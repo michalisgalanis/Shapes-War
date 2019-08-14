@@ -89,7 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 895830065856883669}
   - component: {fileID: 4994483783184125011}
-  - component: {fileID: -3498957439382946648}
+  - component: {fileID: 6557303778137102608}
+  - component: {fileID: 4505833875778407087}
+  - component: {fileID: 6383313613365923307}
   m_Layer: 15
   m_Name: SpeedPowerupPrefab
   m_TagString: Powerups
@@ -131,7 +133,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.56
---- !u!114 &-3498957439382946648
+--- !u!114 &6557303778137102608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,11 +142,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 895830065856883668}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf85198c50fb89478e5fee43b3bf07f, type: 3}
+  m_Script: {fileID: 11500000, guid: 604345f2857b57b4b81ecb1cf0828359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupDuration: 5
-  powerupMultiplier: 5
+--- !u!114 &4505833875778407087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895830065856883668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a585d4e2d5ef684ea91e195692ef3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6383313613365923307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895830065856883668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b62fed05580ce488fbacdfb3be26a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeSelected: 5
+  powerupMultiplier: 0
 --- !u!1 &895830066382851302
 GameObject:
   m_ObjectHideFlags: 0

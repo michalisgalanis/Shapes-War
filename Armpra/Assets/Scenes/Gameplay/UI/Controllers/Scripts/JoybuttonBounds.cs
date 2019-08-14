@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class JoybuttonBounds : MonoBehaviour
-{
-    void Update(){
+public class JoybuttonBounds : MonoBehaviour {
+    private void Update() {
         float x = transform.localPosition.x;
         float y = transform.localPosition.y;
         Vector3 newTransform = Vector3.ClampMagnitude(new Vector3(x, y, 0), 0.5f);

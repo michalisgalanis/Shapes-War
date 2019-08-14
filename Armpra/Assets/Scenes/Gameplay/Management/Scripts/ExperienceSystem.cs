@@ -1,23 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 
-public class ExperienceSystem : MonoBehaviour
-{
+public class ExperienceSystem : MonoBehaviour {
     public GameObject[] xpText;     //output texts
     public double currentXP;
 
-    void Start()
-    {
+    private void Start() {
         currentXP = 0;
     }
 
-
-    void Update()
-    {
-        for (int i = 0; i < xpText.Length; i++)
-        {
+    private void Update() {
+        for (int i = 0; i < xpText.Length; i++) {
             xpText[i].GetComponent<TextMeshProUGUI>().text = currentXP.ToString();
         }
     }

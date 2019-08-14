@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Shape : MonoBehaviour
-{
+public class Shape : MonoBehaviour {
     private Rigidbody2D rb;
     private Transform tf;
 
@@ -20,7 +17,7 @@ public class Shape : MonoBehaviour
     private float rotationRandX;
     private float rotationRandY;
 
-    void Start(){
+    private void Start() {
         //Components
         rb = GetComponent<Rigidbody2D>();
         tf = GetComponent<Transform>();
@@ -43,13 +40,12 @@ public class Shape : MonoBehaviour
 
     }
 
-    void Update(){
-        rotationValue = Vector2.SignedAngle(new Vector2(0, 1), rotationDirection) * rotationSpeedFactor  * Time.fixedDeltaTime;
+    private void Update() {
+        rotationValue = Vector2.SignedAngle(new Vector2(0, 1), rotationDirection) * rotationSpeedFactor * Time.fixedDeltaTime;
         positionValue = rb.position + positionDirection.normalized * Time.fixedDeltaTime * positionSpeedFactor;
     }
 
-    void FixedUpdate()
-    {
+    private void FixedUpdate() {
         rb.MovePosition(positionValue);
         tf.Rotate(0, 0, rotationValue);
     }

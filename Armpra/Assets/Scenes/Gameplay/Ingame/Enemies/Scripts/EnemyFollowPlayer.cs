@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemyFollowPlayer : MonoBehaviour
-{
+public class EnemyFollowPlayer : MonoBehaviour {
 
     private GameObject player;
     private Rigidbody2D rb;
@@ -15,27 +12,24 @@ public class EnemyFollowPlayer : MonoBehaviour
     private float rotationValue;
     private Vector2 positionValue;
 
-    void Start(){
+    private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         tf = GetComponent<Transform>();
     }
 
-    
-    void Update(){
-        if(player != null)
-        {
+    private void Update() {
+        if (player != null) {
             Vector2 moveInput = new Vector2(player.transform.position.x - tf.position.x, player.transform.position.y - tf.position.y);
             rotationValue = (moveInput.x < 0) ? Vector2.Angle(new Vector2(0, 1), moveInput) : 0 - Vector2.Angle(new Vector2(0, 1), moveInput);
             positionValue = rb.position + moveInput.normalized * Time.fixedDeltaTime * speedFactor;
-        } else
-        {
+        } else {
             deathExplosionParticles = Instantiate(deathExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
 
-    void FixedUpdate(){
+    private void FixedUpdate() {
         tf.localRotation = Quaternion.Euler(0, 0, rotationValue);
         rb.MovePosition(positionValue);
     }

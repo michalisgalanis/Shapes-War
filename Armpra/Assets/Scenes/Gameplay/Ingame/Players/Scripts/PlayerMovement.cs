@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
     public GameObject movementJoystickButton;
     public GameObject attackJoystickButton;
     private const int JOYSTICK_TO_VECTOR_FACTOR = 2;
@@ -21,55 +18,62 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 totalMovementInput;
     private Vector2 totalAttackInput;
 
-
-    void Start(){
+    private void Start() {
         rb = GetComponent<Rigidbody2D>();
         tf = GetComponent<Transform>();
         currentSpeed = 0;
     }
 
-    void Update() {
+    private void Update() {
         Vector2 movementJoystick = (new Vector2(movementJoystickButton.GetComponent<Transform>().localPosition.x, movementJoystickButton.GetComponent<Transform>().localPosition.y) * JOYSTICK_TO_VECTOR_FACTOR).normalized;
         Vector2 attackJoystick = (new Vector2(attackJoystickButton.GetComponent<Transform>().localPosition.x, attackJoystickButton.GetComponent<Transform>().localPosition.y) * JOYSTICK_TO_VECTOR_FACTOR).normalized;
         Vector2 keyboardInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         //Chosing Movement Input
-        if (movementJoystick != Vector2.zero && keyboardInput != Vector2.zero)
+        if (movementJoystick != Vector2.zero && keyboardInput != Vector2.zero) {
             totalMovementInput = (movementJoystick + keyboardInput) / 2;
-        else if (movementJoystick != Vector2.zero)
+        } else if (movementJoystick != Vector2.zero) {
             totalMovementInput = movementJoystick;
-        else if (keyboardInput != Vector2.zero)
+        } else if (keyboardInput != Vector2.zero) {
             totalMovementInput = keyboardInput;
-        else totalMovementInput = Vector2.zero;
+        } else {
+            totalMovementInput = Vector2.zero;
+        }
 
         //Chosing Attack Input
-        if (attackJoystick != Vector2.zero && keyboardInput != Vector2.zero)
+        if (attackJoystick != Vector2.zero && keyboardInput != Vector2.zero) {
             totalAttackInput = (attackJoystick + keyboardInput) / 2;
-        else if (attackJoystick != Vector2.zero)
+        } else if (attackJoystick != Vector2.zero) {
             totalAttackInput = attackJoystick;
-        else if (keyboardInput != Vector2.zero)
+        } else if (keyboardInput != Vector2.zero) {
             totalAttackInput = keyboardInput;
-        else totalAttackInput = Vector2.zero;
+        } else {
+            totalAttackInput = Vector2.zero;
+        }
 
         //Moving Player
-        if (totalMovementInput != Vector2.zero){
+        if (totalMovementInput != Vector2.zero) {
             currentSpeed += acceleration;
-            if (currentSpeed > velocityFactor) currentSpeed = velocityFactor;
+            if (currentSpeed > velocityFactor) {
+                currentSpeed = velocityFactor;
+            }
+
             lastMoveInput = totalMovementInput;
         } else {
             currentSpeed -= acceleration;
-            if (currentSpeed < 0) currentSpeed = 0;
+            if (currentSpeed < 0) {
+                currentSpeed = 0;
+            }
         }
         positionValue = rb.position + lastMoveInput.normalized * Time.fixedDeltaTime * currentSpeed;
 
         //Rotating Player
-        if (totalAttackInput != Vector2.zero)
-        {
+        if (totalAttackInput != Vector2.zero) {
             rotationValue = Vector2.SignedAngle(new Vector2(0, 1), totalAttackInput);
         }
     }
 
-    void FixedUpdate() {
+    private void FixedUpdate() {
         tf.localRotation = Quaternion.Euler(0, 0, rotationValue);
         rb.MovePosition(positionValue);
     }

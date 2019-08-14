@@ -5008,6 +5008,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4376832576236916222}
   - component: {fileID: 3217921581678550904}
+  - component: {fileID: 3040740816588631613}
+  - component: {fileID: 3032959598922151501}
   m_Layer: 15
   m_Name: HealthPowerup
   m_TagString: Untagged
@@ -5049,3 +5051,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.56
+--- !u!114 &3040740816588631613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376832576236916223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604345f2857b57b4b81ecb1cf0828359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3032959598922151501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376832576236916223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697cace1d8d6c7d4285da000aa9bce3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
