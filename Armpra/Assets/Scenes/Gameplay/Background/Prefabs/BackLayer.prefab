@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 410093875190128840}
   - component: {fileID: 410093875190128843}
   - component: {fileID: 410093875190128842}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BackLayer
-  m_TagString: Untagged
+  m_TagString: MapBounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

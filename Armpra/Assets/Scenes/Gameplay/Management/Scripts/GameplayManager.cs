@@ -1,5 +1,4 @@
-﻿using UnityEditor.SceneManagement;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour {
@@ -8,9 +7,9 @@ public class GameplayManager : MonoBehaviour {
     public GameObject lostMenu;
     public GameObject wonMenu;
     public GameObject storeMenu;
+    public GameObject hackToolMenu;
     public GameObject movementJoystick;
     public GameObject attackJoystick;
-
 
     private GameObject gameManager;
     public DynamicBackground background;
@@ -22,8 +21,10 @@ public class GameplayManager : MonoBehaviour {
     public int currentLevel;
 
     private void Start() {
+
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+
         if (SavingSystem.LoadData() != null) {
             loadedData = SavingSystem.LoadData();
             //Load General Stats
@@ -56,10 +57,11 @@ public class GameplayManager : MonoBehaviour {
 
         gameManager.GetComponent<EnemySpawner>().BeginSpawning();
 
-        pauseMenu.SetActive(false);
-        lostMenu.SetActive(false);
-        wonMenu.SetActive(false);
         gameUI.SetActive(true);
+        pauseMenu.SetActive(false);
+        hackToolMenu.SetActive(true);
+        wonMenu.SetActive(false);
+        lostMenu.SetActive(false);
         storeMenu.SetActive(false);
         movementJoystick.SetActive(true);
         attackJoystick.SetActive(true);
@@ -71,6 +73,7 @@ public class GameplayManager : MonoBehaviour {
         pauseMenu.SetActive(true);
         movementJoystick.SetActive(false);
         attackJoystick.SetActive(false);
+        hackToolMenu.SetActive(false);
     }
 
     public void Resume() {
@@ -79,6 +82,7 @@ public class GameplayManager : MonoBehaviour {
         gameUI.SetActive(true);
         movementJoystick.SetActive(true);
         attackJoystick.SetActive(true);
+        hackToolMenu.SetActive(true);
     }
 
     public void Restart() {
@@ -101,6 +105,7 @@ public class GameplayManager : MonoBehaviour {
         gameUI.SetActive(false);
         movementJoystick.SetActive(false);
         attackJoystick.SetActive(false);
+        hackToolMenu.SetActive(false);
     }
 
     public void CompleteLevel() {
@@ -116,6 +121,7 @@ public class GameplayManager : MonoBehaviour {
         GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         movementJoystick.SetActive(false);
         attackJoystick.SetActive(false);
+        hackToolMenu.SetActive(false);
     }
 
     public void ProceedToNextLevel() {
@@ -126,26 +132,28 @@ public class GameplayManager : MonoBehaviour {
         wonMenu.SetActive(false);
         movementJoystick.SetActive(true);
         attackJoystick.SetActive(true);
+        hackToolMenu.SetActive(true);
     }
 
     public void VisitStore() {
         storeMenu.SetActive(true);
         gameUI.SetActive(false);
         wonMenu.SetActive(false);
+        hackToolMenu.SetActive(false);
         Time.timeScale = 0;
     }
 
     public void ReturnToCompleteLevel() {
         wonMenu.SetActive(true);
         storeMenu.SetActive(false);
+        hackToolMenu.SetActive(false);
         Time.timeScale = 0;
     }
 
     public void ReturnHome() {
         Time.timeScale = 1;
 
-        SceneManager.LoadScene("MainMenu");
-        EditorSceneManager.OpenScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
         SceneManager.UnloadSceneAsync("Gameplay");
     }
 }

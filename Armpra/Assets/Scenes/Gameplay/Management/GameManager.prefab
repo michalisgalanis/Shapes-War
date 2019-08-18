@@ -56,6 +56,7 @@ MonoBehaviour:
   lostMenu: {fileID: 0}
   wonMenu: {fileID: 0}
   storeMenu: {fileID: 0}
+  hackToolMenu: {fileID: 0}
   movementJoystick: {fileID: 0}
   attackJoystick: {fileID: 0}
   background: {fileID: 0}
@@ -178,7 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a8fe3748be7ee44a936e82d3c883bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimer: 10
   powerUps:
   - {fileID: 8653061549976029955, guid: 8cacc47ff8cbc6843ac276719ac82242, type: 3}
   - {fileID: 895830065856883668, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c, type: 3}
@@ -222,9 +222,6 @@ MonoBehaviour:
   maxHealthUpgradeCounter: 0
   damageReductionUpgradeCounter: 0
   movementSpeedUpgradeCounter: 0
-  powerupEffectCounter: 1
-  powerupDurationCounter: 1
-  powerupSpawnFrequencyCounter: 1
   meleeDamageUpgradeButton: {fileID: 0}
   attackSpeedUpgradeButton: {fileID: 0}
   maxHealthUpgradeButton: {fileID: 0}
@@ -235,3 +232,27 @@ MonoBehaviour:
   maxHealthLevelText: {fileID: 0}
   damageReductionLevelText: {fileID: 0}
   movementSpeedLevelText: {fileID: 0}
+  highVelocityBulletAmmo: 0
+  explosiveBulletAmmo: 0
+  poisonousBulletAmmo: 0
+  bulletSpeedUpgradeCounter: 1
+  bulletEffectUpgradeCounter: 1
+  highVelocityAmmoButton: {fileID: 0}
+  explosiveAmmoButton: {fileID: 0}
+  poisonousAmmoButton: {fileID: 0}
+  bulletSpeedUpgradeButton: {fileID: 0}
+  bulletEffectUpgradeButton: {fileID: 0}
+  highVelocityAmmoText: {fileID: 0}
+  explosiveAmmoText: {fileID: 0}
+  poisonousAmmoText: {fileID: 0}
+  bulletSpeedLevelText: {fileID: 0}
+  bulletEffectLevelText: {fileID: 0}
+  powerupEffectCounter: 1
+  powerupDurationCounter: 1
+  powerupSpawnFrequencyCounter: 1
+  powerupEffectButton: {fileID: 0}
+  powerupDurationButton: {fileID: 0}
+  powerupSpawnFrequencyButton: {fileID: 0}
+  powerupEffectLevelText: {fileID: 0}
+  powerupDurationLevelText: {fileID: 0}
+  powerupSpawnFrequencyLevelText: {fileID: 0}

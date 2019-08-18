@@ -10,6 +10,15 @@ TagManager:
   - Shield
   - MapBounds
   - Powerups
+  - UI/Score&Coins
+  - UI/PauseMenu
+  - UI/WinMenu
+  - UI/LostMenu
+  - UI/Joysticks/MovementJoystick
+  - UI/Joysticks/AttackJoystick
+  - UI/StoreMenu
+  - UI/HackPanel
+  - Canvas
   layers:
   - Default
   - TransparentFX

@@ -28,16 +28,12 @@ public class Data {
         //Player variables
         playerLevel = playerStatsComponent.playerLevel;
         damageReduction = playerStatsComponent.damageReduction;
-        //weapon = player.weapon;
         attackSpeed = playerStatsComponent.attackSpeed;
         XP = playerStatsComponent.XP;
-
         //Powerup variables
 
         //Shield powerup
         maxShieldHealth = shield.maxShieldHealth;
         shieldDamage = shield.shieldDamage;
-
-
     }
 }

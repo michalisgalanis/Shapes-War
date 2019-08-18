@@ -9,7 +9,7 @@ public class PlayerExperience : MonoBehaviour {
     private double xpBetweenMilestones;         //output
     private double remainingXP;                 //output
     private double accumulatedXP = 0f;          //output
-    private float sizeIncrease;                 //input
+    private float sizeAtLevel1;                 //input
 
     private ExperienceSystem es;                //input
     private PlayerStats ps;                     //output
@@ -24,17 +24,11 @@ public class PlayerExperience : MonoBehaviour {
     }
 
     private void Update() {
+        if (playerLevel == 1) sizeAtLevel1 = pg.size;
         es.currentXP = playerLevel; //output
         ps.playerLevel = playerLevel;   //output
         ps.XP = currentPlayerXP;        //output
-        if (pg.currentLevel != playerLevel) {
-            float prevSize = pg.size;
-            pg.currentLevel = playerLevel;  //output
-            pg.ForceUpdate();
-            float currSize = pg.size;
-            sizeIncrease = currSize / prevSize;
-        }
-        
+        pg.currentLevel = playerLevel;
         prevXPMilestone = 200f * Mathf.Pow(playerLevel, 1.5f) - 100f;
         nextXPMilestone = 200f * Mathf.Pow(playerLevel + 1, 1.5f) - 100f;
         xpBetweenMilestones = nextXPMilestone - prevXPMilestone;
@@ -42,14 +36,8 @@ public class PlayerExperience : MonoBehaviour {
         remainingXP = xpBetweenMilestones - currentPlayerXP;
         double xpPercentage = currentPlayerXP / xpBetweenMilestones;
         float maxWidth = progressBar.transform.parent.gameObject.GetComponent<RectTransform>().rect.width;
-
-        //Debug.Log(xpPercentage);
         float rightValue = Mathf.Abs(((float)xpPercentage * maxWidth * (-1))) - maxWidth;
-        //Debug.Log(rightValue);
         progressBar.GetComponent<RectTransform>().offsetMax = new Vector2(rightValue, 0);
-
-        //Debug.Log("currentPlayerXP: " + currentPlayerXP);
-        //Debug.Log("remainingXP: " + remainingXP);
         if (currentPlayerXP >= xpBetweenMilestones)
             LevelUp();
     }
@@ -62,12 +50,12 @@ public class PlayerExperience : MonoBehaviour {
         //Debug.Log("prevXPMilestone: " + prevXPMilestone);
         //Debug.Log("currentPlayerXP: " + currentPlayerXP);
         //Debug.Log("Player Level " + playerLevel + ": " + remainingXP + " XP remaining to Level Up!");
-        //levelUpParticles.gameObject.transform.localScale *= sizeIncrease;
         ParticleSystem lvlUpParticles = Instantiate(levelUpParticles, transform.position, Quaternion.identity);
-        Debug.Log("Size Increase: " + sizeIncrease);
-        Debug.Log("New Local Scale of Object: " + lvlUpParticles.transform.localScale);
-        Debug.Log("New Local Scale of Prefab: " + levelUpParticles.transform.localScale);
+        float sizeIncrease = pg.size / sizeAtLevel1; if (sizeIncrease == 0) sizeIncrease = 1;
         lvlUpParticles.transform.parent = gameObject.transform;
+        Vector3 initialScale = levelUpParticles.gameObject.transform.localScale;
+        lvlUpParticles.gameObject.transform.localScale = new Vector3(initialScale.x * sizeIncrease, initialScale.y * sizeIncrease, initialScale.z * sizeIncrease);
+        
         ps.playerLevel = playerLevel;   //output
         ps.ForceUpdate();
         ps.RefillStats();

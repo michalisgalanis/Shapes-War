@@ -31,10 +31,16 @@ public class DynamicBackground : MonoBehaviour {
         }
 
         ChangeBlackgroundColor();
-        backLayer.SetActive(true);
-        positionConflict = false;
         currentTimer = spawnTimer;
         shapesCounter = 0;
+
+        //Ignore Collision
+        Physics2D.IgnoreLayerCollision(8, 5);
+        Physics2D.IgnoreLayerCollision(8, 8);
+        Physics2D.IgnoreLayerCollision(8, 9);
+        Physics2D.IgnoreLayerCollision(8, 12);
+        Physics2D.IgnoreLayerCollision(8, 13);
+        Physics2D.IgnoreLayerCollision(8, 14);
     }
 
     private void Update() {

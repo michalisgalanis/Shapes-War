@@ -18,7 +18,6 @@ public class PlayerStats : MonoBehaviour {
     //Other Essential Real Time Stats
     private float currentHealth;
     private bool markedForDestruction;
-    public bool storeRefresh;
 
     //Needed References
     private GameplayManager gm;
@@ -38,7 +37,6 @@ public class PlayerStats : MonoBehaviour {
         Physics2D.IgnoreLayerCollision(13, 14);
         currentHealth = maxHealth;
         markedForDestruction = false;
-        storeRefresh = false;
         GameObject shockwave = Instantiate(shockwavePrefab, transform.localPosition, Quaternion.identity);
         shockwave.transform.parent = gameObject.transform;
         playerHeads = new List<SpriteRenderer>();
@@ -90,13 +88,13 @@ public class PlayerStats : MonoBehaviour {
     }
 
     public void TakeDamage(float damage) {
-        currentHealth -= damage * (1 - damageReduction);
+        float realDamage = damage * (1 - damageReduction);
+        currentHealth -= realDamage;
         if (currentHealth <= 0 && !markedForDestruction) {
             markedForDestruction = true;
             playerDeathExplosionParticles = Instantiate(playerDeathExplosionParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
             gm.Lose();
-            markedForDestruction = false;
         }
     }
 
