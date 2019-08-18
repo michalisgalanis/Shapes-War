@@ -21,10 +21,10 @@ public class GameplayManager : MonoBehaviour {
     public int currentLevel;
 
     private void Start() {
-
+        Application.targetFrameRate = 60;
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-
+        
         if (SavingSystem.LoadData() != null) {
             loadedData = SavingSystem.LoadData();
             //Load General Stats

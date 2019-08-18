@@ -29,7 +29,6 @@ public class JoystickMovement : MonoBehaviour {
         } else {
             heldDown = false;
             transform.localPosition = Vector3.zero;
-
         }
     }
 }
