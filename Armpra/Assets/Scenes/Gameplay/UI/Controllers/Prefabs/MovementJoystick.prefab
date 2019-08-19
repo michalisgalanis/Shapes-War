@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1236209173053749697}
   - component: {fileID: 1236209173053749700}
-  - component: {fileID: 1236209173053749702}
+  - component: {fileID: 4812483007030778493}
   m_Layer: 5
   m_Name: InnerCircle
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1236209173053749702
+--- !u!114 &4812483007030778493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fadf7c3b89d6845a4471568f6a2143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementJoystick: 0
+  movementJoystick: 1
+  movementJoystickVector: {x: 0, y: 0, z: 0}
+  attackJoystickVector: {x: 0, y: 0, z: 0}
 --- !u!1 &1600962057397570820
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,11 +2,10 @@
 
 public class JoystickMovement : MonoBehaviour {
     private enum direction { LEFT, CENTER, RIGHT }
-
-    private Vector3 movementJoystickVector;
-    private Vector3 attackJoystickVector;
-
     public bool movementJoystick;
+
+    [HideInInspector] public Vector3 movementJoystickVector;
+    [HideInInspector] public Vector3 attackJoystickVector;
 
     private Touch firstFinger;
     private Touch secondFinger;
@@ -17,60 +16,32 @@ public class JoystickMovement : MonoBehaviour {
 
     private void Start() {
         HEIGHT_THRESHOLD = Camera.main.pixelHeight * 0.3f;
-        LEFT_WIDTH_THRESHOLD = Camera.main.pixelWidth * 0.3f;
-        RIGHT_WIDTH_THRESHOLD = Camera.main.pixelWidth - HEIGHT_THRESHOLD;
+        LEFT_WIDTH_THRESHOLD = Camera.main.pixelWidth * 0.38f;
+        RIGHT_WIDTH_THRESHOLD = Camera.main.pixelWidth - LEFT_WIDTH_THRESHOLD;
     }
 
-    private void Update() {
-        bool firstFingerDown = Input.GetMouseButton(0);
-        bool secondFingerDown = Input.GetMouseButton(1);
-
+    private void FixedUpdate() {
         for (int i = 0; i < Input.touchCount; i++) {
             if (i == 0) firstFinger = Input.GetTouch(i);
             else if (i == 1) secondFinger = Input.GetTouch(i);
         }
 
-        direction firstFingerDirection = (firstFingerDown) ? AnalyzeFinger(firstFinger) : direction.CENTER;
-        direction secondFingerDirection = (secondFingerDown) ? AnalyzeFinger(secondFinger) : direction.CENTER;
-
-        if (firstFingerDown) {
-            if (firstFingerDirection == direction.LEFT) {
-                movementJoystickVector = Camera.main.ScreenToWorldPoint(firstFinger.position);
-                if (movementJoystick) {
-                    transform.position = movementJoystickVector;
-                    Vector3 newTransform = Vector3.ClampMagnitude(new Vector3(transform.localPosition.x, transform.localPosition.y, 0), 0.5f);
-                    transform.localPosition = newTransform;
-                }
-
-                if (secondFingerDirection == direction.RIGHT) {
-                    attackJoystickVector = Camera.main.ScreenToWorldPoint(secondFinger.position);
-                    if (!movementJoystick) {
-                        transform.position = attackJoystickVector;
-                        Vector3 newTransform = Vector3.ClampMagnitude(new Vector3(transform.localPosition.x, transform.localPosition.y, 0), 0.5f);
-                        transform.localPosition = newTransform;
-                    }
-                }
-            }
-            if (firstFingerDirection == direction.RIGHT) {
-                attackJoystickVector = Camera.main.ScreenToWorldPoint(firstFinger.position);
-                if (!movementJoystick) {
-                    transform.position = attackJoystickVector;
-                    Vector3 newTransform = Vector3.ClampMagnitude(new Vector3(transform.localPosition.x, transform.localPosition.y, 0), 0.5f);
-                    transform.localPosition = newTransform;
-                }
-
-                if (secondFingerDirection == direction.LEFT) {
-                    movementJoystickVector = Camera.main.ScreenToWorldPoint(secondFinger.position);
-                    if (movementJoystick) {
-                        transform.position = movementJoystickVector;
-                        Vector3 newTransform = Vector3.ClampMagnitude(new Vector3(transform.localPosition.x, transform.localPosition.y, 0), 0.5f);
-                        transform.localPosition = newTransform;
-                    }
-                }
-            }
-        } else {
+        if (Input.touchCount > 0) {
+            if (movementJoystick) {
+                if (AnalyzeFinger(firstFinger) == direction.LEFT) {
+                    MoveJoysticks(firstFinger);
+                } else if (Input.touchCount > 1 && (AnalyzeFinger(secondFinger) == direction.LEFT)) {
+                    MoveJoysticks(secondFinger);
+                } else
+                    transform.localPosition = Vector3.zero;
+            } else if (AnalyzeFinger(firstFinger) == direction.RIGHT) {
+                MoveJoysticks(firstFinger);
+            } else if (Input.touchCount > 1 && (AnalyzeFinger(secondFinger) == direction.RIGHT)) {
+                MoveJoysticks(secondFinger);
+            } else
+                transform.localPosition = Vector3.zero;
+        } else
             transform.localPosition = Vector3.zero;
-        }
     }
 
     private direction AnalyzeFinger(Touch finger) {
@@ -79,5 +50,11 @@ public class JoystickMovement : MonoBehaviour {
         else if (finger.position.x >= RIGHT_WIDTH_THRESHOLD && finger.position.y <= HEIGHT_THRESHOLD) tempDirection = direction.RIGHT;
         else tempDirection = direction.CENTER;
         return tempDirection;
+    }
+
+    private void MoveJoysticks(Touch finger) {
+        transform.position = Camera.main.ScreenToWorldPoint(finger.position);
+        Vector3 newTransform = Vector3.ClampMagnitude(new Vector3(transform.localPosition.x, transform.localPosition.y, 0), 0.46f);
+        transform.localPosition = newTransform;
     }
 }
