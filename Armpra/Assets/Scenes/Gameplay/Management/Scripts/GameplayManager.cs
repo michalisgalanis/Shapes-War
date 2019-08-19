@@ -2,6 +2,8 @@
 using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour {
+    enum storeSource { WIN_MENU, LOST_MENU }
+
     public GameObject gameUI;
     public GameObject pauseMenu;
     public GameObject lostMenu;
@@ -13,7 +15,7 @@ public class GameplayManager : MonoBehaviour {
     public GameObject movementJoystick;
     public GameObject attackJoystick;
 
-    public bool iWantToLoadTheSavedData;
+    public bool enableSavingSystem;
     public float bestAttemptPercentage=0;
     public int currentLevel;
 
@@ -26,6 +28,7 @@ public class GameplayManager : MonoBehaviour {
     private GameObject shieldObject = null;
     private StoreSystem ss;
 
+    private storeSource source;
 
     private void Start() {
         Application.targetFrameRate = 60;
@@ -34,7 +37,7 @@ public class GameplayManager : MonoBehaviour {
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         ss = gameManager.GetComponent<StoreSystem>();
 
-        if (SavingSystem.LoadData() != null && iWantToLoadTheSavedData) {
+        if (SavingSystem.LoadData() != null && enableSavingSystem) {
             StoreSystem storeSystem = gameManager.GetComponent<StoreSystem>();
             loadedData = SavingSystem.LoadData();
             //Load General Stats
@@ -113,6 +116,7 @@ public class GameplayManager : MonoBehaviour {
 
     public void Restart() {
         SceneManager.LoadScene("Gameplay");
+        Time.timeScale = 1;
     }
 
     public void Lose() {
@@ -134,6 +138,7 @@ public class GameplayManager : MonoBehaviour {
         hackToolMenu.SetActive(false);
         debugPanel.SetActive(false);
         ammoPanel.SetActive(false);
+        source = storeSource.LOST_MENU;
     }
 
     public void CompleteLevel() {
@@ -151,6 +156,7 @@ public class GameplayManager : MonoBehaviour {
         hackToolMenu.SetActive(false);
         debugPanel.SetActive(false);
         ammoPanel.SetActive(false);
+        source = storeSource.WIN_MENU;
     }
 
     public void ProceedToNextLevel(){
@@ -172,6 +178,7 @@ public class GameplayManager : MonoBehaviour {
         storeMenu.SetActive(true);
         gameUI.SetActive(false);
         wonMenu.SetActive(false);
+        lostMenu.SetActive(false);
         hackToolMenu.SetActive(false);
         debugPanel.SetActive(false);
         ammoPanel.SetActive(false);
@@ -180,6 +187,20 @@ public class GameplayManager : MonoBehaviour {
 
     public void ReturnToCompleteLevel() {
         wonMenu.SetActive(true);
+        storeMenu.SetActive(false);
+        hackToolMenu.SetActive(false);
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(false);
+        Time.timeScale = 0;
+    }
+
+    public void ExitStore() {
+        if (source == storeSource.WIN_MENU) ReturnToCompleteLevel();
+        else if (source == storeSource.LOST_MENU) ReturnToLostMenu();
+    }
+
+    public void ReturnToLostMenu() {
+        lostMenu.SetActive(true);
         storeMenu.SetActive(false);
         hackToolMenu.SetActive(false);
         debugPanel.SetActive(false);
