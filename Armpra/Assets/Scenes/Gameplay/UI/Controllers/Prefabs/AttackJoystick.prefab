@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5374556102549916842}
   - component: {fileID: 5374556102549916887}
-  - component: {fileID: 5374556102549916840}
-  - component: {fileID: 5996474708615269356}
+  - component: {fileID: 5780061891943284259}
   m_Layer: 5
   m_Name: InnerCircle
   m_TagString: Untagged
@@ -82,19 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5374556102549916840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5374556102549916843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054ddb9b62dd5104aa491ae9d25ff6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5996474708615269356
+--- !u!114 &5780061891943284259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fadf7c3b89d6845a4471568f6a2143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftController: 0
+  movementJoystick: 0
 --- !u!1 &5724523814036389240
 GameObject:
   m_ObjectHideFlags: 0

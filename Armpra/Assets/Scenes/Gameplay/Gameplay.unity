@@ -1103,6 +1103,11 @@ PrefabInstance:
     - target: {fileID: 2919873032042943578, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3541230891481977630, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3107983976207680192, guid: 5dbde5f525335d3449034fbbbe53e954,
@@ -1113,7 +1118,7 @@ PrefabInstance:
     - target: {fileID: 3107983976207680192, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3107983976207680193, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
@@ -1123,6 +1128,11 @@ PrefabInstance:
     - target: {fileID: 3107983976207680193, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
       propertyPath: leftController
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107983976207680193, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: movementJoystick
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6912924305154139850, guid: 5dbde5f525335d3449034fbbbe53e954,
@@ -1149,6 +1159,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: VisitStore
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658642370238494676, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dbde5f525335d3449034fbbbe53e954, type: 3}
