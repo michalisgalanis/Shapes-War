@@ -48,7 +48,6 @@ public class DebugPanel : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(mapLevelText);
         mapLevelText.text = "Map Level: " + lg.currentLevel;
         maxEnemyCountText.text = "Max #Enemies: " + es.maxEnemyCount;
         playerLevelText.text = "Player Level: " + ps.playerLevel;

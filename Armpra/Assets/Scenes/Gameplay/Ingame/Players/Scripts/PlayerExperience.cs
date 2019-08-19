@@ -2,7 +2,7 @@
 
 public class PlayerExperience : MonoBehaviour {
     //Experience Stats
-    private int playerLevel = 1;                //generated here
+    public int playerLevel = 1;                //generated here
     public double currentPlayerXP = 0f;         //generated here
     private double nextXPMilestone;             //output
     private double prevXPMilestone;             //output
@@ -11,7 +11,7 @@ public class PlayerExperience : MonoBehaviour {
     private double accumulatedXP = 0f;          //output
     private float sizeAtLevel1;                 //input
 
-    private ExperienceSystem es;                //input
+    private ExperienceSystem es;                //output
     private PlayerStats ps;                     //output
     private PlayerGenerator pg;                 //output
     public GameObject progressBar;

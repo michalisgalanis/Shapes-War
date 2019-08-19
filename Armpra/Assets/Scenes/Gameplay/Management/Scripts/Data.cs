@@ -7,10 +7,8 @@ public class Data {
     public float bestAttemptPercentage;
     //Player Data
     public int playerLevel;
-    public float damageReduction;
-    //public Weapon weapon;
-    public float attackSpeed;
-    public double XP;
+    public double currentPlayerXP;
+    public int currentCoins;
 
 	//Store Upgrades
 	public int attackSpeedUpgradeCounter;
@@ -24,16 +22,17 @@ public class Data {
 	public int powerupEffectCounter;
 	public int powerupSpawnFrequencyCounter;
 
-public Data(PlayerStats playerStatsComponent, Shield shield, GameObject gameManager, StoreSystem storeSystem) {
+public Data(PlayerExperience playerExperience, Shield shield, GameObject gameManager, StoreSystem storeSystem) {
         //General variables
         currentLevel = gameManager.GetComponent<LevelGeneration>().currentLevel;
         bestAttemptPercentage = gameManager.GetComponent<GameplayManager>().bestAttemptPercentage;
         //Player variables
-        playerLevel = playerStatsComponent.playerLevel;
-        XP = playerStatsComponent.XP;
+        playerLevel = playerExperience.playerLevel;
+        currentPlayerXP = playerExperience.currentPlayerXP;
+        currentCoins = gameManager.GetComponent<CoinSystem>().currentCoins;
 
-		//Store
-		attackSpeedUpgradeCounter = storeSystem.attackSpeedUpgradeCounter;
+        //Store
+        attackSpeedUpgradeCounter = storeSystem.attackSpeedUpgradeCounter;
 		bulletEffectUpgradeCounter = storeSystem.bulletEffectUpgradeCounter;
 		bulletSpeedUpgradeCounter = storeSystem.bulletSpeedUpgradeCounter;
 		damageReductionUpgradeCounter = storeSystem.damageReductionUpgradeCounter;

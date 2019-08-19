@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class CoinSystem : MonoBehaviour {
     public GameObject[] coinsText;
-    private int currentCoins;
+    public int currentCoins=0;
 
-    private void Start() {
+/*    private void Start() {
         currentCoins = 0;
-    }
+    }*/
 
     private void Update() {
         for (int i = 0; i < coinsText.Length; i++) {

@@ -3,11 +3,7 @@ using UnityEngine;
 
 public class ExperienceSystem : MonoBehaviour {
     public GameObject[] xpText;     //output texts
-    public double currentXP;
-
-    private void Start() {
-        currentXP = 0;
-    }
+    public double currentXP=0;
 
     private void Update() {
         for (int i = 0; i < xpText.Length; i++) {
