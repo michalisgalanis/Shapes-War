@@ -48,6 +48,7 @@ public class GameplayManager : MonoBehaviour {
             //Load Player Stats
             playerExperience.currentPlayerXP = loadedData.currentPlayerXP;
             playerExperience.playerLevel = loadedData.playerLevel;
+            playerStatsComponent.playerLevel = loadedData.playerLevel;
             gameManager.GetComponent<CoinSystem>().currentCoins = loadedData.currentCoins;
 
             //Load Store Upgrades
@@ -75,7 +76,7 @@ public class GameplayManager : MonoBehaviour {
             shield.maxShieldHealth = 80;
             shield.shieldDamage = 0.5f;
         }*/
-        //Debug.Log(playerStatsComponent.maxHealth);
+        playerStatsComponent.EstimateStats();
         playerStatsComponent.RefillStats();
         gameManager.GetComponent<EnemySpawner>().BeginSpawning();
 

@@ -60,7 +60,7 @@ public class PlayerStats : MonoBehaviour {
         Update();
     }
 
-    private void EstimateStats() {
+    public void EstimateStats() {
         //Estimating Attack Speed
         float attackSpeedPowerupFactor = GetPowerupMultiplier(EffectOverTime.PowerupType.AttackSpeed);
         attackSpeed = (1f - 0.1f * Mathf.Pow(playerLevel, 0.4f * (1 + ss.attackSpeedUpgradeCounter * UPGRADES_FACTOR))) * (1 - attackSpeedPowerupFactor);
