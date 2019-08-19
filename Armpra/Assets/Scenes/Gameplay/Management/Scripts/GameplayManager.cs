@@ -26,6 +26,7 @@ public class GameplayManager : MonoBehaviour {
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         
         if (SavingSystem.LoadData() != null) {
+            StoreSystem storeSystem = gameManager.GetComponent<StoreSystem>();
             loadedData = SavingSystem.LoadData();
             //Load General Stats
             gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
@@ -36,11 +37,19 @@ public class GameplayManager : MonoBehaviour {
             playerStatsComponent.playerLevel = loadedData.playerLevel;
             playerStatsComponent.damageReduction = loadedData.damageReduction;
             playerStatsComponent.attackSpeed = loadedData.attackSpeed;
-            //Load Powerup Upgrades
-            //Shield Powerup
-            shield.maxShieldHealth = loadedData.maxShieldHealth;
-            shield.shieldDamage = loadedData.shieldDamage;
-        } else //First time the game is launched/Save file is missing. All variables are set to default values.
+
+            //Load Store Upgrades
+            storeSystem.attackSpeedUpgradeCounter = loadedData.attackSpeedUpgradeCounter;
+            storeSystem.bulletEffectUpgradeCounter = loadedData.bulletEffectUpgradeCounter;
+            storeSystem.bulletSpeedUpgradeCounter = loadedData.bulletSpeedUpgradeCounter;
+            storeSystem.damageReductionUpgradeCounter = loadedData.damageReductionUpgradeCounter;
+            storeSystem.maxHealthUpgradeCounter = loadedData.maxHealthUpgradeCounter;
+            storeSystem.meleeDamageUpgradeCounter = loadedData.meleeDamageUpgradeCounter;
+            storeSystem.movementSpeedUpgradeCounter = loadedData.movementSpeedUpgradeCounter;
+            storeSystem.powerupDurationCounter = loadedData.powerupDurationCounter;
+            storeSystem.powerupEffectCounter = loadedData.powerupEffectCounter;
+            storeSystem.powerupSpawnFrequencyCounter = loadedData.powerupSpawnFrequencyCounter;
+        } /*else //First time the game is launched/Save file is missing. All variables are set to default values.
           {
             gameManager.GetComponent<LevelGeneration>().currentLevel = 1;
             gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = 1;
@@ -53,7 +62,7 @@ public class GameplayManager : MonoBehaviour {
             //Shield powerup
             shield.maxShieldHealth = 80;
             shield.shieldDamage = 0.5f;
-        }
+        }*/
 
         gameManager.GetComponent<EnemySpawner>().BeginSpawning();
 

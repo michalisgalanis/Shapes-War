@@ -6,7 +6,7 @@ public static class SavingSystem {
     private static readonly string path = Application.dataPath + "/progress.stpd";
     public static void SaveProgress(PlayerStats playerStatsComponent, Shield shield, GameObject gameManager) {
         FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
-        Data data = new Data(playerStatsComponent, shield, gameManager);
+        Data data = new Data(playerStatsComponent, shield, gameManager, gameManager.GetComponent<StoreSystem>());
         BinaryFormatter formatter = new BinaryFormatter();
         formatter.Serialize(stream, data);
         stream.Close();

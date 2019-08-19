@@ -12,28 +12,36 @@ public class Data {
     public float attackSpeed;
     public double XP;
 
-    //Powerup Upgrades
+	//Store Upgrades
+	public int attackSpeedUpgradeCounter;
+	public int bulletEffectUpgradeCounter;
+	public int bulletSpeedUpgradeCounter;
+	public int damageReductionUpgradeCounter;
+	public int maxHealthUpgradeCounter;
+	public int meleeDamageUpgradeCounter;
+	public int movementSpeedUpgradeCounter;
+	public int powerupDurationCounter;
+	public int powerupEffectCounter;
+	public int powerupSpawnFrequencyCounter;
 
-    //Shield powerup
-    public float maxShieldHealth;
-    public float shieldDamage;
-    //Speed powerup
-    public float speedPowerupDuration;
-    public float speedPowerUpMultiplier;
-
-    public Data(PlayerStats playerStatsComponent, Shield shield, GameObject gameManager) {
+public Data(PlayerStats playerStatsComponent, Shield shield, GameObject gameManager, StoreSystem storeSystem) {
         //General variables
         currentLevel = gameManager.GetComponent<LevelGeneration>().currentLevel;
         bestAttemptPercentage = gameManager.GetComponent<GameplayManager>().bestAttemptPercentage;
         //Player variables
         playerLevel = playerStatsComponent.playerLevel;
-        damageReduction = playerStatsComponent.damageReduction;
-        attackSpeed = playerStatsComponent.attackSpeed;
         XP = playerStatsComponent.XP;
-        //Powerup variables
 
-        //Shield powerup
-        maxShieldHealth = shield.maxShieldHealth;
-        shieldDamage = shield.shieldDamage;
+		//Store
+		attackSpeedUpgradeCounter = storeSystem.attackSpeedUpgradeCounter;
+		bulletEffectUpgradeCounter = storeSystem.bulletEffectUpgradeCounter;
+		bulletSpeedUpgradeCounter = storeSystem.bulletSpeedUpgradeCounter;
+		damageReductionUpgradeCounter = storeSystem.damageReductionUpgradeCounter;
+		maxHealthUpgradeCounter = storeSystem.maxHealthUpgradeCounter;
+		meleeDamageUpgradeCounter = storeSystem.meleeDamageUpgradeCounter;
+		movementSpeedUpgradeCounter = storeSystem.movementSpeedUpgradeCounter;
+		powerupDurationCounter = storeSystem.powerupDurationCounter;
+		powerupEffectCounter = storeSystem.powerupEffectCounter;
+		powerupSpawnFrequencyCounter = storeSystem.powerupSpawnFrequencyCounter;
     }
 }
