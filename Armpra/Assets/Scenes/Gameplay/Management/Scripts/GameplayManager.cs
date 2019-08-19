@@ -24,7 +24,6 @@ public class GameplayManager : MonoBehaviour {
     public DynamicBackground background;
     public Data loadedData;
     private GameObject shieldObject = null;
-    public int currentLevel;
     private StoreSystem ss;
 
 
@@ -35,7 +34,6 @@ public class GameplayManager : MonoBehaviour {
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         ss = gameManager.GetComponent<StoreSystem>();
 
-        if (SavingSystem.LoadData() != null) {
         if (SavingSystem.LoadData() != null && iWantToLoadTheSavedData) {
             StoreSystem storeSystem = gameManager.GetComponent<StoreSystem>();
             loadedData = SavingSystem.LoadData();
@@ -88,6 +86,7 @@ public class GameplayManager : MonoBehaviour {
         attackJoystick.SetActive(true);
         debugPanel.SetActive(false);
         ammoPanel.SetActive(true);
+    
 }
 
     public void Pause() {
