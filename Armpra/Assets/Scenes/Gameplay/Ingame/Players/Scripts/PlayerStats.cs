@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour {
     private const float UPGRADES_FACTOR = 0.001f;
 
     //Other Essential Real Time Stats
-    private float currentHealth;
+    public float currentHealth;
     private bool markedForDestruction;
 
     //Needed References

@@ -7,7 +7,7 @@ public class PlayerExperience : MonoBehaviour {
     private double nextXPMilestone;             //output
     private double prevXPMilestone;             //output
     private double xpBetweenMilestones;         //output
-    private double remainingXP;                 //output
+    public double remainingXP;                 //output
     private double accumulatedXP = 0f;          //output
     private float sizeAtLevel1;                 //input
 

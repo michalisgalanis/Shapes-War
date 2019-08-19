@@ -32,8 +32,8 @@ public class Shape : MonoBehaviour {
     }
 
     private void Update() {
-        rotationValue = Vector2.SignedAngle(new Vector2(0, 1), rotationDirection) * rotationSpeedFactor * Time.fixedDeltaTime;
-        positionValue = rb.position + positionDirection.normalized * Time.fixedDeltaTime * positionSpeedFactor;
+        rotationValue = Vector2.SignedAngle(new Vector2(0, 1), rotationDirection) * rotationSpeedFactor * Time.deltaTime;
+        positionValue = rb.position + positionDirection.normalized * Time.deltaTime * positionSpeedFactor;
     }
 
     private void FixedUpdate() {
