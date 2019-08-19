@@ -72,7 +72,7 @@ public class GameplayManager : MonoBehaviour {
             shield.maxShieldHealth = 80;
             shield.shieldDamage = 0.5f;
         }*/
-        Debug.Log(playerStatsComponent.maxHealth);
+        //Debug.Log(playerStatsComponent.maxHealth);
         playerStatsComponent.RefillStats();
         gameManager.GetComponent<EnemySpawner>().BeginSpawning();
 

@@ -44,9 +44,9 @@ public class AmmoSystem : MonoBehaviour{
             }
             if (i != 0) bulletButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = bulletAmmo[i].ToString();
         }
-        Debug.Log("[" + bulletAmmo[0] + "," + bulletAmmo[1] + "," + bulletAmmo[2] + "," + bulletAmmo[3] + "]");
+        //Debug.Log("[" + bulletAmmo[0] + "," + bulletAmmo[1] + "," + bulletAmmo[2] + "," + bulletAmmo[3] + "]");
 
-        if ((!currentActiveButton.Equals(bulletButtons[0]) && int.Parse(currentActiveButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text) == 0 ) || !enabledButtons.Contains(currentActiveButton)) NextInCycle();
+        if ((!currentActiveButton.Equals(bulletButtons[0]) && int.Parse(currentActiveButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text) <= 0 ) || !enabledButtons.Contains(currentActiveButton)) NextInCycle();
     }
 
     public bool ConsumeAmmo() {

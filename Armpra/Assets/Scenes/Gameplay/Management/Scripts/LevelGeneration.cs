@@ -13,7 +13,7 @@ public class LevelGeneration : MonoBehaviour {
         enemyPropabilities = new float[enemyTypes.Length];
         propabilityArray = new List<float>();
         enemyCount = (int)Mathf.Round(4f + Mathf.Pow(currentLevel, 1.2f));
-        Debug.Log("Current Level: " + currentLevel + ", Enemy Count: " + enemyCount);
+        //Debug.Log("Current Level: " + currentLevel + ", Enemy Count: " + enemyCount);
         int totalTypesOfEnemies = enemyTypes.Length;
         if (enemyCount < 15) {
             enemyPropabilities[0] = 1f;
