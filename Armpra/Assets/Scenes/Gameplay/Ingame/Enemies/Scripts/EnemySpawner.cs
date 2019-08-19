@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour {
         if (currentTimer >= spawnTimer && enemyCounter < maxEnemyCount) {
             //Generate Enemy
             positionConflict = false;
-            Vector3 temp = new Vector3(GenerateX(), GenerateY(), 0);
+            Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER),Random.Range(MIN_BORDER, MAX_BORDER), 0);
             GameObject newEnemy = Instantiate(enemies[lg.PickRandomEnemy()], temp, Quaternion.identity);
             newEnemy.transform.parent = transform;
             //Customizing Color
@@ -71,31 +71,5 @@ public class EnemySpawner : MonoBehaviour {
 
             currentTimer = 0f;
         }
-    }
-
-    private float GenerateX() {
-        float temp_X = Random.Range(MIN_BORDER, MAX_BORDER);
-        if (temp_X > camera.transform.position.x - HORIZONTAL_CAMERA_OFFSET && temp_X < camera.transform.position.x + HORIZONTAL_CAMERA_OFFSET) {
-            if (positionConflict) {
-                temp_X = GenerateX();
-            } else {
-                positionConflict = true;
-            }
-        }
-
-        return temp_X;
-    }
-
-    private float GenerateY() {
-        float temp_Y = Random.Range(MIN_BORDER, MAX_BORDER);
-        if (temp_Y > camera.transform.position.y - VERTICAL_CAMERA_OFFSET && temp_Y < camera.transform.position.y + VERTICAL_CAMERA_OFFSET) {
-            if (positionConflict) {
-                temp_Y = GenerateY();
-            } else {
-                positionConflict = true;
-            }
-        }
-
-        return temp_Y;
     }
 }

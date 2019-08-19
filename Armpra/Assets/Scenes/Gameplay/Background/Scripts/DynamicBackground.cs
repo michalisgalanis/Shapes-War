@@ -52,7 +52,7 @@ public class DynamicBackground : MonoBehaviour {
             //Customizing Position
             positionConflict = false;
             //Generating Shape
-            Vector3 temp = new Vector3(GenerateX(), GenerateY(), 0);
+            Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER), Random.Range(MIN_BORDER, MAX_BORDER), 0);
             GameObject newShape = Instantiate(shape, temp, Quaternion.identity);
             newShape.transform.parent = transform;
             //Customizing Color
@@ -79,31 +79,5 @@ public class DynamicBackground : MonoBehaviour {
         float hRand = Random.Range(0f, 1f), sRand = 1f, vRandBG = 0.1f, vRandDE = 0.7f;
         sr.color = Color.HSVToRGB(hRand, sRand, vRandBG);
         player.UpdateStripeVisuals(Color.HSVToRGB(hRand, sRand, vRandDE));
-    }
-
-    private float GenerateX() {
-        float temp_X = Random.Range(MIN_BORDER, MAX_BORDER);
-        if (temp_X > camera.transform.position.x - HORIZONTAL_CAMERA_OFFSET && temp_X < camera.transform.position.x + HORIZONTAL_CAMERA_OFFSET) {
-            if (positionConflict) {
-                temp_X = GenerateX();
-            } else {
-                positionConflict = true;
-            }
-        }
-
-        return temp_X;
-    }
-
-    private float GenerateY() {
-        float temp_Y = Random.Range(MIN_BORDER, MAX_BORDER);
-        if (temp_Y > camera.transform.position.y - VERTICAL_CAMERA_OFFSET && temp_Y < camera.transform.position.y + VERTICAL_CAMERA_OFFSET) {
-            if (positionConflict) {
-                temp_Y = GenerateY();
-            } else {
-                positionConflict = true;
-            }
-        }
-
-        return temp_Y;
     }
 }
