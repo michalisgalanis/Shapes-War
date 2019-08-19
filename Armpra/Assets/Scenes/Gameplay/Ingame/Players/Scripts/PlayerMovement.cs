@@ -29,10 +29,8 @@ public class PlayerMovement : MonoBehaviour {
         Vector2 attackJoystick = (new Vector2(attackJoystickButton.GetComponent<Transform>().localPosition.x, attackJoystickButton.GetComponent<Transform>().localPosition.y) * JOYSTICK_TO_VECTOR_FACTOR).normalized;
         Vector2 keyboardInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        //Chosing Movement Input
-        if (movementJoystick != Vector2.zero && keyboardInput != Vector2.zero) {
-            totalMovementInput = (movementJoystick + keyboardInput) / 2;
-        } else if (movementJoystick != Vector2.zero) {
+		//Chosing Movement Input
+		if (movementJoystick != Vector2.zero) {
             totalMovementInput = movementJoystick;
         } else if (keyboardInput != Vector2.zero) {
             totalMovementInput = keyboardInput;
@@ -40,10 +38,8 @@ public class PlayerMovement : MonoBehaviour {
             totalMovementInput = Vector2.zero;
         }
 
-        //Chosing Attack Input
-        if (attackJoystick != Vector2.zero && keyboardInput != Vector2.zero) {
-            totalAttackInput = (attackJoystick + keyboardInput) / 2;
-        } else if (attackJoystick != Vector2.zero) {
+		//Chosing Attack Input
+		if (attackJoystick != Vector2.zero) {
             totalAttackInput = attackJoystick;
         } else if (keyboardInput != Vector2.zero) {
             totalAttackInput = keyboardInput;
