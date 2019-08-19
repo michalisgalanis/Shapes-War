@@ -8,6 +8,7 @@ public class PlayerGenerator : MonoBehaviour {
     private int firepoints;
     private int[,] firepointsEnabled;
     private int[] stripesEnabled;
+    public Weapon wp;
 
     private void Start() {
 
@@ -48,6 +49,7 @@ public class PlayerGenerator : MonoBehaviour {
     private void Update() {
         EstimateVars();
         UpdateVisuals();
+        wp.SetupFirepoints();
     }
 
     private void EstimateVars() {

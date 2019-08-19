@@ -3,15 +3,20 @@
 public class Bullet : MonoBehaviour {
     public ParticleSystem hitExplosionParticlesPrefab;
     private ParticleSystem hitExplosionParticles;
+    private BulletSpecs bs;
 
-    public float maxSpeed = 20f;
-    public float acceleration;
+    private float maxSpeed;
+    private float acceleration;
     private float currentSpeed;
     public Rigidbody2D rb;
-    public int damage;
+    private int damage;
     public bool playerFired;
 
     private void Start() {
+        bs = GetComponent<BulletSpecs>();
+        maxSpeed = bs.maxSpeed;
+        acceleration = bs.acceleration;
+        damage = bs.damage;
         Physics2D.IgnoreLayerCollision(10, 8); //Ignore Collisions with bg particles
         currentSpeed = 0;
     }

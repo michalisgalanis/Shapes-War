@@ -4,42 +4,35 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
     public float shootingTime;
     private float currentTimer;
-    public GameObject bulletPrefab;
+    private GameObject bulletPrefab;        //input
     private List<Transform> firepoints;
     private bool playerFires;
-    public int bulletDamage;
-    public float bulletSpeed;
     public float range;
     private GameObject target;
+    private AmmoSystem asys;    //input
 
     private void Start() {
         playerFires = gameObject.CompareTag("Player");
         firepoints = new List<Transform>();
-        if (!playerFires) {
-            target = GameObject.FindGameObjectWithTag("Player");
-        }
-
+        if (!playerFires) target = GameObject.FindGameObjectWithTag("Player");
+        asys = GameObject.FindGameObjectWithTag("GameController").GetComponent<AmmoSystem>();
         SetupFirepoints();
     }
 
     private void Update() {
+        bulletPrefab = asys.currentActiveBullet.gameObject;
         currentTimer += Time.deltaTime;
-        SetupFirepoints();
-        if (currentTimer >= shootingTime) {
-            Shoot();
-        }
+        if (currentTimer >= shootingTime) Shoot();
     }
 
-    private void SetupFirepoints() {
+    public void SetupFirepoints() {
         firepoints.Clear();
         if (playerFires || Vector2.Distance(target.GetComponent<Transform>().position, transform.position) <= range) {
             Transform headSystem = gameObject.transform.GetChild(0);
             for (int i = 0; i < headSystem.childCount; i++) {
                 if (headSystem.GetChild(i).gameObject.activeInHierarchy) {
                     Transform fp = headSystem.GetChild(i).GetChild(0);
-                    if (fp) {
-                        firepoints.Add(fp);
-                    }
+                    if (fp) firepoints.Add(fp);
                 }
             }
         }
@@ -47,11 +40,11 @@ public class Weapon : MonoBehaviour {
 
     private void Shoot() {
         foreach (Transform firepoint in firepoints) {
-            GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-            bullet.GetComponent<Bullet>().playerFired = playerFires;
-            bullet.GetComponent<Bullet>().damage = bulletDamage;
-            bullet.GetComponent<Bullet>().maxSpeed = bulletSpeed;
-            currentTimer = 0;
+            if (asys.ConsumeAmmo()) {
+                GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+                bullet.GetComponent<Bullet>().playerFired = playerFires;
+                currentTimer = 0;
+            } else Update();
         }
     }
 }

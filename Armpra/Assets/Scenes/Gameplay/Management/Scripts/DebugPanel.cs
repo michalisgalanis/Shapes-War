@@ -3,8 +3,7 @@ using TMPro;
 
 public class DebugPanel : MonoBehaviour
 {
-
-    private string mapLevel;
+    /*private string mapLevel;
     private string maxEnemyCount;
     private string playerLevel;
     private string playerXP;
@@ -14,7 +13,7 @@ public class DebugPanel : MonoBehaviour
     private string maxHealth;
     private string damageReduction;
     private string movementSpeed;
-    private string currentHealth;
+    private string currentHealth;*/
 
     public TextMeshProUGUI mapLevelText;
     public TextMeshProUGUI maxEnemyCountText;
@@ -45,20 +44,18 @@ public class DebugPanel : MonoBehaviour
         
     }
 
-
     void Update()
     {
-        Debug.Log(mapLevelText);
         mapLevelText.text = "Map Level: " + lg.currentLevel;
         maxEnemyCountText.text = "Max #Enemies: " + es.maxEnemyCount;
         playerLevelText.text = "Player Level: " + ps.playerLevel;
         playerXPText.text = "Player XP: " + Mathf.Round((float)ps.XP);
         playerXPRemainingText.text = "Player XP Rem.: " + Mathf.Round((float)pe.remainingXP);
-        meleeDamageText.text = "Melee Damage: " + Mathf.Round(ps.meleeDamage);
-        attackSpeedText.text = "Attack Speed: " + Mathf.Round(ps.attackSpeed);
+        meleeDamageText.text = "Melee Damage: " + (ps.meleeDamage);
+        attackSpeedText.text = "Attack Speed: " + (ps.attackSpeed);
         maxHealthText.text = "Max Health: " + Mathf.Round(ps.maxHealth);
-        damageReductionText.text = "Dam. Red.: " + Mathf.Round(ps.damageReduction);
-        movementSpeedText.text = "Mov. Speed: " + Mathf.Round(ps.movementSpeed);
+        damageReductionText.text = "Dam. Red.: " + (ps.damageReduction);
+        movementSpeedText.text = "Mov. Speed: " + (ps.movementSpeed);
         currentHealthText.text = "Curr. Health: " + Mathf.Round(ps.currentHealth);
     }
 }

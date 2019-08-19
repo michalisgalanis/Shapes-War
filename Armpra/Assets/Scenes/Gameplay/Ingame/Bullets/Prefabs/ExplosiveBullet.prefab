@@ -4823,6 +4823,7 @@ GameObject:
   - component: {fileID: 8377685596300739900}
   - component: {fileID: 8377685596300739901}
   - component: {fileID: 8377685596300739902}
+  - component: {fileID: -6987025363905317670}
   m_Layer: 10
   m_Name: ExplosiveBullet
   m_TagString: Untagged
@@ -4907,10 +4908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitExplosionParticlesPrefab: {fileID: 2720002162805827168, guid: 1fa619fc97f3a00409100fba5bed68cb,
     type: 3}
-  maxSpeed: 20
-  acceleration: 1.5
   rb: {fileID: 8377685596300739900}
-  damage: 45
   playerFired: 1
 --- !u!212 &8377685596300739902
 SpriteRenderer:
@@ -4960,6 +4958,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6987025363905317670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8377685596300739873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf76b03c4f02d049ba546ac8982b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletType: 2
+  damage: 60
+  acceleration: 1
+  maxSpeed: 15
 --- !u!1 &8377685596787546126
 GameObject:
   m_ObjectHideFlags: 0

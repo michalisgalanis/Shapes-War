@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1237041087}
   - component: {fileID: 591277591}
   - component: {fileID: 1546603954}
+  - component: {fileID: 2845300236765391730}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -58,6 +59,8 @@ MonoBehaviour:
   wonMenu: {fileID: 0}
   storeMenu: {fileID: 0}
   hackToolMenu: {fileID: 0}
+  debugPanel: {fileID: 0}
+  ammoPanel: {fileID: 0}
   movementJoystick: {fileID: 0}
   attackJoystick: {fileID: 0}
   background: {fileID: 0}
@@ -95,7 +98,7 @@ MonoBehaviour:
   enemiesRemainingText: {fileID: 0}
   camera: {fileID: 0}
   lg: {fileID: 1237041087}
-  spawnTimer: 0.5
+  spawnTimer: 0.2
   enemyCounter: 0
   maxEnemyCount: 10
 --- !u!114 &8643191348888787486
@@ -233,6 +236,7 @@ MonoBehaviour:
   maxHealthLevelText: {fileID: 0}
   damageReductionLevelText: {fileID: 0}
   movementSpeedLevelText: {fileID: 0}
+  normalBulletAmmo: 999999
   highVelocityBulletAmmo: 0
   explosiveBulletAmmo: 0
   poisonousBulletAmmo: 0
@@ -280,3 +284,27 @@ MonoBehaviour:
   damageReductionText: {fileID: 0}
   movementSpeedText: {fileID: 0}
   currentHealthText: {fileID: 0}
+--- !u!114 &2845300236765391730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643191348888787484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51007dcd841dd84d97ef067c218e7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  bulletTypes:
+  - {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67, type: 3}
+  - {fileID: 9132529803182020237, guid: 18a0703337a957a40bdeadb29d9b4edb, type: 3}
+  - {fileID: 8377685596300739873, guid: b24dc05f879ead54696ceadda390d687, type: 3}
+  - {fileID: 4793066458393339791, guid: 013c357fc712f9c4383ccb395755274a, type: 3}
+  enabledButtons: []
+  currentActiveBullet: {fileID: 0}

@@ -168,7 +168,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 40
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9575,6 +9575,7 @@ GameObject:
   - component: {fileID: 1431479657208786341}
   - component: {fileID: 1431479657208786340}
   - component: {fileID: 1431479657208786343}
+  - component: {fileID: 2072148444625311664}
   m_Layer: 10
   m_Name: NormalBullet
   m_TagString: Untagged
@@ -9659,10 +9660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitExplosionParticlesPrefab: {fileID: 2720002162805827168, guid: 1fa619fc97f3a00409100fba5bed68cb,
     type: 3}
-  maxSpeed: 20
-  acceleration: 1.5
   rb: {fileID: 1431479657208786341}
-  damage: 40
   playerFired: 1
 --- !u!212 &1431479657208786343
 SpriteRenderer:
@@ -9712,3 +9710,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2072148444625311664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431479657208786360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf76b03c4f02d049ba546ac8982b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletType: 0
+  damage: 40
+  acceleration: 1.5
+  maxSpeed: 20

@@ -23,6 +23,7 @@ public class StoreSystem : MonoBehaviour {
     public TextMeshProUGUI movementSpeedLevelText;
 
     //Bullet Upgrades
+    [HideInInspector] public int normalBulletAmmo = 999999;
     [HideInInspector] public int highVelocityBulletAmmo = 0;
     [HideInInspector] public int explosiveBulletAmmo = 0;
     [HideInInspector] public int poisonousBulletAmmo = 0;
@@ -75,6 +76,15 @@ public class StoreSystem : MonoBehaviour {
         powerupSpawnFrequencyButton.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = estimateCost(powerupSpawnFrequencyCounter).ToString();
     }
 
+    public void RefreshOnStoreEnter() {
+        highVelocityAmmoText.text = "Ammo: " + highVelocityBulletAmmo;
+        explosiveAmmoText.text = "Ammo: " + explosiveBulletAmmo;
+        poisonousAmmoText.text = "Ammo: " + poisonousBulletAmmo;
+    }
+
+    private void Update() {
+        normalBulletAmmo = 999999;
+    }
 
     //Player Upgrades Functions
     public void UpgradeAttackSpeed() {
@@ -165,7 +175,7 @@ public class StoreSystem : MonoBehaviour {
         if (cs.canRemoveCoins(int.Parse(text.text))) {
             cs.removeCoins(int.Parse(text.text));
             tempCounter++;
-            tempLevelText.text = "Level " + tempCounter;
+            tempLevelText.text = "Level: " + tempCounter;
         }
         if (tempCounter >= MAX_COUNTER) { //if is maxed out{
             tempButton.interactable = false;

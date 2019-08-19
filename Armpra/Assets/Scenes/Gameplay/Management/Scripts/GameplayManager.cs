@@ -8,6 +8,8 @@ public class GameplayManager : MonoBehaviour {
     public GameObject wonMenu;
     public GameObject storeMenu;
     public GameObject hackToolMenu;
+    public GameObject debugPanel;
+    public GameObject ammoPanel;
     public GameObject movementJoystick;
     public GameObject attackJoystick;
 
@@ -19,12 +21,15 @@ public class GameplayManager : MonoBehaviour {
     public Data loadedData;
     private GameObject shieldObject = null;
     public int currentLevel;
+    private StoreSystem ss;
+
 
     private void Start() {
         Application.targetFrameRate = 60;
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        
+        ss = gameManager.GetComponent<StoreSystem>();
+
         if (SavingSystem.LoadData() != null) {
             loadedData = SavingSystem.LoadData();
             //Load General Stats
@@ -65,7 +70,9 @@ public class GameplayManager : MonoBehaviour {
         storeMenu.SetActive(false);
         movementJoystick.SetActive(true);
         attackJoystick.SetActive(true);
-    }
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(true);
+}
 
     public void Pause() {
         Time.timeScale = 0;
@@ -74,6 +81,8 @@ public class GameplayManager : MonoBehaviour {
         movementJoystick.SetActive(false);
         attackJoystick.SetActive(false);
         hackToolMenu.SetActive(false);
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(false);
     }
 
     public void Resume() {
@@ -83,6 +92,8 @@ public class GameplayManager : MonoBehaviour {
         movementJoystick.SetActive(true);
         attackJoystick.SetActive(true);
         hackToolMenu.SetActive(true);
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(true);
     }
 
     public void Restart() {
@@ -106,6 +117,8 @@ public class GameplayManager : MonoBehaviour {
         movementJoystick.SetActive(false);
         attackJoystick.SetActive(false);
         hackToolMenu.SetActive(false);
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(false);
     }
 
     public void CompleteLevel() {
@@ -122,6 +135,8 @@ public class GameplayManager : MonoBehaviour {
         movementJoystick.SetActive(false);
         attackJoystick.SetActive(false);
         hackToolMenu.SetActive(false);
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(false);
     }
 
     public void ProceedToNextLevel() {
@@ -133,13 +148,18 @@ public class GameplayManager : MonoBehaviour {
         movementJoystick.SetActive(true);
         attackJoystick.SetActive(true);
         hackToolMenu.SetActive(true);
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(true);
     }
 
     public void VisitStore() {
+        ss.RefreshOnStoreEnter();
         storeMenu.SetActive(true);
         gameUI.SetActive(false);
         wonMenu.SetActive(false);
         hackToolMenu.SetActive(false);
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(false);
         Time.timeScale = 0;
     }
 
@@ -147,6 +167,8 @@ public class GameplayManager : MonoBehaviour {
         wonMenu.SetActive(true);
         storeMenu.SetActive(false);
         hackToolMenu.SetActive(false);
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(false);
         Time.timeScale = 0;
     }
 
