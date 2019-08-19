@@ -35,7 +35,6 @@ public class PlayerStats : MonoBehaviour {
         powerups = GameObject.FindGameObjectsWithTag("Powerups");
         Physics2D.IgnoreLayerCollision(8, 13);
         Physics2D.IgnoreLayerCollision(13, 14);
-        currentHealth = maxHealth;
         markedForDestruction = false;
         GameObject shockwave = Instantiate(shockwavePrefab, transform.localPosition, Quaternion.identity);
         shockwave.transform.parent = gameObject.transform;
