@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour {
     //access to other objects and components
     public GameObject[] enemies;
     public GameObject enemiesRemainingText;
-    public Camera camera;
+    public GameObject background;
     public LevelGeneration lg;
 
     //public properties
@@ -14,21 +14,22 @@ public class EnemySpawner : MonoBehaviour {
     private bool spawningTime;
 
     //constants
-    private const float MIN_BORDER = -19;
-    private const float MAX_BORDER = 19;
-    private const float HORIZONTAL_CAMERA_OFFSET = 4;
-    private const float VERTICAL_CAMERA_OFFSET = 6;
+    private static float MIN_BORDER;
+    private static float MAX_BORDER;
 
     //other essential variables
     public int enemyCounter;
     public float maxEnemyCount;
     private float currentTimer;
-    private bool positionConflict;
 
+    void Start() {
+        SpriteRenderer bgRenderer = background.GetComponent<SpriteRenderer>();
+        MIN_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * (-0.5f);
+        MAX_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * 0.5f;
+    }
 
     public void BeginSpawning() {
         spawningTime = true;
-        positionConflict = false;
         currentTimer = spawnTimer;
         enemyCounter = 0;
         lg = gameObject.GetComponent<LevelGeneration>();
@@ -56,7 +57,6 @@ public class EnemySpawner : MonoBehaviour {
         currentTimer += Time.deltaTime;
         if (currentTimer >= spawnTimer && enemyCounter < maxEnemyCount) {
             //Generate Enemy
-            positionConflict = false;
             Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER),Random.Range(MIN_BORDER, MAX_BORDER), 0);
             GameObject newEnemy = Instantiate(enemies[lg.PickRandomEnemy()], temp, Quaternion.identity);
             newEnemy.transform.parent = transform;

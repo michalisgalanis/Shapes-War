@@ -2,23 +2,31 @@
 
 public class CameraFollowPlayer : MonoBehaviour {
     private GameObject player;
+    public GameObject background;
+    
 
     private Vector3 desiredPosition;
-
     public Vector3 offset;
     public float smoothSpeed;
 
     //constants
-    private const float MIN_BORDER = -19f;
-    private const float MAX_BORDER = 19f;
-    private const float HORIZONTAL_CAMERA_OFFSET = 2.6f;
-    private const float VERTICAL_CAMERA_OFFSET = 4.8f;
+    private static float MIN_BORDER;
+    private static float MAX_BORDER;
+    private static float HORIZONTAL_CAMERA_OFFSET;
+    private static float VERTICAL_CAMERA_OFFSET;
 
     private float lastPositionX;
     private float lastPositionY;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
+        Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+        SpriteRenderer bgRenderer = background.GetComponent<SpriteRenderer>();
+        MIN_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * (-0.5f);
+        MAX_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * 0.5f;
+        VERTICAL_CAMERA_OFFSET = cam.orthographicSize;
+        HORIZONTAL_CAMERA_OFFSET = cam.orthographicSize * cam.aspect;
     }
 
     private void FixedUpdate() {

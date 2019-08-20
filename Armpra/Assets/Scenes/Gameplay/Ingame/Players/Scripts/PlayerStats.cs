@@ -22,7 +22,7 @@ public class PlayerStats : MonoBehaviour {
     //Needed References
     private GameplayManager gm;
     private StoreSystem ss;
-    private GameObject[] powerups;
+    [HideInInspector] public GameObject[] powerups;
 
     private List<SpriteRenderer> playerHeads;
     public SpriteRenderer playerBorder;
@@ -30,9 +30,7 @@ public class PlayerStats : MonoBehaviour {
     public ParticleSystem playerDeathExplosionParticles;
 
     private void Start() {
-        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>();
-        ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
-        powerups = GameObject.FindGameObjectsWithTag("Powerups");
+        InstantiateReferences();
         Physics2D.IgnoreLayerCollision(8, 13);
         Physics2D.IgnoreLayerCollision(13, 14);
         markedForDestruction = false;
@@ -43,6 +41,12 @@ public class PlayerStats : MonoBehaviour {
         for (int i = 0; i < headSystem.childCount; i++) {
             playerHeads.Add(headSystem.GetChild(i).gameObject.GetComponent<SpriteRenderer>());
         }
+    }
+
+    public void InstantiateReferences() {
+        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>();
+        ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
+        powerups = GameObject.FindGameObjectsWithTag("Powerups");
     }
 
     private void Update() {
@@ -120,7 +124,6 @@ public class PlayerStats : MonoBehaviour {
                 return powerup.GetComponent<EffectOverTime>().powerupMultiplier;
             }
         }
-
         return 0f;
     }
 }

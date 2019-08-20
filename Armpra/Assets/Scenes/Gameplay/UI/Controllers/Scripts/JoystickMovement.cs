@@ -15,8 +15,8 @@ public class JoystickMovement : MonoBehaviour {
     private static float RIGHT_WIDTH_THRESHOLD;
 
     private void Start() {
-        HEIGHT_THRESHOLD = Camera.main.pixelHeight * 0.3f;
-        LEFT_WIDTH_THRESHOLD = Camera.main.pixelWidth * 0.38f;
+        HEIGHT_THRESHOLD = Camera.main.pixelHeight * 0.35f;
+        LEFT_WIDTH_THRESHOLD = Camera.main.pixelWidth * 0.5f;
         RIGHT_WIDTH_THRESHOLD = Camera.main.pixelWidth - LEFT_WIDTH_THRESHOLD;
     }
 
@@ -54,7 +54,7 @@ public class JoystickMovement : MonoBehaviour {
 
     private void MoveJoysticks(Touch finger) {
         transform.position = Camera.main.ScreenToWorldPoint(finger.position);
-        Vector3 newTransform = Vector3.ClampMagnitude(new Vector3(transform.localPosition.x, transform.localPosition.y, 0), 0.46f);
+        Vector3 newTransform = Vector3.ClampMagnitude(new Vector3(transform.localPosition.x, transform.localPosition.y, 0), 110f);
         transform.localPosition = newTransform;
     }
 }

@@ -2,8 +2,6 @@
 using UnityEngine;
 
 public class DynamicBackground : MonoBehaviour {
-    public Camera camera;
-    public GameObject backLayer;
     public GameObject[] shapesPrefabs;
     private List<GameObject> shapes;
 
@@ -13,17 +11,18 @@ public class DynamicBackground : MonoBehaviour {
     private int shapesCounter;
     private float currentTimer;
     private readonly float spawnTimer = 0.01f;
-    private bool positionConflict;
 
     //constants
-    private const float MIN_BORDER = -19f;
-    private const float MAX_BORDER = 19f;
-    private const float HORIZONTAL_CAMERA_OFFSET = 4f;
-    private const float VERTICAL_CAMERA_OFFSET = 6f;
+    private static float MIN_BORDER = -19f;
+    private static float MAX_BORDER = 19f;
 
     private PlayerGenerator player;
 
     private void Start() {
+        SpriteRenderer bgRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        MIN_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * (-0.5f);
+        MAX_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * 0.5f;
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGenerator>();
         shapes = new List<GameObject>();
         foreach (GameObject shape in shapesPrefabs) {
@@ -49,8 +48,6 @@ public class DynamicBackground : MonoBehaviour {
             //Selecting shape
             int shapeType = Random.Range(0, shapes.ToArray().Length);
             GameObject shape = shapes[shapeType];
-            //Customizing Position
-            positionConflict = false;
             //Generating Shape
             Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER), Random.Range(MIN_BORDER, MAX_BORDER), 0);
             GameObject newShape = Instantiate(shape, temp, Quaternion.identity);

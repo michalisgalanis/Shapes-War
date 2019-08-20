@@ -53,8 +53,8 @@ public class PlayerExperience : MonoBehaviour {
         ParticleSystem lvlUpParticles = Instantiate(levelUpParticles, transform.position, Quaternion.identity);
         float sizeIncrease = pg.size / sizeAtLevel1; if (sizeIncrease == 0) sizeIncrease = 1;
         lvlUpParticles.transform.parent = gameObject.transform;
+        Debug.Log(levelUpParticles.gameObject.transform.localScale);
         Vector3 initialScale = levelUpParticles.gameObject.transform.localScale;
-        lvlUpParticles.gameObject.transform.localScale = new Vector3(initialScale.x * sizeIncrease, initialScale.y * sizeIncrease, initialScale.z * sizeIncrease);
         
         ps.playerLevel = playerLevel;   //output
         ps.ForceUpdate();

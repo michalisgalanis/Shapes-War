@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour {
     //Internal variables
     private float currentTimer;
     private float currentHealth;
-    private bool isEmittingFriction;
+    //private bool isEmittingFriction;
     private bool markedForDestruction;
 
     private void Start() {
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour {
         settings.startColor = new ParticleSystem.MinMaxGradient(enemyBody.color);
         currentHealth = maxHealth;
         markedForDestruction = false;
-        isEmittingFriction = false;
+        //isEmittingFriction = false;
         Physics2D.IgnoreLayerCollision(8, 12);
     }
 

@@ -19,49 +19,55 @@ public class GameplayManager : MonoBehaviour {
     public float bestAttemptPercentage=0;
     public int currentLevel;
 
-    private GameObject gameManager;
-    private PlayerStats playerStatsComponent;
-    private PlayerExperience playerExperience;
+    //Needed References
+    private GameObject gm;
+    private PlayerStats ps;
+    private PlayerExperience pe;
+    private StoreSystem ss;
+
+
     public Shield shield;
     public DynamicBackground background;
     public Data loadedData;
     private GameObject shieldObject = null;
-    private StoreSystem ss;
 
     private storeSource source;
 
+    public void InstantiateReferences() {
+        gm = GameObject.FindGameObjectWithTag("GameController");
+        pe = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerExperience>();
+        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        ss = gm.GetComponent<StoreSystem>();
+    }
+
     private void Start() {
         Application.targetFrameRate = 60;
-        gameManager = GameObject.FindGameObjectWithTag("GameController");
-        playerExperience = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerExperience>();
-        playerStatsComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        ss = gameManager.GetComponent<StoreSystem>();
-
+        InstantiateReferences();
+        SavingSystem.SetPath();
         if (SavingSystem.LoadData() != null && enableSavingSystem) {
-            StoreSystem storeSystem = gameManager.GetComponent<StoreSystem>();
             loadedData = SavingSystem.LoadData();
             //Load General Stats
-            gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
+            gm.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
             currentLevel = loadedData.currentLevel;
-            gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = loadedData.bestAttemptPercentage;
+            gm.GetComponent<GameplayManager>().bestAttemptPercentage = loadedData.bestAttemptPercentage;
 
             //Load Player Stats
-            playerExperience.currentPlayerXP = loadedData.currentPlayerXP;
-            playerExperience.playerLevel = loadedData.playerLevel;
-            playerStatsComponent.playerLevel = loadedData.playerLevel;
-            gameManager.GetComponent<CoinSystem>().currentCoins = loadedData.currentCoins;
+            pe.currentPlayerXP = loadedData.currentPlayerXP;
+            pe.playerLevel = loadedData.playerLevel;
+            ps.playerLevel = loadedData.playerLevel;
+            gm.GetComponent<CoinSystem>().currentCoins = loadedData.currentCoins;
 
             //Load Store Upgrades
-            storeSystem.attackSpeedUpgradeCounter = loadedData.attackSpeedUpgradeCounter;
-            storeSystem.bulletEffectUpgradeCounter = loadedData.bulletEffectUpgradeCounter;
-            storeSystem.bulletSpeedUpgradeCounter = loadedData.bulletSpeedUpgradeCounter;
-            storeSystem.damageReductionUpgradeCounter = loadedData.damageReductionUpgradeCounter;
-            storeSystem.maxHealthUpgradeCounter = loadedData.maxHealthUpgradeCounter;
-            storeSystem.meleeDamageUpgradeCounter = loadedData.meleeDamageUpgradeCounter;
-            storeSystem.movementSpeedUpgradeCounter = loadedData.movementSpeedUpgradeCounter;
-            storeSystem.powerupDurationCounter = loadedData.powerupDurationCounter;
-            storeSystem.powerupEffectCounter = loadedData.powerupEffectCounter;
-            storeSystem.powerupSpawnFrequencyCounter = loadedData.powerupSpawnFrequencyCounter;
+            ss.attackSpeedUpgradeCounter = loadedData.attackSpeedUpgradeCounter;
+            ss.bulletEffectUpgradeCounter = loadedData.bulletEffectUpgradeCounter;
+            ss.bulletSpeedUpgradeCounter = loadedData.bulletSpeedUpgradeCounter;
+            ss.damageReductionUpgradeCounter = loadedData.damageReductionUpgradeCounter;
+            ss.maxHealthUpgradeCounter = loadedData.maxHealthUpgradeCounter;
+            ss.meleeDamageUpgradeCounter = loadedData.meleeDamageUpgradeCounter;
+            ss.movementSpeedUpgradeCounter = loadedData.movementSpeedUpgradeCounter;
+            ss.powerupDurationCounter = loadedData.powerupDurationCounter;
+            ss.powerupEffectCounter = loadedData.powerupEffectCounter;
+            ss.powerupSpawnFrequencyCounter = loadedData.powerupSpawnFrequencyCounter;
         } /*else //First time the game is launched/Save file is missing. All variables are set to default values.
           {
             gameManager.GetComponent<LevelGeneration>().currentLevel = 1;
@@ -76,9 +82,10 @@ public class GameplayManager : MonoBehaviour {
             shield.maxShieldHealth = 80;
             shield.shieldDamage = 0.5f;
         }*/
-        playerStatsComponent.EstimateStats();
-        playerStatsComponent.RefillStats();
-        gameManager.GetComponent<EnemySpawner>().BeginSpawning();
+        ps.InstantiateReferences();
+        ps.EstimateStats();
+        ps.RefillStats();
+        gm.GetComponent<EnemySpawner>().BeginSpawning();
 
         gameUI.SetActive(true);
         pauseMenu.SetActive(false);
@@ -125,13 +132,13 @@ public class GameplayManager : MonoBehaviour {
         if (shieldObject)
             Destroy(shieldObject);
 
-        float maxEC = gameManager.GetComponent<EnemySpawner>().maxEnemyCount;
-        float EC = gameManager.GetComponent<EnemySpawner>().enemyCounter;
+        float maxEC = gm.GetComponent<EnemySpawner>().maxEnemyCount;
+        float EC = gm.GetComponent<EnemySpawner>().enemyCounter;
         bestAttemptPercentage = ((maxEC - EC) / maxEC) * 100;
         Debug.Log(bestAttemptPercentage);
         bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
         bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
-        SavingSystem.SaveProgress(playerExperience, shield, gameObject);
+        SavingSystem.SaveProgress(pe, shield, gameObject);
         lostMenu.SetActive(true);
         gameUI.SetActive(false);
         movementJoystick.SetActive(false);
@@ -141,13 +148,13 @@ public class GameplayManager : MonoBehaviour {
         ammoPanel.SetActive(false);
         source = storeSource.LOST_MENU;
     }
-
+        
     public void CompleteLevel() {
         shieldObject = GameObject.FindGameObjectWithTag("Shield");
         if (shieldObject != null)
             Destroy(shieldObject);
 
-        SavingSystem.SaveProgress(playerExperience, shield, gameManager);
+        SavingSystem.SaveProgress(pe, shield, gm);
         Time.timeScale = 0;
         gameUI.SetActive(false);
         wonMenu.SetActive(true);
@@ -164,7 +171,7 @@ public class GameplayManager : MonoBehaviour {
         bestAttemptPercentage = 0;
         Time.timeScale = 1;
         background.ChangeBlackgroundColor();
-        playerStatsComponent.RefillStats();
+        ps.RefillStats();
         gameUI.SetActive(true);
         wonMenu.SetActive(false);
         movementJoystick.SetActive(true);
@@ -213,6 +220,6 @@ public class GameplayManager : MonoBehaviour {
         Time.timeScale = 1;
 
         SceneManager.LoadScene("Main Menu");
-        SceneManager.UnloadSceneAsync("Gameplay");
+        SceneManager.UnloadScene("Gameplay");
     }
 }

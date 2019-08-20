@@ -25,6 +25,10 @@ public class AmmoSystem : MonoBehaviour{
         bulletAmmo = new int[bulletTypes.Length];
         enabledButtons = new List<Button>();
 
+        for (int i = 1; i < bulletButtons.Length; i++) {
+            bulletButtons[i].gameObject.SetActive(false);
+        }
+
         currentActiveIndex = 0;
         currentActiveButton = bulletButtons[currentActiveIndex];
         currentActiveBullet = bulletTypes[currentActiveIndex].GetComponent<BulletSpecs>();
