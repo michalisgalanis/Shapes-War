@@ -20,7 +20,8 @@ public class GameplayManager : MonoBehaviour {
     public int currentLevel;
 
     //Needed References
-    private GameObject gm;
+    private GameObject gameManager;
+    private GameObject player;
     private PlayerStats ps;
     private PlayerExperience pe;
     private StoreSystem ss;
@@ -34,10 +35,11 @@ public class GameplayManager : MonoBehaviour {
     private storeSource source;
 
     public void InstantiateReferences() {
-        gm = GameObject.FindGameObjectWithTag("GameController");
-        pe = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerExperience>();
-        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        ss = gm.GetComponent<StoreSystem>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
+        player = GameObject.FindGameObjectWithTag("Player");
+        pe = player.GetComponent<PlayerExperience>();
+        ps = player.GetComponent<PlayerStats>();
+        ss = gameManager.GetComponent<StoreSystem>();
     }
 
     private void Start() {
@@ -47,15 +49,15 @@ public class GameplayManager : MonoBehaviour {
         if (SavingSystem.LoadData() != null && enableSavingSystem) {
             loadedData = SavingSystem.LoadData();
             //Load General Stats
-            gm.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
+            gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
             currentLevel = loadedData.currentLevel;
-            gm.GetComponent<GameplayManager>().bestAttemptPercentage = loadedData.bestAttemptPercentage;
+            gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = loadedData.bestAttemptPercentage;
 
             //Load Player Stats
             pe.currentPlayerXP = loadedData.currentPlayerXP;
             pe.playerLevel = loadedData.playerLevel;
             ps.playerLevel = loadedData.playerLevel;
-            gm.GetComponent<CoinSystem>().currentCoins = loadedData.currentCoins;
+            gameManager.GetComponent<CoinSystem>().currentCoins = loadedData.currentCoins;
 
             //Load Store Upgrades
             ss.attackSpeedUpgradeCounter = loadedData.attackSpeedUpgradeCounter;
@@ -85,7 +87,7 @@ public class GameplayManager : MonoBehaviour {
         ps.InstantiateReferences();
         ps.EstimateStats();
         ps.RefillStats();
-        gm.GetComponent<EnemySpawner>().BeginSpawning();
+        gameManager.GetComponent<EnemySpawner>().BeginSpawning();
 
         gameUI.SetActive(true);
         pauseMenu.SetActive(false);
@@ -132,8 +134,8 @@ public class GameplayManager : MonoBehaviour {
         if (shieldObject)
             Destroy(shieldObject);
 
-        float maxEC = gm.GetComponent<EnemySpawner>().maxEnemyCount;
-        float EC = gm.GetComponent<EnemySpawner>().enemyCounter;
+        float maxEC = gameManager.GetComponent<EnemySpawner>().maxEnemyCount;
+        float EC = gameManager.GetComponent<EnemySpawner>().enemyCounter;
         bestAttemptPercentage = ((maxEC - EC) / maxEC) * 100;
         Debug.Log(bestAttemptPercentage);
         bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
@@ -154,7 +156,7 @@ public class GameplayManager : MonoBehaviour {
         if (shieldObject != null)
             Destroy(shieldObject);
 
-        SavingSystem.SaveProgress(pe, shield, gm);
+        SavingSystem.SaveProgress(pe, shield, gameManager);
         Time.timeScale = 0;
         gameUI.SetActive(false);
         wonMenu.SetActive(true);
@@ -220,6 +222,6 @@ public class GameplayManager : MonoBehaviour {
         Time.timeScale = 1;
 
         SceneManager.LoadScene("Main Menu");
-        SceneManager.UnloadScene("Gameplay");
+        SceneManager.UnloadSceneAsync("Gameplay");
     }
 }

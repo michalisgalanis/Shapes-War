@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
-
+using TMPro;
 public class PlayerExperience : MonoBehaviour {
     //Experience Stats
-    public int playerLevel = 1;                //generated here
-    public double currentPlayerXP = 0f;         //generated here
+    [HideInInspector] public int playerLevel = 1;                //generated here
+    [HideInInspector] public double currentPlayerXP = 0f;         //generated here
     private double nextXPMilestone;             //output
     private double prevXPMilestone;             //output
     private double xpBetweenMilestones;         //output
-    public double remainingXP;                 //output
+    [HideInInspector] public double remainingXP;                 //output
     private double accumulatedXP = 0f;          //output
     private float sizeAtLevel1;                 //input
 
-    private ExperienceSystem es;                //output
     private PlayerStats ps;                     //output
     private PlayerGenerator pg;                 //output
+
     public GameObject progressBar;
     public ParticleSystem levelUpParticles;
+    public GameObject[] xpText;                 //output
+    public GameObject[] levelText;              //output
 
     private void Start() {
-        es = GameObject.FindGameObjectWithTag("GameController").GetComponent<ExperienceSystem>();
         ps = GetComponent<PlayerStats>();
         pg = GetComponent<PlayerGenerator>();
     }
 
     private void Update() {
         if (playerLevel == 1) sizeAtLevel1 = pg.size;
-        es.currentXP = playerLevel; //output
+        foreach (GameObject text in xpText) text.GetComponent<TextMeshProUGUI>().text = Mathf.Round((float)currentPlayerXP).ToString()+ " / " + Mathf.Round((float)xpBetweenMilestones).ToString();
+        foreach (GameObject text in levelText) text.GetComponent<TextMeshProUGUI>().text = playerLevel.ToString();
+
         ps.playerLevel = playerLevel;   //output
         ps.XP = currentPlayerXP;        //output
         pg.currentLevel = playerLevel;
