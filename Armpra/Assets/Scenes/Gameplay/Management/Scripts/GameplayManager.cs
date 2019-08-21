@@ -25,6 +25,7 @@ public class GameplayManager : MonoBehaviour {
     private PlayerStats ps;
     private PlayerExperience pe;
     private StoreSystem ss;
+    private GameObject camera;
 
 
     public Shield shield;
@@ -35,15 +36,29 @@ public class GameplayManager : MonoBehaviour {
     private storeSource source;
 
     public void CreateReferences() {
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         player = FindActualPlayer();
         pe = player.GetComponent<PlayerExperience>();
         ps = player.GetComponent<PlayerStats>();
         ss = gameManager.GetComponent<StoreSystem>();
         background = GameObject.FindGameObjectWithTag("Background").GetComponent<DynamicBackground>();
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
-    public void Start() {
+    void HideSelectedLayers() {
+        camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
+        camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer("Enemy"));
+        camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer("Projectiles"));
+    }
+
+    void ShowSelectedLayers() {
+        camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer("Player");
+        camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer("Enemy");
+        camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer("Projectiles");
+    }
+
+    private void Start() {  
         Application.targetFrameRate = 60;
         CreateReferences();
         //SavingSystem.SetPath();
@@ -104,6 +119,7 @@ public class GameplayManager : MonoBehaviour {
 }
 
     public void Pause() {
+        HideSelectedLayers();
         Time.timeScale = 0;
         gameUI.SetActive(false);
         pauseMenu.SetActive(true);
@@ -115,6 +131,7 @@ public class GameplayManager : MonoBehaviour {
     }
 
     public void Resume() {
+        ShowSelectedLayers();
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         gameUI.SetActive(true);
@@ -126,12 +143,16 @@ public class GameplayManager : MonoBehaviour {
     }
 
     public void Restart() {
+        ShowSelectedLayers();
+        SavingSystem.SaveProgress(pe, shield, gameManager);
         SceneManager.LoadScene("Gameplay");
         Time.timeScale = 1;
     }
 
     public void Lose() {
+        HideSelectedLayers();
         shieldObject = GameObject.FindGameObjectWithTag("Shield");
+        player.transform.localScale = Vector3.zero;
         if (shieldObject)
             Destroy(shieldObject);
 
@@ -153,6 +174,8 @@ public class GameplayManager : MonoBehaviour {
     }
         
     public void CompleteLevel() {
+        HideSelectedLayers();
+        player.transform.localScale = Vector3.zero;
         shieldObject = GameObject.FindGameObjectWithTag("Shield");
         if (shieldObject != null)
             Destroy(shieldObject);
@@ -171,6 +194,7 @@ public class GameplayManager : MonoBehaviour {
     }
 
     public void ProceedToNextLevel(){
+        ShowSelectedLayers();
         bestAttemptPercentage = 0;
         Time.timeScale = 1;
         background.ChangeBackgroundColor();
@@ -185,6 +209,8 @@ public class GameplayManager : MonoBehaviour {
     }
 
     public void VisitStore() {
+        HideSelectedLayers();
+        player.transform.localScale = Vector3.zero;
         ss.RefreshOnStoreEnter();
         storeMenu.SetActive(true);
         gameUI.SetActive(false);

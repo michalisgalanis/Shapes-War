@@ -128,6 +128,7 @@ MonoBehaviour:
   movementJoystick: 0
   movementJoystickVector: {x: 0, y: 0, z: 0}
   attackJoystickVector: {x: 0, y: 0, z: 0}
+  fadeTimer: 3
 --- !u!222 &7858311588026940490
 CanvasRenderer:
   m_ObjectHideFlags: 0
