@@ -9,7 +9,6 @@ public class PlayerExperience : MonoBehaviour {
     private double xpBetweenMilestones;         //output
     [HideInInspector] public double remainingXP;                 //output
     private double accumulatedXP = 0f;          //output
-    private float sizeAtLevel1;                 //input
 
     private PlayerStats ps;                     //output
     private PlayerGenerator pg;                 //output
@@ -24,8 +23,7 @@ public class PlayerExperience : MonoBehaviour {
         pg = GetComponent<PlayerGenerator>();
     }
 
-    private void Update() {
-        if (playerLevel == 1) sizeAtLevel1 = pg.size;
+    private void Update() { 
         foreach (GameObject text in xpText) text.GetComponent<TextMeshProUGUI>().text = Mathf.Round((float)currentPlayerXP).ToString()+ " / " + Mathf.Round((float)xpBetweenMilestones).ToString();
         foreach (GameObject text in levelText) text.GetComponent<TextMeshProUGUI>().text = playerLevel.ToString();
 
@@ -49,15 +47,11 @@ public class PlayerExperience : MonoBehaviour {
         playerLevel++;
         accumulatedXP += currentPlayerXP;
         currentPlayerXP -= xpBetweenMilestones;
-        //Debug.Log("nextXPMilestone: " + nextXPMilestone);
-        //Debug.Log("prevXPMilestone: " + prevXPMilestone);
-        //Debug.Log("currentPlayerXP: " + currentPlayerXP);
-        //Debug.Log("Player Level " + playerLevel + ": " + remainingXP + " XP remaining to Level Up!");
-        ParticleSystem lvlUpParticles = Instantiate(levelUpParticles, transform.position, Quaternion.identity);
-        float sizeIncrease = pg.size / sizeAtLevel1; if (sizeIncrease == 0) sizeIncrease = 1;
-        lvlUpParticles.transform.parent = gameObject.transform;
-        Debug.Log(levelUpParticles.gameObject.transform.localScale);
+
         Vector3 initialScale = levelUpParticles.gameObject.transform.localScale;
+        ParticleSystem lvlUpParticles = Instantiate(levelUpParticles, transform.position, Quaternion.identity);
+        float sizeIncrease = PlayerGenerator.getSizeAtLevel(playerLevel) / PlayerGenerator.getSizeAtLevel(1); if (sizeIncrease == 0) sizeIncrease = 1;
+        lvlUpParticles.transform.localScale = initialScale * sizeIncrease;
         
         ps.playerLevel = playerLevel;   //output
         ps.ForceUpdate();

@@ -4,7 +4,7 @@ public class PlayerGenerator : MonoBehaviour {
     private const int MAX_VISUAL_CHANGES_LEVEL = 20;                    //input
     public int currentLevel;                                           //input
 
-    [HideInInspector] public float size;
+    [HideInInspector] private float size;
     private int firepoints;
     private int[,] firepointsEnabled;
     private int[] stripesEnabled;
@@ -53,7 +53,7 @@ public class PlayerGenerator : MonoBehaviour {
     }
 
     private void EstimateVars() {
-        size = 0.4f + (Mathf.Clamp(currentLevel, 0f, MAX_VISUAL_CHANGES_LEVEL) - 1) * 0.02f;
+        size = getSizeAtLevel(currentLevel);
         firepoints = Mathf.RoundToInt(Mathf.Pow(Mathf.Clamp(currentLevel, 0f, MAX_VISUAL_CHANGES_LEVEL), 1.2f) * 0.3f);
     }
 
@@ -86,5 +86,9 @@ public class PlayerGenerator : MonoBehaviour {
 
             }
         }
+    }
+
+    public static float getSizeAtLevel(int level) {
+        return 0.4f + (Mathf.Clamp(level, 0f, MAX_VISUAL_CHANGES_LEVEL) - 1) * 0.02f;
     }
 }

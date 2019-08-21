@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class JoystickMovement : MonoBehaviour {
     private enum direction { LEFT, CENTER, RIGHT }
@@ -13,12 +14,39 @@ public class JoystickMovement : MonoBehaviour {
     private static float HEIGHT_THRESHOLD;
     private static float LEFT_WIDTH_THRESHOLD;
     private static float RIGHT_WIDTH_THRESHOLD;
+    private static float CENTER_WIDTH_THRESHOLD;
+
+    /*public float fadeTimer;
+    private float currentTimer;*/
 
     private void Start() {
         HEIGHT_THRESHOLD = Camera.main.pixelHeight * 0.35f;
         LEFT_WIDTH_THRESHOLD = Camera.main.pixelWidth * 0.5f;
         RIGHT_WIDTH_THRESHOLD = Camera.main.pixelWidth - LEFT_WIDTH_THRESHOLD;
+        CENTER_WIDTH_THRESHOLD = Camera.main.pixelWidth * 0.1f;
+        //currentTimer = fadeTimer;
     }
+
+    /*private void Update() {
+        if (Input.touchCount > 0)
+            Fade(false);
+        else {
+            currentTimer += Time.deltaTime;
+            if (currentTimer >= fadeTimer) {
+                Fade(true);
+                currentTimer = 0f;
+            }
+        }
+    }*/
+
+    private void Fade(bool fade) {
+        Color initialColor = GetComponent<Image>().color;
+        Color newColor = new Color(initialColor.r, initialColor.g, initialColor.b, (fade) ? 0.05f : 0.7f);
+        GetComponent<Image>().color = newColor;
+        transform.parent.GetChild(1).GetComponent<Image>().color = newColor;
+    }
+
+    
 
     private void FixedUpdate() {
         for (int i = 0; i < Input.touchCount; i++) {
@@ -46,7 +74,8 @@ public class JoystickMovement : MonoBehaviour {
 
     private direction AnalyzeFinger(Touch finger) {
         direction tempDirection;
-        if (finger.position.x <= LEFT_WIDTH_THRESHOLD && finger.position.y <= HEIGHT_THRESHOLD) tempDirection = direction.LEFT;
+        if (finger.position.x >= (Camera.main.pixelWidth / 2f) - CENTER_WIDTH_THRESHOLD && finger.position.x <= (Camera.main.pixelWidth / 2f) + CENTER_WIDTH_THRESHOLD && finger.position.y <= Camera.main.pixelHeight * 0.1f) tempDirection = direction.CENTER;
+        else if (finger.position.x <= LEFT_WIDTH_THRESHOLD && finger.position.y <= HEIGHT_THRESHOLD) tempDirection = direction.LEFT;
         else if (finger.position.x >= RIGHT_WIDTH_THRESHOLD && finger.position.y <= HEIGHT_THRESHOLD) tempDirection = direction.RIGHT;
         else tempDirection = direction.CENTER;
         return tempDirection;

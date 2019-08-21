@@ -1080,8 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 1
-  size: 0
-  wp: {fileID: 0}
+  wp: {fileID: 6070453714078794851}
 --- !u!114 &4186314929307904992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1100,6 +1099,15 @@ MonoBehaviour:
   progressBar: {fileID: 0}
   levelUpParticles: {fileID: 5529174717530985782, guid: 014125df8a991f74b8fa1d990307f040,
     type: 3}
+  xpText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  levelText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &2107116755311790970
 GameObject:
   m_ObjectHideFlags: 0
