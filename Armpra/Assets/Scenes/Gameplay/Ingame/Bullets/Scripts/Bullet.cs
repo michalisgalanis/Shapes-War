@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour {
     private int damage;
     public bool playerFired;
 
-    private void Start() {
+    public void Start() {
         bs = GetComponent<BulletSpecs>();
         maxSpeed = bs.maxSpeed;
         acceleration = bs.acceleration;
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour {
         currentSpeed = 0;
     }
 
-    private void Update() {
+    public void Update() {
         currentSpeed += acceleration;
         if (currentSpeed > maxSpeed) {
             currentSpeed = maxSpeed;

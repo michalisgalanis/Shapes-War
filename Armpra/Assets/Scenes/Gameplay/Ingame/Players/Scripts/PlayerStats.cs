@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
     //General Stats
-    public int playerLevel;                     //input from PlayerExperience
-    public double XP;                           //input from PlayerExperience
+    public int playerLevel=1;                     //input from PlayerExperience
+    public double XP=0;                           //input from PlayerExperience
 
     //Stats
     public float attackSpeed;                   //generated here
@@ -13,11 +13,13 @@ public class PlayerStats : MonoBehaviour {
     public float damageReduction;               //generated here - 0 equals to full damage taken, 1 equals to zero damage taken
     public float movementSpeed;                 //generated here
 
+    public float debugTimer=1f;
+
     private const float UPGRADES_FACTOR = 0.001f;
 
     //Other Essential Real Time Stats
-    public float currentHealth;
-    private bool markedForDestruction;
+    public float currentHealth=100;
+    private bool markedForDestruction=false;
 
     //Needed References
     private GameplayManager gm;
@@ -28,8 +30,9 @@ public class PlayerStats : MonoBehaviour {
     public SpriteRenderer playerBorder;
     public GameObject shockwavePrefab;
     public ParticleSystem playerDeathExplosionParticles;
+    public PlayerStats ps;
 
-    private void Start() {
+    public void Start() {
         InstantiateReferences();
         Physics2D.IgnoreLayerCollision(8, 13);
         Physics2D.IgnoreLayerCollision(13, 14);
@@ -37,21 +40,28 @@ public class PlayerStats : MonoBehaviour {
         GameObject shockwave = Instantiate(shockwavePrefab, transform.localPosition, Quaternion.identity);
         shockwave.transform.parent = gameObject.transform;
         playerHeads = new List<SpriteRenderer>();
-        Transform headSystem = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0);
-        for (int i = 0; i < headSystem.childCount; i++) {
+        Transform headSystem = gm.FindActualPlayer().transform.GetChild(0);
+        for (int i = 1; i < headSystem.childCount; i++) {
             playerHeads.Add(headSystem.GetChild(i).gameObject.GetComponent<SpriteRenderer>());
         }
+        RefillStats();
     }
 
     public void InstantiateReferences() {
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>();
         ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
         powerups = GameObject.FindGameObjectsWithTag("Powerups");
+        ps = gm.FindActualPlayer().GetComponent<PlayerStats>();
     }
 
-    private void Update() {
+    public void Update() {
         EstimateStats();
-
+        /*debugTimer -= Time.deltaTime;
+        if (debugTimer <= 0) {
+            Debug.Log("Max health "+maxHealth+"\nCurrent Health: "+currentHealth+"\nMarked for destruction: "+markedForDestruction);
+            debugTimer = 1f;
+        }*/
+        //Debug.Log("Max health " + maxHealth + " Current Health: " + currentHealth + " Marked for destruction: " + markedForDestruction);
         Color.RGBToHSV(playerBorder.color, out float h, out float s, out float v);
         h = 0f; v = 1f; s = 1f - currentHealth / maxHealth;
         playerBorder.color = (Color.HSVToRGB(h, s, v));
@@ -93,8 +103,10 @@ public class PlayerStats : MonoBehaviour {
     public void TakeDamage(float damage) {
         float realDamage = damage * (1 - damageReduction);
         currentHealth -= realDamage;
+        //Debug.Log("In TakeDamage. Current Health: " + currentHealth);
         if (currentHealth <= 0 && !markedForDestruction) {
             markedForDestruction = true;
+            Debug.Log("Marked for destructiooon !" + markedForDestruction);
             playerDeathExplosionParticles = Instantiate(playerDeathExplosionParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
             gm.Lose();
@@ -126,4 +138,6 @@ public class PlayerStats : MonoBehaviour {
         }
         return 0f;
     }
+    
+    
 }

@@ -19,12 +19,12 @@ public class PlayerExperience : MonoBehaviour {
     public GameObject[] xpText;                 //output
     public GameObject[] levelText;              //output
 
-    private void Start() {
+    public void Start() {
         ps = GetComponent<PlayerStats>();
         pg = GetComponent<PlayerGenerator>();
     }
 
-    private void Update() {
+    public void Update() {
         if (playerLevel == 1) sizeAtLevel1 = pg.size;
         foreach (GameObject text in xpText) text.GetComponent<TextMeshProUGUI>().text = Mathf.Round((float)currentPlayerXP).ToString()+ " / " + Mathf.Round((float)xpBetweenMilestones).ToString();
         foreach (GameObject text in levelText) text.GetComponent<TextMeshProUGUI>().text = playerLevel.ToString();

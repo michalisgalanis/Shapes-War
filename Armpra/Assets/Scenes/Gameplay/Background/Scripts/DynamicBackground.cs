@@ -8,6 +8,7 @@ public class DynamicBackground : MonoBehaviour {
     public int numberOfShapes;
     public float sizeRange;
 
+    //private int i;
     private int shapesCounter;
     private float currentTimer;
     private readonly float spawnTimer = 0.01f;
@@ -16,20 +17,24 @@ public class DynamicBackground : MonoBehaviour {
     private static float MIN_BORDER = -19f;
     private static float MAX_BORDER = 19f;
 
-    private PlayerGenerator player;
+    //private GameObject[] players;
+    private PlayerGenerator playerGenerator;
 
-    private void Start() {
+    public void Start() {
         SpriteRenderer bgRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         MIN_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * (-0.5f);
         MAX_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * 0.5f;
-
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGenerator>();
+        /*players = GameObject.FindGameObjectsWithTag("Player");
+        int i = 0;
+        while (players[i].GetComponent<PlayerGenerator>() == null)
+            i++;*/
+        playerGenerator = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().FindActualPlayer().GetComponent<PlayerGenerator>();
         shapes = new List<GameObject>();
         foreach (GameObject shape in shapesPrefabs) {
             shapes.Add(shape);
         }
 
-        ChangeBlackgroundColor();
+        ChangeBackgroundColor();
         currentTimer = spawnTimer;
         shapesCounter = 0;
 
@@ -42,7 +47,7 @@ public class DynamicBackground : MonoBehaviour {
         Physics2D.IgnoreLayerCollision(8, 14);
     }
 
-    private void Update() {
+    public void Update() {
         currentTimer += Time.deltaTime;
         if (currentTimer >= spawnTimer && shapesCounter < numberOfShapes) {
             //Selecting shape
@@ -71,10 +76,11 @@ public class DynamicBackground : MonoBehaviour {
         }
     }
 
-    public void ChangeBlackgroundColor() {
+    public void ChangeBackgroundColor() {
         SpriteRenderer sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         float hRand = Random.Range(0f, 1f), sRand = 1f, vRandBG = 0.1f, vRandDE = 0.7f;
         sr.color = Color.HSVToRGB(hRand, sRand, vRandBG);
-        player.UpdateStripeVisuals(Color.HSVToRGB(hRand, sRand, vRandDE));
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        playerGenerator.UpdateStripeVisuals(Color.HSVToRGB(hRand, sRand, vRandDE));
     }
 }

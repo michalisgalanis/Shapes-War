@@ -13,14 +13,14 @@ public class PowerUpsSpawner : MonoBehaviour {
     private const float MIN_BORDER = -19;
     private const float MAX_BORDER = 19;
 
-    private void Start() {
+    public void Start() {
         ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
         spawnTimerLevel = ss.powerupSpawnFrequencyCounter;
         spawnTimer = 30f - 0.25f * spawnTimerLevel;
         currentTimer = spawnTimer;
     }
 
-    private void Update() {
+    public void Update() {
         currentTimer += Time.deltaTime;
         if (currentTimer >= spawnTimer) {
             SpawnPowerUp();

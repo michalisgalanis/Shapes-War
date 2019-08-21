@@ -10,7 +10,7 @@ public class PlayerGenerator : MonoBehaviour {
     private int[] stripesEnabled;
     public Weapon wp;
 
-    private void Start() {
+    public void Start() {
 
         firepoints = transform.GetChild(0).transform.childCount;
         for (int i = 1; i < firepoints; i++) {
@@ -46,7 +46,7 @@ public class PlayerGenerator : MonoBehaviour {
         Update();
     }
 
-    private void Update() {
+    public void Update() {
         EstimateVars();
         UpdateVisuals();
         wp.SetupFirepoints();

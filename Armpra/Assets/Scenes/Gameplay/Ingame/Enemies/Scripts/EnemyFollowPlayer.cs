@@ -12,13 +12,13 @@ public class EnemyFollowPlayer : MonoBehaviour {
     private float rotationValue;
     private Vector2 positionValue;
 
-    private void Start() {
+    public void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         tf = GetComponent<Transform>();
     }
 
-    private void Update() {
+    public void Update() {
         if (player != null) {
             Vector2 moveInput = new Vector2(player.transform.position.x - tf.position.x, player.transform.position.y - tf.position.y);
             rotationValue = (moveInput.x < 0) ? Vector2.Angle(new Vector2(0, 1), moveInput) : 0 - Vector2.Angle(new Vector2(0, 1), moveInput);

@@ -62,7 +62,7 @@ public class StoreSystem : MonoBehaviour {
     private const int MAX_COUNTER = 100;
     private CoinSystem cs;
 
-    private void Start() {
+    public void Start() {
         cs = GetComponent<CoinSystem>();
         meleeDamageUpgradeButton.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = estimateCost(meleeDamageUpgradeCounter).ToString();
         attackSpeedUpgradeButton.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = estimateCost(attackSpeedUpgradeCounter).ToString();
@@ -82,7 +82,7 @@ public class StoreSystem : MonoBehaviour {
         poisonousAmmoText.text = "Ammo: " + poisonousBulletAmmo;
     }
 
-    private void Update() {
+    public void Update() {
         normalBulletAmmo = 999999;
     }
 

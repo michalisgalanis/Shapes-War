@@ -3,11 +3,11 @@
 public class IntendedParticleDeath : MonoBehaviour {
     private ParticleSystem ps;
 
-    private void Start() {
+    public void Start() {
         ps = GetComponent<ParticleSystem>();
     }
 
-    private void Update() {
+    public void Update() {
         if (Time.timeScale < 0.01f) {
             ps.Simulate(Time.unscaledDeltaTime, true, false);
         }

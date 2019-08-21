@@ -13,7 +13,7 @@ public class EffectOverTime : MonoBehaviour {
     //Needed References
     private StoreSystem ss;
 
-    private void Start() {
+    public void Start() {
         ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
         effectLevel = ss.powerupEffectCounter;
     }

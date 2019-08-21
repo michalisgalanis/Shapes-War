@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class PowerupColliderTrigger : MonoBehaviour {
-    private void Start() {
+    public void Start() {
         Physics2D.IgnoreLayerCollision(12, 15);
     }
 

@@ -13,10 +13,12 @@ public class EffectInstant : MonoBehaviour {
     //Needed References
     private StoreSystem ss;
     private PlayerStats ps;
+    private GameObject gameManager;
 
-    private void Start() {
-        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
+    public void Start() {
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
+        ps = gameManager.GetComponent<GameplayManager>().FindActualPlayer().GetComponent<PlayerStats>();
+        ss = gameManager.GetComponent<StoreSystem>();
         effectLevel = ss.powerupEffectCounter;
         powerupMultiplier = 0.2f + effectLevel / 125f;
     }

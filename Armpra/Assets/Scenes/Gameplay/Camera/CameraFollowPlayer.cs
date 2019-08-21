@@ -18,7 +18,7 @@ public class CameraFollowPlayer : MonoBehaviour {
     private float lastPositionX;
     private float lastPositionY;
 
-    private void Start() {
+    public void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 

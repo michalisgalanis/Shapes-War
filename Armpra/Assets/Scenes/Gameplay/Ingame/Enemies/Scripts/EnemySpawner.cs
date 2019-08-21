@@ -22,7 +22,9 @@ public class EnemySpawner : MonoBehaviour {
     public float maxEnemyCount;
     private float currentTimer;
 
-    void Start() {
+    private float debugTimer=1f;
+
+    public void Start() {
         SpriteRenderer bgRenderer = background.GetComponent<SpriteRenderer>();
         MIN_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * (-0.5f);
         MAX_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * 0.5f;
@@ -33,14 +35,17 @@ public class EnemySpawner : MonoBehaviour {
         currentTimer = spawnTimer;
         enemyCounter = 0;
         lg = gameObject.GetComponent<LevelGeneration>();
-        //lg.currentLevel = 1;
-        //lg.currentLevel = currentLevel;
         lg.EstimateLevel();
         maxEnemyCount = lg.enemyCount;
     }
 
     // Update is called once per frame
-    private void Update() {
+    public void Update() {
+        debugTimer -= Time.deltaTime;
+        if (debugTimer <= 0) {
+            //Debug.Log("Max enemies " + maxEnemyCount + "\nCurrent Enemies: " + enemyCounter);
+            debugTimer = 1f;
+        }
         enemiesRemainingText.GetComponent<TextMeshProUGUI>().text = enemyCounter.ToString();
         if (spawningTime == true && enemyCounter < maxEnemyCount) {
             SpawnEnemies();

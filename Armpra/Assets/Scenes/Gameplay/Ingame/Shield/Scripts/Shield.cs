@@ -17,7 +17,7 @@ public class Shield : MonoBehaviour {
     public GameObject shieldShockwavePrefab;
     public ParticleSystem shieldDestroyExplosionParticlesPrefab;
 
-    private void Start() {
+    public void Start() {
         outerShield = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(0).GetComponent<SpriteRenderer>();
         innerShield = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(1).GetComponent<SpriteRenderer>();
         movingTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(2).GetComponent<ParticleSystem>();
@@ -29,7 +29,7 @@ public class Shield : MonoBehaviour {
         markedForDestroy = false;
     }
 
-    private void Update() {
+    public void Update() {
         if (outerShield && innerShield) {
             float h = (currentHealth / maxShieldHealth) / 3.6f;
             float outerS = 1f, outerV = 1f, outerA = 0.7f;

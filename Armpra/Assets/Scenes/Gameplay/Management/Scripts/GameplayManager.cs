@@ -15,7 +15,7 @@ public class GameplayManager : MonoBehaviour {
     public GameObject movementJoystick;
     public GameObject attackJoystick;
 
-    public bool enableSavingSystem;
+    public bool enableSavingSystem=false;
     public float bestAttemptPercentage=0;
     public int currentLevel;
 
@@ -34,19 +34,20 @@ public class GameplayManager : MonoBehaviour {
 
     private storeSource source;
 
-    public void InstantiateReferences() {
+    public void CreateReferences() {
         gameManager = GameObject.FindGameObjectWithTag("GameController");
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = FindActualPlayer();
         pe = player.GetComponent<PlayerExperience>();
         ps = player.GetComponent<PlayerStats>();
         ss = gameManager.GetComponent<StoreSystem>();
+        background = GameObject.FindGameObjectWithTag("Background").GetComponent<DynamicBackground>();
     }
 
-    private void Start() {
+    public void Start() {
         Application.targetFrameRate = 60;
-        InstantiateReferences();
-        SavingSystem.SetPath();
-        if (SavingSystem.LoadData() != null && enableSavingSystem) {
+        CreateReferences();
+        //SavingSystem.SetPath();
+        /*if (SavingSystem.LoadData() != null && enableSavingSystem==true) {
             loadedData = SavingSystem.LoadData();
             //Load General Stats
             gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
@@ -70,20 +71,20 @@ public class GameplayManager : MonoBehaviour {
             ss.powerupDurationCounter = loadedData.powerupDurationCounter;
             ss.powerupEffectCounter = loadedData.powerupEffectCounter;
             ss.powerupSpawnFrequencyCounter = loadedData.powerupSpawnFrequencyCounter;
-        } /*else //First time the game is launched/Save file is missing. All variables are set to default values.
-          {
+        } else*/ //First time the game is launched/Save file is missing. All variables are set to default values.
+          //{
             gameManager.GetComponent<LevelGeneration>().currentLevel = 1;
             gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = 1;
             //Player variables
-            playerStatsComponent.playerLevel = 1;
-            playerStatsComponent.XP = 0;
+            ps.playerLevel = 1;
+            ps.XP = 0;
 
             //Powerup variables
 
             //Shield powerup
             shield.maxShieldHealth = 80;
             shield.shieldDamage = 0.5f;
-        }*/
+       //}
         ps.InstantiateReferences();
         ps.EstimateStats();
         ps.RefillStats();
@@ -140,7 +141,7 @@ public class GameplayManager : MonoBehaviour {
         Debug.Log(bestAttemptPercentage);
         bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
         bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
-        SavingSystem.SaveProgress(pe, shield, gameObject);
+        //SavingSystem.SaveProgress(pe, shield, gameObject);
         lostMenu.SetActive(true);
         gameUI.SetActive(false);
         movementJoystick.SetActive(false);
@@ -156,7 +157,7 @@ public class GameplayManager : MonoBehaviour {
         if (shieldObject != null)
             Destroy(shieldObject);
 
-        SavingSystem.SaveProgress(pe, shield, gameManager);
+        //SavingSystem.SaveProgress(pe, shield, gameManager);
         Time.timeScale = 0;
         gameUI.SetActive(false);
         wonMenu.SetActive(true);
@@ -172,7 +173,7 @@ public class GameplayManager : MonoBehaviour {
     public void ProceedToNextLevel(){
         bestAttemptPercentage = 0;
         Time.timeScale = 1;
-        background.ChangeBlackgroundColor();
+        background.ChangeBackgroundColor();
         ps.RefillStats();
         gameUI.SetActive(true);
         wonMenu.SetActive(false);
@@ -223,5 +224,13 @@ public class GameplayManager : MonoBehaviour {
 
         SceneManager.LoadScene("Main Menu");
         SceneManager.UnloadSceneAsync("Gameplay");
+    }
+    public GameObject FindActualPlayer(){
+        GameObject[] players;
+        int i = 0;
+        players = GameObject.FindGameObjectsWithTag("Player");
+        while (players[i].GetComponent<PlayerGenerator>() == null)
+            i++;
+        return players[i];
     }
 }

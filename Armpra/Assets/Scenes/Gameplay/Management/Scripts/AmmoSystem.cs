@@ -19,7 +19,7 @@ public class AmmoSystem : MonoBehaviour{
     //0-normalbullet, 1-hvbullet, 2-explosivebullet, 3-poisonousbullet
 
     private StoreSystem ss;
-    void Start()
+    public void Start()
     {
         ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
         bulletAmmo = new int[bulletTypes.Length];
@@ -34,7 +34,7 @@ public class AmmoSystem : MonoBehaviour{
         currentActiveBullet = bulletTypes[currentActiveIndex].GetComponent<BulletSpecs>();
     }
 
-    void Update()
+    public void Update()
     {
         enabledButtons.Clear();
         bulletAmmo[0] = ss.normalBulletAmmo;

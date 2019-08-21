@@ -14,13 +14,13 @@ public class JoystickMovement : MonoBehaviour {
     private static float LEFT_WIDTH_THRESHOLD;
     private static float RIGHT_WIDTH_THRESHOLD;
 
-    private void Start() {
+    public void Start() {
         HEIGHT_THRESHOLD = Camera.main.pixelHeight * 0.35f;
         LEFT_WIDTH_THRESHOLD = Camera.main.pixelWidth * 0.5f;
         RIGHT_WIDTH_THRESHOLD = Camera.main.pixelWidth - LEFT_WIDTH_THRESHOLD;
     }
 
-    private void FixedUpdate() {
+    public void FixedUpdate() {
         for (int i = 0; i < Input.touchCount; i++) {
             if (i == 0) firstFinger = Input.GetTouch(i);
             else if (i == 1) secondFinger = Input.GetTouch(i);

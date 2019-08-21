@@ -17,7 +17,7 @@ public class Shape : MonoBehaviour {
     private float rotationRandX;
     private float rotationRandY;
 
-    private void Start() {
+    public void Start() {
         //Components
         rb = GetComponent<Rigidbody2D>();
         tf = GetComponent<Transform>();

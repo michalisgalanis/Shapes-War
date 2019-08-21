@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class Shockwave : MonoBehaviour {
-    private void Start() {
+    public void Start() {
         StartCoroutine(wait());
     }
 

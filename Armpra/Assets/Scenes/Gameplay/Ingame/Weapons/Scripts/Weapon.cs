@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour {
     private GameObject target;
     private AmmoSystem asys;    //input
 
-    private void Start() {
+    public void Start() {
         playerFires = gameObject.CompareTag("Player");
         firepoints = new List<Transform>();
         if (!playerFires) target = GameObject.FindGameObjectWithTag("Player");
@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour {
         SetupFirepoints();
     }
 
-    private void Update() {
+    public void Update() {
         bulletPrefab = asys.currentActiveBullet.gameObject;
         currentTimer += Time.deltaTime;
         if (currentTimer >= shootingTime) Shoot();

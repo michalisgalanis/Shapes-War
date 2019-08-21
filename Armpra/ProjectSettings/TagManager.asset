@@ -19,6 +19,7 @@ TagManager:
   - UI/StoreMenu
   - UI/HackPanel
   - Canvas
+  - Background
   layers:
   - Default
   - TransparentFX

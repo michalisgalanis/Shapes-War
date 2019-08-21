@@ -5,11 +5,11 @@ public class CoinSystem : MonoBehaviour {
     public GameObject[] coinsText;
     public int currentCoins=0;
 
-/*    private void Start() {
-        currentCoins = 0;
-    }*/
+    /*    private void Start() {
+            currentCoins = 0;
+        }*/
 
-    private void Update() {
+    public void Update() {
         for (int i = 0; i < coinsText.Length; i++) {
             coinsText[i].GetComponent<TextMeshProUGUI>().text = currentCoins.ToString();
         }

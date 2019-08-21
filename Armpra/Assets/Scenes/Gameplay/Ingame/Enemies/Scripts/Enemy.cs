@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour {
     //private bool isEmittingFriction;
     private bool markedForDestruction;
 
-    private void Start() {
+    public void Start() {
         currentTimer = 0f;
         ParticleSystem.MainModule settings = trails.main;
         settings.startColor = new ParticleSystem.MinMaxGradient(enemyBody.color);
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour {
         Physics2D.IgnoreLayerCollision(8, 12);
     }
 
-    private void Update() {
+    void Update() {
         currentTimer += Time.deltaTime;
         if (deathExplosionParticles && !deathExplosionParticles.IsAlive()) {
             Destroy(deathExplosionParticles);
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour {
             Destroy(gameObject);
             GameObject manager = GameObject.FindWithTag("GameController");
             manager.GetComponent<EnemySpawner>().enemyCounter--;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerExperience>().addXP(xpOnDeath);
+            manager.GetComponent<GameplayManager>().FindActualPlayer().GetComponent<PlayerExperience>().addXP(xpOnDeath);
             manager.GetComponent<CoinSystem>().addCoins(coinsOnDeath);
         }
     }

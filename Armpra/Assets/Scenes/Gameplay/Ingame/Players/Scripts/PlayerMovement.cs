@@ -18,13 +18,13 @@ public class PlayerMovement : MonoBehaviour {
     private Vector2 totalMovementInput;
     private Vector2 totalAttackInput;
 
-    private void Start() {
+    public void Start() {
         rb = GetComponent<Rigidbody2D>();
         tf = GetComponent<Transform>();
         currentSpeed = 0;
     }
 
-    private void Update() {
+    public void Update() {
         Vector2 movementJoystick = (new Vector2(movementJoystickButton.GetComponent<Transform>().localPosition.x, movementJoystickButton.GetComponent<Transform>().localPosition.y) * JOYSTICK_TO_VECTOR_FACTOR).normalized;
         Vector2 attackJoystick = (new Vector2(attackJoystickButton.GetComponent<Transform>().localPosition.x, attackJoystickButton.GetComponent<Transform>().localPosition.y) * JOYSTICK_TO_VECTOR_FACTOR).normalized;
         Vector2 keyboardInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    private void FixedUpdate() {
+    public void FixedUpdate() {
         tf.localRotation = Quaternion.Euler(0, 0, rotationValue);
         rb.MovePosition(positionValue);
     }
