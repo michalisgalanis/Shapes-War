@@ -4,7 +4,7 @@ public class PlayerGenerator : MonoBehaviour {
     private const int MAX_VISUAL_CHANGES_LEVEL = 20;                    //input
     public int currentLevel;                                           //input
 
-    [HideInInspector] private float size;
+    [HideInInspector] public float size;
     private int firepoints;
     private int[,] firepointsEnabled;
     private int[] stripesEnabled;
