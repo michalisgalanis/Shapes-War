@@ -33,7 +33,7 @@ public class PlayerStats : MonoBehaviour {
     public PlayerStats ps;
 
     public void Start() {
-        InstantiateReferences();
+        CreateReferences();
         Physics2D.IgnoreLayerCollision(8, 13);
         Physics2D.IgnoreLayerCollision(13, 14);
         markedForDestruction = false;
@@ -47,7 +47,7 @@ public class PlayerStats : MonoBehaviour {
         RefillStats();
     }
 
-    public void InstantiateReferences() {
+    public void CreateReferences() {
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>();
         ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
         powerups = GameObject.FindGameObjectsWithTag("Powerups");
@@ -56,12 +56,6 @@ public class PlayerStats : MonoBehaviour {
 
     public void Update() {
         EstimateStats();
-        /*debugTimer -= Time.deltaTime;
-        if (debugTimer <= 0) {
-            Debug.Log("Max health "+maxHealth+"\nCurrent Health: "+currentHealth+"\nMarked for destruction: "+markedForDestruction);
-            debugTimer = 1f;
-        }*/
-        //Debug.Log("Max health " + maxHealth + " Current Health: " + currentHealth + " Marked for destruction: " + markedForDestruction);
         Color.RGBToHSV(playerBorder.color, out float h, out float s, out float v);
         h = 0f; v = 1f; s = 1f - currentHealth / maxHealth;
         playerBorder.color = (Color.HSVToRGB(h, s, v));
@@ -103,7 +97,6 @@ public class PlayerStats : MonoBehaviour {
     public void TakeDamage(float damage) {
         float realDamage = damage * (1 - damageReduction);
         currentHealth -= realDamage;
-        //Debug.Log("In TakeDamage. Current Health: " + currentHealth);
         if (currentHealth <= 0 && !markedForDestruction) {
             markedForDestruction = true;
             playerDeathExplosionParticles = Instantiate(playerDeathExplosionParticles, transform.position, Quaternion.identity);
@@ -119,9 +112,8 @@ public class PlayerStats : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D hitInfo) {
         if (hitInfo.CompareTag("Enemy")) {
             Enemy enemy = hitInfo.GetComponent<Enemy>();
-            if (enemy != null) {
+            if (enemy != null)
                 enemy.TakeDamage(meleeDamage);
-            }
         }
     }
 

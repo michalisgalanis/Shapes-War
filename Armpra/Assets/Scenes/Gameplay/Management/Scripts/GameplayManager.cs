@@ -65,7 +65,7 @@ public class GameplayManager : MonoBehaviour {
         Application.targetFrameRate = 60;
         CreateReferences();
         SavingSystem.SetPath();
-        if (SavingSystem.LoadData() != null && enableSavingSystem==true) {
+        if (SavingSystem.LoadData() != null && enableSavingSystem == true) {
             loadedData = SavingSystem.LoadData();
             //Load General Stats
             gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
@@ -90,8 +90,7 @@ public class GameplayManager : MonoBehaviour {
             ss.powerupEffectCounter = loadedData.powerupEffectCounter;
             ss.powerupSpawnFrequencyCounter = loadedData.powerupSpawnFrequencyCounter;
         }
-        
-        ps.InstantiateReferences();
+        ps.CreateReferences();
         ps.EstimateStats();
         ps.RefillStats();
         gameManager.GetComponent<EnemySpawner>().BeginSpawning();
@@ -165,7 +164,7 @@ public class GameplayManager : MonoBehaviour {
         Debug.Log(bestAttemptPercentage);
         bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
         bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
-        //SavingSystem.SaveProgress(pe, shield, gameObject);
+        SavingSystem.SaveProgress(pe, shield, gameObject);
         lostMenu.SetActive(true);
         gameUI.SetActive(false);
         movementJoystick.SetActive(false);
@@ -183,7 +182,7 @@ public class GameplayManager : MonoBehaviour {
         if (shieldObject != null)
             Destroy(shieldObject);
 
-        //SavingSystem.SaveProgress(pe, shield, gameManager);
+        SavingSystem.SaveProgress(pe, shield, gameManager);
         Time.timeScale = 0;
         gameUI.SetActive(false);
         wonMenu.SetActive(true);

@@ -11,7 +11,6 @@ public class PlayerGenerator : MonoBehaviour {
     public Weapon wp;
 
     public void Start() {
-
         firepoints = transform.GetChild(0).transform.childCount;
         for (int i = 1; i < firepoints; i++) {
             transform.GetChild(0).GetChild(i).gameObject.SetActive(false);
@@ -61,17 +60,19 @@ public class PlayerGenerator : MonoBehaviour {
         transform.localScale = new Vector3(size, size, size);
         int[] tempFirepointsEnabled = new int[firepointsEnabled.GetUpperBound(1)];
 
-        if (currentLevel < 1) currentLevel = 1;
-        else if (currentLevel <= MAX_VISUAL_CHANGES_LEVEL) {
+        if (currentLevel < 1) {
+            currentLevel = 1;
+        } else if (currentLevel <= MAX_VISUAL_CHANGES_LEVEL) {
             for (int j = 0; j < firepointsEnabled.GetUpperBound(1); j++) { //for each type of firepoint
                 tempFirepointsEnabled[j] = firepointsEnabled[currentLevel - 1, j];
                 transform.GetChild(0).GetChild(j).gameObject.SetActive(((tempFirepointsEnabled[j] == 1)));
             }
         } else {
-            for (int j = 0; j < firepointsEnabled.GetUpperBound(1); j++) //for each type of firepoint
-                tempFirepointsEnabled[j] = firepointsEnabled[MAX_VISUAL_CHANGES_LEVEL, j];
+            for (int j = 0; j < firepointsEnabled.GetUpperBound(1); j++) {
+                tempFirepointsEnabled[j] = firepointsEnabled[MAX_VISUAL_CHANGES_LEVEL - 1, j];
+                transform.GetChild(0).GetChild(j).gameObject.SetActive(((tempFirepointsEnabled[j] == 1)));
+            }
         }
-                
         for (int i = 0; i < stripesEnabled.Length; i++) {
             if (currentLevel >= stripesEnabled[i]) {
                 transform.Find("DesignElements").GetChild(i).gameObject.SetActive(true);
@@ -85,7 +86,6 @@ public class PlayerGenerator : MonoBehaviour {
             for (int j = 0; j < designElements.transform.GetChild(i).childCount; j++) {
                 SpriteRenderer element = designElements.transform.GetChild(i).GetChild(j).GetComponent<SpriteRenderer>();
                 element.color = stripeColor;
-
             }
         }
     }
