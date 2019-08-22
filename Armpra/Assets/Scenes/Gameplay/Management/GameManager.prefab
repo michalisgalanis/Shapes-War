@@ -61,9 +61,8 @@ MonoBehaviour:
   ammoPanel: {fileID: 0}
   movementJoystick: {fileID: 0}
   attackJoystick: {fileID: 0}
-  enableSavingSystem: 1
+  enableSavingSystem: 0
   bestAttemptPercentage: 0
-  bapText: {fileID: 0}
   currentLevel: 0
   shield: {fileID: -358526174379180828, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f, type: 3}
   background: {fileID: 0}
@@ -105,8 +104,7 @@ MonoBehaviour:
   lg: {fileID: 1237041087}
   spawnTimer: 0.2
   enemyCounter: 0
-  deathCounter: 0
-  maxEnemyCount: 0
+  maxEnemyCount: 10
 --- !u!114 &8643191348888787486
 MonoBehaviour:
   m_ObjectHideFlags: 0

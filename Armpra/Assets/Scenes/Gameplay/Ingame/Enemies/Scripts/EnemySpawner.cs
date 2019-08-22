@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour {
 
     // Update is called once per frame
     public void Update() {
-        enemiesRemainingText.GetComponent<TextMeshProUGUI>().text = (maxEnemyCount - deathCounter).ToString();
+        enemiesRemainingText.GetComponent<TextMeshProUGUI>().text = enemyCounter.ToString();
         if (spawningTime == true && enemyCounter < maxEnemyCount) {
             SpawnEnemies();
         } else if (spawningTime == false && deathCounter == maxEnemyCount) {
@@ -50,7 +50,6 @@ public class EnemySpawner : MonoBehaviour {
             lg.EstimateLevel();
             maxEnemyCount = lg.enemyCount;
             deathCounter = 0;
-            enemyCounter = 0;
             spawningTime = true;
         }
     }

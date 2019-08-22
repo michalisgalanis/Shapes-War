@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using TMPro;
 
-public class DebugPanel : MonoBehaviour {
-    private string mapLevel;
+public class DebugPanel : MonoBehaviour
+{
+    *//*private string mapLevel;
     private string maxEnemyCount;
     private string playerLevel;
     private string playerXP;
@@ -12,7 +13,7 @@ public class DebugPanel : MonoBehaviour {
     private string maxHealth;
     private string damageReduction;
     private string movementSpeed;
-    private string currentHealth;
+    private string currentHealth;*//*
 
     public TextMeshProUGUI mapLevelText;
     public TextMeshProUGUI maxEnemyCountText;
@@ -32,17 +33,19 @@ public class DebugPanel : MonoBehaviour {
     private PlayerExperience pe;
 
 
-    public void Start() {
+    public void Start()
+    {
         GameObject gm = GameObject.FindGameObjectWithTag("GameController");
-        GameObject player = gm.GetComponent<GameplayManager>().FindActualPlayer();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         lg = gm.GetComponent<LevelGeneration>();
         es = gm.GetComponent<EnemySpawner>();
         ps = player.GetComponent<PlayerStats>();
         pe = player.GetComponent<PlayerExperience>();
-
+        
     }
 
-    public void Update() {
+    public void Update()
+    {
         mapLevelText.text = "Map Level: " + lg.currentLevel;
         maxEnemyCountText.text = "Max #Enemies: " + es.maxEnemyCount;
         playerLevelText.text = "Player Level: " + ps.playerLevel;
@@ -55,4 +58,4 @@ public class DebugPanel : MonoBehaviour {
         movementSpeedText.text = "Mov. Speed: " + (ps.movementSpeed);
         currentHealthText.text = "Curr. Health: " + Mathf.Round(ps.currentHealth);
     }
-}
+}*/
