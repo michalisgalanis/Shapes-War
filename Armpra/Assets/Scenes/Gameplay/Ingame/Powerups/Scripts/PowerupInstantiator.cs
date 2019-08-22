@@ -11,7 +11,7 @@ public class PowerupInstantiator : MonoBehaviour {
     public void EnableEffect() {
         switch (typeSelected) {
             case InstantiationType.Shield:
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                GameObject player = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().FindActualPlayer();
                 Instantiate(shield, player.GetComponent<Transform>().localPosition, Quaternion.identity).transform.parent = player.transform;
                 break;
         }

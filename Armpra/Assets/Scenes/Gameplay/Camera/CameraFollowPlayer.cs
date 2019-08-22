@@ -3,7 +3,7 @@
 public class CameraFollowPlayer : MonoBehaviour {
     private GameObject player;
     public GameObject background;
-    
+
 
     private Vector3 desiredPosition;
     public Vector3 offset;
@@ -19,7 +19,7 @@ public class CameraFollowPlayer : MonoBehaviour {
     private float lastPositionY;
 
     public void Start() {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().FindActualPlayer();
         Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         SpriteRenderer bgRenderer = background.GetComponent<SpriteRenderer>();
@@ -31,13 +31,11 @@ public class CameraFollowPlayer : MonoBehaviour {
 
     private void FixedUpdate() {
         if (player != null) {
-            if (followX()) {
+            if (followX())
                 lastPositionX = player.transform.position.x;
-            }
 
-            if (followY()) {
+            if (followY())
                 lastPositionY = player.transform.position.y;
-            }
 
             desiredPosition = new Vector3(lastPositionX, lastPositionY, -10);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.fixedDeltaTime);
@@ -45,7 +43,7 @@ public class CameraFollowPlayer : MonoBehaviour {
         }
     }
 
-    private bool followX() {
+    private bool followX(){
         return (player.transform.position.x + HORIZONTAL_CAMERA_OFFSET <= MAX_BORDER) && (player.transform.position.x - HORIZONTAL_CAMERA_OFFSET >= MIN_BORDER);
     }
 

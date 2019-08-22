@@ -61,8 +61,8 @@ public class GameplayManager : MonoBehaviour {
     private void Start() {  
         Application.targetFrameRate = 60;
         CreateReferences();
-        //SavingSystem.SetPath();
-        /*if (SavingSystem.LoadData() != null && enableSavingSystem==true) {
+        SavingSystem.SetPath();
+        if (SavingSystem.LoadData() != null && enableSavingSystem == true) {
             loadedData = SavingSystem.LoadData();
             //Load General Stats
             gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
@@ -86,21 +86,8 @@ public class GameplayManager : MonoBehaviour {
             ss.powerupDurationCounter = loadedData.powerupDurationCounter;
             ss.powerupEffectCounter = loadedData.powerupEffectCounter;
             ss.powerupSpawnFrequencyCounter = loadedData.powerupSpawnFrequencyCounter;
-        } else*/ //First time the game is launched/Save file is missing. All variables are set to default values.
-          //{
-            gameManager.GetComponent<LevelGeneration>().currentLevel = 1;
-            gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = 1;
-            //Player variables
-            ps.playerLevel = 1;
-            ps.XP = 0;
-
-            //Powerup variables
-
-            //Shield powerup
-            shield.maxShieldHealth = 80;
-            shield.shieldDamage = 0.5f;
-       //}
-        ps.InstantiateReferences();
+        }
+        ps.CreateReferences();
         ps.EstimateStats();
         ps.RefillStats();
         gameManager.GetComponent<EnemySpawner>().BeginSpawning();
@@ -162,7 +149,7 @@ public class GameplayManager : MonoBehaviour {
         Debug.Log(bestAttemptPercentage);
         bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
         bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
-        //SavingSystem.SaveProgress(pe, shield, gameObject);
+        SavingSystem.SaveProgress(pe, shield, gameObject);
         lostMenu.SetActive(true);
         gameUI.SetActive(false);
         movementJoystick.SetActive(false);
@@ -180,7 +167,7 @@ public class GameplayManager : MonoBehaviour {
         if (shieldObject != null)
             Destroy(shieldObject);
 
-        //SavingSystem.SaveProgress(pe, shield, gameManager);
+        SavingSystem.SaveProgress(pe, shield, gameManager);
         Time.timeScale = 0;
         gameUI.SetActive(false);
         wonMenu.SetActive(true);
