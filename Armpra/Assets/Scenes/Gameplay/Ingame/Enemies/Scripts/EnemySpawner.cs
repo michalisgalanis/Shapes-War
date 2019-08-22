@@ -19,10 +19,9 @@ public class EnemySpawner : MonoBehaviour {
 
     //other essential variables
     public int enemyCounter;
-    public float maxEnemyCount;
+    public int deathCounter;
+    public int maxEnemyCount;
     private float currentTimer;
-
-    private float debugTimer=1f;
 
     public void Start() {
         SpriteRenderer bgRenderer = background.GetComponent<SpriteRenderer>();
@@ -34,6 +33,7 @@ public class EnemySpawner : MonoBehaviour {
         spawningTime = true;
         currentTimer = spawnTimer;
         enemyCounter = 0;
+        deathCounter = 0;
         lg = gameObject.GetComponent<LevelGeneration>();
         lg.EstimateLevel();
         maxEnemyCount = lg.enemyCount;
@@ -41,19 +41,15 @@ public class EnemySpawner : MonoBehaviour {
 
     // Update is called once per frame
     public void Update() {
-        debugTimer -= Time.deltaTime;
-        if (debugTimer <= 0) {
-            //Debug.Log("Max enemies " + maxEnemyCount + "\nCurrent Enemies: " + enemyCounter);
-            debugTimer = 1f;
-        }
         enemiesRemainingText.GetComponent<TextMeshProUGUI>().text = enemyCounter.ToString();
         if (spawningTime == true && enemyCounter < maxEnemyCount) {
             SpawnEnemies();
-        } else if (spawningTime == false && enemyCounter == 0) {
+        } else if (spawningTime == false && deathCounter == maxEnemyCount) {
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().CompleteLevel();
             lg.currentLevel++;
             lg.EstimateLevel();
             maxEnemyCount = lg.enemyCount;
+            deathCounter = 0;
             spawningTime = true;
         }
     }
@@ -69,11 +65,9 @@ public class EnemySpawner : MonoBehaviour {
             SpriteRenderer sr = newEnemy.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
             float h = Random.Range(0f, 360f) / 360f, s = 0.75f, v = 0.6f;
             sr.color = Color.HSVToRGB(h, s, v);
-            //Resetting timer & counter
-            if (++enemyCounter == maxEnemyCount) {
-                spawningTime = false;
-            }
-
+            enemyCounter++;
+            //Resetting Timers & Counters
+            if (enemyCounter == maxEnemyCount) spawningTime = false;
             currentTimer = 0f;
         }
     }

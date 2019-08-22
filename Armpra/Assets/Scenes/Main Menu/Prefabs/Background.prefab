@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 523597351
   m_SortingLayer: -1
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: d32365a96fb227342abe2f1b5e0c2f0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1846f752ca1d33f488eed034c87522af, type: 3}
   m_Color: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,17 +164,17 @@ PrefabInstance:
     - target: {fileID: 4285369103295594078, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4285369103295594078, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
@@ -184,7 +184,7 @@ PrefabInstance:
     - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 13.3
+      value: 4.25
       objectReference: {fileID: 0}
     - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
@@ -204,27 +204,32 @@ PrefabInstance:
     - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
       propertyPath: ShapeModule.randomPositionAmount
-      value: 2.43
+      value: 14.72
       objectReference: {fileID: 0}
     - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 19.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 2
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.minScalar
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}
       propertyPath: EmissionModule.rateOverDistance.scalar
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
+        type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285369103295594072, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
+        type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 4285369103295594079, guid: a1db68ff6a6360d4d9a18aa81fae50a8,
         type: 3}

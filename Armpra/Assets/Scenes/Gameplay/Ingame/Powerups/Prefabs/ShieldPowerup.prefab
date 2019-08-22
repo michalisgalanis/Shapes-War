@@ -4918,9 +4918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a585d4e2d5ef684ea91e195692ef3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupDuration: 5
-  timeLeft: 0
-  isActive: 0
 --- !u!114 &7871417985146667365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4933,8 +4930,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7f5b76f9ff9a14089563611daa45e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InstantiationTypeString: Shield
-  shield: {fileID: 7923466100961731369, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f, type: 3}
+  shieldPrefab: {fileID: 7923466100961731369, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f,
+    type: 3}
+  typeSelected: 0
 --- !u!1 &8653061550526393393
 GameObject:
   m_ObjectHideFlags: 0

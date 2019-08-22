@@ -42,7 +42,7 @@ public class PlayerStats : MonoBehaviour {
         playerHeads = new List<SpriteRenderer>();
         Transform headSystem = gm.FindActualPlayer().transform.GetChild(0);
         for (int i = 0; i < headSystem.childCount; i++) {
-            playerHeads.Add(headSystem.GetChild(i).gameObject.GetComponent<SpriteRenderer>());
+            playerHeads.Add(headSystem.GetChild(i).GetComponent<SpriteRenderer>());
         }
         RefillStats();
     }

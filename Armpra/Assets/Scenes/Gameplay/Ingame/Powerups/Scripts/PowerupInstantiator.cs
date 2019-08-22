@@ -2,7 +2,7 @@
 
 public class PowerupInstantiator : MonoBehaviour {
     //Needed References
-    public GameObject shield;
+    public GameObject shieldPrefab;
 
     //Enums & InstantiationTypes
     public enum InstantiationType { Shield }
@@ -11,9 +11,14 @@ public class PowerupInstantiator : MonoBehaviour {
     public void EnableEffect() {
         switch (typeSelected) {
             case InstantiationType.Shield:
-                GameObject player = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().FindActualPlayer();
-                Instantiate(shield, player.GetComponent<Transform>().localPosition, Quaternion.identity).transform.parent = player.transform;
-                break;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            Vector3 initialScale = shieldPrefab.transform.localScale;
+            float sizeIncrease = PlayerGenerator.getSizeAtLevel(player.GetComponent<PlayerStats>().playerLevel) / PlayerGenerator.getSizeAtLevel(1);
+            if (sizeIncrease == 0) sizeIncrease = 1;
+            GameObject shield = Instantiate(shieldPrefab, player.GetComponent<Transform>().localPosition, Quaternion.identity);
+            shield.transform.localScale = initialScale * sizeIncrease;
+            shield.transform.parent = player.transform;
+            break;
         }
     }
 

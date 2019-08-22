@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameplayManager : MonoBehaviour {
     enum storeSource { WIN_MENU, LOST_MENU }
@@ -15,8 +16,10 @@ public class GameplayManager : MonoBehaviour {
     public GameObject movementJoystick;
     public GameObject attackJoystick;
 
-    public bool enableSavingSystem=false;
-    public float bestAttemptPercentage=0;
+    public bool enableSavingSystem = false;
+    public float bestAttemptPercentage = 0;
+    public GameObject bapText;
+
     public int currentLevel;
 
     //Needed References
@@ -134,6 +137,17 @@ public class GameplayManager : MonoBehaviour {
         SavingSystem.SaveProgress(pe, shield, gameManager);
         SceneManager.LoadScene("Gameplay");
         Time.timeScale = 1;
+
+        gameUI.SetActive(true); 
+        pauseMenu.SetActive(false);
+        hackToolMenu.SetActive(true);
+        wonMenu.SetActive(false);
+        lostMenu.SetActive(false);
+        storeMenu.SetActive(false);
+        movementJoystick.SetActive(true);
+        attackJoystick.SetActive(true);
+        debugPanel.SetActive(false);
+        ammoPanel.SetActive(true);
     }
 
     public void Lose() {
@@ -146,6 +160,7 @@ public class GameplayManager : MonoBehaviour {
         float maxEC = gameManager.GetComponent<EnemySpawner>().maxEnemyCount;
         float EC = gameManager.GetComponent<EnemySpawner>().enemyCounter;
         bestAttemptPercentage = ((maxEC - EC) / maxEC) * 100;
+        bapText.GetComponent<TextMeshProUGUI>().text = bestAttemptPercentage.ToString();
         Debug.Log(bestAttemptPercentage);
         bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
         bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
