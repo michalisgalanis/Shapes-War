@@ -11,7 +11,7 @@ public static class SavingSystem {
     private static string path = WINDOWS_PATH;
 
     public static void SaveProgress(PlayerExperience playerExperience, Shield shield, GameObject gameManager) {
-        FileStream stream = new FileStream(path, FileMode.Create);
+        FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
         Data data = new Data(playerExperience, shield, gameManager, gameManager.GetComponent<StoreSystem>());
         BinaryFormatter formatter = new BinaryFormatter();
         formatter.Serialize(stream, data);

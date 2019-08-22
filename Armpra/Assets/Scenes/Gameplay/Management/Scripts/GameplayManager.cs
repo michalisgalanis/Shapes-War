@@ -38,7 +38,7 @@ public class GameplayManager : MonoBehaviour {
     public void CreateReferences() {
         camera = GameObject.FindGameObjectWithTag("MainCamera");
         gameManager = GameObject.FindGameObjectWithTag("GameController");
-        player = FindActualPlayer();
+        player = gameManager.GetComponent<GameplayManager>().FindActualPlayer();
         pe = player.GetComponent<PlayerExperience>();
         ps = player.GetComponent<PlayerStats>();
         ss = gameManager.GetComponent<StoreSystem>();

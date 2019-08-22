@@ -99,7 +99,6 @@ public class PlayerStats : MonoBehaviour {
         currentHealth -= realDamage;
         if (currentHealth <= 0 && !markedForDestruction) {
             markedForDestruction = true;
-            Debug.Log("Marked for destructiooon !" + markedForDestruction);
             playerDeathExplosionParticles = Instantiate(playerDeathExplosionParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
             gm.Lose();
