@@ -133,7 +133,6 @@ public class GameplayManager : MonoBehaviour {
     }
 
     public void Restart() {
-        ShowSelectedLayers();
         SavingSystem.SaveProgress(pe, shield, gameManager);
         SceneManager.LoadScene("Gameplay");
         Time.timeScale = 1;
@@ -148,6 +147,7 @@ public class GameplayManager : MonoBehaviour {
         attackJoystick.SetActive(true);
         debugPanel.SetActive(false);
         ammoPanel.SetActive(true);
+        ShowSelectedLayers();
     }
 
     public void Lose() {
