@@ -41,8 +41,8 @@ public class PlayerStats : MonoBehaviour {
         shockwave.transform.parent = gameObject.transform;
         playerHeads = new List<SpriteRenderer>();
         Transform headSystem = gm.FindActualPlayer().transform.GetChild(0);
-        for (int i = 1; i < headSystem.childCount; i++) {
-            playerHeads.Add(headSystem.GetChild(i).gameObject.GetComponent<SpriteRenderer>());
+        for (int i = 0; i < headSystem.childCount; i++) {
+            playerHeads.Add(headSystem.GetChild(i).GetComponent<SpriteRenderer>());
         }
         RefillStats();
     }
@@ -106,7 +106,6 @@ public class PlayerStats : MonoBehaviour {
         //Debug.Log("In TakeDamage. Current Health: " + currentHealth);
         if (currentHealth <= 0 && !markedForDestruction) {
             markedForDestruction = true;
-            Debug.Log("Marked for destructiooon !" + markedForDestruction);
             playerDeathExplosionParticles = Instantiate(playerDeathExplosionParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
             gm.Lose();

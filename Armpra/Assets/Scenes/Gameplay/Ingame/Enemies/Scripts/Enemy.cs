@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour {
             deathExplosionParticles = Instantiate(deathExplosionParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             GameObject manager = GameObject.FindWithTag("GameController");
-            manager.GetComponent<EnemySpawner>().enemyCounter--;
+            manager.GetComponent<EnemySpawner>().deathCounter++;
             manager.GetComponent<GameplayManager>().FindActualPlayer().GetComponent<PlayerExperience>().addXP(xpOnDeath);
             manager.GetComponent<CoinSystem>().addCoins(coinsOnDeath);
         }

@@ -8,8 +8,9 @@ public static class SavingSystem {
     private static readonly string WINDOWS_PATH = Application.persistentDataPath + FILE_SUFFIX;
     private static readonly string ANDROID_PATH = "/storage/emulated/0/Armpra" + FILE_SUFFIX;
 
-    private static string path= "C:/Users/Stelios/Desktop/progress.stpd";
-    
+    //private static string path= "C:/Users/Stelios/Desktop/progress.stpd";
+    private static string path;
+
     public static void SaveProgress(PlayerExperience playerExperience, Shield shield, GameObject gameManager) {
         FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
         Data data = new Data(playerExperience, shield, gameManager, gameManager.GetComponent<StoreSystem>());

@@ -60,14 +60,16 @@ public class PlayerGenerator : MonoBehaviour {
     private void UpdateVisuals() {
         transform.localScale = new Vector3(size, size, size);
         int[] tempFirepointsEnabled = new int[firepointsEnabled.GetUpperBound(1)];
-        for (int j = 0; j < firepointsEnabled.GetUpperBound(1); j++) //for each type of firepoint
-        {
 
-            if (currentLevel < 1) currentLevel = 1;
-            if (currentLevel <= MAX_VISUAL_CHANGES_LEVEL) {
+        if (currentLevel < 1) currentLevel = 1;
+        else if (currentLevel <= MAX_VISUAL_CHANGES_LEVEL) {
+            for (int j = 0; j < firepointsEnabled.GetUpperBound(1); j++) { //for each type of firepoint
                 tempFirepointsEnabled[j] = firepointsEnabled[currentLevel - 1, j];
                 transform.GetChild(0).GetChild(j).gameObject.SetActive(((tempFirepointsEnabled[j] == 1)));
             }
+        } else {
+            for (int j = 0; j < firepointsEnabled.GetUpperBound(1); j++) //for each type of firepoint
+                tempFirepointsEnabled[j] = firepointsEnabled[MAX_VISUAL_CHANGES_LEVEL, j];
         }
                 
         for (int i = 0; i < stripesEnabled.Length; i++) {

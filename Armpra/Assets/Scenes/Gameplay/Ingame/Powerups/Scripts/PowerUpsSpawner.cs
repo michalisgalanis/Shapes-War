@@ -30,7 +30,7 @@ public class PowerUpsSpawner : MonoBehaviour {
     private void SpawnPowerUp() {
         //Generate Power Up
         Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER), Random.Range(MIN_BORDER, MAX_BORDER), 0);
-        GameObject newEnemy = Instantiate(powerUps[Random.Range(0, powerUps.Length)], temp, Quaternion.identity);
+        GameObject newEnemy = Instantiate(powerUps[0/*Random.Range(0, powerUps.Length)*/], temp, Quaternion.identity);
         newEnemy.transform.parent = transform;
         //Resetting timer
         currentTimer = 0f;

@@ -175,7 +175,7 @@ public class StoreSystem : MonoBehaviour {
         if (cs.canRemoveCoins(int.Parse(text.text))) {
             cs.removeCoins(int.Parse(text.text));
             tempCounter++;
-            tempLevelText.text = "Level: " + tempCounter;
+            tempLevelText.text = "Level " + tempCounter;
         }
         if (tempCounter >= MAX_COUNTER) { //if is maxed out{
             tempButton.interactable = false;

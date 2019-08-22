@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 1237041086}
   - component: {fileID: 1237041087}
   - component: {fileID: 591277591}
-  - component: {fileID: 1546603954}
   - component: {fileID: 2845300236765391730}
   m_Layer: 0
   m_Name: GameManager
@@ -249,29 +248,6 @@ MonoBehaviour:
   powerupEffectLevelText: {fileID: 0}
   powerupDurationLevelText: {fileID: 0}
   powerupSpawnFrequencyLevelText: {fileID: 0}
---- !u!114 &1546603954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8643191348888787484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ceca677a21bc04094dc16c814ef906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapLevelText: {fileID: 0}
-  maxEnemyCountText: {fileID: 0}
-  playerLevelText: {fileID: 0}
-  playerXPText: {fileID: 0}
-  playerXPRemainingText: {fileID: 0}
-  meleeDamageText: {fileID: 0}
-  attackSpeedText: {fileID: 0}
-  maxHealthText: {fileID: 0}
-  damageReductionText: {fileID: 0}
-  movementSpeedText: {fileID: 0}
-  currentHealthText: {fileID: 0}
 --- !u!114 &2845300236765391730
 MonoBehaviour:
   m_ObjectHideFlags: 0
