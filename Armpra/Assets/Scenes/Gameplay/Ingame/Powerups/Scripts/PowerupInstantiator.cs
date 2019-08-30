@@ -1,40 +1,45 @@
 ﻿using UnityEngine;
 
 public class PowerupInstantiator : MonoBehaviour {
-    //Needed References
-    public GameObject shieldPrefab;
+    //References
+    private Referencer rf;
 
-    //Enums & InstantiationTypes
-    public enum InstantiationType { Shield }
-    public InstantiationType typeSelected;
+    //Runtime Variables
+    public Constants.Gameplay.Powerups.instantiatorPowerupTypes typeSelected;
+
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+    }
 
     public void EnableEffect() {
         switch (typeSelected) {
-            case InstantiationType.Shield:
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            Vector3 initialScale = shieldPrefab.transform.localScale;
-            float sizeIncrease = PlayerGenerator.getSizeAtLevel(player.GetComponent<PlayerStats>().playerLevel) / PlayerGenerator.getSizeAtLevel(1);
-            if (sizeIncrease == 0) sizeIncrease = 1;
-            GameObject shield = Instantiate(shieldPrefab, player.GetComponent<Transform>().localPosition, Quaternion.identity);
+            case Constants.Gameplay.Powerups.instantiatorPowerupTypes.SHIELD_POWERUP:
+            Vector3 initialScale = rf.shield.transform.localScale;
+            float sizeIncrease = PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1);
+            if (sizeIncrease == 0) {
+                sizeIncrease = 1;
+            }
+
+            GameObject shield = Instantiate(rf.shield, rf.player.GetComponent<Transform>().localPosition, Quaternion.identity);
             shield.transform.localScale = initialScale * sizeIncrease;
-            shield.transform.parent = player.transform;
+            shield.transform.parent = rf.player.transform;
             break;
         }
     }
 
     public void DisableEffect() {
         switch (typeSelected) {
-            case InstantiationType.Shield:
-                Destroy(GameObject.FindGameObjectWithTag("Shield"));
-                break;
+            case Constants.Gameplay.Powerups.instantiatorPowerupTypes.SHIELD_POWERUP:
+            Destroy(rf.shield);
+            break;
         }
     }
 
     public void ResetEffect() {
         switch (typeSelected) {
-            case InstantiationType.Shield:
-                GameObject.FindGameObjectWithTag("Shield").GetComponent<Shield>().RestoreShieldStats();
-                break;
+            case Constants.Gameplay.Powerups.instantiatorPowerupTypes.SHIELD_POWERUP:
+            rf.shieldScript.RestoreShieldStats();
+            break;
         }
     }
 

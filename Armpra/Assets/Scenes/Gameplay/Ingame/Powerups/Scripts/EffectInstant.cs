@@ -1,41 +1,36 @@
 ﻿using UnityEngine;
 
 public class EffectInstant : MonoBehaviour {
-    //Enums & InstantiationTypes
-    public enum PowerupType { InstantHeal }
-    public PowerupType typeSelected;
+    //References
+    private Referencer rf;
 
-    //Effect Multiplier
-    [HideInInspector]
+    //Runtime Variables
+    public Constants.Gameplay.Powerups.instantPowerupTypes typeSelected;
     public float powerupMultiplier;        //0f is 100% stock + 0%, 1f is 100% stock + 100% total
-    private int effectLevel;
+    private int effectStoreCounter;
 
-    //Needed References
-    private StoreSystem ss;
-    private PlayerStats ps;
-    private GameObject gameManager;
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+    }
 
     public void Start() {
-        gameManager = GameObject.FindGameObjectWithTag("GameController");
-        ps = gameManager.GetComponent<GameplayManager>().FindActualPlayer().GetComponent<PlayerStats>();
-        ss = gameManager.GetComponent<StoreSystem>();
-        effectLevel = ss.powerupEffectCounter;
-        powerupMultiplier = 0.2f + effectLevel / 125f;
+        effectStoreCounter = rf.ss.findStoreItemByType(Constants.Gameplay.Store.storeItem.POWERUP_EFFECT).counter;
+        powerupMultiplier = Constants.Functions.getPowerupEffectMultiplier(effectStoreCounter);
     }
 
     public void EnableEffect() {
         switch (typeSelected) {
-            case PowerupType.InstantHeal:
-                ps.InstantHeal(powerupMultiplier);
-                break;
+            case Constants.Gameplay.Powerups.instantPowerupTypes.INSTANT_HEAL_POWERUP:
+            rf.ps.InstantHeal(powerupMultiplier);
+            break;
         }
-        DisplayEffectStats();
+        //DisplayEffectStats();
         DisableEffect();
     }
 
     public void DisableEffect() {
         powerupMultiplier = 0f;
-        DisplayEffectStats();
+        //DisplayEffectStats();
     }
 
     public void ResetEffect() {

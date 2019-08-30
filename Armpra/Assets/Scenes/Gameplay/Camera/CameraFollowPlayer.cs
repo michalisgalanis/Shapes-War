@@ -1,41 +1,44 @@
 ﻿using UnityEngine;
 
 public class CameraFollowPlayer : MonoBehaviour {
+    //References
+    private Referencer rf;
     private GameObject player;
-    public GameObject background;
 
-
-    private Vector3 desiredPosition;
-    public Vector3 offset;
-    public float smoothSpeed;
-
-    //constants
+    //Constants
     private static float MIN_BORDER;
     private static float MAX_BORDER;
-    private static float HORIZONTAL_CAMERA_OFFSET;
-    private static float VERTICAL_CAMERA_OFFSET;
 
+    //Setup Variables
+    private readonly float smoothSpeed = Constants.Gameplay.Camera.SMOOTH_SPEED;
+
+    //Runtime Variables
+    private Vector3 desiredPosition;
     private float lastPositionX;
     private float lastPositionY;
 
-    public void Start() {
-        player = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().FindActualPlayer();
-        Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+        player = rf.player;
+        Camera cam = rf.camScript;
+        Constants.Gameplay.Camera.HORIZONTAL_CAMERA_OFFSET = cam.orthographicSize * cam.aspect;
+        Constants.Gameplay.Camera.VERTICAL_CAMERA_OFFSET = cam.orthographicSize;
+    }
 
-        SpriteRenderer bgRenderer = background.GetComponent<SpriteRenderer>();
-        MIN_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * (-0.5f);
-        MAX_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * 0.5f;
-        VERTICAL_CAMERA_OFFSET = cam.orthographicSize;
-        HORIZONTAL_CAMERA_OFFSET = cam.orthographicSize * cam.aspect;
+    public void Start() {
+        MIN_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * (-0.5f);
+        MAX_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * 0.5f;
     }
 
     private void FixedUpdate() {
         if (player != null) {
-            if (followX())
+            if (followX()) {
                 lastPositionX = player.transform.position.x;
+            }
 
-            if (followY())
+            if (followY()) {
                 lastPositionY = player.transform.position.y;
+            }
 
             desiredPosition = new Vector3(lastPositionX, lastPositionY, -10);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.fixedDeltaTime);
@@ -43,11 +46,11 @@ public class CameraFollowPlayer : MonoBehaviour {
         }
     }
 
-    private bool followX(){
-        return (player.transform.position.x + HORIZONTAL_CAMERA_OFFSET <= MAX_BORDER) && (player.transform.position.x - HORIZONTAL_CAMERA_OFFSET >= MIN_BORDER);
+    private bool followX() {
+        return (player.transform.position.x + Constants.Gameplay.Camera.HORIZONTAL_CAMERA_OFFSET <= MAX_BORDER) && (player.transform.position.x - Constants.Gameplay.Camera.HORIZONTAL_CAMERA_OFFSET >= MIN_BORDER);
     }
 
     private bool followY() {
-        return (player.transform.position.y + VERTICAL_CAMERA_OFFSET <= MAX_BORDER) && (player.transform.position.y - VERTICAL_CAMERA_OFFSET >= MIN_BORDER);
+        return (player.transform.position.y + Constants.Gameplay.Camera.VERTICAL_CAMERA_OFFSET <= MAX_BORDER) && (player.transform.position.y - Constants.Gameplay.Camera.VERTICAL_CAMERA_OFFSET >= MIN_BORDER);
     }
 }

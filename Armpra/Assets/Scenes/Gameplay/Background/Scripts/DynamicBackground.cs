@@ -1,71 +1,50 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DynamicBackground : MonoBehaviour {
-    public GameObject[] shapesPrefabs;
-    private List<GameObject> shapes;
+    //References
+    private Referencer rf;
 
-    public int numberOfShapes;
-    public float sizeRange;
-
-    //private int i;
+    //Constants
     private int shapesCounter;
     private float currentTimer;
-    private readonly float spawnTimer = 0.01f;
+    private const float spawnTimer = Constants.Timers.SHAPE_SPAWN_TIMER;
+    private static float MIN_BORDER;
+    private static float MAX_BORDER;
 
-    //constants
-    private static float MIN_BORDER = -19f;
-    private static float MAX_BORDER = 19f;
-
-    //private GameObject[] players;
-    private PlayerGenerator playerGenerator;
-
-    public void Start() {
+    void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
         SpriteRenderer bgRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        MIN_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * (-0.5f);
-        MAX_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * 0.5f;
-        /*players = GameObject.FindGameObjectsWithTag("Player");
-        int i = 0;
-        while (players[i].GetComponent<PlayerGenerator>() == null)
-            i++;*/
-        playerGenerator = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().FindActualPlayer().GetComponent<PlayerGenerator>();
-        shapes = new List<GameObject>();
-        foreach (GameObject shape in shapesPrefabs) {
-            shapes.Add(shape);
-        }
+        Constants.Gameplay.Background.MAP_HEIGHT = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit);
+        Constants.Gameplay.Background.MAP_WIDTH = (bgRenderer.sprite.texture.width / bgRenderer.sprite.pixelsPerUnit);
+    }
 
+    void Start() {
+        MIN_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * (-0.5f);
+        MAX_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * 0.5f;
         ChangeBackgroundColor();
         currentTimer = spawnTimer;
         shapesCounter = 0;
-
-        //Ignore Collision
-        Physics2D.IgnoreLayerCollision(8, 5);
-        Physics2D.IgnoreLayerCollision(8, 8);
-        Physics2D.IgnoreLayerCollision(8, 9);
-        Physics2D.IgnoreLayerCollision(8, 12);
-        Physics2D.IgnoreLayerCollision(8, 13);
-        Physics2D.IgnoreLayerCollision(8, 14);
     }
 
-    public void Update() {
+    void Update() {
         currentTimer += Time.deltaTime;
-        if (currentTimer >= spawnTimer && shapesCounter < numberOfShapes) {
+        if (currentTimer >= spawnTimer && shapesCounter < Constants.Gameplay.Background.SHAPES_AMOUNT) {
             //Selecting shape
-            int shapeType = Random.Range(0, shapes.ToArray().Length);
-            GameObject shape = shapes[shapeType];
+            int shapeType = Random.Range(0, rf.backgroundShapes.Length);
+            GameObject shape = rf.backgroundShapes[shapeType];
             //Generating Shape
             Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER), Random.Range(MIN_BORDER, MAX_BORDER), 0);
-            GameObject newShape = Instantiate(shape, temp, Quaternion.identity);
-            newShape.transform.parent = transform;
+            GameObject newShape = Instantiate(shape, temp, Quaternion.identity) as GameObject;
+            newShape.transform.parent = rf.spawnedShapes.transform;
             //Customizing Color
             SpriteRenderer sr = shape.GetComponent<SpriteRenderer>();
-            float h = Random.Range(0f, 360f) / 360f, s = 0.75f, v = 0.6f, a = 0.3f;
+            float h = Random.Range(0f, 360f) / 360f, s = Random.Range(0.5f, 0.8f), v = Random.Range(0.5f, 0.7f), a = Random.Range(0.1f, 0.3f);
             float r = Color.HSVToRGB(h, s, v).r;
             float g = Color.HSVToRGB(h, s, v).g;
             float b = Color.HSVToRGB(h, s, v).b;
             sr.color = new Color(r, g, b, a);
             //Customizing Size
-            float scaleRandom = Random.Range(0.4f, 0.4f + sizeRange);
+            float scaleRandom = Random.Range(0.4f, 0.4f + Constants.Gameplay.Background.SHAPES_SIZE_VAR);
             newShape.transform.localScale = new Vector3(scaleRandom, scaleRandom, 0);
             //Customiziing Rotation
             float rotationRandom = Random.Range(0f, 360f);
@@ -80,7 +59,6 @@ public class DynamicBackground : MonoBehaviour {
         SpriteRenderer sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         float hRand = Random.Range(0f, 1f), sRand = 1f, vRandBG = 0.1f, vRandDE = 0.7f;
         sr.color = Color.HSVToRGB(hRand, sRand, vRandBG);
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        playerGenerator.UpdateStripeVisuals(Color.HSVToRGB(hRand, sRand, vRandDE));
+        rf.pg.UpdateStripeVisuals(Color.HSVToRGB(hRand, sRand, vRandDE));
     }
 }

@@ -2,27 +2,40 @@
 using UnityEngine;
 
 public class Weapon : MonoBehaviour {
-    public float shootingTime;
-    private float currentTimer;
-    private GameObject bulletPrefab;        //input
-    private List<Transform> firepoints;
+    //References
+    private Referencer rf;
+
+    //Setup Stats
+    [HideInInspector] public float shootingTime;
     private bool playerFires;
-    public float range;
+
+    //Runtime Variables
+    private List<Transform> firepoints;
+    private GameObject activeBullet;
     private GameObject target;
-    private AmmoSystem asys;    //input
+    private float currentTimer;
+    public float range;
+
+
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+        firepoints = new List<Transform>();
+    }
 
     public void Start() {
-        playerFires = gameObject.CompareTag("Player");
-        firepoints = new List<Transform>();
-        if (!playerFires) target = GameObject.FindGameObjectWithTag("Player");
-        asys = GameObject.FindGameObjectWithTag("GameController").GetComponent<AmmoSystem>();
+        playerFires = gameObject.CompareTag(Constants.Tags.PLAYER_TAG);
+        if (!playerFires) {
+            target = rf.player;
+        }
         SetupFirepoints();
     }
 
     public void Update() {
-        bulletPrefab = asys.currentActiveBullet.gameObject;
+        activeBullet = rf.asy.currentActiveBullet.gameObject;
         currentTimer += Time.deltaTime;
-        if (currentTimer >= shootingTime) Shoot();
+        if (currentTimer >= shootingTime) {
+            Shoot();
+        }
     }
 
     public void SetupFirepoints() {
@@ -32,7 +45,9 @@ public class Weapon : MonoBehaviour {
             for (int i = 0; i < headSystem.childCount; i++) {
                 if (headSystem.GetChild(i).gameObject.activeInHierarchy) {
                     Transform fp = headSystem.GetChild(i).GetChild(0);
-                    if (fp) firepoints.Add(fp);
+                    if (fp) {
+                        firepoints.Add(fp);
+                    }
                 }
             }
         }
@@ -40,11 +55,15 @@ public class Weapon : MonoBehaviour {
 
     private void Shoot() {
         foreach (Transform firepoint in firepoints) {
-            if (asys.ConsumeAmmo()) {
-                GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+            if (rf.asy.ConsumeAmmo()) {
+                GameObject bullet = Instantiate(activeBullet, firepoint.position, firepoint.rotation);
+                bullet.transform.parent = rf.spawnedProjectiles.transform;
                 bullet.GetComponent<Bullet>().playerFired = playerFires;
                 currentTimer = 0;
-            } else Update();
+            } else {
+                rf.asy.NextInCycle();
+                activeBullet = rf.asy.currentActiveBullet.gameObject;
+            }
         }
     }
 }

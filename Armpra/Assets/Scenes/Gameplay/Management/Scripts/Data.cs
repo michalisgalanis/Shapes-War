@@ -2,45 +2,28 @@
 
 [System.Serializable]
 public class Data {
-    //General Info
-    public int currentLevel;
+    //References
+    private Referencer rf;
+
+    //Variables to Store
+    public int mapLevel;
     public float bestAttemptPercentage;
-    //Player Data
     public int playerLevel;
     public double currentPlayerXP;
     public int currentCoins;
+    public int[] storeUpgradesCounters;
 
-	//Store Upgrades
-	public int attackSpeedUpgradeCounter;
-	public int bulletEffectUpgradeCounter;
-	public int bulletSpeedUpgradeCounter;
-	public int damageReductionUpgradeCounter;
-	public int maxHealthUpgradeCounter;
-	public int meleeDamageUpgradeCounter;
-	public int movementSpeedUpgradeCounter;
-	public int powerupDurationCounter;
-	public int powerupEffectCounter;
-	public int powerupSpawnFrequencyCounter;
+    public Data() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
 
-public Data(PlayerExperience playerExperience, Shield shield, GameObject gameManager, StoreSystem storeSystem) {
-        //General variables
-        currentLevel = gameManager.GetComponent<LevelGeneration>().currentLevel;
-        bestAttemptPercentage = gameManager.GetComponent<GameplayManager>().bestAttemptPercentage;
-        //Player variables
-        playerLevel = playerExperience.playerLevel;
-        currentPlayerXP = playerExperience.currentPlayerXP;
-        currentCoins = gameManager.GetComponent<CoinSystem>().currentCoins;
-
-        //Store
-        attackSpeedUpgradeCounter = storeSystem.attackSpeedUpgradeCounter;
-		bulletEffectUpgradeCounter = storeSystem.bulletEffectUpgradeCounter;
-		bulletSpeedUpgradeCounter = storeSystem.bulletSpeedUpgradeCounter;
-		damageReductionUpgradeCounter = storeSystem.damageReductionUpgradeCounter;
-		maxHealthUpgradeCounter = storeSystem.maxHealthUpgradeCounter;
-		meleeDamageUpgradeCounter = storeSystem.meleeDamageUpgradeCounter;
-		movementSpeedUpgradeCounter = storeSystem.movementSpeedUpgradeCounter;
-		powerupDurationCounter = storeSystem.powerupDurationCounter;
-		powerupEffectCounter = storeSystem.powerupEffectCounter;
-		powerupSpawnFrequencyCounter = storeSystem.powerupSpawnFrequencyCounter;
+        //Variables to Store
+        playerLevel = RuntimeSpecs.playerLevel;
+        currentPlayerXP = RuntimeSpecs.currentPlayerXP;
+        mapLevel = RuntimeSpecs.mapLevel;
+        currentCoins = RuntimeSpecs.currentCoins;
+        bestAttemptPercentage = RuntimeSpecs.bap;
+        for (int i = 0; i < rf.ss.upgrades.Length; i++) {
+            storeUpgradesCounters[i] = rf.ss.upgrades[i].counter;
+        }
     }
 }

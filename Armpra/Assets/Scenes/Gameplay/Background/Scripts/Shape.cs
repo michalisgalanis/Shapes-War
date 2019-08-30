@@ -1,34 +1,36 @@
 ﻿using UnityEngine;
 
 public class Shape : MonoBehaviour {
+    //References
     private Rigidbody2D rb;
-    private Transform tf;
+    private SpriteRenderer sr;
+
+    //Setup Variables
+    private const float positionSpeedFactor = Constants.Gameplay.Background.SHAPES_POSITION_SPEED_FACTOR;
+    private const float rotationSpeedFactor = Constants.Gameplay.Background.SHAPES_ROTATION_SPEED_FACTOR;
 
     //Position Variables
-    public float positionSpeedFactor;
     private Vector2 positionDirection;
     private Vector2 positionValue;
-    private float positionRandX;
-    private float positionRandY;
     //Rotation Variables
-    public float rotationSpeedFactor;
     private Vector2 rotationDirection;
     private float rotationValue;
-    private float rotationRandX;
-    private float rotationRandY;
+
+    public void Awake() {
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+    }
 
     public void Start() {
-        //Components
-        rb = GetComponent<Rigidbody2D>();
-        tf = GetComponent<Transform>();
-        //Position
-        positionRandX = Random.Range(-1f, 1f);
-        positionRandY = Random.Range(-1f, 1f);
-        positionDirection = new Vector2(positionRandX, positionRandY);
-        //Rotation
-        rotationRandX = Random.Range(-1f, 1f);
-        rotationRandY = Random.Range(-1f, 1f);
-        rotationDirection = new Vector2(rotationRandX, rotationRandY);
+        sr.sortingOrder = Random.Range(-1, 1);
+        transform.Rotate(0, 0, 0);
+        GenerateRandomStats();
+    }
+
+    private void OnTriggerStay2D(Collider2D hitInfo) {
+        if (hitInfo.CompareTag(Constants.Tags.MAP_BOUNDS_TAG)) {
+            GenerateRandomStats();
+        }
     }
 
     private void Update() {
@@ -38,6 +40,17 @@ public class Shape : MonoBehaviour {
 
     private void FixedUpdate() {
         rb.MovePosition(positionValue);
-        tf.Rotate(0, 0, rotationValue);
+        transform.Rotate(0, 0, rotationValue);
+    }
+
+    private void GenerateRandomStats() {
+        //Position
+        float positionRandX = Random.Range(-1f, 1f);
+        float positionRandY = Random.Range(-1f, 1f);
+        positionDirection = new Vector2(positionRandX, positionRandY);
+        //Rotation
+        float rotationRandX = Random.Range(-1f, 1f);
+        float rotationRandY = Random.Range(-1f, 1f);
+        rotationDirection = new Vector2(rotationRandX, rotationRandY);
     }
 }

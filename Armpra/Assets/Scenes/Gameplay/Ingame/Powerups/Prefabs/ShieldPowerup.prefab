@@ -4855,7 +4855,7 @@ GameObject:
   - component: {fileID: 7871417985146667365}
   m_Layer: 15
   m_Name: ShieldPowerup
-  m_TagString: Untagged
+  m_TagString: Powerups
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4930,8 +4930,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7f5b76f9ff9a14089563611daa45e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldPrefab: {fileID: 7923466100961731369, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f,
-    type: 3}
   typeSelected: 0
 --- !u!1 &8653061550526393393
 GameObject:

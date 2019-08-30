@@ -1,22 +1,27 @@
 ﻿using UnityEngine;
 
 public class PowerUpsSpawner : MonoBehaviour {
+    //References
+    private Referencer rf;
+
+    //Runtime Variables
     private float spawnTimer;
-    private int spawnTimerLevel;
     private float currentTimer;
+    private int spawnTimerStoreCounter;
 
-    //Needed References
-    private StoreSystem ss;
-    public GameObject[] powerUps;
+    //Constants
+    private static float MIN_BORDER;
+    private static float MAX_BORDER;
 
-    //Other Variables
-    private const float MIN_BORDER = -19;
-    private const float MAX_BORDER = 19;
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+    }
 
     public void Start() {
-        ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
-        spawnTimerLevel = ss.powerupSpawnFrequencyCounter;
-        spawnTimer = 30f - 0.25f * spawnTimerLevel;
+        MIN_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * (-0.5f);
+        MAX_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * 0.5f;
+        spawnTimerStoreCounter = rf.ss.findStoreItemByType(Constants.Gameplay.Store.storeItem.POWERUP_SPAWN_FREQUENCY).counter;
+        spawnTimer = Constants.Functions.getPowerupSpawnTimer(spawnTimerStoreCounter);
         currentTimer = spawnTimer;
     }
 
@@ -28,9 +33,9 @@ public class PowerUpsSpawner : MonoBehaviour {
     }
 
     private void SpawnPowerUp() {
-        //Generate Power Up
+        //Generating Powerup
         Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER), Random.Range(MIN_BORDER, MAX_BORDER), 0);
-        GameObject newEnemy = Instantiate(powerUps[0/*Random.Range(0, powerUps.Length)*/], temp, Quaternion.identity);
+        GameObject newEnemy = Instantiate(rf.powerupTypes[Random.Range(0, rf.powerupTypes.Length)], temp, Quaternion.identity);
         newEnemy.transform.parent = transform;
         //Resetting timer
         currentTimer = 0f;

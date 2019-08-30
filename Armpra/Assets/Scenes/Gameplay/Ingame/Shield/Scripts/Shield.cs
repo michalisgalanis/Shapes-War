@@ -1,35 +1,35 @@
 ﻿using UnityEngine;
 
 public class Shield : MonoBehaviour {
-    //Shield Stats
-    public float maxShieldHealth;
-    public float shieldDamage;
-
-    //Dynamic Stats
-    public float currentHealth;
-    private bool markedForDestroy;
-
-    //Essential References
+    //References
+    private Referencer rf;
     private SpriteRenderer outerShield;
     private SpriteRenderer innerShield;
     private ParticleSystem movingTrails;
     private ParticleSystem localTrails;
-    public GameObject shieldShockwavePrefab;
-    public ParticleSystem shieldDestroyExplosionParticlesPrefab;
 
-    public void Start() {
-        outerShield = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(0).GetComponent<SpriteRenderer>();
-        innerShield = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(1).GetComponent<SpriteRenderer>();
-        movingTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(2).GetComponent<ParticleSystem>();
-        localTrails = GameObject.FindGameObjectWithTag("Shield").transform.GetChild(3).GetComponent<ParticleSystem>();
-        currentHealth = maxShieldHealth;
+    //Setup Stats
+    [Header("Setup Stats")]
+    public float maxShieldHealth;
+    public float shieldDamage;
 
-        Physics2D.IgnoreLayerCollision(8, 9);
-        Physics2D.IgnoreLayerCollision(9, 14);
-        markedForDestroy = false;
+    //Runtime Variables
+    private float currentHealth;
+    private bool markedForDestroy = false;
+
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+        outerShield = rf.shield.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        innerShield = rf.shield.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        movingTrails = rf.shield.transform.GetChild(2).GetComponent<ParticleSystem>();
+        localTrails = rf.shield.transform.GetChild(3).GetComponent<ParticleSystem>();
     }
 
-    public void Update() {
+    public void Start() {
+        RestoreShieldStats();
+    }
+
+    public void FixedUpdate() {
         if (outerShield && innerShield) {
             float h = (currentHealth / maxShieldHealth) / 3.6f;
             float outerS = 1f, outerV = 1f, outerA = 0.7f;
@@ -56,14 +56,14 @@ public class Shield : MonoBehaviour {
         if (currentHealth <= 0 && !markedForDestroy) {
             markedForDestroy = true;
             //Instantiate(shieldShockwavePrefab, transform.localPosition, Quaternion.identity);
-            Instantiate(shieldDestroyExplosionParticlesPrefab, transform.position, Quaternion.identity);
+            ParticleSystem explosion = Instantiate(rf.shieldDestroyExplosionParticles, transform.position, Quaternion.identity);
+            explosion.transform.parent = rf.spawnedParticles.transform;
             Destroy(gameObject);
-            markedForDestroy = false;
         }
     }
 
     private void OnTriggerStay2D(Collider2D hitInfo) {
-        if (hitInfo.CompareTag("Enemy")) {
+        if (hitInfo.CompareTag(Constants.Tags.ENEMY_TAG)) {
             Enemy enemy = hitInfo.GetComponent<Enemy>();
             if (enemy != null) {
                 enemy.TakeDamage(shieldDamage);

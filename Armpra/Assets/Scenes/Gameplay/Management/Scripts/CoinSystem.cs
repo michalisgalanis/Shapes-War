@@ -2,28 +2,28 @@
 using UnityEngine;
 
 public class CoinSystem : MonoBehaviour {
-    public GameObject[] coinsText;
-    public int currentCoins=0;
+    //References
+    private Referencer rf;
 
-    /*    private void Start() {
-            currentCoins = 0;
-        }*/
+    public void Awake() {
+        rf = GetComponent<Referencer>();
+    }
 
-    public void Update() {
-        for (int i = 0; i < coinsText.Length; i++) {
-            coinsText[i].GetComponent<TextMeshProUGUI>().text = currentCoins.ToString();
+    public void FixedUpdate() {
+        for (int i = 0; i < rf.coinTexts.Length; i++) {
+            rf.coinTexts[i].GetComponent<TextMeshProUGUI>().text = RuntimeSpecs.currentCoins.ToString();
         }
     }
 
     public void addCoins(int coins) {
-        currentCoins += coins;
+        RuntimeSpecs.currentCoins += coins;
     }
 
-    public void removeCoins(int coins) {
-        currentCoins -= coins;
+    public void spendCoins(int coins) {
+        RuntimeSpecs.currentCoins -= coins;
     }
 
-    public bool canRemoveCoins(int coins) {
-        return currentCoins >= coins;
+    public bool canSpendCoins(int coins) {
+        return RuntimeSpecs.currentCoins >= coins;
     }
 }

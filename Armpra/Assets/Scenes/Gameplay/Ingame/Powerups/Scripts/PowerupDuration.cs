@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 
 public class PowerupDuration : MonoBehaviour {
+    //References
+    private Referencer rf;
+
     //Class Variables
     private float powerupDuration;
     private float timeLeft;
+    private int effectDurationStoreCounter;
     private bool isActive = false;
-    private int durationLevel;
 
-    //Needed References
-    private StoreSystem ss;
-
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+    }
     public void Start() {
-        ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
-        durationLevel = ss.powerupDurationCounter;
-        powerupDuration = 5f + 0.1f * durationLevel;
+        effectDurationStoreCounter = rf.ss.findStoreItemByType(Constants.Gameplay.Store.storeItem.POWERUP_DURATION).counter;
+        powerupDuration = Constants.Functions.getPowerupDuration(effectDurationStoreCounter);
     }
 
     //Running Timer
@@ -35,9 +37,7 @@ public class PowerupDuration : MonoBehaviour {
         } else {
             SendMessage("ResetEffect");
         }
-
         isActive = true;
         timeLeft = powerupDuration;
     }
-
 }

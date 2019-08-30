@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1237041087}
   - component: {fileID: 591277591}
   - component: {fileID: 2845300236765391730}
+  - component: {fileID: 1038768626180292039}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -51,37 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f877e9725c222644d80271af0d775110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  lostMenu: {fileID: 0}
-  wonMenu: {fileID: 0}
-  storeMenu: {fileID: 0}
-  hackToolMenu: {fileID: 0}
-  debugPanel: {fileID: 0}
-  ammoPanel: {fileID: 0}
-  movementJoystick: {fileID: 0}
-  attackJoystick: {fileID: 0}
-  enableSavingSystem: 0
-  bestAttemptPercentage: 0
-  currentLevel: 0
-  shield: {fileID: -358526174379180828, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f, type: 3}
-  background: {fileID: 0}
-  loadedData:
-    currentLevel: 0
-    bestAttemptPercentage: 0
-    playerLevel: 0
-    currentPlayerXP: 0
-    currentCoins: 0
-    attackSpeedUpgradeCounter: 0
-    bulletEffectUpgradeCounter: 0
-    bulletSpeedUpgradeCounter: 0
-    damageReductionUpgradeCounter: 0
-    maxHealthUpgradeCounter: 0
-    meleeDamageUpgradeCounter: 0
-    movementSpeedUpgradeCounter: 0
-    powerupDurationCounter: 0
-    powerupEffectCounter: 0
-    powerupSpawnFrequencyCounter: 0
+  enableSavingSystem: 1
 --- !u!114 &8643191348888787553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,17 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae98432cbe081469642a83866cd9e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 6045932645883520105, guid: 919d40c11ddd8ba47b139b05da2f6095, type: 3}
-  - {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c, type: 3}
-  - {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c, type: 3}
-  - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
-  enemiesRemainingText: {fileID: 0}
-  background: {fileID: 0}
-  lg: {fileID: 1237041087}
-  spawnTimer: 0.2
-  enemyCounter: 0
+  enemiesKilled: 0
   maxEnemyCount: 10
+  bap: 0
 --- !u!114 &8643191348888787486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,13 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948143e24df5ae445882d639d4135dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinsText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  currentCoins: 0
 --- !u!114 &1237041086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,13 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a8fe3748be7ee44a936e82d3c883bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUps:
-  - {fileID: 8653061549976029955, guid: 8cacc47ff8cbc6843ac276719ac82242, type: 3}
-  - {fileID: 895830065856883668, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c, type: 3}
-  - {fileID: 3396940085168429807, guid: 7dd788bebb2efd446b6fbd75e5b9fbca, type: 3}
-  - {fileID: 5488035428199748708, guid: 15ce86f007041594fbcb3c9c6d9a0cd0, type: 3}
-  - {fileID: 4376832576236916223, guid: 8e7024e22bb855a40bc857a45a51c271, type: 3}
-  - {fileID: 3846954032451277862, guid: da9d7329f268e4a40959a4b11f531491, type: 3}
 --- !u!114 &1237041087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,13 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed076585cdad3d4caf88b432c09cb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 1
   enemyCount: 5
-  enemyTypes:
-  - {fileID: 6045932645883520105, guid: 919d40c11ddd8ba47b139b05da2f6095, type: 3}
-  - {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c, type: 3}
-  - {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c, type: 3}
-  - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
 --- !u!114 &591277591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,46 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7410dcdb4c5a04886b4a07dbbcfd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeDamageUpgradeCounter: 0
-  attackSpeedUpgradeCounter: 0
-  maxHealthUpgradeCounter: 0
-  damageReductionUpgradeCounter: 0
-  movementSpeedUpgradeCounter: 0
-  meleeDamageUpgradeButton: {fileID: 0}
-  attackSpeedUpgradeButton: {fileID: 0}
-  maxHealthUpgradeButton: {fileID: 0}
-  damageReductionUpgradeButton: {fileID: 0}
-  movementSpeedUpgradeButton: {fileID: 0}
-  meleeDamageLevelText: {fileID: 0}
-  attackSpeedLevelText: {fileID: 0}
-  maxHealthLevelText: {fileID: 0}
-  damageReductionLevelText: {fileID: 0}
-  movementSpeedLevelText: {fileID: 0}
-  normalBulletAmmo: 999999
-  highVelocityBulletAmmo: 0
-  explosiveBulletAmmo: 0
-  poisonousBulletAmmo: 0
-  bulletSpeedUpgradeCounter: 1
-  bulletEffectUpgradeCounter: 1
-  highVelocityAmmoButton: {fileID: 0}
-  explosiveAmmoButton: {fileID: 0}
-  poisonousAmmoButton: {fileID: 0}
-  bulletSpeedUpgradeButton: {fileID: 0}
-  bulletEffectUpgradeButton: {fileID: 0}
-  highVelocityAmmoText: {fileID: 0}
-  explosiveAmmoText: {fileID: 0}
-  poisonousAmmoText: {fileID: 0}
-  bulletSpeedLevelText: {fileID: 0}
-  bulletEffectLevelText: {fileID: 0}
-  powerupEffectCounter: 1
-  powerupDurationCounter: 1
-  powerupSpawnFrequencyCounter: 1
-  powerupEffectButton: {fileID: 0}
-  powerupDurationButton: {fileID: 0}
-  powerupSpawnFrequencyButton: {fileID: 0}
-  powerupEffectLevelText: {fileID: 0}
-  powerupDurationLevelText: {fileID: 0}
-  powerupSpawnFrequencyLevelText: {fileID: 0}
 --- !u!114 &2845300236765391730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,15 +163,140 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51007dcd841dd84d97ef067c218e7f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletButtons:
+  enabledButtons: []
+  currentActiveBullet: {fileID: 0}
+--- !u!114 &1038768626180292039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643191348888787484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9852232c3bff94c8319a5ce0f01a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  camScript: {fileID: 0}
+  background: {fileID: 0}
+  backgroundShapes:
+  - {fileID: 1450495750344213492, guid: 5fb5f88eb63cc41408dc654e9cb16759, type: 3}
+  - {fileID: 5564042477769656160, guid: f6530453415b3b644a751c51dd3a2235, type: 3}
+  backgroundScript: {fileID: 0}
+  backLayer: {fileID: 0}
+  backgroundParticles: {fileID: 0}
+  scoreCoinsUI: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
+  winMenuUI: {fileID: 0}
+  lostMenuUI: {fileID: 0}
+  storeMenuUI: {fileID: 0}
+  debugPanelUI: {fileID: 0}
+  hackPanelUI: {fileID: 0}
+  ammoPanelUI: {fileID: 0}
+  ammoBulletButtons:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  progressBar: {fileID: 0}
+  movementJoystickUI: {fileID: 0}
+  attackJoystickUI: {fileID: 0}
+  movementJoystickUIInnerCircle: {fileID: 0}
+  attackJoystickUIInnerCircle: {fileID: 0}
+  coinTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  levelTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  xpTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  bapText: {fileID: 0}
+  enemiesRemainingText: {fileID: 0}
+  storeUpgradeButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  storeLevelTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  player: {fileID: 0}
+  gameManager: {fileID: 8643191348888787484}
+  shield: {fileID: 7923466100961731369, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f, type: 3}
+  enemyTypes:
+  - {fileID: 6045932645883520105, guid: 919d40c11ddd8ba47b139b05da2f6095, type: 3}
+  - {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c, type: 3}
+  - {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c, type: 3}
+  - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
   bulletTypes:
   - {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67, type: 3}
   - {fileID: 9132529803182020237, guid: 18a0703337a957a40bdeadb29d9b4edb, type: 3}
   - {fileID: 8377685596300739873, guid: b24dc05f879ead54696ceadda390d687, type: 3}
   - {fileID: 4793066458393339791, guid: 013c357fc712f9c4383ccb395755274a, type: 3}
-  enabledButtons: []
-  currentActiveBullet: {fileID: 0}
+  powerupTypes:
+  - {fileID: 3396940085168429807, guid: 7dd788bebb2efd446b6fbd75e5b9fbca, type: 3}
+  - {fileID: 4376832576236916223, guid: 8e7024e22bb855a40bc857a45a51c271, type: 3}
+  - {fileID: 3846954032451277862, guid: da9d7329f268e4a40959a4b11f531491, type: 3}
+  - {fileID: 9199731685675298012, guid: c588000ee988e474cadda841f6a93776, type: 3}
+  - {fileID: 5488035428199748708, guid: 15ce86f007041594fbcb3c9c6d9a0cd0, type: 3}
+  - {fileID: 8653061549976029955, guid: 8cacc47ff8cbc6843ac276719ac82242, type: 3}
+  - {fileID: 895830065856883668, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c, type: 3}
+  spawnedShapes: {fileID: 0}
+  spawnedEnemies: {fileID: 0}
+  spawnedProjectiles: {fileID: 0}
+  spawnedParticles: {fileID: 0}
+  ps: {fileID: 0}
+  pg: {fileID: 0}
+  pm: {fileID: 0}
+  pe: {fileID: 0}
+  wp: {fileID: 0}
+  ss: {fileID: 0}
+  es: {fileID: 0}
+  gm: {fileID: 0}
+  cs: {fileID: 0}
+  lg: {fileID: 0}
+  asy: {fileID: 0}
+  shieldScript: {fileID: 0}
+  hitExplosionParticles: {fileID: 2720002162805827168, guid: 1fa619fc97f3a00409100fba5bed68cb,
+    type: 3}
+  enemyDeathExplosionParticles: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
+    type: 3}
+  playerDeathExplosionParticles: {fileID: 5998843538783815061, guid: a83a4aebe6bad794e88c4364f7c2f361,
+    type: 3}
+  shieldDestroyExplosionParticles: {fileID: 1766086259938547595, guid: ed15474e90ebcc644823c32fd23a4a0b,
+    type: 3}
+  levelUpParticles: {fileID: 5529174717530985782, guid: 014125df8a991f74b8fa1d990307f040,
+    type: 3}
+  shockwave: {fileID: 5261163578460684603, guid: d6703ea4eba38c04d927a158feb5e6cd,
+    type: 3}

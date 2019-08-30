@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
 
 public class PowerupColliderTrigger : MonoBehaviour {
-    public void Start() {
-        Physics2D.IgnoreLayerCollision(12, 15);
-    }
-
     private void OnTriggerEnter2D(Collider2D hitInfo) {
-        if (hitInfo.CompareTag("Player")) //The player gets the powerup
+        if (hitInfo.CompareTag(Constants.Tags.PLAYER_TAG)) //The player gets the powerup
         {
             bool hasDuration = (GetComponent<PowerupDuration>() != null);
             if (hasDuration) {

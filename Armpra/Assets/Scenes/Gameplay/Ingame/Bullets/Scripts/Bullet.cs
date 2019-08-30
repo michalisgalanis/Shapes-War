@@ -1,70 +1,67 @@
 ﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour {
-    public ParticleSystem hitExplosionParticlesPrefab;
-    private ParticleSystem hitExplosionParticles;
+    //References
+    private Referencer rf;
     private BulletSpecs bs;
+    private Rigidbody2D rb;
 
-    private float maxSpeed;
-    private float acceleration;
-    private float currentSpeed;
-    public Rigidbody2D rb;
-    private int damage;
+    //Setup Variables
+    [Header("Setup")]
     public bool playerFired;
 
-    public void Start() {
+    //Runtime Variables
+    private float currentSpeed = 0f;
+
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
         bs = GetComponent<BulletSpecs>();
-        maxSpeed = bs.maxSpeed;
-        acceleration = bs.acceleration;
-        damage = bs.damage;
-        Physics2D.IgnoreLayerCollision(10, 8); //Ignore Collisions with bg particles
-        currentSpeed = 0;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Update() {
-        currentSpeed += acceleration;
-        if (currentSpeed > maxSpeed) {
-            currentSpeed = maxSpeed;
+        currentSpeed += bs.acceleration;
+        if (currentSpeed > bs.maxSpeed) {
+            currentSpeed = bs.maxSpeed;
         }
-
         rb.velocity = transform.up * currentSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D hitInfo) {
         if (playerFired) {
-            if (hitInfo.CompareTag("Enemy")) {
+            if (hitInfo.CompareTag(Constants.Tags.ENEMY_TAG)) {
                 Enemy enemy = hitInfo.GetComponent<Enemy>();
                 if (enemy != null) {
-                    hitExplosionParticles = Instantiate(hitExplosionParticlesPrefab, transform.position, Quaternion.identity);
-                    enemy.TakeDamage(damage);
+                    Instantiate(rf.hitExplosionParticles, transform.position, Quaternion.identity).transform.parent = rf.spawnedParticles.transform;
+                    enemy.TakeDamage(bs.damage);
                 }
                 Destroy(gameObject);
-            } else if (hitInfo.CompareTag("Shield")) {
+            } else if (hitInfo.CompareTag(Constants.Tags.SHIELD_TAG)) {
                 Shield shield = hitInfo.GetComponent<Shield>();
                 if (shield != null) {
                     Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), hitInfo);
                 }
             }
         } else {
-            if (hitInfo.CompareTag("Shield")) {
+            if (hitInfo.CompareTag(Constants.Tags.SHIELD_TAG)) {
                 Shield shield = hitInfo.GetComponent<Shield>();
                 if (shield != null) {
-                    hitExplosionParticles = Instantiate(hitExplosionParticlesPrefab, transform.position, Quaternion.identity);
-                    shield.TakeDamage(damage);
+                    Instantiate(rf.hitExplosionParticles, transform.position, Quaternion.identity).transform.parent = rf.spawnedParticles.transform; ;
+                    shield.TakeDamage(bs.damage);
                 }
                 Destroy(gameObject);
-            } else if (hitInfo.CompareTag("Player")) {
+            } else if (hitInfo.CompareTag(Constants.Tags.PLAYER_TAG)) {
                 PlayerStats player = hitInfo.GetComponent<PlayerStats>();
                 if (player != null) {
-                    hitExplosionParticles = Instantiate(hitExplosionParticlesPrefab, transform.position, Quaternion.identity);
-                    player.TakeDamage(damage);
+                    Instantiate(rf.hitExplosionParticles, transform.position, Quaternion.identity).transform.parent = rf.spawnedParticles.transform; ;
+                    player.TakeDamage(bs.damage);
                 }
                 Destroy(gameObject);
-            } else if (hitInfo.CompareTag("Enemy")) {
+            } else if (hitInfo.CompareTag(Constants.Tags.ENEMY_TAG)) {
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), hitInfo);
             }
         }
-        if (hitInfo.CompareTag("MapBounds")) {
+        if (hitInfo.CompareTag(Constants.Tags.MAP_BOUNDS_TAG)) {
             Destroy(gameObject);
         }
     }

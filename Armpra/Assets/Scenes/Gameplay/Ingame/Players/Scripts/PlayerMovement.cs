@@ -1,36 +1,34 @@
 ﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-    public GameObject movementJoystickButton;
-    public GameObject attackJoystickButton;
-    private const int JOYSTICK_TO_VECTOR_FACTOR = 2;
-
-    public SpriteRenderer background;
+    //References
+    private Referencer rf;
     private Rigidbody2D rb;
-    private Transform tf;
 
-    public float velocityFactor;
-    public float acceleration;
-    public float currentSpeed;
+    //Setup Variables
+    [HideInInspector] public float velocityFactor;
+    private const float acceleration = Constants.Gameplay.Player.PLAYER_ACCELERATION;
+
+    //Runtime Variables
+    [HideInInspector] public float currentSpeed = 0f;
     private float rotationValue;
     private Vector2 positionValue;
     private Vector2 lastMoveInput;
     private Vector2 totalMovementInput;
     private Vector2 totalAttackInput;
 
-    public void Start() {
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
         rb = GetComponent<Rigidbody2D>();
-        tf = GetComponent<Transform>();
-        currentSpeed = 0;
     }
 
     public void Update() {
-        Vector2 movementJoystick = (new Vector2(movementJoystickButton.GetComponent<Transform>().localPosition.x, movementJoystickButton.GetComponent<Transform>().localPosition.y) * JOYSTICK_TO_VECTOR_FACTOR).normalized;
-        Vector2 attackJoystick = (new Vector2(attackJoystickButton.GetComponent<Transform>().localPosition.x, attackJoystickButton.GetComponent<Transform>().localPosition.y) * JOYSTICK_TO_VECTOR_FACTOR).normalized;
+        Vector2 movementJoystick = (new Vector2(rf.movementJoystickUIInnerCircle.localPosition.x, rf.movementJoystickUIInnerCircle.localPosition.y) * Constants.Gameplay.Joystick.JOYSTICK_TO_VECTOR_FACTOR).normalized;
+        Vector2 attackJoystick = (new Vector2(rf.attackJoystickUIInnerCircle.localPosition.x, rf.attackJoystickUIInnerCircle.localPosition.y) * Constants.Gameplay.Joystick.JOYSTICK_TO_VECTOR_FACTOR).normalized;
         Vector2 keyboardInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-		//Chosing Movement Input
-		if (movementJoystick != Vector2.zero) {
+        //Chosing Movement Input
+        if (movementJoystick != Vector2.zero) {
             totalMovementInput = movementJoystick;
         } else if (keyboardInput != Vector2.zero) {
             totalMovementInput = keyboardInput;
@@ -38,8 +36,8 @@ public class PlayerMovement : MonoBehaviour {
             totalMovementInput = Vector2.zero;
         }
 
-		//Chosing Attack Input
-		if (attackJoystick != Vector2.zero) {
+        //Chosing Attack Input
+        if (attackJoystick != Vector2.zero) {
             totalAttackInput = attackJoystick;
         } else if (keyboardInput != Vector2.zero) {
             totalAttackInput = keyboardInput;
@@ -70,7 +68,12 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void FixedUpdate() {
-        tf.localRotation = Quaternion.Euler(0, 0, rotationValue);
+        transform.localRotation = Quaternion.Euler(0, 0, rotationValue);
         rb.MovePosition(positionValue);
+    }
+
+    public void resetMovement() {
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        transform.localPosition = Vector3.zero;
     }
 }

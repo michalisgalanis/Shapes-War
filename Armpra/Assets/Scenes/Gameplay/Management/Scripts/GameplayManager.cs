@@ -1,264 +1,219 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameplayManager : MonoBehaviour {
-    enum storeSource { WIN_MENU, LOST_MENU }
+    //References
+    private Referencer rf;
 
-    public GameObject gameUI;
-    public GameObject pauseMenu;
-    public GameObject lostMenu;
-    public GameObject wonMenu;
-    public GameObject storeMenu;
-    public GameObject hackToolMenu;
-    public GameObject debugPanel;
-    public GameObject ammoPanel;
-    public GameObject movementJoystick;
-    public GameObject attackJoystick;
-
+    //Setup Variables
+    [Header("Setup Variables")]
     public bool enableSavingSystem = false;
-    public float bestAttemptPercentage = 0;
-    public GameObject bapText;
 
-    public int currentLevel;
+    //Runtime Variables
+    private Constants.Gameplay.Manager.storeSource source;
+    private Constants.Gameplay.Manager.gameState currentGameState;
 
-    //Needed References
-    private GameObject gameManager;
-    private GameObject player;
-    private PlayerStats ps;
-    private PlayerExperience pe;
-    private StoreSystem ss;
-    private GameObject camera;
-
-
-    public Shield shield;
-    public DynamicBackground background;
-    public Data loadedData;
-    private GameObject shieldObject = null;
-
-    private storeSource source;
-
-    public void CreateReferences() {
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
-        gameManager = GameObject.FindGameObjectWithTag("GameController");
-        player = gameManager.GetComponent<GameplayManager>().FindActualPlayer();
-        pe = player.GetComponent<PlayerExperience>();
-        ps = player.GetComponent<PlayerStats>();
-        ss = gameManager.GetComponent<StoreSystem>();
-        background = GameObject.FindGameObjectWithTag("Background").GetComponent<DynamicBackground>();
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
-    }
-
-    void HideSelectedLayers() {
-        camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
-        camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer("Enemy"));
-        camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer("Projectiles"));
-    }
-
-    void ShowSelectedLayers() {
-        camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer("Player");
-        camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer("Enemy");
-        camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer("Projectiles");
-    }
-
-    private void Start() {  
+    public void Awake() {
+        rf = GetComponent<Referencer>();
         Application.targetFrameRate = 60;
-        CreateReferences();
-        SavingSystem.SetPath();
-        if (SavingSystem.LoadData() != null && enableSavingSystem == true) {
-            loadedData = SavingSystem.LoadData();
-            //Load General Stats
-            gameManager.GetComponent<LevelGeneration>().currentLevel = loadedData.currentLevel;
-            currentLevel = loadedData.currentLevel;
-            gameManager.GetComponent<GameplayManager>().bestAttemptPercentage = loadedData.bestAttemptPercentage;
+    }
 
-            //Load Player Stats
-            pe.currentPlayerXP = loadedData.currentPlayerXP;
-            pe.playerLevel = loadedData.playerLevel;
-            ps.playerLevel = loadedData.playerLevel;
-            gameManager.GetComponent<CoinSystem>().currentCoins = loadedData.currentCoins;
-
-            //Load Store Upgrades
-            ss.attackSpeedUpgradeCounter = loadedData.attackSpeedUpgradeCounter;
-            ss.bulletEffectUpgradeCounter = loadedData.bulletEffectUpgradeCounter;
-            ss.bulletSpeedUpgradeCounter = loadedData.bulletSpeedUpgradeCounter;
-            ss.damageReductionUpgradeCounter = loadedData.damageReductionUpgradeCounter;
-            ss.maxHealthUpgradeCounter = loadedData.maxHealthUpgradeCounter;
-            ss.meleeDamageUpgradeCounter = loadedData.meleeDamageUpgradeCounter;
-            ss.movementSpeedUpgradeCounter = loadedData.movementSpeedUpgradeCounter;
-            ss.powerupDurationCounter = loadedData.powerupDurationCounter;
-            ss.powerupEffectCounter = loadedData.powerupEffectCounter;
-            ss.powerupSpawnFrequencyCounter = loadedData.powerupSpawnFrequencyCounter;
-        }
-        ps.CreateReferences();
-        ps.EstimateStats();
-        ps.RefillStats();
-        gameManager.GetComponent<EnemySpawner>().BeginSpawning();
-
-        gameUI.SetActive(true);
-        pauseMenu.SetActive(false);
-        hackToolMenu.SetActive(true);
-        wonMenu.SetActive(false);
-        lostMenu.SetActive(false);
-        storeMenu.SetActive(false);
-        movementJoystick.SetActive(true);
-        attackJoystick.SetActive(true);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(true);
-    
-}
+    private void Start() {
+        Time.timeScale = 1;
+        currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
+        manageMenus();
+        rf.ps.EstimateStats();
+        rf.ps.RefillStats();
+        rf.pm.resetMovement();
+        loadData();
+        rf.es.BeginSpawning();
+    }
 
     public void Pause() {
-        HideSelectedLayers();
         Time.timeScale = 0;
-        gameUI.SetActive(false);
-        pauseMenu.SetActive(true);
-        movementJoystick.SetActive(false);
-        attackJoystick.SetActive(false);
-        hackToolMenu.SetActive(false);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(false);
+        currentGameState = Constants.Gameplay.Manager.gameState.PAUSE;
+        manageMenus();
     }
 
     public void Resume() {
-        ShowSelectedLayers();
         Time.timeScale = 1;
-        pauseMenu.SetActive(false);
-        gameUI.SetActive(true);
-        movementJoystick.SetActive(true);
-        attackJoystick.SetActive(true);
-        hackToolMenu.SetActive(true);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(true);
+        currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
+        manageMenus();
     }
 
     public void Restart() {
-        ShowSelectedLayers();
-        SavingSystem.SaveProgress(pe, shield, gameManager);
-        SceneManager.LoadScene("Gameplay");
         Time.timeScale = 1;
-
-        gameUI.SetActive(true); 
-        pauseMenu.SetActive(false);
-        hackToolMenu.SetActive(true);
-        wonMenu.SetActive(false);
-        lostMenu.SetActive(false);
-        storeMenu.SetActive(false);
-        movementJoystick.SetActive(true);
-        attackJoystick.SetActive(true);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(true);
+        currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
+        manageMenus();
+        if (enableSavingSystem) SavingSystem.SaveProgress();
+        SceneManager.LoadScene(Constants.Scenes.GAMEPLAY_SCENE_NAME);
     }
 
     public void Lose() {
-        HideSelectedLayers();
-        shieldObject = GameObject.FindGameObjectWithTag("Shield");
-        player.transform.localScale = Vector3.zero;
-        if (shieldObject)
-            Destroy(shieldObject);
-
-        float maxEC = gameManager.GetComponent<EnemySpawner>().maxEnemyCount;
-        float EC = gameManager.GetComponent<EnemySpawner>().enemyCounter;
-        bestAttemptPercentage = ((maxEC - EC) / maxEC) * 100;
-        bapText.GetComponent<TextMeshProUGUI>().text = bestAttemptPercentage.ToString();
-        Debug.Log(bestAttemptPercentage);
-        bestAttemptPercentage = Mathf.Round(bestAttemptPercentage * 100f) / 100f;
-        bestAttemptPercentage = Mathf.Max(bestAttemptPercentage, loadedData.bestAttemptPercentage);
-        SavingSystem.SaveProgress(pe, shield, gameObject);
-        lostMenu.SetActive(true);
-        gameUI.SetActive(false);
-        movementJoystick.SetActive(false);
-        attackJoystick.SetActive(false);
-        hackToolMenu.SetActive(false);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(false);
-        source = storeSource.LOST_MENU;
-    }
-        
-    public void CompleteLevel() {
-        HideSelectedLayers();
-        player.transform.localScale = Vector3.zero;
-        shieldObject = GameObject.FindGameObjectWithTag("Shield");
-        if (shieldObject != null)
-            Destroy(shieldObject);
-
-        SavingSystem.SaveProgress(pe, shield, gameManager);
         Time.timeScale = 0;
-        gameUI.SetActive(false);
-        wonMenu.SetActive(true);
-        GameObject.FindGameObjectWithTag("Player").transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-        movementJoystick.SetActive(false);
-        attackJoystick.SetActive(false);
-        hackToolMenu.SetActive(false);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(false);
-        source = storeSource.WIN_MENU;
+        source = Constants.Gameplay.Manager.storeSource.LOST_MENU;
+        currentGameState = Constants.Gameplay.Manager.gameState.LOST;
+        manageMenus();
+        rf.pm.resetMovement();
+        if (enableSavingSystem) SavingSystem.SaveProgress();
     }
 
-    public void ProceedToNextLevel(){
-        ShowSelectedLayers();
-        bestAttemptPercentage = 0;
+    public void CompleteLevel() {
+        Time.timeScale = 0;
+        source = Constants.Gameplay.Manager.storeSource.WIN_MENU;
+        currentGameState = Constants.Gameplay.Manager.gameState.WIN;
+        manageMenus();
+        if (enableSavingSystem) SavingSystem.SaveProgress();
+    }
+
+    public void ProceedToNextLevel() {
         Time.timeScale = 1;
-        background.ChangeBackgroundColor();
-        ps.RefillStats();
-        gameUI.SetActive(true);
-        wonMenu.SetActive(false);
-        movementJoystick.SetActive(true);
-        attackJoystick.SetActive(true);
-        hackToolMenu.SetActive(true);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(true);
+        currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
+        manageMenus();
+        rf.ps.RefillStats();
+        rf.pm.resetMovement();
+        rf.backgroundScript.ChangeBackgroundColor();
     }
 
     public void VisitStore() {
-        HideSelectedLayers();
-        player.transform.localScale = Vector3.zero;
-        ss.RefreshOnStoreEnter();
-        storeMenu.SetActive(true);
-        gameUI.SetActive(false);
-        wonMenu.SetActive(false);
-        lostMenu.SetActive(false);
-        hackToolMenu.SetActive(false);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(false);
         Time.timeScale = 0;
+        currentGameState = Constants.Gameplay.Manager.gameState.STORE;
+        manageMenus();
+        rf.ss.forceRefresh();
     }
 
     public void ReturnToCompleteLevel() {
-        wonMenu.SetActive(true);
-        storeMenu.SetActive(false);
-        hackToolMenu.SetActive(false);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(false);
         Time.timeScale = 0;
+        currentGameState = Constants.Gameplay.Manager.gameState.WIN;
+        manageMenus();
     }
 
     public void ExitStore() {
-        if (source == storeSource.WIN_MENU) ReturnToCompleteLevel();
-        else if (source == storeSource.LOST_MENU) ReturnToLostMenu();
+        if (source == Constants.Gameplay.Manager.storeSource.WIN_MENU) {
+            ReturnToCompleteLevel();
+        } else if (source == Constants.Gameplay.Manager.storeSource.LOST_MENU) {
+            ReturnToLostMenu();
+        }
+        if (enableSavingSystem) SavingSystem.SaveProgress();
     }
 
     public void ReturnToLostMenu() {
-        lostMenu.SetActive(true);
-        storeMenu.SetActive(false);
-        hackToolMenu.SetActive(false);
-        debugPanel.SetActive(false);
-        ammoPanel.SetActive(false);
         Time.timeScale = 0;
+        currentGameState = Constants.Gameplay.Manager.gameState.LOST;
+        manageMenus();
     }
 
     public void ReturnHome() {
         Time.timeScale = 1;
-
-        SceneManager.LoadScene("Main Menu");
-        SceneManager.UnloadSceneAsync("Gameplay");
+        SceneManager.LoadScene(Constants.Scenes.MAIN_MENU_SCENE_NAME);
+        SceneManager.UnloadSceneAsync(Constants.Scenes.GAMEPLAY_SCENE_NAME);
     }
-    public GameObject FindActualPlayer(){
-        GameObject[] players;
-        int i = 0;
-        players = GameObject.FindGameObjectsWithTag("Player");
-        while (players[i].GetComponent<PlayerGenerator>() == null)
-            i++;
-        return players[i];
+
+    //Utility Methods
+    private void manageMenus() {
+        ShowSelectedLayers();
+        switch (currentGameState) {
+            case Constants.Gameplay.Manager.gameState.PLAY:
+            rf.scoreCoinsUI.SetActive(true);
+            rf.pauseMenuUI.SetActive(false);
+            rf.winMenuUI.SetActive(false);
+            rf.lostMenuUI.SetActive(false);
+            rf.storeMenuUI.SetActive(false);
+            rf.movementJoystickUI.SetActive(true);
+            rf.attackJoystickUI.SetActive(true);
+
+            rf.debugPanelUI.SetActive(false);
+            rf.hackPanelUI.SetActive(true);
+            rf.ammoPanelUI.SetActive(true);
+            ShowSelectedLayers();
+            break;
+            case Constants.Gameplay.Manager.gameState.PAUSE:
+            rf.scoreCoinsUI.SetActive(false);
+            rf.pauseMenuUI.SetActive(true);
+            rf.winMenuUI.SetActive(false);
+            rf.lostMenuUI.SetActive(false);
+            rf.storeMenuUI.SetActive(false);
+            rf.movementJoystickUI.SetActive(false);
+            rf.attackJoystickUI.SetActive(false);
+
+            rf.debugPanelUI.SetActive(false);
+            rf.hackPanelUI.SetActive(false);
+            rf.ammoPanelUI.SetActive(false);
+            break;
+            case Constants.Gameplay.Manager.gameState.WIN:
+            rf.scoreCoinsUI.SetActive(false);
+            rf.pauseMenuUI.SetActive(false);
+            rf.winMenuUI.SetActive(true);
+            rf.lostMenuUI.SetActive(false);
+            rf.storeMenuUI.SetActive(false);
+            rf.movementJoystickUI.SetActive(false);
+            rf.attackJoystickUI.SetActive(false);
+
+            rf.debugPanelUI.SetActive(false);
+            rf.hackPanelUI.SetActive(false);
+            rf.ammoPanelUI.SetActive(false);
+            break;
+            case Constants.Gameplay.Manager.gameState.LOST:
+            rf.scoreCoinsUI.SetActive(false);
+            rf.pauseMenuUI.SetActive(false);
+            rf.winMenuUI.SetActive(false);
+            rf.lostMenuUI.SetActive(true);
+            rf.storeMenuUI.SetActive(false);
+            rf.movementJoystickUI.SetActive(false);
+            rf.attackJoystickUI.SetActive(false);
+
+            rf.debugPanelUI.SetActive(false);
+            rf.hackPanelUI.SetActive(false);
+            rf.ammoPanelUI.SetActive(false);
+            break;
+            case Constants.Gameplay.Manager.gameState.STORE:
+            rf.scoreCoinsUI.SetActive(false);
+            rf.pauseMenuUI.SetActive(false);
+            rf.winMenuUI.SetActive(false);
+            rf.lostMenuUI.SetActive(false);
+            rf.storeMenuUI.SetActive(true);
+            rf.movementJoystickUI.SetActive(false);
+            rf.attackJoystickUI.SetActive(false);
+
+            rf.debugPanelUI.SetActive(false);
+            rf.hackPanelUI.SetActive(false);
+            rf.ammoPanelUI.SetActive(false);
+            break;
+        }
+    }
+    private void ShowSelectedLayers() {
+        GameObject camera = rf.cam;
+        switch (currentGameState) {
+            case Constants.Gameplay.Manager.gameState.PLAY:
+            camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.PLAYER_LAYER_NAME);
+            camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.ENEMY_LAYER_NAME);
+            camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.PROJECTILES_LAYER_NAME);
+            break;
+            default:
+            camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.PLAYER_LAYER_NAME));
+            camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.ENEMY_LAYER_NAME));
+            camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.PROJECTILES_LAYER_NAME));
+            break;
+        }
+    }
+
+    private void loadData() {
+        SavingSystem.SetPath();
+        if (SavingSystem.LoadData() != null && enableSavingSystem == true) {
+            Data loadedData = SavingSystem.LoadData();
+
+            //Loading Data
+            RuntimeSpecs.mapLevel = loadedData.mapLevel;
+            RuntimeSpecs.bap = loadedData.bestAttemptPercentage;
+            RuntimeSpecs.currentPlayerXP = loadedData.currentPlayerXP;
+            RuntimeSpecs.playerLevel = loadedData.playerLevel;
+            RuntimeSpecs.currentCoins = loadedData.currentCoins;
+
+            //Load Store Upgrades
+            for (int i = 0; i < rf.ss.upgrades.Length; i++) {
+                rf.ss.upgrades[i].counter = loadedData.storeUpgradesCounters[i];
+            }
+
+        }
     }
 }

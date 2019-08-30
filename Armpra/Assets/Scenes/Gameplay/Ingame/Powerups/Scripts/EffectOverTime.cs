@@ -1,31 +1,29 @@
 ﻿using UnityEngine;
 
 public class EffectOverTime : MonoBehaviour {
-    //Enums & InstantiationTypes
-    public enum PowerupType { AttackSpeed, MeleeDamage, HealthRegen, Immunity, RangedDamage, MovementSpeed }
-    public PowerupType typeSelected;
+    //References
+    private Referencer rf;
 
-    //Effect Multiplier
-    [HideInInspector]
-    public float powerupMultiplier;        //0f is 100% stock + 0%, 1f is 100% stock + 100% total
-    private int effectLevel;
+    //Runtime Variables
+    public Constants.Gameplay.Powerups.overTimePowerupTypes typeSelected;
+    [HideInInspector] public float powerupMultiplier;        //0f is 100% stock + 0%, 1f is 100% stock + 100% total
+    private int effectStoreCounter;
 
-    //Needed References
-    private StoreSystem ss;
-
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+    }
     public void Start() {
-        ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
-        effectLevel = ss.powerupEffectCounter;
+        effectStoreCounter = rf.ss.findStoreItemByType(Constants.Gameplay.Store.storeItem.POWERUP_EFFECT).counter;
     }
 
     public void EnableEffect() {
-        powerupMultiplier = 0.2f + effectLevel / 125f;
-        DisplayEffectStats();
+        powerupMultiplier = Constants.Functions.getPowerupEffectMultiplier(effectStoreCounter);
+        //DisplayEffectStats();
     }
 
     public void DisableEffect() {
         powerupMultiplier = 0f;
-        DisplayEffectStats();
+        //DisplayEffectStats();
     }
 
     public void ResetEffect() {

@@ -1,134 +1,109 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
-    //General Stats
-    public int playerLevel=1;                     //input from PlayerExperience
-    public double XP=0;                           //input from PlayerExperience
-
-    //Stats
-    public float attackSpeed;                   //generated here
-    public float meleeDamage;                   //generated here
-    public float maxHealth;                     //generated here
-    public float damageReduction;               //generated here - 0 equals to full damage taken, 1 equals to zero damage taken
-    public float movementSpeed;                 //generated here
-
-    public float debugTimer=1f;
-
-    private const float UPGRADES_FACTOR = 0.001f;
-
-    //Other Essential Real Time Stats
-    public float currentHealth=100;
-    private bool markedForDestruction=false;
-
-    //Needed References
-    private GameplayManager gm;
-    private StoreSystem ss;
-    [HideInInspector] public GameObject[] powerups;
-
+    //References
+    private Referencer rf;
+    private SpriteRenderer playerBorder;
     private List<SpriteRenderer> playerHeads;
-    public SpriteRenderer playerBorder;
-    public GameObject shockwavePrefab;
-    public ParticleSystem playerDeathExplosionParticles;
-    public PlayerStats ps;
 
-    public void Start() {
-        CreateReferences();
-        Physics2D.IgnoreLayerCollision(8, 13);
-        Physics2D.IgnoreLayerCollision(13, 14);
-        markedForDestruction = false;
-        GameObject shockwave = Instantiate(shockwavePrefab, transform.localPosition, Quaternion.identity);
-        shockwave.transform.parent = gameObject.transform;
+    //Runtime Variables
+    private bool markedForDestruction = false;
+    private List<StatItem> statItems;
+
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+        playerBorder = rf.player.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        statItems = new List<StatItem>();
         playerHeads = new List<SpriteRenderer>();
-        Transform headSystem = gm.FindActualPlayer().transform.GetChild(0);
-        for (int i = 0; i < headSystem.childCount; i++) {
-            playerHeads.Add(headSystem.GetChild(i).GetComponent<SpriteRenderer>());
-        }
-        RefillStats();
     }
 
-    public void CreateReferences() {
-        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>();
-        ss = GameObject.FindGameObjectWithTag("GameController").GetComponent<StoreSystem>();
-        powerups = GameObject.FindGameObjectsWithTag("Powerups");
-        ps = gm.FindActualPlayer().GetComponent<PlayerStats>();
+    public void Start() {
+        for (int i = 0; i < Enum.GetValues(typeof(Constants.Gameplay.Player.playerStatTypes)).Length; i++) {
+            statItems.Add(new StatItem(RuntimeSpecs.playerLevel, (Constants.Gameplay.Player.playerStatTypes)Enum.GetValues(typeof(Constants.Gameplay.Player.playerStatTypes)).GetValue(i)));
+        }
+        for (int i = 0; i < rf.player.transform.GetChild(0).childCount; i++) {
+            playerHeads.Add(rf.player.transform.GetChild(0).GetChild(i).GetComponent<SpriteRenderer>());
+        }
+        GameObject shockwave = Instantiate(rf.shockwave, transform.localPosition, Quaternion.identity) as GameObject;
+        shockwave.transform.parent = rf.spawnedParticles.transform;
+        EstimateStats();
+        RefillStats();
     }
 
     public void Update() {
         EstimateStats();
+    }
+
+    public void FixedUpdate() {
         Color.RGBToHSV(playerBorder.color, out float h, out float s, out float v);
-        h = 0f; v = 1f; s = 1f - currentHealth / maxHealth;
+        h = 0f; v = 1f; s = 1f - RuntimeSpecs.currentPlayerHealth / GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH);
         playerBorder.color = (Color.HSVToRGB(h, s, v));
         foreach (SpriteRenderer playerHead in playerHeads) {
             playerHead.color = (Color.HSVToRGB(h, s, v));
         }
     }
 
-    public void ForceUpdate() {
-        Update();
+    public void EstimateStats() {
+        foreach (StatItem stat in statItems) {
+            stat.EstimateStat();
+        }
     }
 
-    public void EstimateStats() {
-        //Estimating Attack Speed
-        float attackSpeedPowerupFactor = GetPowerupMultiplier(EffectOverTime.PowerupType.AttackSpeed);
-        attackSpeed = (1f - 0.1f * Mathf.Pow(playerLevel, 0.4f * (1 + ss.attackSpeedUpgradeCounter * UPGRADES_FACTOR))) * (1 - attackSpeedPowerupFactor);
-        GetComponent<Weapon>().shootingTime = attackSpeed;
+    public float GetStatValueOf(Constants.Gameplay.Player.playerStatTypes statType) {
+        foreach (StatItem stat in statItems) {
+            if (stat.statType == statType) {
+                stat.EstimateStat();
+                return stat.statValue;
+            }
+        }
+        return 0f;
+    }
 
-        //Estimating Melee Damage
-        float meleeDamagePowerupFactor = GetPowerupMultiplier(EffectOverTime.PowerupType.MeleeDamage), meleeDamageEnemyPenalty = 0f;
-        meleeDamage = 0.05f * Mathf.Pow(playerLevel, 0.98f * (1 + ss.meleeDamageUpgradeCounter * UPGRADES_FACTOR)) * (1 + meleeDamagePowerupFactor) * (1 - meleeDamageEnemyPenalty);
-
-        //Estimating Max Health
-        maxHealth = (70f + 30f * Mathf.Pow(playerLevel, 1.5f * (1 + ss.maxHealthUpgradeCounter * UPGRADES_FACTOR)));
-
-        //Estimating Damage Reduction
-        float damageReductionPowerupFactor = GetPowerupMultiplier(EffectOverTime.PowerupType.Immunity);
-        damageReduction = (Mathf.Sqrt(Mathf.Pow(playerLevel, 0.15f * (1 + ss.damageReductionUpgradeCounter * UPGRADES_FACTOR))) - 1f) * (1 + damageReductionPowerupFactor);
-
-        //Estimating Movement Speed
-        float movementSpeedPowerupFactor = GetPowerupMultiplier(EffectOverTime.PowerupType.MovementSpeed), movementSpeedEnemyPenalty = 0f;
-        movementSpeed = (2.5f + Mathf.Pow(playerLevel, 0.099f * (1 + ss.movementSpeedUpgradeCounter * UPGRADES_FACTOR))) * (1 + movementSpeedPowerupFactor) * (1 - movementSpeedEnemyPenalty);
-        GetComponent<PlayerMovement>().velocityFactor = movementSpeed;
-        
-        //Debug.Log("Att.Sp: " + attackSpeed + " | Mel.Dm: " + meleeDamage + " | Curr.Hlth/Max.Hlth: " + currentHealth + "/" + maxHealth + " | Dm.Red: " + damageReduction + " | Mov.Sp: " + movementSpeed);
-        //Debug.Log("Att.Sp.Fact: " + attackSpeedPowerupFactor + " | Mel.Dm.Fact: " + meleeDamagePowerupFactor + " | Dm.Rd.Fact: " + damageReductionPowerupFactor + " | Mov.Sp.Fact: " + movementSpeedPowerupFactor);
+    public void EstimateStat(Constants.Gameplay.Player.playerStatTypes statType) {
+        foreach (StatItem stat in statItems) {
+            if (stat.statType == statType) {
+                stat.EstimateStat();
+            }
+        }
     }
 
     public void TakeDamage(float damage) {
-        float realDamage = damage * (1 - damageReduction);
-        currentHealth -= realDamage;
-        if (currentHealth <= 0 && !markedForDestruction) {
+        float realDamage = damage * (1 - GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.DAMAGE_REDUCTION));
+        RuntimeSpecs.currentPlayerHealth -= realDamage;
+        if (RuntimeSpecs.currentPlayerHealth <= 0 && !markedForDestruction) {
             markedForDestruction = true;
-            playerDeathExplosionParticles = Instantiate(playerDeathExplosionParticles, transform.position, Quaternion.identity);
+            ParticleSystem particles = Instantiate(rf.playerDeathExplosionParticles, transform.position, Quaternion.identity);
+            particles.transform.parent = rf.spawnedParticles.transform;
             Destroy(gameObject);
-            gm.Lose();
+            rf.gm.Lose();
         }
     }
 
     public void RefillStats() {
-        currentHealth = maxHealth;
+        RuntimeSpecs.currentPlayerHealth = GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH);
     }
 
     private void OnTriggerStay2D(Collider2D hitInfo) {
         if (hitInfo.CompareTag("Enemy")) {
             Enemy enemy = hitInfo.GetComponent<Enemy>();
-            if (enemy != null)
-                enemy.TakeDamage(meleeDamage);
+            if (enemy != null) {
+                enemy.TakeDamage(GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MELEE_DAMAGE));
+            }
         }
     }
 
     public void InstantHeal(float percentageMaxHeal) {
-        currentHealth = Mathf.Clamp(currentHealth + percentageMaxHeal * maxHealth, 0, maxHealth);
+        RuntimeSpecs.currentPlayerHealth = Mathf.Clamp(RuntimeSpecs.currentPlayerHealth + percentageMaxHeal * GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH), 0, GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH));
     }
 
-    private float GetPowerupMultiplier(EffectOverTime.PowerupType powerupType) {
-        foreach (GameObject powerup in powerups) {
+    public float GetPowerupMultiplier(Constants.Gameplay.Powerups.overTimePowerupTypes powerupType) {
+        foreach (GameObject powerup in rf.powerupTypes) {
             if (powerup.GetComponent<EffectOverTime>() != null && powerup.GetComponent<EffectOverTime>().typeSelected == powerupType) {
                 return powerup.GetComponent<EffectOverTime>().powerupMultiplier;
             }
         }
         return 0f;
     }
-    
-    
 }

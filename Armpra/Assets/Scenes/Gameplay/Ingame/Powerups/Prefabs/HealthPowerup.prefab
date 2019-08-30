@@ -5012,7 +5012,7 @@ GameObject:
   - component: {fileID: 3032959598922151501}
   m_Layer: 15
   m_Name: HealthPowerup
-  m_TagString: Untagged
+  m_TagString: Powerups
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5075,3 +5075,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 697cace1d8d6c7d4285da000aa9bce3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeSelected: 0
+  powerupMultiplier: 0

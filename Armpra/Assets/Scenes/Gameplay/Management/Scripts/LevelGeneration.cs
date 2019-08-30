@@ -2,84 +2,68 @@
 using UnityEngine;
 
 public class LevelGeneration : MonoBehaviour {
-    public int currentLevel = 1;
-    public int enemyCount;
-    public GameObject[] enemyTypes;
+    //References
+    private Referencer rf;
 
-    private float[] enemyPropabilities;
-    private List<float> propabilityArray;
+    //Runtime Variables
+    private List<GameObject> activeEnemyTypes;
+    private List<float> enemyPropabilities;
+    private List<float> lowLevelPropArray;
+
+    public void Awake() {
+        rf = GetComponent<Referencer>();
+        activeEnemyTypes = new List<GameObject>();
+        enemyPropabilities = new List<float>();
+        lowLevelPropArray = new List<float>();
+    }
 
     public void EstimateLevel() {
-        enemyPropabilities = new float[enemyTypes.Length];
-        propabilityArray = new List<float>();
-        enemyCount = (int)Mathf.Round(4f + Mathf.Pow(currentLevel, 1.2f));
-        //Debug.Log("Current Level: " + currentLevel + ", Enemy Count: " + enemyCount);
-        int totalTypesOfEnemies = enemyTypes.Length;
-        if (enemyCount < 15) {
-            enemyPropabilities[0] = 1f;
-            for (int i = 1; i < enemyTypes.Length; i++) {
-                enemyPropabilities[i] = 0f;
+        RuntimeSpecs.maxEnemyCount = (int)Mathf.Round(4f + Mathf.Pow(RuntimeSpecs.mapLevel, 1.2f));
+        activeEnemyTypes.Clear();
+        for (int i = 0; i < rf.enemyTypes.Length; i++) {
+            if (RuntimeSpecs.mapLevel >= 5 * i) {
+                activeEnemyTypes.Add(rf.enemyTypes[i]);
             }
-        } else if (enemyCount < 25) {
-            enemyPropabilities[0] = 0.8f;
-            enemyPropabilities[1] = 0.2f;
-            for (int i = 2; i < enemyTypes.Length; i++) {
-                enemyPropabilities[i] = 0;
+        }
+        //Estimate Propabilities
+        enemyPropabilities.Clear();
+        float sumEnemyProp = 0f;
+        for (int i = 0; i < activeEnemyTypes.ToArray().Length; i++) {
+            float tempEnemyProp;
+            if (i == 0) {
+                tempEnemyProp = (float)(Constants.Functions.getDecreaseCurve(5 * i) + 0.025 * RuntimeSpecs.mapLevel);
+            } else if (i == 1) {
+                tempEnemyProp = Constants.Functions.getDecreaseCurve(5 * i) + Mathf.Pow(RuntimeSpecs.mapLevel, 1.4f);
+            } else {
+                tempEnemyProp = Constants.Functions.getDecreaseCurve(5 * i) + 0.05f * Mathf.Pow(2, -i - 1) * Mathf.Pow(RuntimeSpecs.mapLevel, 2f + (0.2f) * (i + 1));
             }
-        } else if (enemyCount < 50) {
-            enemyPropabilities[0] = 0.5f;
-            enemyPropabilities[1] = 0.3f;
-            enemyPropabilities[2] = 0.1f;
-            for (int i = 3; i < enemyTypes.Length; i++) {
-                enemyPropabilities[i] = 0;
-            }
-        } else if (enemyCount < 100) {
-            float sumFactors = 0;
-            for (int i = 0; i < enemyTypes.Length; i++) {
-                float factor = enemyTypes.Length - i;
-                //Debug.Log("Factor: " + factor);
-                enemyPropabilities[i] = factor / enemyTypes.Length;
-                //Debug.Log("Enemy Prop: " + enemyPropabilities[i]);
-                sumFactors += factor;
-            }
-            for (int i = 0; i < enemyTypes.Length; i++) {
-                enemyPropabilities[i] *= sumFactors;
-                //Debug.Log("New Enemy Prop: " + enemyPropabilities[i]);
-            }
-        } else if (enemyCount < 500) {
-            for (int i = 0; i < enemyTypes.Length; i++) {
-                enemyPropabilities[i] = 1f / enemyTypes.Length;
-                //Debug.Log("Enemy Prop: " + enemyPropabilities[i]);
-            }
-        } else {
-            int sumFactors = 0;
-            for (int i = 0; i < enemyTypes.Length; i++) {
-                enemyPropabilities[i] = i / enemyTypes.Length;
-                sumFactors += i;
-            }
-            for (int i = 0; i < enemyTypes.Length; i++) {
-                enemyPropabilities[i] *= sumFactors;
-            }
+
+            enemyPropabilities.Add(tempEnemyProp);
+            sumEnemyProp += tempEnemyProp;
+        }
+        //Normalize Array
+        for (int i = 0; i < enemyPropabilities.ToArray().Length; i++) {
+            enemyPropabilities[i] = enemyPropabilities[i] / sumEnemyProp;
         }
         BuildPropabilityArray();
     }
 
     private void BuildPropabilityArray() {
-        for (int i = 0; i < enemyTypes.Length; i++) {
-            for (int j = 0; j < 10 * enemyPropabilities[i]; j++) {
-                propabilityArray.Add(enemyPropabilities[i]);
+        for (int i = 0; i < enemyPropabilities.ToArray().Length; i++) {
+            for (int j = 0; j < 100 * enemyPropabilities[i]; j++) {
+                lowLevelPropArray.Add(enemyPropabilities[i]);
             }
         }
     }
 
     public int PickRandomEnemy() {
-        int random = Random.Range(0, propabilityArray.ToArray().Length);
+        int random = Random.Range(0, lowLevelPropArray.ToArray().Length);
         //Debug.Log("Random: " + random);
-        float randomPropability = propabilityArray[random];
+        float randomPropability = lowLevelPropArray[random];
         //Debug.Log("Random Prop: " + randomPropability);
         int index = 0;
         List<int> indexes = new List<int>();
-        for (int i = 0; i < enemyPropabilities.Length; i++) {
+        for (int i = 0; i < enemyPropabilities.ToArray().Length; i++) {
             if (enemyPropabilities[i] == randomPropability) {
                 index = i;
                 indexes.Add(index);
@@ -91,11 +75,11 @@ public class LevelGeneration : MonoBehaviour {
     }
 
     public void DisplayStats() {
-        for (int i = 0; i < enemyPropabilities.Length; i++) {
+        for (int i = 0; i < enemyPropabilities.ToArray().Length; i++) {
             //Debug.Log("Enemy Propability of enemy " + i + ": " + enemyPropabilities[i]);
         }
 
-        for (int i = 0; i < propabilityArray.ToArray().Length; i++) {
+        for (int i = 0; i < lowLevelPropArray.ToArray().Length; i++) {
             //Debug.Log("Propability Array " + i + ": " + propabilityArray[i]);
         }
     }

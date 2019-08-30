@@ -1,73 +1,66 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
-    //access to other objects and components
-    public GameObject[] enemies;
-    public GameObject enemiesRemainingText;
-    public GameObject background;
-    public LevelGeneration lg;
+    //References
+    private Referencer rf;
 
-    //public properties
-    //public float difficulty;
-    public float spawnTimer;
+    //Setup Constant Variables
+    private readonly float spawnTimer = Constants.Timers.ENEMY_SPAWN_TIMER;
+
+    //Runtime Variables
+    private int enemiesSpawned;
+    private float currentTimer;
     private bool spawningTime;
 
-    //constants
-    private static float MIN_BORDER;
-    private static float MAX_BORDER;
+    public void Awake() {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
+    }
 
-    //other essential variables
-    public int enemyCounter;
-    public int deathCounter;
-    public int maxEnemyCount;
-    private float currentTimer;
-
-    public void Start() {
-        SpriteRenderer bgRenderer = background.GetComponent<SpriteRenderer>();
-        MIN_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * (-0.5f);
-        MAX_BORDER = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit) * 0.5f;
+    public void Update() {
+        if (spawningTime == true && enemiesSpawned < RuntimeSpecs.maxEnemyCount) {
+            SpawnEnemies();
+        } else if (spawningTime == false && RuntimeSpecs.enemiesKilled == RuntimeSpecs.maxEnemyCount) {
+            RuntimeSpecs.mapLevel++;
+            rf.gm.CompleteLevel();
+            rf.lg.EstimateLevel();
+            enemiesSpawned = 0;
+            RuntimeSpecs.enemiesKilled = 0;
+            spawningTime = true;
+        }
+        //Outputting Texts
+        rf.enemiesRemainingText.text = (RuntimeSpecs.maxEnemyCount - RuntimeSpecs.enemiesKilled).ToString();
+        RuntimeSpecs.bap = (float)Mathf.Round(((float)RuntimeSpecs.enemiesKilled / RuntimeSpecs.maxEnemyCount) * 100f);
+        rf.bapText.text = RuntimeSpecs.bap.ToString();
+        //Debug.Log("Max:" + RuntimeSpecs.maxEnemyCount + ", Spawned: " + enemiesSpawned + ", Killed: " + RuntimeSpecs.enemiesKilled + ", Bap: " + RuntimeSpecs.bap);
     }
 
     public void BeginSpawning() {
         spawningTime = true;
         currentTimer = spawnTimer;
-        enemyCounter = 0;
-        deathCounter = 0;
-        lg = gameObject.GetComponent<LevelGeneration>();
-        lg.EstimateLevel();
-        maxEnemyCount = lg.enemyCount;
-    }
-
-    // Update is called once per frame
-    public void Update() {
-        enemiesRemainingText.GetComponent<TextMeshProUGUI>().text = enemyCounter.ToString();
-        if (spawningTime == true && enemyCounter < maxEnemyCount) {
-            SpawnEnemies();
-        } else if (spawningTime == false && deathCounter == maxEnemyCount) {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameplayManager>().CompleteLevel();
-            lg.currentLevel++;
-            lg.EstimateLevel();
-            maxEnemyCount = lg.enemyCount;
-            deathCounter = 0;
-            spawningTime = true;
-        }
+        enemiesSpawned = 0;
+        RuntimeSpecs.enemiesKilled = 0;
+        rf.lg.EstimateLevel();
     }
 
     private void SpawnEnemies() {
+        float MIN_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * (-0.5f);
+        float MAX_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * 0.5f;
         currentTimer += Time.deltaTime;
-        if (currentTimer >= spawnTimer && enemyCounter < maxEnemyCount) {
+        if (currentTimer >= spawnTimer && enemiesSpawned < RuntimeSpecs.maxEnemyCount) {
             //Generate Enemy
-            Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER),Random.Range(MIN_BORDER, MAX_BORDER), 0);
-            GameObject newEnemy = Instantiate(enemies[lg.PickRandomEnemy()], temp, Quaternion.identity);
-            newEnemy.transform.parent = transform;
+            Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER), Random.Range(MIN_BORDER, MAX_BORDER), 0);
+            GameObject newEnemy = Instantiate(rf.enemyTypes[rf.lg.PickRandomEnemy()], temp, Quaternion.identity) as GameObject;
+            newEnemy.transform.parent = rf.spawnedEnemies.transform;
             //Customizing Color
             SpriteRenderer sr = newEnemy.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
-            float h = Random.Range(0f, 360f) / 360f, s = 0.75f, v = 0.6f;
+            float h = Random.Range(0f, 360f) / 360f, s = Random.Range(0.6f, 0.8f), v = Random.Range(0.5f, 0.7f);
             sr.color = Color.HSVToRGB(h, s, v);
-            enemyCounter++;
+            enemiesSpawned++;
             //Resetting Timers & Counters
-            if (enemyCounter == maxEnemyCount) spawningTime = false;
+            if (enemiesSpawned == RuntimeSpecs.maxEnemyCount) {
+                spawningTime = false;
+            }
+
             currentTimer = 0f;
         }
     }

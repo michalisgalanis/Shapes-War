@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 
 public class PlayerGenerator : MonoBehaviour {
-    private const int MAX_VISUAL_CHANGES_LEVEL = 20;                    //input
-    public int currentLevel;                                           //input
+    //References
+    private Weapon weapon;
 
-    [HideInInspector] public float size;
-    private int firepoints;
-    private int[,] firepointsEnabled;
-    private int[] stripesEnabled;
-    public Weapon wp;
+    //Constants
+    private const int MAX_VISUAL_CHANGES_LEVEL = Constants.Gameplay.Player.MAX_VISUAL_CHANGES_LEVEL;
 
+    //Runtime Variables
+    [HideInInspector] public float size;        //GH
+    private int firepoints;                     //GH
+    private int[,] firepointsEnabled;           //GH
+    private int[] stripesEnabled;               //GH
+
+    public void Awake() {
+        weapon = GetComponent<Weapon>();
+    }
     public void Start() {
         firepoints = transform.GetChild(0).transform.childCount;
         for (int i = 1; i < firepoints; i++) {
@@ -41,30 +47,26 @@ public class PlayerGenerator : MonoBehaviour {
         stripesEnabled = new int[8] { 3, 6, 10, 14, 25, 50, 75, 100 };
     }
 
-    public void ForceUpdate() {
-        Update();
-    }
-
     public void Update() {
         EstimateVars();
         UpdateVisuals();
-        wp.SetupFirepoints();
+        weapon.SetupFirepoints();
     }
 
     private void EstimateVars() {
-        size = getSizeAtLevel(currentLevel);
-        firepoints = Mathf.RoundToInt(Mathf.Pow(Mathf.Clamp(currentLevel, 0f, MAX_VISUAL_CHANGES_LEVEL), 1.2f) * 0.3f);
+        size = getSizeAtLevel(RuntimeSpecs.playerLevel);
+        firepoints = Mathf.RoundToInt(Mathf.Pow(Mathf.Clamp(RuntimeSpecs.playerLevel, 0f, MAX_VISUAL_CHANGES_LEVEL), 1.2f) * 0.3f);
     }
 
     private void UpdateVisuals() {
         transform.localScale = new Vector3(size, size, size);
         int[] tempFirepointsEnabled = new int[firepointsEnabled.GetUpperBound(1)];
 
-        if (currentLevel < 1) {
-            currentLevel = 1;
-        } else if (currentLevel <= MAX_VISUAL_CHANGES_LEVEL) {
+        if (RuntimeSpecs.playerLevel < 1) {
+            RuntimeSpecs.playerLevel = 1;
+        } else if (RuntimeSpecs.playerLevel <= MAX_VISUAL_CHANGES_LEVEL) {
             for (int j = 0; j < firepointsEnabled.GetUpperBound(1); j++) { //for each type of firepoint
-                tempFirepointsEnabled[j] = firepointsEnabled[currentLevel - 1, j];
+                tempFirepointsEnabled[j] = firepointsEnabled[RuntimeSpecs.playerLevel - 1, j];
                 transform.GetChild(0).GetChild(j).gameObject.SetActive(((tempFirepointsEnabled[j] == 1)));
             }
         } else {
@@ -74,7 +76,7 @@ public class PlayerGenerator : MonoBehaviour {
             }
         }
         for (int i = 0; i < stripesEnabled.Length; i++) {
-            if (currentLevel >= stripesEnabled[i]) {
+            if (RuntimeSpecs.playerLevel >= stripesEnabled[i]) {
                 transform.Find("DesignElements").GetChild(i).gameObject.SetActive(true);
             }
         }
@@ -91,6 +93,6 @@ public class PlayerGenerator : MonoBehaviour {
     }
 
     public static float getSizeAtLevel(int level) {
-        return 0.4f + (Mathf.Clamp(level, 0f, MAX_VISUAL_CHANGES_LEVEL) - 1) * 0.02f;
+        return Constants.Functions.getPlayerSizeAtLevel(level);
     }
 }
