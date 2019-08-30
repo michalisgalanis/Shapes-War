@@ -8,7 +8,7 @@ public class StoreItem {
 
     public Button button;
     public TextMeshProUGUI levelText;
-    public int counter;
+    public int counter=1;
     private int cost;
 
     private readonly CoinSystem cs;
@@ -20,7 +20,7 @@ public class StoreItem {
         this.levelText = levelText;
         this.cs = cs;
         this.MAX_COUNTER = MAX_COUNTER;
-        counter = 1;
+        this.counter = 1;
         isAmmo = (this.item.Equals(Constants.Gameplay.Store.storeItem.NORMAL) || this.item.Equals(Constants.Gameplay.Store.storeItem.HV) || this.item.Equals(Constants.Gameplay.Store.storeItem.EXPLOSIVE) || this.item.Equals(Constants.Gameplay.Store.storeItem.POISONOUS));
         estimateCost();
     }

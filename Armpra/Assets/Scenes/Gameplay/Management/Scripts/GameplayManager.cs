@@ -55,6 +55,9 @@ public class GameplayManager : MonoBehaviour {
         currentGameState = Constants.Gameplay.Manager.gameState.LOST;
         manageMenus();
         rf.pm.resetMovement();
+        if (RuntimeSpecs.ap > RuntimeSpecs.bap)
+            RuntimeSpecs.bap = RuntimeSpecs.ap;
+        Debug.Log(RuntimeSpecs.bap);
         if (enableSavingSystem) SavingSystem.SaveProgress();
     }
 
@@ -63,6 +66,7 @@ public class GameplayManager : MonoBehaviour {
         source = Constants.Gameplay.Manager.storeSource.WIN_MENU;
         currentGameState = Constants.Gameplay.Manager.gameState.WIN;
         manageMenus();
+        RuntimeSpecs.bap = 0f;
         if (enableSavingSystem) SavingSystem.SaveProgress();
     }
 
@@ -204,7 +208,7 @@ public class GameplayManager : MonoBehaviour {
 
             //Loading Data
             RuntimeSpecs.mapLevel = loadedData.mapLevel;
-            RuntimeSpecs.bap = loadedData.bestAttemptPercentage;
+            RuntimeSpecs.ap = loadedData.bestAttemptPercentage;
             RuntimeSpecs.currentPlayerXP = loadedData.currentPlayerXP;
             RuntimeSpecs.playerLevel = loadedData.playerLevel;
             RuntimeSpecs.currentCoins = loadedData.currentCoins;

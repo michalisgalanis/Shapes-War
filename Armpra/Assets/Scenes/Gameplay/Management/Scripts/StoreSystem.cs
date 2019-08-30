@@ -13,12 +13,11 @@ public class StoreSystem : MonoBehaviour {
     public void Awake() {
         rf = GetComponent<Referencer>();
         upgrades = new StoreItem[rf.storeUpgradeButtons.Length];
-    }
 
+    }
     public void Start() {
-        for (int i = 0; i < upgrades.Length; i++) {
+        for (int i = 0; i < upgrades.Length; i++)
             upgrades[i] = new StoreItem((Constants.Gameplay.Store.storeItem)Enum.GetValues(typeof(Constants.Gameplay.Store.storeItem)).GetValue(i), rf.storeUpgradeButtons[i], rf.storeLevelTexts[i].GetComponent<TextMeshProUGUI>(), rf.cs, MAX_COUNTER);
-        }
         //displayStats();
     }
 

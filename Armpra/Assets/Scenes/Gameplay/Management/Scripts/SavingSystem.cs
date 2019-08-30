@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class SavingSystem {
-    private static string path;
+    private static string path = Application.dataPath + "/progress.stpd";
 
     public static void SaveProgress() {
         FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
@@ -15,28 +15,26 @@ public static class SavingSystem {
 
     public static Data LoadData() {
         if (File.Exists(path)) {
-            FileStream stream = new FileStream(path, FileMode.Open);
+            FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
             BinaryFormatter formatter = new BinaryFormatter();
             Data data = formatter.Deserialize(stream) as Data;
             stream.Close();
             return data;
-        } else {
-            Debug.Log("First Run Detected. Creating new Game Progress.");
-            return null;
         }
+        return null;
     }
 
     public static void SetPath() {
         switch (Application.platform) {
             case RuntimePlatform.WindowsPlayer:
-            path = Constants.FileLocations.WINDOWS_PATH;
-            break;
+                path = Constants.FileLocations.WINDOWS_PATH;
+                break;
             case RuntimePlatform.WindowsEditor:
-            path = Constants.FileLocations.WINDOWS_PATH;
-            break;
+                path = Constants.FileLocations.WINDOWS_PATH;
+                break;
             case RuntimePlatform.Android:
-            path = Constants.FileLocations.ANDROID_PATH;
-            break;
+                path = Constants.FileLocations.ANDROID_PATH;
+                break;
         }
     }
 }

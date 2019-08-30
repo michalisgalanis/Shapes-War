@@ -13,8 +13,9 @@ public class RuntimeSpecs {
     //Enemy Spawner
     public static int enemiesKilled;
     public static int maxEnemyCount;
-    public static float bap;
+    public static float ap;
 
+    public static float bap;
     public static float currentPlayerHealth = 100f;
     public static int currentCoins = 0;
     public static int mapLevel = 1;
