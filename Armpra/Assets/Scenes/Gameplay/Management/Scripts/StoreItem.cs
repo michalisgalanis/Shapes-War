@@ -3,22 +3,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class StoreItem {
+    //References
+    private Referencer rf;
+
+    //Setup Variables
+    public TextMeshProUGUI levelText;
+    public Button button;
+
+    //Runtime Variables
     public Constants.Gameplay.Store.storeItem item;
     public readonly bool isAmmo;
-
-    public Button button;
-    public TextMeshProUGUI levelText;
     public int counter;
     private int cost;
-
-    private readonly CoinSystem cs;
     private readonly int MAX_COUNTER;
 
-    public StoreItem(Constants.Gameplay.Store.storeItem item, Button button, TextMeshProUGUI levelText, CoinSystem cs, int MAX_COUNTER) {
+    public StoreItem(Constants.Gameplay.Store.storeItem item, Button button, TextMeshProUGUI levelText,  int MAX_COUNTER) {
+        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
         this.item = item;
         this.button = button;
         this.levelText = levelText;
-        this.cs = cs;
         this.MAX_COUNTER = MAX_COUNTER;
         counter = 1;
         isAmmo = (this.item.Equals(Constants.Gameplay.Store.storeItem.NORMAL) || this.item.Equals(Constants.Gameplay.Store.storeItem.HV) || this.item.Equals(Constants.Gameplay.Store.storeItem.EXPLOSIVE) || this.item.Equals(Constants.Gameplay.Store.storeItem.POISONOUS));
@@ -26,10 +29,11 @@ public class StoreItem {
     }
 
     public void upgradeItem() {
-        if (cs.canSpendCoins(cost)) {
-            cs.spendCoins(cost);
+        if (rf.cs.canSpendCoins(cost)) {
+            rf.cs.spendCoins(cost);
             counter++;
-            levelText.text = ((isAmmo) ? "Ammo: " : "Level: ") + counter;
+            levelText.text = ((isAmmo) ? "Ammo: " : "Level ") + counter;
+            button.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cost.ToString();
         }
         if (!isAmmo && counter >= MAX_COUNTER) {
             button.interactable = false;
@@ -41,6 +45,8 @@ public class StoreItem {
         } else {
             estimateCost();
         }
+        rf.cs.FixedUpdate();
+        if (!isAmmo) rf.ps.EstimateStats();
     }
 
     private void estimateCost() {

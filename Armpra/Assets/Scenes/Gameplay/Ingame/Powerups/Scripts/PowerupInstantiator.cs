@@ -3,6 +3,7 @@
 public class PowerupInstantiator : MonoBehaviour {
     //References
     private Referencer rf;
+    private GameObject shield;
 
     //Runtime Variables
     public Constants.Gameplay.Powerups.instantiatorPowerupTypes typeSelected;
@@ -20,7 +21,7 @@ public class PowerupInstantiator : MonoBehaviour {
                 sizeIncrease = 1;
             }
 
-            GameObject shield = Instantiate(rf.shield, rf.player.GetComponent<Transform>().localPosition, Quaternion.identity);
+            shield = Instantiate(rf.shield, rf.player.GetComponent<Transform>().localPosition, Quaternion.identity);
             shield.transform.localScale = initialScale * sizeIncrease;
             shield.transform.parent = rf.player.transform;
             break;
@@ -30,7 +31,7 @@ public class PowerupInstantiator : MonoBehaviour {
     public void DisableEffect() {
         switch (typeSelected) {
             case Constants.Gameplay.Powerups.instantiatorPowerupTypes.SHIELD_POWERUP:
-            Destroy(rf.shield);
+            Destroy(shield);
             break;
         }
     }

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 591277591}
   - component: {fileID: 2845300236765391730}
   - component: {fileID: 1038768626180292039}
+  - component: {fileID: 9222955369900606899}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -65,9 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae98432cbe081469642a83866cd9e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesKilled: 0
-  maxEnemyCount: 10
-  bap: 0
 --- !u!114 &8643191348888787486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed076585cdad3d4caf88b432c09cb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 5
 --- !u!114 &591277591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,3 +297,26 @@ MonoBehaviour:
     type: 3}
   shockwave: {fileID: 5261163578460684603, guid: d6703ea4eba38c04d927a158feb5e6cd,
     type: 3}
+--- !u!114 &9222955369900606899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643191348888787484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ceca677a21bc04094dc16c814ef906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapLevelText: {fileID: 0}
+  maxEnemyCountText: {fileID: 0}
+  playerLevelText: {fileID: 0}
+  playerXPText: {fileID: 0}
+  playerXPRemainingText: {fileID: 0}
+  meleeDamageText: {fileID: 0}
+  attackSpeedText: {fileID: 0}
+  maxHealthText: {fileID: 0}
+  damageReductionText: {fileID: 0}
+  movementSpeedText: {fileID: 0}
+  currentHealthText: {fileID: 0}

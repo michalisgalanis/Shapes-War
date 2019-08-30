@@ -17,7 +17,7 @@ public class StoreSystem : MonoBehaviour {
 
     public void Start() {
         for (int i = 0; i < upgrades.Length; i++) {
-            upgrades[i] = new StoreItem((Constants.Gameplay.Store.storeItem)Enum.GetValues(typeof(Constants.Gameplay.Store.storeItem)).GetValue(i), rf.storeUpgradeButtons[i], rf.storeLevelTexts[i].GetComponent<TextMeshProUGUI>(), rf.cs, MAX_COUNTER);
+            upgrades[i] = new StoreItem((Constants.Gameplay.Store.storeItem)Enum.GetValues(typeof(Constants.Gameplay.Store.storeItem)).GetValue(i), rf.storeUpgradeButtons[i], rf.storeLevelTexts[i].GetComponent<TextMeshProUGUI>(), MAX_COUNTER);
         }
         //displayStats();
     }
@@ -30,6 +30,11 @@ public class StoreSystem : MonoBehaviour {
                 rf.storeLevelTexts[i] = upgrades[i].levelText.gameObject;
             }
         }
+    }
+
+    public void upgradeComponent(string stringItem) {
+        Enum.TryParse(stringItem, out Constants.Gameplay.Store.storeItem item);
+        upgradeComponent(item);
     }
 
     public void forceRefresh() {

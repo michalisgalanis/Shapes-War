@@ -12,6 +12,7 @@ public class RuntimeSpecs {
 
     //Enemy Spawner
     public static int enemiesKilled;
+    public static int enemiesSpawned;
     public static int maxEnemyCount;
     public static float bap;
 

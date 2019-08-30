@@ -16,6 +16,7 @@ public class Constants {
         public const string ENEMY_TAG = "Enemy";
         public const string SHIELD_TAG = "Shield";
         public const string MAP_BOUNDS_TAG = "MapBounds";
+        public const string POWERUPS_TAG = "Powerups";
     }
 
     public class Gameplay {

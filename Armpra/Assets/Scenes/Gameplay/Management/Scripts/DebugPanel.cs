@@ -18,21 +18,24 @@ public class DebugPanel : MonoBehaviour {
     public TextMeshProUGUI movementSpeedText;
     public TextMeshProUGUI currentHealthText;
 
+    //Constants
+    private const int DIGITS = 2;
+
     public void Awake() {
         rf = GetComponent<Referencer>();
     }
 
     public void Update() {
         mapLevelText.text = "Map Level: " + RuntimeSpecs.mapLevel;
-        maxEnemyCountText.text = "Max #Enemies: " + RuntimeSpecs.maxEnemyCount;
+        maxEnemyCountText.text = "Max # of En: " + RuntimeSpecs.maxEnemyCount;
         playerLevelText.text = "Player Level: " + RuntimeSpecs.playerLevel;
-        playerXPText.text = "Player XP: " + Mathf.Round((float)RuntimeSpecs.currentPlayerXP);
-        playerXPRemainingText.text = "Player XP Rem.: " + Mathf.Round((float)RuntimeSpecs.remainingXP);
-        meleeDamageText.text = "Melee Damage: " + rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MELEE_DAMAGE);
-        attackSpeedText.text = "Attack Speed: " + rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.ATTACK_SPEED);
-        maxHealthText.text = "Max Health: " + Mathf.Round(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH));
-        damageReductionText.text = "Dam. Red.: " + rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.DAMAGE_REDUCTION); ;
-        movementSpeedText.text = "Mov. Speed: " + rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MOVEMENT_SPEED); ;
-        currentHealthText.text = "Curr. Health: " + Mathf.Round(RuntimeSpecs.currentPlayerHealth);
+        playerXPText.text = "Player XP: " + Mathf.Round((float)RuntimeSpecs.currentPlayerXP * Mathf.Pow(10, DIGITS)) / Mathf.Pow(10, DIGITS);
+        playerXPRemainingText.text = "Player XP Rem.: " + Mathf.Round((float)RuntimeSpecs.remainingXP * Mathf.Pow(10, DIGITS)) / Mathf.Pow(10, DIGITS);
+        meleeDamageText.text = "Melee Damage: " + Mathf.Round(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MELEE_DAMAGE) * Mathf.Pow(10, DIGITS)) / Mathf.Pow(10, DIGITS);
+        attackSpeedText.text = "Attack Speed: " + Mathf.Round(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.ATTACK_SPEED) * Mathf.Pow(10, DIGITS)) / Mathf.Pow(10, DIGITS);
+        maxHealthText.text = "Max Health: " + Mathf.Round(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH) * Mathf.Pow(10, DIGITS)) / Mathf.Pow(10, DIGITS);
+        damageReductionText.text = "Dam. Red.: " + Mathf.Round(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.DAMAGE_REDUCTION) * Mathf.Pow(10, DIGITS)) / Mathf.Pow(10, DIGITS);
+        movementSpeedText.text = "Mov. Speed: " + Mathf.Round(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MOVEMENT_SPEED) * Mathf.Pow(10, DIGITS)) / Mathf.Pow(10, DIGITS);
+        currentHealthText.text = "Curr. Health: " + Mathf.Round(RuntimeSpecs.currentPlayerHealth * Mathf.Pow(10, DIGITS)) / Mathf.Pow(10, DIGITS);
     }
 }

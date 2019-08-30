@@ -21,7 +21,7 @@ public class PlayerStats : MonoBehaviour {
 
     public void Start() {
         for (int i = 0; i < Enum.GetValues(typeof(Constants.Gameplay.Player.playerStatTypes)).Length; i++) {
-            statItems.Add(new StatItem(RuntimeSpecs.playerLevel, (Constants.Gameplay.Player.playerStatTypes)Enum.GetValues(typeof(Constants.Gameplay.Player.playerStatTypes)).GetValue(i)));
+            statItems.Add(new StatItem((Constants.Gameplay.Player.playerStatTypes)Enum.GetValues(typeof(Constants.Gameplay.Player.playerStatTypes)).GetValue(i)));
         }
         for (int i = 0; i < rf.player.transform.GetChild(0).childCount; i++) {
             playerHeads.Add(rf.player.transform.GetChild(0).GetChild(i).GetComponent<SpriteRenderer>());
@@ -37,8 +37,7 @@ public class PlayerStats : MonoBehaviour {
     }
 
     public void FixedUpdate() {
-        Color.RGBToHSV(playerBorder.color, out float h, out float s, out float v);
-        h = 0f; v = 1f; s = 1f - RuntimeSpecs.currentPlayerHealth / GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH);
+        float h = 0f, v = 1f, s = 1f - RuntimeSpecs.currentPlayerHealth / GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH);
         playerBorder.color = (Color.HSVToRGB(h, s, v));
         foreach (SpriteRenderer playerHead in playerHeads) {
             playerHead.color = (Color.HSVToRGB(h, s, v));
@@ -99,9 +98,9 @@ public class PlayerStats : MonoBehaviour {
     }
 
     public float GetPowerupMultiplier(Constants.Gameplay.Powerups.overTimePowerupTypes powerupType) {
-        foreach (GameObject powerup in rf.powerupTypes) {
-            if (powerup.GetComponent<EffectOverTime>() != null && powerup.GetComponent<EffectOverTime>().typeSelected == powerupType) {
-                return powerup.GetComponent<EffectOverTime>().powerupMultiplier;
+        foreach (GameObject tempPowerup in GameObject.FindGameObjectsWithTag(Constants.Tags.POWERUPS_TAG)) {
+            if  (tempPowerup.activeInHierarchy && tempPowerup.GetComponent<EffectOverTime>() != null  && tempPowerup.GetComponent<EffectOverTime>().typeSelected == powerupType && tempPowerup.GetComponent<EffectOverTime>().used) {
+                return tempPowerup.GetComponent<EffectOverTime>().powerupMultiplier;
             }
         }
         return 0f;

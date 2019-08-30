@@ -50,6 +50,7 @@ public class PlayerExperience : MonoBehaviour {
 
         lvlUpParticles.transform.localScale = initialScale * sizeIncrease;
         lvlUpParticles.transform.parent = rf.spawnedParticles.transform;
+        rf.ps.EstimateStats();
         rf.ps.RefillStats();
     }
 

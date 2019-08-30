@@ -16,12 +16,14 @@ public class EffectInstant : MonoBehaviour {
     public void Start() {
         effectStoreCounter = rf.ss.findStoreItemByType(Constants.Gameplay.Store.storeItem.POWERUP_EFFECT).counter;
         powerupMultiplier = Constants.Functions.getPowerupEffectMultiplier(effectStoreCounter);
+        rf.ps.EstimateStats();
     }
 
     public void EnableEffect() {
         switch (typeSelected) {
             case Constants.Gameplay.Powerups.instantPowerupTypes.INSTANT_HEAL_POWERUP:
             rf.ps.InstantHeal(powerupMultiplier);
+            rf.ps.EstimateStats();
             break;
         }
         //DisplayEffectStats();
@@ -30,6 +32,8 @@ public class EffectInstant : MonoBehaviour {
 
     public void DisableEffect() {
         powerupMultiplier = 0f;
+        rf.ps.EstimateStats();
+        Destroy(gameObject);
         //DisplayEffectStats();
     }
 

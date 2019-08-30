@@ -53,6 +53,7 @@ public class GameplayManager : MonoBehaviour {
         Time.timeScale = 0;
         source = Constants.Gameplay.Manager.storeSource.LOST_MENU;
         currentGameState = Constants.Gameplay.Manager.gameState.LOST;
+        clearField();
         manageMenus();
         rf.pm.resetMovement();
         if (enableSavingSystem) SavingSystem.SaveProgress();
@@ -60,6 +61,13 @@ public class GameplayManager : MonoBehaviour {
 
     public void CompleteLevel() {
         Time.timeScale = 0;
+        RuntimeSpecs.mapLevel++;
+        RuntimeSpecs.enemiesKilled = 0;
+        RuntimeSpecs.enemiesSpawned = 0;
+        clearField();
+        rf.lg.EstimateLevel();
+        rf.ps.RefillStats();
+        rf.pm.resetMovement();
         source = Constants.Gameplay.Manager.storeSource.WIN_MENU;
         currentGameState = Constants.Gameplay.Manager.gameState.WIN;
         manageMenus();
@@ -70,8 +78,7 @@ public class GameplayManager : MonoBehaviour {
         Time.timeScale = 1;
         currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
         manageMenus();
-        rf.ps.RefillStats();
-        rf.pm.resetMovement();
+        
         rf.backgroundScript.ChangeBackgroundColor();
     }
 
@@ -94,6 +101,7 @@ public class GameplayManager : MonoBehaviour {
         } else if (source == Constants.Gameplay.Manager.storeSource.LOST_MENU) {
             ReturnToLostMenu();
         }
+        rf.ps.EstimateStats();
         if (enableSavingSystem) SavingSystem.SaveProgress();
     }
 
@@ -197,6 +205,12 @@ public class GameplayManager : MonoBehaviour {
         }
     }
 
+    private void clearField() {
+        foreach (GameObject tempPowerup in GameObject.FindGameObjectsWithTag(Constants.Tags.POWERUPS_TAG)) {
+            if (tempPowerup.activeInHierarchy) Destroy(tempPowerup);
+        }
+    }
+
     private void loadData() {
         SavingSystem.SetPath();
         if (SavingSystem.LoadData() != null && enableSavingSystem == true) {
@@ -213,7 +227,6 @@ public class GameplayManager : MonoBehaviour {
             for (int i = 0; i < rf.ss.upgrades.Length; i++) {
                 rf.ss.upgrades[i].counter = loadedData.storeUpgradesCounters[i];
             }
-
         }
     }
 }
