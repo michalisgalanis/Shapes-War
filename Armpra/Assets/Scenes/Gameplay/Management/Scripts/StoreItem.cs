@@ -23,7 +23,7 @@ public class StoreItem {
         this.button = button;
         this.levelText = levelText;
         this.MAX_COUNTER = MAX_COUNTER;
-        counter = 1;
+        this.counter = 1;
         isAmmo = (this.item.Equals(Constants.Gameplay.Store.storeItem.NORMAL) || this.item.Equals(Constants.Gameplay.Store.storeItem.HV) || this.item.Equals(Constants.Gameplay.Store.storeItem.EXPLOSIVE) || this.item.Equals(Constants.Gameplay.Store.storeItem.POISONOUS));
         estimateCost();
     }

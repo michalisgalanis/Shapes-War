@@ -24,8 +24,8 @@ public class EnemySpawner : MonoBehaviour {
         }
         //Outputting Texts
         rf.enemiesRemainingText.text = (RuntimeSpecs.maxEnemyCount - RuntimeSpecs.enemiesKilled).ToString();
-        RuntimeSpecs.bap = (float)Mathf.Round(((float)RuntimeSpecs.enemiesKilled / RuntimeSpecs.maxEnemyCount) * 100f);
-        rf.bapText.text = RuntimeSpecs.bap.ToString();
+        RuntimeSpecs.ap = (float)Mathf.Round(((float)RuntimeSpecs.enemiesKilled / RuntimeSpecs.maxEnemyCount) * 100f);
+        rf.bapText.text = RuntimeSpecs.ap.ToString();
         //Debug.Log("Max:" + RuntimeSpecs.maxEnemyCount + ", Spawned: " + enemiesSpawned + ", Killed: " + RuntimeSpecs.enemiesKilled + ", Bap: " + RuntimeSpecs.bap);
     }
 
