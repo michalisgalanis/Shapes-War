@@ -58,7 +58,6 @@ public class GameplayManager : MonoBehaviour {
         rf.pm.resetMovement();
         if (RuntimeSpecs.ap > RuntimeSpecs.bap)
             RuntimeSpecs.bap = RuntimeSpecs.ap;
-        Debug.Log(RuntimeSpecs.bap);
         if (enableSavingSystem) SavingSystem.SaveProgress();
     }
 

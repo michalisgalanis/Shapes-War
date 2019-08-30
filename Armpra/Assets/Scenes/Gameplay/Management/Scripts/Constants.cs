@@ -129,7 +129,7 @@ public class Constants {
     }
 
     public class FileLocations {
-        public static readonly string FILE_SUFFIX = "/progress.stpd";
+        public static readonly string FILE_SUFFIX = "/Saves/progress.stpd";
         public static readonly string WINDOWS_PATH = Application.dataPath + FILE_SUFFIX;
         public static readonly string ANDROID_PATH = "/storage/emulated/0/Armpra" + FILE_SUFFIX;
     }
