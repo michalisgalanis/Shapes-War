@@ -14,7 +14,7 @@ public class StoreItem {
     public Constants.Gameplay.Store.storeItem item;
     public readonly bool isAmmo;
     public int counter;
-    private int cost;
+    public int cost;
     private readonly int MAX_COUNTER;
 
     public StoreItem(Constants.Gameplay.Store.storeItem item, Button button, TextMeshProUGUI levelText,  int MAX_COUNTER) {
@@ -24,7 +24,7 @@ public class StoreItem {
         this.levelText = levelText;
         this.MAX_COUNTER = MAX_COUNTER;
         isAmmo = (this.item.Equals(Constants.Gameplay.Store.storeItem.NORMAL) || this.item.Equals(Constants.Gameplay.Store.storeItem.HV) || this.item.Equals(Constants.Gameplay.Store.storeItem.EXPLOSIVE) || this.item.Equals(Constants.Gameplay.Store.storeItem.POISONOUS));
-        this.counter = (isAmmo && item != Constants.Gameplay.Store.storeItem.NORMAL) ? 0 : 1;
+        counter = (isAmmo && item != Constants.Gameplay.Store.storeItem.NORMAL) ? 0 : 1;
         estimateCost();
     }
 
@@ -32,8 +32,7 @@ public class StoreItem {
         if (rf.cs.canSpendCoins(cost)) {
             rf.cs.spendCoins(cost);
             counter++;
-            levelText.text = ((isAmmo) ? "Ammo: " : "Level ") + counter;
-            button.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cost.ToString();
+            refreshItem();
         }
         if (!isAmmo && counter >= MAX_COUNTER) {
             button.interactable = false;
@@ -42,11 +41,15 @@ public class StoreItem {
             Color.RGBToHSV(imageColor, out float hColor, out float sColor, out float vColor);
             button.transform.GetChild(1).GetComponent<Image>().color = Color.HSVToRGB(0, sColor, vColor);
             button.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "MAX"; //button cost
-        } else {
-            estimateCost();
         }
         rf.cs.FixedUpdate();
         if (!isAmmo) rf.ps.EstimateStats();
+    }
+
+    public void refreshItem() {
+        estimateCost();
+        levelText.text = ((isAmmo) ? "Ammo: " : "Level ") + counter;
+        button.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cost.ToString();
     }
 
     private void estimateCost() {
@@ -66,7 +69,7 @@ public class StoreItem {
                 break;
             }
         } else {
-            cost = Mathf.RoundToInt(5 + 4 * Mathf.Pow(counter, 1.22f));
+            cost = Mathf.RoundToInt(5 + 4 * Mathf.Pow(counter - 1, 1.22f));
         }
     }
 }

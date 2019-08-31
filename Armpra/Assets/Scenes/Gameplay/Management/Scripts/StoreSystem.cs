@@ -13,7 +13,6 @@ public class StoreSystem : MonoBehaviour {
     public void Awake() {
         rf = GetComponent<Referencer>();
         upgrades = new StoreItem[rf.storeUpgradeButtons.Length];
-
     }
     public void Start() {
         for (int i = 0; i < upgrades.Length; i++) {
@@ -39,6 +38,7 @@ public class StoreSystem : MonoBehaviour {
 
     public void forceRefresh() {
         for (int i = 0; i < upgrades.Length; i++) {
+            upgrades[i].refreshItem();
             rf.storeUpgradeButtons[i] = upgrades[i].button;
             rf.storeLevelTexts[i] = upgrades[i].levelText.gameObject;
         }

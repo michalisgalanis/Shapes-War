@@ -22,5 +22,6 @@ public class Data {
         for (int i = 0; i < rf.ss.upgrades.Length; i++) {
             storeUpgradesCounters[i] = rf.ss.upgrades[i].counter;
         }
+        rf.ss.forceRefresh();
     }
 }
