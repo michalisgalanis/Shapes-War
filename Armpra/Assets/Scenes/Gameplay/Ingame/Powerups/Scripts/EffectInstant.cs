@@ -6,7 +6,7 @@ public class EffectInstant : MonoBehaviour {
 
     //Runtime Variables
     public Constants.Gameplay.Powerups.instantPowerupTypes typeSelected;
-    public float powerupMultiplier;        //0f is 100% stock + 0%, 1f is 100% stock + 100% total
+    [HideInInspector] public float powerupMultiplier;        //0f is 100% stock + 0%, 1f is 100% stock + 100% total
     private int effectStoreCounter;
 
     public void Awake() {
@@ -24,6 +24,12 @@ public class EffectInstant : MonoBehaviour {
             case Constants.Gameplay.Powerups.instantPowerupTypes.INSTANT_HEAL_POWERUP:
             rf.ps.InstantHeal(powerupMultiplier);
             rf.ps.EstimateStats();
+            break;
+            case Constants.Gameplay.Powerups.instantPowerupTypes.COIN_PACK_POWERUP:
+            rf.cs.addCoins((int) (20 + 100 * RuntimeSpecs.playerLevel * powerupMultiplier));
+            break;
+            case Constants.Gameplay.Powerups.instantPowerupTypes.XP_PACK_POWERUP:
+            rf.pe.addXP((double)(20 + 100 * RuntimeSpecs.playerLevel * powerupMultiplier));
             break;
         }
         //DisplayEffectStats();

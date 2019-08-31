@@ -49,8 +49,8 @@ public class Constants {
         }
 
         public class Powerups {
-            public enum instantPowerupTypes { INSTANT_HEAL_POWERUP }
-            public enum overTimePowerupTypes { ATTACK_SPEED_POWERUP, MELEE_DAMAGE_POWERUP, HEALTH_REGEN_POWERUP, IMMUNITY_POWERUP, RANGED_DAMAGE_POWERUP, MOVEMENT_SPEED_POWERUP }
+            public enum instantPowerupTypes { INSTANT_HEAL_POWERUP, COIN_PACK_POWERUP, XP_PACK_POWERUP }
+            public enum overTimePowerupTypes { ATTACK_SPEED_POWERUP, MELEE_DAMAGE_POWERUP, HEALTH_REGEN_POWERUP, DAMAGE_REDUCTION_POWERUP, RANGED_DAMAGE_POWERUP, MOVEMENT_SPEED_POWERUP }
             public enum instantiatorPowerupTypes { SHIELD_POWERUP }
         }
 

@@ -37,7 +37,7 @@ public class StatItem {
             statValue = Constants.Functions.getPlayerMaxHealth(RuntimeSpecs.playerLevel, upgradeCounter);
             break;
             case Constants.Gameplay.Player.playerStatTypes.DAMAGE_REDUCTION:
-            powerupFactor = rf.ps.GetPowerupMultiplier(Constants.Gameplay.Powerups.overTimePowerupTypes.IMMUNITY_POWERUP);
+            powerupFactor = rf.ps.GetPowerupMultiplier(Constants.Gameplay.Powerups.overTimePowerupTypes.DAMAGE_REDUCTION_POWERUP);
             upgradeCounter = rf.ss.findStoreItemByType(Constants.Gameplay.Store.storeItem.DAMAGE_REDUCTION).counter;
             enemyPenaltyFactor = 0f;
             statValue = Constants.Functions.getPlayerDamageReduction(RuntimeSpecs.playerLevel, upgradeCounter, powerupFactor);

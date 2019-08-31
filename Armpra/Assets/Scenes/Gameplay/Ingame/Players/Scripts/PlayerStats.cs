@@ -69,7 +69,7 @@ public class PlayerStats : MonoBehaviour {
     }
 
     public void TakeDamage(float damage) {
-        float realDamage = damage * (1 - GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.DAMAGE_REDUCTION));
+        float realDamage = Mathf.Clamp(damage * (1 - GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.DAMAGE_REDUCTION)), 0f, damage);
         RuntimeSpecs.currentPlayerHealth -= realDamage;
         if (RuntimeSpecs.currentPlayerHealth <= 0 && !markedForDestruction) {
             markedForDestruction = true;

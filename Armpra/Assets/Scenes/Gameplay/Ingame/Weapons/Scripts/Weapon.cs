@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour {
     }
 
     public void Update() {
-        activeBullet = rf.asy.currentActiveBullet.gameObject;
+        activeBullet = rf.asy.activeAmmoItem.bullet.gameObject;
         currentTimer += Time.deltaTime;
         if (currentTimer >= shootingTime) {
             Shoot();
@@ -55,15 +55,11 @@ public class Weapon : MonoBehaviour {
 
     private void Shoot() {
         foreach (Transform firepoint in firepoints) {
-            if (rf.asy.ConsumeAmmo()) {
-                GameObject bullet = Instantiate(activeBullet, firepoint.position, firepoint.rotation);
-                bullet.transform.parent = rf.spawnedProjectiles.transform;
-                bullet.GetComponent<Bullet>().playerFired = playerFires;
-                currentTimer = 0;
-            } else {
-                rf.asy.NextInCycle();
-                activeBullet = rf.asy.currentActiveBullet.gameObject;
-            }
+            rf.asy.ConsumeAmmo();
+            GameObject bullet = Instantiate(activeBullet, firepoint.position, firepoint.rotation);
+            bullet.transform.parent = rf.spawnedProjectiles.transform;
+            bullet.GetComponent<Bullet>().playerFired = playerFires;
+            currentTimer = 0;
         }
     }
 }

@@ -49,6 +49,7 @@ public class LevelGeneration : MonoBehaviour {
     }
 
     private void BuildPropabilityArray() {
+        lowLevelPropArray.Clear();
         for (int i = 0; i < enemyPropabilities.ToArray().Length; i++) {
             for (int j = 0; j < 100 * enemyPropabilities[i]; j++) {
                 lowLevelPropArray.Add(enemyPropabilities[i]);

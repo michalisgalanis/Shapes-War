@@ -269,6 +269,8 @@ MonoBehaviour:
   - {fileID: 5488035428199748708, guid: 15ce86f007041594fbcb3c9c6d9a0cd0, type: 3}
   - {fileID: 8653061549976029955, guid: 8cacc47ff8cbc6843ac276719ac82242, type: 3}
   - {fileID: 895830065856883668, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c, type: 3}
+  - {fileID: 6623530379065235679, guid: f0fe220658d7d5844a238a7baf13ab07, type: 3}
+  - {fileID: 320020332336328422, guid: 48703b7e659f08e4fb1a533475ac0936, type: 3}
   spawnedShapes: {fileID: 0}
   spawnedEnemies: {fileID: 0}
   spawnedProjectiles: {fileID: 0}
