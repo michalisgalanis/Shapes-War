@@ -58,18 +58,23 @@ public class AmmoSystem : MonoBehaviour {
 
     public void SelectNextBullet() {
         int current = 0;
-        for (int i = 0; i < ammoItems.ToArray().Length; i++) {
-            if (activeAmmoItem.Equals(ammoItems[i])) current = i;
+        for (int j = 0; j < ammoItems.ToArray().Length; j++) {
+            if (activeAmmoItem.Equals(ammoItems[j])) current = j;
         }
-        int next = (current + 1) % ammoItems.ToArray().Length;
-        ammoItems[current].UpdateAmmo();
-        ammoItems[next].UpdateAmmo();
-        if (ammoItems[next].enabled) {
-            ammoItems[current].selected = false;
-            ammoItems[next].selected = true;
-            activeAmmoItem = ammoItems[next];
-            ApplyVisualChanges();
-        } else SelectNextBullet();
+        int i = 0, next;
+        do {
+            next = (current + 1 + i) % ammoItems.ToArray().Length;
+            ammoItems[current].UpdateAmmo();
+            ammoItems[next].UpdateAmmo();
+            if (ammoItems[next].enabled) {
+                ammoItems[current].selected = false;
+                ammoItems[next].selected = true;
+                activeAmmoItem = ammoItems[next];
+                ApplyVisualChanges();
+                break;
+            }
+            i++;
+        } while (!ammoItems[next].enabled);
     }
 
     public void ApplyVisualChanges() {
