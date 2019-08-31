@@ -10,6 +10,9 @@ public class EffectOverTime : MonoBehaviour {
     private int effectStoreCounter;
     [HideInInspector] public bool used;
 
+    private bool hpu=false;
+    private float healthBoost;
+
     public void Awake() {
         rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
     }
@@ -17,7 +20,19 @@ public class EffectOverTime : MonoBehaviour {
         effectStoreCounter = rf.ss.findStoreItemByType(Constants.Gameplay.Store.storeItem.POWERUP_EFFECT).counter;
         powerupMultiplier = 0f;
         used = false;
+        if (typeSelected == Constants.Gameplay.Powerups.overTimePowerupTypes.HEALTH_REGEN_POWERUP) {
+            hpu = true;
+            healthBoost = (1+powerupMultiplier)* rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH) / 3000; 
+        }
     }
+
+    public void FixedUpdate() {
+        if (hpu&&used) {
+            RuntimeSpecs.currentPlayerHealth = Mathf.Clamp(RuntimeSpecs.currentPlayerHealth + healthBoost, 0, rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH));
+            Debug.Log("CurrentPlayerHealth = " + RuntimeSpecs.currentPlayerHealth + " PowerupMultiplier= " + powerupMultiplier);
+        }
+    }
+           
 
     public void EnableEffect() {
         powerupMultiplier = Constants.Functions.getPowerupEffectMultiplier(effectStoreCounter);
