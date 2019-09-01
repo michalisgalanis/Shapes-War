@@ -47,17 +47,10 @@ public class PlayerMovement : MonoBehaviour {
 
         //Moving Player
         if (totalMovementInput != Vector2.zero) {
-            currentSpeed += acceleration;
-            if (currentSpeed > velocityFactor) {
-                currentSpeed = velocityFactor;
-            }
-
+            currentSpeed = Mathf.Min(currentSpeed + acceleration, velocityFactor);
             lastMoveInput = totalMovementInput;
         } else {
-            currentSpeed -= acceleration;
-            if (currentSpeed < 0) {
-                currentSpeed = 0;
-            }
+            currentSpeed = Mathf.Max(currentSpeed - acceleration, 0);
         }
         positionValue = rb.position + lastMoveInput.normalized * Time.fixedDeltaTime * currentSpeed;
 
@@ -65,6 +58,8 @@ public class PlayerMovement : MonoBehaviour {
         if (totalAttackInput != Vector2.zero) {
             rotationValue = Vector2.SignedAngle(new Vector2(0, 1), totalAttackInput);
         }
+
+        
     }
 
     public void FixedUpdate() {
@@ -73,7 +68,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void resetMovement() {
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        transform.localRotation = Quaternion.identity;
         transform.localPosition = Vector3.zero;
     }
 }

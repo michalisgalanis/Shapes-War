@@ -61,7 +61,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8643191348888787484}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39ae98432cbe081469642a83866cd9e5, type: 3}
   m_Name: 
@@ -174,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   camScript: {fileID: 0}
+  camFollowPlayer: {fileID: 0}
   background: {fileID: 0}
   backgroundShapes:
   - {fileID: 1450495750344213492, guid: 5fb5f88eb63cc41408dc654e9cb16759, type: 3}
@@ -216,6 +217,7 @@ MonoBehaviour:
   - {fileID: 0}
   bapText: {fileID: 0}
   enemiesRemainingText: {fileID: 0}
+  levelCompleteText: {fileID: 0}
   storeUpgradeButtons:
   - {fileID: 0}
   - {fileID: 0}
@@ -247,8 +249,23 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   player: {fileID: 0}
-  playerWings: []
-  playerHeads: []
+  playerWings:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerHeads:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   gameManager: {fileID: 8643191348888787484}
   shield: {fileID: 7923466100961731369, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f, type: 3}
   enemyTypes:
@@ -272,6 +289,7 @@ MonoBehaviour:
   - {fileID: 895830065856883668, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c, type: 3}
   - {fileID: 6623530379065235679, guid: f0fe220658d7d5844a238a7baf13ab07, type: 3}
   - {fileID: 320020332336328422, guid: 48703b7e659f08e4fb1a533475ac0936, type: 3}
+  - {fileID: 6406851221755829175, guid: fe252b463061a6649a8f7c15f61694fe, type: 3}
   spawnedShapes: {fileID: 0}
   spawnedEnemies: {fileID: 0}
   spawnedProjectiles: {fileID: 0}
@@ -296,7 +314,11 @@ MonoBehaviour:
     type: 3}
   shieldDestroyExplosionParticles: {fileID: 1766086259938547595, guid: ed15474e90ebcc644823c32fd23a4a0b,
     type: 3}
+  aoeExplosion: {fileID: 4136127275558606616, guid: 2b95cb35aa2991f4f830469896e26ba3,
+    type: 3}
   levelUpParticles: {fileID: 5529174717530985782, guid: 014125df8a991f74b8fa1d990307f040,
+    type: 3}
+  healingParticles: {fileID: 3545393977878891877, guid: 4d012298faa0a8b4cb0dc18e4955cf71,
     type: 3}
   shockwave: {fileID: 5261163578460684603, guid: d6703ea4eba38c04d927a158feb5e6cd,
     type: 3}

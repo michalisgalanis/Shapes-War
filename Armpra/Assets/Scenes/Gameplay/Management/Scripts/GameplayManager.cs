@@ -63,6 +63,7 @@ public class GameplayManager : MonoBehaviour {
 
     public void CompleteLevel() {
         Time.timeScale = 0;
+        rf.levelCompleteText.text = "Level " + RuntimeSpecs.mapLevel + " Complete!";
         RuntimeSpecs.mapLevel++;
         RuntimeSpecs.enemiesKilled = 0;
         RuntimeSpecs.enemiesSpawned = 0;
@@ -199,11 +200,14 @@ public class GameplayManager : MonoBehaviour {
             camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.PLAYER_LAYER_NAME);
             camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.ENEMY_LAYER_NAME);
             camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.PROJECTILES_LAYER_NAME);
+            camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.POWERUPS_LAYER_NAME);
+
             break;
             default:
             camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.PLAYER_LAYER_NAME));
             camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.ENEMY_LAYER_NAME));
             camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.PROJECTILES_LAYER_NAME));
+            camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.POWERUPS_LAYER_NAME));
             break;
         }
     }
@@ -230,6 +234,11 @@ public class GameplayManager : MonoBehaviour {
             for (int i = 0; i < rf.ss.upgrades.Length; i++) {
                 rf.ss.upgrades[i].counter = loadedData.storeUpgradesCounters[i];
             }
+
+            rf.ss.forceRefresh();
+            rf.pg.Refresh();
+            rf.ps.EstimateStats();
+            rf.ps.RefillStats();
         }
     }
 }

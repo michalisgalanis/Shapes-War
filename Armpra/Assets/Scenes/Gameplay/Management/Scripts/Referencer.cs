@@ -5,6 +5,7 @@ public class Referencer : MonoBehaviour {
     [Header("                                   [Camera & Background]")]
     public GameObject cam;
     public Camera camScript;
+    public CameraFollowPlayer camFollowPlayer;
     public GameObject background;
     public GameObject[] backgroundShapes;
     public DynamicBackground backgroundScript;
@@ -37,6 +38,7 @@ public class Referencer : MonoBehaviour {
     public TextMeshProUGUI[] xpTexts;
     public TextMeshProUGUI bapText;
     public TextMeshProUGUI enemiesRemainingText;
+    public TextMeshProUGUI levelCompleteText;
     [Space(5)]
     public Button[] storeUpgradeButtons;
     public GameObject[] storeLevelTexts;
@@ -78,11 +80,14 @@ public class Referencer : MonoBehaviour {
     public ParticleSystem enemyDeathExplosionParticles;
     public ParticleSystem playerDeathExplosionParticles;
     public ParticleSystem shieldDestroyExplosionParticles;
+    public ParticleSystem aoeExplosion;
     public ParticleSystem levelUpParticles;
+    public ParticleSystem healingParticles;
     public GameObject shockwave;
 
     public void Awake() {
         camScript = cam.GetComponent<Camera>();
+        camFollowPlayer = cam.GetComponent<CameraFollowPlayer>();
         backgroundScript = background.GetComponent<DynamicBackground>();
         shieldScript = shield.GetComponent<Shield>();
         player = GameObject.FindGameObjectWithTag(Constants.Tags.PLAYER_TAG); //TODO FindRightPlayer

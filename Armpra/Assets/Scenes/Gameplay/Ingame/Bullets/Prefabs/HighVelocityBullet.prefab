@@ -4782,7 +4782,7 @@ Transform:
   m_GameObject: {fileID: 9132529803182020237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 0}
-  m_LocalScale: {x: 0.07, y: 0.121, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.18, z: 1}
   m_Children:
   - {fileID: 9132529803625794804}
   - {fileID: 1196180159280410392}
@@ -4848,6 +4848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa669a635d5a12499685f480deac08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bs: {fileID: 0}
   playerFired: 1
 --- !u!212 &9132529803182020242
 SpriteRenderer:
@@ -4912,7 +4913,10 @@ MonoBehaviour:
   bulletType: 1
   damage: 25
   acceleration: 3
-  maxSpeed: 50
+  maxSpeed: 60
+  aoe: 0
+  blastDamage: 0
+  blastRadius: 0
 --- !u!1 &9132529803625794807
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@
 public class Bullet : MonoBehaviour {
     //References
     private Referencer rf;
-    private BulletSpecs bs;
+    [HideInInspector] public BulletSpecs bs;
     private Rigidbody2D rb;
 
     //Setup Variables
@@ -19,11 +19,16 @@ public class Bullet : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Update() {
-        currentSpeed += bs.acceleration;
-        if (currentSpeed > bs.maxSpeed) {
-            currentSpeed = bs.maxSpeed;
+    public void Start() {
+        if (bs.aoe) {
+            bs.blastDamage = 0.2f * bs.damage;
+            bs.blastRadius = 1.5f;
+            Debug.Log("Applied " + bs.blastDamage + " blast damage & " + bs.blastRadius + " blast radius");
         }
+    }
+
+    public void Update() {
+        currentSpeed = Mathf.Min(currentSpeed + bs.acceleration, bs.maxSpeed);
         rb.velocity = transform.up * currentSpeed;
     }
 
@@ -33,7 +38,20 @@ public class Bullet : MonoBehaviour {
                 Enemy enemy = hitInfo.GetComponent<Enemy>();
                 if (enemy != null) {
                     Instantiate(rf.hitExplosionParticles, transform.position, Quaternion.identity).transform.parent = rf.spawnedParticles.transform;
+                    if (bs.aoe) {
+                        ParticleSystem aoeExplosion = Instantiate(rf.aoeExplosion, enemy.transform.position, Quaternion.identity);
+                        aoeExplosion.transform.parent = rf.spawnedParticles.transform;
+                        GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag(Constants.Tags.ENEMY_TAG);
+                        foreach (GameObject activeEnemy in activeEnemies) {
+                            if (activeEnemy.activeInHierarchy && activeEnemy.GetComponent<Enemy>() != null && bs.blastRadius >= Vector2.Distance(activeEnemy.transform.position, aoeExplosion.transform.position)) {
+                                Debug.Log(bs.blastDamage + " damage dealt caused by BLAST");
+                                activeEnemy.GetComponent<Enemy>().TakeDamage(bs.blastDamage);
+                            }
+                        }
+                        
+                    }
                     enemy.TakeDamage(bs.damage);
+                    Debug.Log("Enemy Hit from Bullet");
                 }
                 Destroy(gameObject);
             } else if (hitInfo.CompareTag(Constants.Tags.SHIELD_TAG)) {

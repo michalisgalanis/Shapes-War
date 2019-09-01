@@ -4906,6 +4906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa669a635d5a12499685f480deac08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bs: {fileID: 0}
   playerFired: 1
 --- !u!212 &8377685596300739902
 SpriteRenderer:
@@ -4968,9 +4969,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: 2
-  damage: 60
+  damage: 50
   acceleration: 1
-  maxSpeed: 15
+  maxSpeed: 10
+  aoe: 1
+  blastDamage: 0
+  blastRadius: 0
 --- !u!1 &8377685596787546126
 GameObject:
   m_ObjectHideFlags: 0

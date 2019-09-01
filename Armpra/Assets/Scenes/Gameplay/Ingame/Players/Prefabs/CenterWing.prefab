@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6563404536284633800}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 516344611125677732}
   - component: {fileID: 6381272715477934820}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CenterWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6794783149790967043}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166926138266062626}
   - component: {fileID: 625256291997312758}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9090737489652877917}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1374592808592768417}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2301905035235017760}
   - component: {fileID: 5986672626420297447}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CWL2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -580419079
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a95fb1b3a6ea9e0448fd48c47b3c8981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -374,7 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4981590252996155266}
   - component: {fileID: 3168033172040363106}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CWL1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -580419079
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a95fb1b3a6ea9e0448fd48c47b3c8981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -454,7 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8291377264800590997}
   - component: {fileID: 7348776817565821310}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CWC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -580419079
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a95fb1b3a6ea9e0448fd48c47b3c8981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -533,7 +533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9010571568129630507}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4646571802189686955}
   - component: {fileID: 8851886657918952110}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CWR2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -580419079
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a95fb1b3a6ea9e0448fd48c47b3c8981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -644,7 +644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633356317884675383}
   - component: {fileID: 8543899067870723597}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CWR1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +702,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -580419079
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a95fb1b3a6ea9e0448fd48c47b3c8981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

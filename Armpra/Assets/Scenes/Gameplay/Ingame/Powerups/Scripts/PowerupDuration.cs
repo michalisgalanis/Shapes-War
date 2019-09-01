@@ -40,4 +40,8 @@ public class PowerupDuration : MonoBehaviour {
         isActive = true;
         timeLeft = powerupDuration;
     }
+
+    public float GetTimeLeft() {
+        return timeLeft;
+    }
 }

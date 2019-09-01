@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5591788793626232962}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5265085088874041613}
   - component: {fileID: 8868881230725036275}
   - component: {fileID: 3272165072064757791}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RightWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -580419079
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 76b4afe604d91bb4cab3eff50436890a, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -156,7 +156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2584225279895080572}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8411871058229902948}
   - component: {fileID: 7906501979388608987}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RWC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8493627748322511365}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5250744058205724634}
   - component: {fileID: 5778107888857501661}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 294296809723626536}
   - component: {fileID: 2024104960790511313}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RWR1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1784211205297987279}
   - component: {fileID: 4462379976731247785}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RWL1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -16,12 +16,9 @@ public class PowerupInstantiator : MonoBehaviour {
         switch (typeSelected) {
             case Constants.Gameplay.Powerups.instantiatorPowerupTypes.SHIELD_POWERUP:
             Vector3 initialScale = rf.shield.transform.localScale;
-            float sizeIncrease = PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1);
-            if (sizeIncrease == 0) {
-                sizeIncrease = 1;
-            }
+            float sizeIncrease = Mathf.Max(PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1), 1);
 
-            shield = Instantiate(rf.shield, rf.player.GetComponent<Transform>().localPosition, Quaternion.identity);
+            shield = Instantiate(rf.shield, rf.player.transform.localPosition, Quaternion.identity);
             shield.transform.localScale = initialScale * sizeIncrease;
             shield.transform.parent = rf.player.transform;
             break;

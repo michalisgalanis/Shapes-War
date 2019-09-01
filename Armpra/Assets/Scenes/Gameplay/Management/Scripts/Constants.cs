@@ -9,6 +9,7 @@ public class Constants {
         public const string PLAYER_LAYER_NAME = "Player";
         public const string ENEMY_LAYER_NAME = "Enemy";
         public const string PROJECTILES_LAYER_NAME = "Projectiles";
+        public const string POWERUPS_LAYER_NAME = "Powerups";
     }
     public class Tags {
         public const string GAME_MANAGER_TAG = "GameController";
@@ -38,7 +39,7 @@ public class Constants {
         }
 
         public class Player {
-            public enum headTypes { CWC, CWL1, CWR1, CWL2, CWR2, LWC, LWL1, LWR1, RWC, RWL1, RWR1}
+            public enum headTypes { CWC, CWL1, CWR1, CWL2, CWR2, LWC, LWL1, LWR1, RWC, RWL1, RWR1 }
 
             public const int MAX_SIZE_CHANGE = 75;
             public const float PLAYER_ACCELERATION = 0.15f;
@@ -52,7 +53,7 @@ public class Constants {
 
         public class Powerups {
             public enum instantPowerupTypes { INSTANT_HEAL_POWERUP, COIN_PACK_POWERUP, XP_PACK_POWERUP }
-            public enum overTimePowerupTypes { ATTACK_SPEED_POWERUP, MELEE_DAMAGE_POWERUP, HEALTH_REGEN_POWERUP, DAMAGE_REDUCTION_POWERUP, RANGED_DAMAGE_POWERUP, MOVEMENT_SPEED_POWERUP }
+            public enum overTimePowerupTypes { ATTACK_SPEED_POWERUP, MELEE_DAMAGE_POWERUP, HEALTH_REGEN_POWERUP, DAMAGE_REDUCTION_POWERUP, RANGED_DAMAGE_POWERUP, MOVEMENT_SPEED_POWERUP, ZOOM_OUT_POWERUP }
             public enum instantiatorPowerupTypes { SHIELD_POWERUP }
         }
 
@@ -128,11 +129,27 @@ public class Constants {
         public static float getDecreaseCurve(int mapLevel) {
             return (float)(100f / (0.5 * mapLevel + 1));
         }
+
+        public static float getRoundedFloat(float number, int precision) {
+            return Mathf.Round(number * Mathf.Pow(10f, precision)) / Mathf.Pow(10f, precision);
+        }
     }
 
     public class FileLocations {
         public static readonly string FILE_SUFFIX = "/Saves/progress.stpd";
         public static readonly string WINDOWS_PATH = Application.dataPath + FILE_SUFFIX;
         public static readonly string ANDROID_PATH = "/storage/emulated/0/Armpra" + FILE_SUFFIX;
+    }
+
+    public class Text {
+
+        public enum enemyNames { SCOUT, BASIC, DOUBLE_HEAD, BOLT_ACTION, SHOTGUN, MACHINE_GUN, SLOWER, KAMIKAZE, TANK, NINJA }
+        public string[] enemyDescriptions = {
+            "This is a small devil, not dangerous but very agile. Try to stay away from it as much as possible.",
+            "The first enemy that can actually shoot. Medium Speed, low-medium damage and a meh range.",
+            "Double the number of heads, double the damage and even tankier. Do not underestimate it!",
+            "This one can hit you from very far and deal a lot of damage. It will never stop until you do something about it.",
+            ""};
+
     }
 }
