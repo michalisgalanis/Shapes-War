@@ -27,6 +27,7 @@ public class StoreSystem : MonoBehaviour {
                 upgrades[i].upgradeItem();
                 rf.storeUpgradeButtons[i] = upgrades[i].button;
                 rf.storeLevelTexts[i] = upgrades[i].levelText.gameObject;
+                SavingSystem.SaveProgress();
             }
         }
     }

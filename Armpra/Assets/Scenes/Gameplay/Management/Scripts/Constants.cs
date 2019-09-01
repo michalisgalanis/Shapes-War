@@ -150,6 +150,5 @@ public class Constants {
             "Double the number of heads, double the damage and even tankier. Do not underestimate it!",
             "This one can hit you from very far and deal a lot of damage. It will never stop until you do something about it.",
             ""};
-
     }
 }
