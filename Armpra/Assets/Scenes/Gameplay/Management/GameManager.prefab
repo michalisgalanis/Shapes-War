@@ -160,8 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51007dcd841dd84d97ef067c218e7f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabledButtons: []
-  currentActiveBullet: {fileID: 0}
 --- !u!114 &1038768626180292039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +247,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   player: {fileID: 0}
+  playerWings: []
+  playerHeads: []
   gameManager: {fileID: 8643191348888787484}
   shield: {fileID: 7923466100961731369, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f, type: 3}
   enemyTypes:
@@ -256,6 +256,7 @@ MonoBehaviour:
   - {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c, type: 3}
   - {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c, type: 3}
   - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
+  - {fileID: 9190259925475766161, guid: 9b54b820283b01d46b6202ea28360f8a, type: 3}
   bulletTypes:
   - {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67, type: 3}
   - {fileID: 9132529803182020237, guid: 18a0703337a957a40bdeadb29d9b4edb, type: 3}

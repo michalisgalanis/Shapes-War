@@ -44,6 +44,8 @@ public class Referencer : MonoBehaviour {
     [Header("                                       [General Objects]")]
     [Space(10)]
     public GameObject player;
+    public GameObject[] playerWings;
+    public GameObject[] playerHeads;
     public GameObject gameManager;
     public GameObject shield;
     public GameObject[] enemyTypes;
@@ -83,7 +85,7 @@ public class Referencer : MonoBehaviour {
         camScript = cam.GetComponent<Camera>();
         backgroundScript = background.GetComponent<DynamicBackground>();
         shieldScript = shield.GetComponent<Shield>();
-        player = GameObject.FindGameObjectWithTag(Constants.Tags.PLAYER_TAG);
+        player = GameObject.FindGameObjectWithTag(Constants.Tags.PLAYER_TAG); //TODO FindRightPlayer
         ps = player.GetComponent<PlayerStats>();
         pm = player.GetComponent<PlayerMovement>();
         pe = player.GetComponent<PlayerExperience>();

@@ -38,7 +38,9 @@ public class Constants {
         }
 
         public class Player {
-            public const int MAX_VISUAL_CHANGES_LEVEL = 20;
+            public enum headTypes { CWC, CWL1, CWR1, CWL2, CWR2, LWC, LWL1, LWR1, RWC, RWL1, RWR1}
+
+            public const int MAX_SIZE_CHANGE = 75;
             public const float PLAYER_ACCELERATION = 0.15f;
             public enum playerStatTypes { ATTACK_SPEED, MELEE_DAMAGE, MAX_HEALTH, DAMAGE_REDUCTION, MOVEMENT_SPEED }
 
@@ -88,7 +90,7 @@ public class Constants {
         }
 
         public static float getPlayerSizeAtLevel(int playerLevel) {
-            return 0.4f + (Mathf.Clamp(playerLevel, 0f, Gameplay.Player.MAX_VISUAL_CHANGES_LEVEL) - 1) * 0.02f;
+            return 0.4f + (Mathf.Clamp(playerLevel, 0f, Gameplay.Player.MAX_SIZE_CHANGE) - 1) * 0.003f;
         }
 
         public static float getPlayerAttackSpeed(int playerLevel, int upgradeCounter, float powerupFactor) {

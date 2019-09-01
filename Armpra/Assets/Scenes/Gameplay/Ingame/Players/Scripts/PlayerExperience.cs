@@ -43,15 +43,13 @@ public class PlayerExperience : MonoBehaviour {
         RuntimeSpecs.currentPlayerXP -= RuntimeSpecs.xpBetweenMilestones;
         Vector3 initialScale = rf.levelUpParticles.gameObject.transform.localScale;
         ParticleSystem lvlUpParticles = Instantiate(rf.levelUpParticles, transform.position, Quaternion.identity);
-        float sizeIncrease = PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1);
-        if (sizeIncrease == 0) {
-            sizeIncrease = 1;
-        }
+        float sizeIncrease = Mathf.Max(PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1), 1);
 
         lvlUpParticles.transform.localScale = initialScale * sizeIncrease;
         lvlUpParticles.transform.parent = rf.spawnedParticles.transform;
         rf.ps.EstimateStats();
         rf.ps.RefillStats();
+        rf.pg.Refresh();
     }
 
     public void addXP(double xp) {

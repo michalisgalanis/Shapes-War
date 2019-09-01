@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour {
     //References
     private Referencer rf;
-    private SpriteRenderer playerBorder;
-    private List<SpriteRenderer> playerHeads;
 
     //Runtime Variables
     private bool markedForDestruction = false;
@@ -14,17 +12,12 @@ public class PlayerStats : MonoBehaviour {
 
     public void Awake() {
         rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
-        playerBorder = rf.player.transform.GetChild(1).GetComponent<SpriteRenderer>();
         statItems = new List<StatItem>();
-        playerHeads = new List<SpriteRenderer>();
     }
 
     public void Start() {
         for (int i = 0; i < Enum.GetValues(typeof(Constants.Gameplay.Player.playerStatTypes)).Length; i++) {
             statItems.Add(new StatItem((Constants.Gameplay.Player.playerStatTypes)Enum.GetValues(typeof(Constants.Gameplay.Player.playerStatTypes)).GetValue(i)));
-        }
-        for (int i = 0; i < rf.player.transform.GetChild(0).childCount; i++) {
-            playerHeads.Add(rf.player.transform.GetChild(0).GetChild(i).GetComponent<SpriteRenderer>());
         }
         GameObject shockwave = Instantiate(rf.shockwave, transform.localPosition, Quaternion.identity) as GameObject;
         shockwave.transform.parent = rf.spawnedParticles.transform;
@@ -38,9 +31,11 @@ public class PlayerStats : MonoBehaviour {
 
     public void FixedUpdate() {
         float h = 0f, v = 1f, s = 1f - RuntimeSpecs.currentPlayerHealth / GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH);
-        playerBorder.color = (Color.HSVToRGB(h, s, v));
-        foreach (SpriteRenderer playerHead in playerHeads) {
-            playerHead.color = (Color.HSVToRGB(h, s, v));
+        foreach (GameObject playerBorder in rf.playerWings) {
+            playerBorder.transform.GetChild(0).GetComponent<SpriteRenderer>().color = (Color.HSVToRGB(h, s, v));
+        }
+        foreach (GameObject playerHead in rf.playerHeads) {
+            playerHead.GetComponent<SpriteRenderer>().color = (Color.HSVToRGB(h, s, v));
         }
     }
 

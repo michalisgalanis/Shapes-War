@@ -4782,7 +4782,7 @@ Transform:
   m_GameObject: {fileID: 9132529803182020237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.07, y: 0.121, z: 1}
   m_Children:
   - {fileID: 9132529803625794804}
   - {fileID: 1196180159280410392}
@@ -4848,9 +4848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa669a635d5a12499685f480deac08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitExplosionParticlesPrefab: {fileID: 2720002162805827168, guid: 1fa619fc97f3a00409100fba5bed68cb,
-    type: 3}
-  rb: {fileID: 9132529803182020240}
   playerFired: 1
 --- !u!212 &9132529803182020242
 SpriteRenderer:

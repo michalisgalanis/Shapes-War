@@ -57,8 +57,8 @@ public class DynamicBackground : MonoBehaviour {
 
     public void ChangeBackgroundColor() {
         SpriteRenderer sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        float hRand = Random.Range(0f, 1f), sRand = 1f, vRandBG = 0.1f, vRandDE = 0.7f;
+        float hRand = Random.Range(0f, 1f), sRand = 1f, vRandBG = 0.1f; //vRandDE = 0.7f;
         sr.color = Color.HSVToRGB(hRand, sRand, vRandBG);
-        rf.pg.UpdateStripeVisuals(Color.HSVToRGB(hRand, sRand, vRandDE));
+        //rf.pg.UpdateStripeVisuals(Color.HSVToRGB(hRand, sRand, vRandDE));
     }
 }
