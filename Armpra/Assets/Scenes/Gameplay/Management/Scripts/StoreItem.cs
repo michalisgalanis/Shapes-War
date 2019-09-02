@@ -34,6 +34,7 @@ public class StoreItem {
             counter++;
         }
         refreshItem();
+        
         rf.cs.FixedUpdate();
         if (!isAmmo) rf.ps.EstimateStats();
     }
