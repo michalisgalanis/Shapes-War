@@ -3,7 +3,6 @@
 [System.Serializable]
 public class Sound {
     public string name;
-    public Constants.Audio.soundTypes soundType;
     public bool loop = false;
 
     public AudioClip clip;

@@ -192,7 +192,6 @@ MonoBehaviour:
   debugPanelUI: {fileID: 0}
   hackPanelUI: {fileID: 0}
   ammoPanelUI: {fileID: 0}
-  enemyDescriptorPanelUI: {fileID: 0}
   ammoBulletButtons:
   - {fileID: 0}
   - {fileID: 0}
@@ -362,42 +361,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: ShootingSound
-    soundType: 0
     loop: 0
     clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: CoinSound
-    soundType: 0
     loop: 0
     clip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: WinningSound
-    soundType: 0
     loop: 0
     clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: ButtonClick
-    soundType: 0
     loop: 0
     clip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Music
-    soundType: 0
-    loop: 0
-    clip: {fileID: 8300000, guid: 11f55126b0970d14bbdfee5ecfb3c9d2, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-  type: 0
-  masterVolume: 1
-  musicVolume: 1
-  sfxVolume: 1
-  uiVolume: 1

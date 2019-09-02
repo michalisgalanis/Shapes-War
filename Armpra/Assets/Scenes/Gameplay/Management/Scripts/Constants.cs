@@ -173,18 +173,12 @@ public class Constants {
             "This one can hit you from very far and deal a lot of damage. It will never stop until you do something about it.",
             "Low range - High damage enemy, It's one of those things you wouln't want them to lying around.",
             "This enemy is weak, yet very powerful with a huge rate of fire. Don't let it statatatatatatatatatatatatatatart.",
-            "This one is boring, although supports the enemy team with great utility. Its bullets can slow you down.",
+            "This one is boring, although supports the enemy team with great utility. It's bullets can slow you down.",
             "Nuff Said.",
             "This tough one takes a lot of time to take down. Be very patient.",
             "You can't see them. You won't know where they'll come from. You don't know their stats. Just run.",
             "This is a description. This is a description. This is a description. This is a description. This is a description."};
 
         public static int lastEnemyRemembered = -1;
-    }
-
-    public class Audio {
-        public enum soundTypes {
-            MUSIC, UI_SOUNDS, SFX 
-        }
     }
 }

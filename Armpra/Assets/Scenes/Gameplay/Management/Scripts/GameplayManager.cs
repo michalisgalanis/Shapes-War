@@ -256,12 +256,4 @@ public class GameplayManager : MonoBehaviour {
     public void hackPanelLose() {
         rf.ps.TakeDamage(RuntimeSpecs.currentPlayerHealth);
     }
-
-    private void loadData() {
-        SavingSystem.SetPath();
-        if (SavingSystem.LoadData() != null && enableSavingSystem == true) {
-            Data loadedData = SavingSystem.LoadData();
-            loadedData.Load();
-        }
-    }
 }

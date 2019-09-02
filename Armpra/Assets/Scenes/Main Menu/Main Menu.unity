@@ -157,24 +157,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: ButtonClick
-    soundType: 1
     loop: 0
     clip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Music
-    soundType: 0
-    loop: 1
-    clip: {fileID: 8300000, guid: 11f55126b0970d14bbdfee5ecfb3c9d2, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-  type: 0
-  masterVolume: 1
-  musicVolume: 1
-  sfxVolume: 1
-  uiVolume: 1
 --- !u!4 &540093133
 Transform:
   m_ObjectHideFlags: 0
