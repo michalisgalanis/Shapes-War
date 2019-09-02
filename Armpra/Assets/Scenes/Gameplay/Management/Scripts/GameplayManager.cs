@@ -58,7 +58,7 @@ public class GameplayManager : MonoBehaviour {
     public void CompleteLevel() {
         source = Constants.Gameplay.Manager.storeSource.WIN_MENU;
         currentGameState = Constants.Gameplay.Manager.gameState.WIN;
-        gameObject.GetComponent<AudioManager>().Play("WinningSound");
+        rf.audioManagerComp.Play("WinningSound");
         rf.levelCompleteText.text = "Level " + RuntimeSpecs.mapLevel + " Complete!";
         rf.cs.FixedUpdate();
         RuntimeSpecs.mapLevel++;

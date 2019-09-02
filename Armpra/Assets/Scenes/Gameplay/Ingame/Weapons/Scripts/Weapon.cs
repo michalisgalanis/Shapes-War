@@ -59,7 +59,7 @@ public class Weapon : MonoBehaviour {
 
     private void Shoot() {
         if (playerFires)
-            rf.gameManager.GetComponent<AudioManager>().Play("ShootingSound");
+            rf.audioManagerComp.Play("ShootingSound");
         foreach (Transform firepoint in firepoints) {
             rf.asy.ConsumeAmmo();
             GameObject bullet = Instantiate(activeBullet, firepoint.position, firepoint.rotation);

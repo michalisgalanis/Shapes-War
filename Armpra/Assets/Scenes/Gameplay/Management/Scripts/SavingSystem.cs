@@ -34,6 +34,10 @@ public class SavingSystem {
                 stream = new FileStream(pathRoot + Constants.Data.STORE_DATA, FileMode.OpenOrCreate);
                 formatter.Serialize(stream, new Data.StoreData());
                 break;
+            case Constants.Data.dataTypes.AUDIO_DATA:
+                stream = new FileStream(pathRoot + Constants.Data.AUDIO_DATA, FileMode.OpenOrCreate);
+                formatter.Serialize(stream, new Data.AudioData());
+                break;
         }
         if (stream != null)
             stream.Close();
@@ -61,6 +65,13 @@ public class SavingSystem {
                 stream = new FileStream(pathRoot + Constants.Data.STORE_DATA, FileMode.OpenOrCreate);
                 Data.StoreData storeData = (formatter.Deserialize(stream) as Data.StoreData);
                 storeData.Load();
+                break;
+            case Constants.Data.dataTypes.AUDIO_DATA:
+                if (!File.Exists(pathRoot + Constants.Data.AUDIO_DATA))
+                    break;
+                stream = new FileStream(pathRoot + Constants.Data.AUDIO_DATA, FileMode.OpenOrCreate);
+                Data.AudioData audioData = (formatter.Deserialize(stream) as Data.AudioData);
+                audioData.Load();
                 break;
         }
         if (stream != null) stream.Close();
