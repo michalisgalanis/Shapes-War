@@ -23,7 +23,6 @@ public class Bullet : MonoBehaviour {
         if (bs.aoe) {
             bs.blastDamage = 0.2f * bs.damage;
             bs.blastRadius = 1.5f;
-            Debug.Log("Applied " + bs.blastDamage + " blast damage & " + bs.blastRadius + " blast radius");
         }
     }
 

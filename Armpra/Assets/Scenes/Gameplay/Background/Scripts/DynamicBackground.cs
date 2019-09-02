@@ -11,14 +11,14 @@ public class DynamicBackground : MonoBehaviour {
     private static float MIN_BORDER;
     private static float MAX_BORDER;
 
-    void Awake() {
+    private void Awake() {
         rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
         SpriteRenderer bgRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         Constants.Gameplay.Background.MAP_HEIGHT = (bgRenderer.sprite.texture.height / bgRenderer.sprite.pixelsPerUnit);
         Constants.Gameplay.Background.MAP_WIDTH = (bgRenderer.sprite.texture.width / bgRenderer.sprite.pixelsPerUnit);
     }
 
-    void Start() {
+    private void Start() {
         MIN_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * (-0.5f);
         MAX_BORDER = Constants.Gameplay.Background.MAP_HEIGHT * 0.5f;
         ChangeBackgroundColor();
@@ -26,7 +26,7 @@ public class DynamicBackground : MonoBehaviour {
         shapesCounter = 0;
     }
 
-    void Update() {
+    private void Update() {
         currentTimer += Time.deltaTime;
         if (currentTimer >= spawnTimer && shapesCounter < Constants.Gameplay.Background.SHAPES_AMOUNT) {
             //Selecting shape

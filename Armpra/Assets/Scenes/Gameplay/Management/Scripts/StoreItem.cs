@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class StoreItem {
     //References
-    private Referencer rf;
+    private readonly Referencer rf;
 
     //Setup Variables
     public TextMeshProUGUI levelText;
