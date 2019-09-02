@@ -149,6 +149,8 @@ public class Constants {
             "The first enemy that can actually shoot. Medium Speed, low-medium damage and a meh range.",
             "Double the number of heads, double the damage and even tankier. Do not underestimate it!",
             "This one can hit you from very far and deal a lot of damage. It will never stop until you do something about it.",
-            ""};
+            "Low range - High damage enemy, It's one of those things you wouln't want them to lying around.",
+            "This enemy is weak, yet very powerful with a huge rate of fire. Don't let it statatatatatatatatatatatatatataart.",
+            "This one is boring, although supports the enemy team with great utility. It's bullets can slow you down."};
     }
 }

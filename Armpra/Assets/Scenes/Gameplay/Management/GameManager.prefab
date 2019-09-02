@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 2845300236765391730}
   - component: {fileID: 1038768626180292039}
   - component: {fileID: 9222955369900606899}
+  - component: {fileID: 8643191347702228387}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -61,7 +62,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8643191348888787484}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39ae98432cbe081469642a83866cd9e5, type: 3}
   m_Name: 
@@ -345,3 +346,40 @@ MonoBehaviour:
   damageReductionText: {fileID: 0}
   movementSpeedText: {fileID: 0}
   currentHealthText: {fileID: 0}
+--- !u!114 &8643191347702228387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643191348888787484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d67a90e32a5cd4c8ad5e7b90030a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ButtonClick
+    loop: 0
+    clip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: CoinSound
+    loop: 0
+    clip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: ShootingSound
+    loop: 0
+    clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: WinningSound4
+    loop: 0
+    clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

@@ -8,11 +8,8 @@ public class IntendedParticleDeath : MonoBehaviour {
     }
 
     public void Update() {
-        if (Time.timeScale < 0.01f) {
-            ps.Simulate(Time.unscaledDeltaTime, true, false);
-        }
-        if (ps && !ps.IsAlive()) {
+        ps.Simulate((Time.timeScale < 0.01f) ? Time.unscaledDeltaTime : Time.deltaTime, true, false);
+        if (ps && !ps.IsAlive())
             Destroy(gameObject);
-        }
     }
 }

@@ -241,4 +241,19 @@ public class GameplayManager : MonoBehaviour {
             rf.ps.RefillStats();
         }
     }
+
+    public void hackPanelCompleteLevel() {
+        GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag(Constants.Tags.ENEMY_TAG);
+        foreach (GameObject activeEnemy in activeEnemies) {
+            if (activeEnemy.activeInHierarchy && activeEnemy.GetComponent<Enemy>() != null) {
+                activeEnemy.GetComponent<Enemy>().TakeDamage(activeEnemy.GetComponent<Enemy>().currentHealth);
+            }
+        }
+        rf.es.spawningTime = false;
+        RuntimeSpecs.enemiesKilled = RuntimeSpecs.maxEnemyCount;
+    }
+
+    public void hackPanelLose() {
+        rf.ps.TakeDamage(RuntimeSpecs.currentPlayerHealth);
+    }
 }

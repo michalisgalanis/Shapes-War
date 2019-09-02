@@ -1016,37 +1016,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-    - target: {fileID: 4883223730083628566, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2565201821517925004, guid: e43c0554b4f9d0a49a181509c1f4c94b,
-        type: 2}
-    - target: {fileID: 4883223730083628566, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883223730083628566, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883223730083628566, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883223730083628566, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883223730083628566, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7938595711460120091, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
       propertyPath: m_sharedMaterial
@@ -1237,40 +1206,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 823116070}
-    - target: {fileID: 3632678279383124996, guid: 5dbde5f525335d3449034fbbbe53e954,
+    - target: {fileID: 7613010704201220255, guid: 5dbde5f525335d3449034fbbbe53e954,
         type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783995822232685418, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783995822232685418, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783995822232685418, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783995822232685418, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783995822232685418, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_textInfo.materialCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683594641846578877, guid: 5dbde5f525335d3449034fbbbe53e954,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: hackPanelLose
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dbde5f525335d3449034fbbbe53e954, type: 3}
@@ -2292,11 +2231,6 @@ PrefabInstance:
       propertyPath: spawnedParticles
       value: 
       objectReference: {fileID: 1989011940}
-    - target: {fileID: 8643191348888787553, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9222955369900606899, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: mapLevelText

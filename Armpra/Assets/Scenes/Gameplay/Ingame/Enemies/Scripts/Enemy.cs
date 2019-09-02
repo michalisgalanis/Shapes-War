@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour {
     public int coinsOnDeath;
 
     //Runtime Variables
-    private float currentHealth;
+    [HideInInspector] public float currentHealth;
     private bool markedForDestruction;
 
     public void Awake() {

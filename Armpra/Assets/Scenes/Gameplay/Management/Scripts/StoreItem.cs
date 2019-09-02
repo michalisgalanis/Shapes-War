@@ -41,7 +41,7 @@ public class StoreItem {
 
     public void refreshItem() {
         estimateCost();
-        levelText.text = ((isAmmo) ? "Ammo: " : "Level ") + counter;
+        if (item != Constants.Gameplay.Store.storeItem.NORMAL) levelText.text = ((isAmmo) ? "Ammo: " : "Level ") + counter;
         button.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cost.ToString();
         if (!isAmmo && counter >= MAX_COUNTER) {
             button.interactable = false;

@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour {
 
     //Runtime Variables
     private float currentTimer;
-    private bool spawningTime;
+    [HideInInspector] public bool spawningTime;
 
     public void Awake() {
         rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
