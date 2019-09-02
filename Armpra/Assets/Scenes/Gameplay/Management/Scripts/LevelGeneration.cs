@@ -59,9 +59,7 @@ public class LevelGeneration : MonoBehaviour {
 
     public int PickRandomEnemy() {
         int random = Random.Range(0, lowLevelPropArray.ToArray().Length);
-        //Debug.Log("Random: " + random);
         float randomPropability = lowLevelPropArray[random];
-        //Debug.Log("Random Prop: " + randomPropability);
         int index = 0;
         List<int> indexes = new List<int>();
         for (int i = 0; i < enemyPropabilities.ToArray().Length; i++) {
@@ -71,17 +69,6 @@ public class LevelGeneration : MonoBehaviour {
             }
         }
         index = indexes[Random.Range(0, indexes.ToArray().Length)];
-        //Debug.Log("Index: " + index);
         return index;
-    }
-
-    public void DisplayStats() {
-        for (int i = 0; i < enemyPropabilities.ToArray().Length; i++) {
-            //Debug.Log("Enemy Propability of enemy " + i + ": " + enemyPropabilities[i]);
-        }
-
-        for (int i = 0; i < lowLevelPropArray.ToArray().Length; i++) {
-            //Debug.Log("Propability Array " + i + ": " + propabilityArray[i]);
-        }
     }
 }

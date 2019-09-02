@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 126859744367596407}
   - component: {fileID: 2388319664508739701}
   - component: {fileID: 3737460454957192986}
-  - component: {fileID: 5310953700059009747}
+  - component: {fileID: -9193301603279910368}
   m_Layer: 12
   m_Name: Basic
   m_TagString: Enemy
@@ -410,7 +410,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
---- !u!114 &5310953700059009747
+--- !u!114 &-9193301603279910368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,10 +419,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 126859744367596400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46123ef3b8f9d2b4fb1c96017a418e1b, type: 3}
+  m_Script: {fileID: 11500000, guid: becca6db70c371649ae2b62ed1286087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingTime: 4
+  shootingTime: 1
+  activeBullet: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
+    type: 3}
   range: 1.5
 --- !u!1 &280264873815778452
 GameObject:
@@ -492,21 +494,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 126859744367596404}
     m_Modifications:
-    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Trails
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 7056273137654434148, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -561,6 +548,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Trails
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}

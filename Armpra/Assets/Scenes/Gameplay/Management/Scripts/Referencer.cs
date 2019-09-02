@@ -66,7 +66,7 @@ public class Referencer : MonoBehaviour {
     public PlayerGenerator pg;
     public PlayerMovement pm;
     public PlayerExperience pe;
-    public Weapon wp;
+    public PlayerWeapon wp;
     public StoreSystem ss;
     public EnemySpawner es;
     public GameplayManager gm;
@@ -96,7 +96,7 @@ public class Referencer : MonoBehaviour {
         pm = player.GetComponent<PlayerMovement>();
         pe = player.GetComponent<PlayerExperience>();
         pg = player.GetComponent<PlayerGenerator>();
-        wp = player.GetComponent<Weapon>();
+        wp = player.GetComponent<PlayerWeapon>();
         gameManager = gameObject;
         gm = gameManager.GetComponent<GameplayManager>();
         es = gameManager.GetComponent<EnemySpawner>();

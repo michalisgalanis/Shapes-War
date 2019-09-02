@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerGenerator : MonoBehaviour {
     //References
     private Referencer rf;
-    private Weapon weapon;
+    private PlayerWeapon weapon;
 
 
     //Setup Variables
@@ -16,7 +16,7 @@ public class PlayerGenerator : MonoBehaviour {
 
     public void Awake() {
         rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
-        weapon = GetComponent<Weapon>();
+        weapon = GetComponent<PlayerWeapon>();
         playerHeads = new List<PlayerHead>();
 
     }

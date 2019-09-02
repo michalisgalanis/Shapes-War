@@ -135,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9170378791235166725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 185841777596271185}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 5590883094558501883}
   - component: {fileID: 9190259925475766162}
   - component: {fileID: 6876410465018305684}
-  - component: {fileID: 8114572193617946629}
+  - component: {fileID: -9181960688810952422}
   m_Layer: 12
   m_Name: Shotgun
   m_TagString: Enemy
@@ -392,7 +392,7 @@ MonoBehaviour:
   xpOnDeath: 25
   coinsOnDeath: 7
   currentHealth: 0
---- !u!114 &8114572193617946629
+--- !u!114 &-9181960688810952422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -401,10 +401,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9190259925475766161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46123ef3b8f9d2b4fb1c96017a418e1b, type: 3}
+  m_Script: {fileID: 11500000, guid: becca6db70c371649ae2b62ed1286087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingTime: 6.5
+  shootingTime: 7
+  activeBullet: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
+    type: 3}
   range: 1.5
 --- !u!1 &9190259926195980838
 GameObject:
@@ -492,21 +494,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9190259925475766165}
     m_Modifications:
-    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Trails
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 7056273137654434148, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -561,6 +548,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Trails
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
