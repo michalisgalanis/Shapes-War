@@ -256,30 +256,6 @@ public class GameplayManager : MonoBehaviour {
         }
     }
 
-    private void loadData() {
-        SavingSystem.SetPath();
-        if (SavingSystem.LoadData() != null && enableSavingSystem == true) {
-            Data loadedData = SavingSystem.LoadData();
-
-            //Loading Data
-            RuntimeSpecs.mapLevel = loadedData.mapLevel;
-            RuntimeSpecs.ap = loadedData.bestAttemptPercentage;
-            RuntimeSpecs.currentPlayerXP = loadedData.currentPlayerXP;
-            RuntimeSpecs.playerLevel = loadedData.playerLevel;
-            RuntimeSpecs.currentCoins = loadedData.currentCoins;
-
-            //Load Store Upgrades
-            for (int i = 0; i < rf.ss.upgrades.Length; i++) {
-                rf.ss.upgrades[i].counter = loadedData.storeUpgradesCounters[i];
-            }
-
-            rf.ss.forceRefresh();
-            rf.pg.Refresh();
-            rf.ps.EstimateStats();
-            rf.ps.RefillStats();
-        }
-    }
-
     public void hackPanelCompleteLevel() {
         GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag(Constants.Tags.ENEMY_TAG);
         foreach (GameObject activeEnemy in activeEnemies) {
@@ -293,5 +269,13 @@ public class GameplayManager : MonoBehaviour {
 
     public void hackPanelLose() {
         rf.ps.TakeDamage(RuntimeSpecs.currentPlayerHealth);
+    }
+
+    private void loadData() {
+        SavingSystem.SetPath();
+        if (SavingSystem.LoadData() != null && enableSavingSystem == true) {
+            Data loadedData = SavingSystem.LoadData();
+            loadedData.Load();
+        }
     }
 }
