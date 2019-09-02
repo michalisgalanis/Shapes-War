@@ -45,7 +45,8 @@ public class GameplayManager : MonoBehaviour {
         Time.timeScale = 1;
         currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
         manageMenus();
-        if (enableSavingSystem) SavingSystem.SaveProgress();
+        if (enableSavingSystem)
+            SavingSystem.SaveProgress();
         SceneManager.LoadScene(Constants.Scenes.GAMEPLAY_SCENE_NAME);
     }
 
@@ -58,7 +59,8 @@ public class GameplayManager : MonoBehaviour {
         rf.pm.resetMovement();
         if (RuntimeSpecs.ap > RuntimeSpecs.bap)
             RuntimeSpecs.bap = RuntimeSpecs.ap;
-        if (enableSavingSystem) SavingSystem.SaveProgress();
+        if (enableSavingSystem)
+            SavingSystem.SaveProgress();
     }
 
     public void CompleteLevel() {
@@ -75,14 +77,15 @@ public class GameplayManager : MonoBehaviour {
         currentGameState = Constants.Gameplay.Manager.gameState.WIN;
         manageMenus();
         RuntimeSpecs.bap = 0f;
-        if (enableSavingSystem) SavingSystem.SaveProgress();
+        if (enableSavingSystem)
+            SavingSystem.SaveProgress();
     }
 
     public void ProceedToNextLevel() {
         Time.timeScale = 1;
         currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
         manageMenus();
-        
+
         rf.backgroundScript.ChangeBackgroundColor();
     }
 
@@ -106,7 +109,8 @@ public class GameplayManager : MonoBehaviour {
             ReturnToLostMenu();
         }
         rf.ps.EstimateStats();
-        if (enableSavingSystem) SavingSystem.SaveProgress();
+        if (enableSavingSystem)
+            SavingSystem.SaveProgress();
     }
 
     public void ReturnToLostMenu() {
@@ -126,95 +130,96 @@ public class GameplayManager : MonoBehaviour {
         ShowSelectedLayers();
         switch (currentGameState) {
             case Constants.Gameplay.Manager.gameState.PLAY:
-            rf.scoreCoinsUI.SetActive(true);
-            rf.pauseMenuUI.SetActive(false);
-            rf.winMenuUI.SetActive(false);
-            rf.lostMenuUI.SetActive(false);
-            rf.storeMenuUI.SetActive(false);
-            rf.movementJoystickUI.SetActive(true);
-            rf.attackJoystickUI.SetActive(true);
+                rf.scoreCoinsUI.SetActive(true);
+                rf.pauseMenuUI.SetActive(false);
+                rf.winMenuUI.SetActive(false);
+                rf.lostMenuUI.SetActive(false);
+                rf.storeMenuUI.SetActive(false);
+                rf.movementJoystickUI.SetActive(true);
+                rf.attackJoystickUI.SetActive(true);
 
-            rf.debugPanelUI.SetActive(false);
-            rf.hackPanelUI.SetActive(true);
-            rf.ammoPanelUI.SetActive(true);
-            ShowSelectedLayers();
-            break;
+                rf.debugPanelUI.SetActive(false);
+                rf.hackPanelUI.SetActive(true);
+                rf.ammoPanelUI.SetActive(true);
+                ShowSelectedLayers();
+                break;
             case Constants.Gameplay.Manager.gameState.PAUSE:
-            rf.scoreCoinsUI.SetActive(false);
-            rf.pauseMenuUI.SetActive(true);
-            rf.winMenuUI.SetActive(false);
-            rf.lostMenuUI.SetActive(false);
-            rf.storeMenuUI.SetActive(false);
-            rf.movementJoystickUI.SetActive(false);
-            rf.attackJoystickUI.SetActive(false);
+                rf.scoreCoinsUI.SetActive(false);
+                rf.pauseMenuUI.SetActive(true);
+                rf.winMenuUI.SetActive(false);
+                rf.lostMenuUI.SetActive(false);
+                rf.storeMenuUI.SetActive(false);
+                rf.movementJoystickUI.SetActive(false);
+                rf.attackJoystickUI.SetActive(false);
 
-            rf.debugPanelUI.SetActive(false);
-            rf.hackPanelUI.SetActive(false);
-            rf.ammoPanelUI.SetActive(false);
-            break;
+                rf.debugPanelUI.SetActive(false);
+                rf.hackPanelUI.SetActive(false);
+                rf.ammoPanelUI.SetActive(false);
+                break;
             case Constants.Gameplay.Manager.gameState.WIN:
-            rf.scoreCoinsUI.SetActive(false);
-            rf.pauseMenuUI.SetActive(false);
-            rf.winMenuUI.SetActive(true);
-            rf.lostMenuUI.SetActive(false);
-            rf.storeMenuUI.SetActive(false);
-            rf.movementJoystickUI.SetActive(false);
-            rf.attackJoystickUI.SetActive(false);
+                rf.scoreCoinsUI.SetActive(false);
+                rf.pauseMenuUI.SetActive(false);
+                rf.winMenuUI.SetActive(true);
+                rf.lostMenuUI.SetActive(false);
+                rf.storeMenuUI.SetActive(false);
+                rf.movementJoystickUI.SetActive(false);
+                rf.attackJoystickUI.SetActive(false);
 
-            rf.debugPanelUI.SetActive(false);
-            rf.hackPanelUI.SetActive(false);
-            rf.ammoPanelUI.SetActive(false);
-            break;
+                rf.debugPanelUI.SetActive(false);
+                rf.hackPanelUI.SetActive(false);
+                rf.ammoPanelUI.SetActive(false);
+                break;
             case Constants.Gameplay.Manager.gameState.LOST:
-            rf.scoreCoinsUI.SetActive(false);
-            rf.pauseMenuUI.SetActive(false);
-            rf.winMenuUI.SetActive(false);
-            rf.lostMenuUI.SetActive(true);
-            rf.storeMenuUI.SetActive(false);
-            rf.movementJoystickUI.SetActive(false);
-            rf.attackJoystickUI.SetActive(false);
+                rf.scoreCoinsUI.SetActive(false);
+                rf.pauseMenuUI.SetActive(false);
+                rf.winMenuUI.SetActive(false);
+                rf.lostMenuUI.SetActive(true);
+                rf.storeMenuUI.SetActive(false);
+                rf.movementJoystickUI.SetActive(false);
+                rf.attackJoystickUI.SetActive(false);
 
-            rf.debugPanelUI.SetActive(false);
-            rf.hackPanelUI.SetActive(false);
-            rf.ammoPanelUI.SetActive(false);
-            break;
+                rf.debugPanelUI.SetActive(false);
+                rf.hackPanelUI.SetActive(false);
+                rf.ammoPanelUI.SetActive(false);
+                break;
             case Constants.Gameplay.Manager.gameState.STORE:
-            rf.scoreCoinsUI.SetActive(false);
-            rf.pauseMenuUI.SetActive(false);
-            rf.winMenuUI.SetActive(false);
-            rf.lostMenuUI.SetActive(false);
-            rf.storeMenuUI.SetActive(true);
-            rf.movementJoystickUI.SetActive(false);
-            rf.attackJoystickUI.SetActive(false);
+                rf.scoreCoinsUI.SetActive(false);
+                rf.pauseMenuUI.SetActive(false);
+                rf.winMenuUI.SetActive(false);
+                rf.lostMenuUI.SetActive(false);
+                rf.storeMenuUI.SetActive(true);
+                rf.movementJoystickUI.SetActive(false);
+                rf.attackJoystickUI.SetActive(false);
 
-            rf.debugPanelUI.SetActive(false);
-            rf.hackPanelUI.SetActive(false);
-            rf.ammoPanelUI.SetActive(false);
-            break;
+                rf.debugPanelUI.SetActive(false);
+                rf.hackPanelUI.SetActive(false);
+                rf.ammoPanelUI.SetActive(false);
+                break;
         }
     }
     private void ShowSelectedLayers() {
         GameObject camera = rf.cam;
         switch (currentGameState) {
             case Constants.Gameplay.Manager.gameState.PLAY:
-            camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.PLAYER_LAYER_NAME);
-            camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.ENEMY_LAYER_NAME);
-            camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.PROJECTILES_LAYER_NAME);
-            camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.POWERUPS_LAYER_NAME);
+                camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.PLAYER_LAYER_NAME);
+                camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.ENEMY_LAYER_NAME);
+                camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.PROJECTILES_LAYER_NAME);
+                camera.GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer(Constants.Layers.POWERUPS_LAYER_NAME);
 
-            break;
+                break;
             default:
-            camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.PLAYER_LAYER_NAME));
-            camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.ENEMY_LAYER_NAME));
-            camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.PROJECTILES_LAYER_NAME));
-            camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.POWERUPS_LAYER_NAME));
-            break;
+                camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.PLAYER_LAYER_NAME));
+                camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.ENEMY_LAYER_NAME));
+                camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.PROJECTILES_LAYER_NAME));
+                camera.GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer(Constants.Layers.POWERUPS_LAYER_NAME));
+                break;
         }
     }
 
     private void clearField() {
         foreach (GameObject tempPowerup in GameObject.FindGameObjectsWithTag(Constants.Tags.POWERUPS_TAG)) {
-            if (tempPowerup.activeInHierarchy) Destroy(tempPowerup);
+            if (tempPowerup.activeInHierarchy)
+                Destroy(tempPowerup);
         }
     }
 

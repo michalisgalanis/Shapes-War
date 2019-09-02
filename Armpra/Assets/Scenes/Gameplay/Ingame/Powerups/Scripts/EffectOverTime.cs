@@ -25,34 +25,34 @@ public class EffectOverTime : MonoBehaviour {
         if (used) {
             switch (typeSelected) {
                 case Constants.Gameplay.Powerups.overTimePowerupTypes.HEALTH_REGEN_POWERUP:
-                RuntimeSpecs.currentPlayerHealth = Mathf.Clamp(RuntimeSpecs.currentPlayerHealth + effectValue, 0, rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH));
-                Debug.Log("CurrentPlayerHealth = " + RuntimeSpecs.currentPlayerHealth + " PowerupMultiplier= " + powerupMultiplier);
-                break;
+                    RuntimeSpecs.currentPlayerHealth = Mathf.Clamp(RuntimeSpecs.currentPlayerHealth + effectValue, 0, rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH));
+                    Debug.Log("CurrentPlayerHealth = " + RuntimeSpecs.currentPlayerHealth + " PowerupMultiplier= " + powerupMultiplier);
+                    break;
             }
         }
     }
-           
+
 
     public void EnableEffect() {
         used = true;
         powerupMultiplier = Constants.Functions.getPowerupEffectMultiplier(effectStoreCounter);
         switch (typeSelected) {
             case Constants.Gameplay.Powerups.overTimePowerupTypes.HEALTH_REGEN_POWERUP:
-            effectValue = (1 + powerupMultiplier) * rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH) / 3000; //Effect Value is Health Boost
-            Vector3 initialScale = rf.healingParticles.transform.localScale;
-            float sizeIncrease = Mathf.Max(PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1), 1);
-            healingParticles = Instantiate(rf.healingParticles, rf.player.transform.localPosition, Quaternion.identity);
-            var main = healingParticles.main;
-            main.duration = GetComponent<PowerupDuration>().GetTimeLeft();
-            main.startColor = new ParticleSystem.MinMaxGradient(rf.powerupTypes[1].transform.GetChild(0).GetComponent<SpriteRenderer>().color);
-            healingParticles.Play();
-            healingParticles.transform.localScale = initialScale * sizeIncrease;
-            healingParticles.transform.parent = rf.player.transform;
-            break;
+                effectValue = (1 + powerupMultiplier) * rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH) / 3000; //Effect Value is Health Boost
+                Vector3 initialScale = rf.healingParticles.transform.localScale;
+                float sizeIncrease = Mathf.Max(PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1), 1);
+                healingParticles = Instantiate(rf.healingParticles, rf.player.transform.localPosition, Quaternion.identity);
+                ParticleSystem.MainModule main = healingParticles.main;
+                main.duration = GetComponent<PowerupDuration>().GetTimeLeft();
+                main.startColor = new ParticleSystem.MinMaxGradient(rf.powerupTypes[1].transform.GetChild(0).GetComponent<SpriteRenderer>().color);
+                healingParticles.Play();
+                healingParticles.transform.localScale = initialScale * sizeIncrease;
+                healingParticles.transform.parent = rf.player.transform;
+                break;
             case Constants.Gameplay.Powerups.overTimePowerupTypes.ZOOM_OUT_POWERUP:
-            rf.camFollowPlayer.maxZoomOutFactor = Mathf.Clamp(powerupMultiplier, 0, 2);
-            rf.camFollowPlayer.zoomOutEffectActive = true;
-            break;
+                rf.camFollowPlayer.maxZoomOutFactor = Mathf.Clamp(powerupMultiplier, 0, 2);
+                rf.camFollowPlayer.zoomOutEffectActive = true;
+                break;
         }
         rf.ps.EstimateStats();
     }
@@ -62,8 +62,8 @@ public class EffectOverTime : MonoBehaviour {
         effectValue = 0f;
         switch (typeSelected) {
             case Constants.Gameplay.Powerups.overTimePowerupTypes.ZOOM_OUT_POWERUP:
-            rf.camFollowPlayer.zoomOutEffectActive = false;
-            break;
+                rf.camFollowPlayer.zoomOutEffectActive = false;
+                break;
         }
         rf.ps.EstimateStats();
 

@@ -42,9 +42,10 @@ public class Weapon : MonoBehaviour {
         firepoints.Clear();
         if (playerFires) {
             foreach (GameObject head in rf.playerHeads) {
-                if (head.activeSelf) firepoints.Add(head.transform.GetChild(0));
+                if (head.activeSelf)
+                    firepoints.Add(head.transform.GetChild(0));
             }
-        } else if  (Vector2.Distance(target.GetComponent<Transform>().position, transform.position) <= range) {
+        } else if (Vector2.Distance(target.GetComponent<Transform>().position, transform.position) <= range) {
             Transform headSystem = gameObject.transform.GetChild(0);
             for (int i = 0; i < headSystem.childCount; i++) {
                 if (headSystem.GetChild(i).gameObject.activeInHierarchy) {
@@ -58,7 +59,7 @@ public class Weapon : MonoBehaviour {
     }
 
     private void Shoot() {
-        if(playerFires)
+        if (playerFires)
             rf.gameManager.GetComponent<AudioManager>().Play("ShootingSound");
         foreach (Transform firepoint in firepoints) {
             rf.asy.ConsumeAmmo();

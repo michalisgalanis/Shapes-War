@@ -39,11 +39,15 @@ public class Constants {
         }
 
         public class Player {
-            public enum headTypes { CWC, CWL1, CWR1, CWL2, CWR2, LWC, LWL1, LWR1, RWC, RWL1, RWR1 }
+            public enum headTypes {
+                CWC, CWL1, CWR1, CWL2, CWR2, LWC, LWL1, LWR1, RWC, RWL1, RWR1
+            }
 
             public const int MAX_SIZE_CHANGE = 75;
             public const float PLAYER_ACCELERATION = 0.15f;
-            public enum playerStatTypes { ATTACK_SPEED, MELEE_DAMAGE, MAX_HEALTH, DAMAGE_REDUCTION, MOVEMENT_SPEED }
+            public enum playerStatTypes {
+                ATTACK_SPEED, MELEE_DAMAGE, MAX_HEALTH, DAMAGE_REDUCTION, MOVEMENT_SPEED
+            }
 
         }
 
@@ -52,19 +56,31 @@ public class Constants {
         }
 
         public class Powerups {
-            public enum instantPowerupTypes { INSTANT_HEAL_POWERUP, COIN_PACK_POWERUP, XP_PACK_POWERUP }
-            public enum overTimePowerupTypes { ATTACK_SPEED_POWERUP, MELEE_DAMAGE_POWERUP, HEALTH_REGEN_POWERUP, DAMAGE_REDUCTION_POWERUP, RANGED_DAMAGE_POWERUP, MOVEMENT_SPEED_POWERUP, ZOOM_OUT_POWERUP }
-            public enum instantiatorPowerupTypes { SHIELD_POWERUP }
+            public enum instantPowerupTypes {
+                INSTANT_HEAL_POWERUP, COIN_PACK_POWERUP, XP_PACK_POWERUP
+            }
+            public enum overTimePowerupTypes {
+                ATTACK_SPEED_POWERUP, MELEE_DAMAGE_POWERUP, HEALTH_REGEN_POWERUP, DAMAGE_REDUCTION_POWERUP, RANGED_DAMAGE_POWERUP, MOVEMENT_SPEED_POWERUP, ZOOM_OUT_POWERUP
+            }
+            public enum instantiatorPowerupTypes {
+                SHIELD_POWERUP
+            }
         }
 
         public class Manager {
-            public enum storeSource { WIN_MENU, LOST_MENU }
-            public enum gameState { PLAY, PAUSE, WIN, LOST, STORE }
+            public enum storeSource {
+                WIN_MENU, LOST_MENU
+            }
+            public enum gameState {
+                PLAY, PAUSE, WIN, LOST, STORE
+            }
         }
 
 
         public class Bullet {
-            public enum bulletTypes { NORMAL, HV, EXPLOSIVE, POISONOUS }
+            public enum bulletTypes {
+                NORMAL, HV, EXPLOSIVE, POISONOUS
+            }
         }
 
         public class Store {
@@ -143,7 +159,9 @@ public class Constants {
 
     public class Text {
 
-        public enum enemyNames { SCOUT, BASIC, DOUBLE_HEAD, BOLT_ACTION, SHOTGUN, MACHINE_GUN, SLOWER, KAMIKAZE, TANK, NINJA }
+        public enum enemyNames {
+            SCOUT, BASIC, DOUBLE_HEAD, BOLT_ACTION, SHOTGUN, MACHINE_GUN, SLOWER, KAMIKAZE, TANK, NINJA
+        }
         public string[] enemyDescriptions = {
             "This is a small devil, not dangerous but very agile. Try to stay away from it as much as possible.",
             "The first enemy that can actually shoot. Medium Speed, low-medium damage and a meh range.",

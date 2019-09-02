@@ -43,15 +43,11 @@ public class Bullet : MonoBehaviour {
                         aoeExplosion.transform.parent = rf.spawnedParticles.transform;
                         GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag(Constants.Tags.ENEMY_TAG);
                         foreach (GameObject activeEnemy in activeEnemies) {
-                            if (activeEnemy.activeInHierarchy && activeEnemy.GetComponent<Enemy>() != null && bs.blastRadius >= Vector2.Distance(activeEnemy.transform.position, aoeExplosion.transform.position)) {
-                                Debug.Log(bs.blastDamage + " damage dealt caused by BLAST");
+                            if (activeEnemy.activeInHierarchy && activeEnemy.GetComponent<Enemy>() != null && bs.blastRadius >= Vector2.Distance(activeEnemy.transform.position, aoeExplosion.transform.position))
                                 activeEnemy.GetComponent<Enemy>().TakeDamage(bs.blastDamage);
-                            }
                         }
-                        
                     }
                     enemy.TakeDamage(bs.damage);
-                    Debug.Log("Enemy Hit from Bullet");
                 }
                 Destroy(gameObject);
             } else if (hitInfo.CompareTag(Constants.Tags.SHIELD_TAG)) {
@@ -64,14 +60,15 @@ public class Bullet : MonoBehaviour {
             if (hitInfo.CompareTag(Constants.Tags.SHIELD_TAG)) {
                 Shield shield = hitInfo.GetComponent<Shield>();
                 if (shield != null) {
-                    Instantiate(rf.hitExplosionParticles, transform.position, Quaternion.identity).transform.parent = rf.spawnedParticles.transform; ;
+                    Instantiate(rf.hitExplosionParticles, transform.position, Quaternion.identity).transform.parent = rf.spawnedParticles.transform;
                     shield.TakeDamage(bs.damage);
                 }
                 Destroy(gameObject);
             } else if (hitInfo.CompareTag(Constants.Tags.PLAYER_TAG)) {
                 PlayerStats player = hitInfo.GetComponent<PlayerStats>();
                 if (player != null) {
-                    Instantiate(rf.hitExplosionParticles, transform.position, Quaternion.identity).transform.parent = rf.spawnedParticles.transform; ;
+                    Instantiate(rf.hitExplosionParticles, transform.position, Quaternion.identity).transform.parent = rf.spawnedParticles.transform;
+                    ;
                     player.TakeDamage(bs.damage);
                 }
                 Destroy(gameObject);

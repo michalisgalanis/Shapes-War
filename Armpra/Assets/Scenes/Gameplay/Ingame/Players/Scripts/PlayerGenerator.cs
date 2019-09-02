@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
 public class PlayerGenerator : MonoBehaviour {
     //References
@@ -52,8 +52,9 @@ public class PlayerGenerator : MonoBehaviour {
         if (RuntimeSpecs.playerLevel >= 25) {
             rf.playerWings[1].SetActive(true);
             rf.playerWings[2].SetActive(true);
-        } else if (RuntimeSpecs.playerLevel >= 75)
-            rf.playerWings[3].SetActive(true);
+            if (RuntimeSpecs.playerLevel >= 75)
+                rf.playerWings[3].SetActive(true);
+        }
         weapon.SetupFirepoints();
     }
 

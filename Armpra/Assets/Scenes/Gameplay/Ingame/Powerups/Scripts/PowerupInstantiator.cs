@@ -15,29 +15,29 @@ public class PowerupInstantiator : MonoBehaviour {
     public void EnableEffect() {
         switch (typeSelected) {
             case Constants.Gameplay.Powerups.instantiatorPowerupTypes.SHIELD_POWERUP:
-            Vector3 initialScale = rf.shield.transform.localScale;
-            float sizeIncrease = Mathf.Max(PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1), 1);
+                Vector3 initialScale = rf.shield.transform.localScale;
+                float sizeIncrease = Mathf.Max(PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1), 1);
 
-            shield = Instantiate(rf.shield, rf.player.transform.localPosition, Quaternion.identity);
-            shield.transform.localScale = initialScale * sizeIncrease;
-            shield.transform.parent = rf.player.transform;
-            break;
+                shield = Instantiate(rf.shield, rf.player.transform.localPosition, Quaternion.identity);
+                shield.transform.localScale = initialScale * sizeIncrease;
+                shield.transform.parent = rf.player.transform;
+                break;
         }
     }
 
     public void DisableEffect() {
         switch (typeSelected) {
             case Constants.Gameplay.Powerups.instantiatorPowerupTypes.SHIELD_POWERUP:
-            Destroy(shield);
-            break;
+                Destroy(shield);
+                break;
         }
     }
 
     public void ResetEffect() {
         switch (typeSelected) {
             case Constants.Gameplay.Powerups.instantiatorPowerupTypes.SHIELD_POWERUP:
-            rf.shieldScript.RestoreShieldStats();
-            break;
+                rf.shieldScript.RestoreShieldStats();
+                break;
         }
     }
 
