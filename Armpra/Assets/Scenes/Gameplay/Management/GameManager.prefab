@@ -54,7 +54,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f877e9725c222644d80271af0d775110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSavingSystem: 1
 --- !u!114 &8643191348888787553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +375,7 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - name: WinningSound
-    soundType: 0
+    soundType: 2
     loop: 0
     clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
     volume: 1
