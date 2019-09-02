@@ -34,9 +34,10 @@ public class StoreItem {
             counter++;
         }
         refreshItem();
-        
+
         rf.cs.FixedUpdate();
-        if (!isAmmo) rf.ps.EstimateStats();
+        if (!isAmmo)
+            rf.ps.EstimateStats();
     }
 
     public void refreshItem() {
@@ -57,17 +58,17 @@ public class StoreItem {
         if (isAmmo) {
             switch (item) {
                 case Constants.Gameplay.Store.storeItem.NORMAL:
-                cost = 0;
-                break;
+                    cost = 0;
+                    break;
                 case Constants.Gameplay.Store.storeItem.HV:
-                cost = 10;
-                break;
+                    cost = 10;
+                    break;
                 case Constants.Gameplay.Store.storeItem.EXPLOSIVE:
-                cost = 25;
-                break;
+                    cost = 25;
+                    break;
                 case Constants.Gameplay.Store.storeItem.POISONOUS:
-                cost = 25;
-                break;
+                    cost = 25;
+                    break;
             }
         } else {
             cost = Mathf.RoundToInt(5 + 4 * Mathf.Pow(counter - 1, 1.22f));

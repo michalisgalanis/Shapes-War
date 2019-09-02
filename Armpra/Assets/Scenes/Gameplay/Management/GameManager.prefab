@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 2845300236765391730}
   - component: {fileID: 1038768626180292039}
   - component: {fileID: 9222955369900606899}
-  - component: {fileID: 8643191347702228387}
+  - component: {fileID: 1622379593}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -346,7 +346,7 @@ MonoBehaviour:
   damageReductionText: {fileID: 0}
   movementSpeedText: {fileID: 0}
   currentHealthText: {fileID: 0}
---- !u!114 &8643191347702228387
+--- !u!114 &1622379593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -359,9 +359,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: ButtonClick
+  - name: ShootingSound
     loop: 0
-    clip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+    clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
@@ -371,15 +371,15 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: ShootingSound
+  - name: WinningSound
     loop: 0
-    clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+    clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: WinningSound4
+  - name: ButtonClick
     loop: 0
-    clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+    clip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

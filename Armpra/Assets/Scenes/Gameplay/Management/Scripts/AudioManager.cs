@@ -1,19 +1,15 @@
-﻿using UnityEngine.Audio;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AudioManagerr : MonoBehaviour
-{
-    
+public class AudioManagerr : MonoBehaviour {
+
     public Sound[] sounds;
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 }

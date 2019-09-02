@@ -11,7 +11,9 @@ public class Debugger : MonoBehaviour {
         rf = GetComponent<Referencer>();
     }
 
-    private void Update() {
-        if (debugPlayerStats) Debug.Log(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH));
+
+    void Update() {
+        if (debugPlayerStats)
+            Debug.Log(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH));
     }
 }

@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
 public class JoystickMovement : MonoBehaviour {
-    private enum direction { LEFT, CENTER, RIGHT }
+    private enum direction {
+        LEFT, CENTER, RIGHT
+    }
     public bool movementJoystick;
 
     [HideInInspector] public Vector3 movementJoystickVector;

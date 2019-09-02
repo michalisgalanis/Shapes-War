@@ -31,7 +31,8 @@ public class AmmoSystem : MonoBehaviour {
             if (ammoItems[i].enabled && ammoItems[i].selected)
                 activeAmmoItem = ammoItems[i];
         }
-        if (!activeAmmoItem.enabled) SelectFirstBullet();
+        if (!activeAmmoItem.enabled)
+            SelectFirstBullet();
         ApplyVisualChanges();
     }
 
@@ -59,7 +60,8 @@ public class AmmoSystem : MonoBehaviour {
     public void SelectNextBullet() {
         int current = 0;
         for (int j = 0; j < ammoItems.ToArray().Length; j++) {
-            if (activeAmmoItem.Equals(ammoItems[j])) current = j;
+            if (activeAmmoItem.Equals(ammoItems[j]))
+                current = j;
         }
         int i = 0, next;
         do {
@@ -80,7 +82,8 @@ public class AmmoSystem : MonoBehaviour {
     public void ApplyVisualChanges() {
         for (int i = 0; i < ammoItems.ToArray().Length; i++) {
             rf.ammoBulletButtons[i] = ammoItems[i].ammoButton;
-            if (i != 0) rf.ammoBulletButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ammoItems[i].ammo.ToString();
+            if (i != 0)
+                rf.ammoBulletButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ammoItems[i].ammo.ToString();
             rf.ammoBulletButtons[i].gameObject.SetActive(ammoItems[i].selected);
         }
     }
