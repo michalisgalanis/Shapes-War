@@ -38,15 +38,13 @@ public class Enemy : MonoBehaviour {
     }
 
     private void Update() {
-        Color.RGBToHSV(enemyBorder.color, out float h, out float s, out float v);
-        h = 0f;
-        v = 1f;
-        s = 1f - currentHealth / maxHealth;
+        float h = 0f, v = 1f, s = 1f - currentHealth / maxHealth;
         enemyBorder.color = (Color.HSVToRGB(h, s, v));
         foreach (SpriteRenderer enemyHead in enemyHeads) {
             enemyHead.color = (Color.HSVToRGB(h, s, v));
         }
     }
+
     public void TakeDamage(float damage) {
         currentHealth -= damage;
         if (currentHealth <= 0 && !markedForDestruction) {

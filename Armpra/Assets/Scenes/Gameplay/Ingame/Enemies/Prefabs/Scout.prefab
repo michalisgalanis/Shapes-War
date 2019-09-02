@@ -298,8 +298,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6045932645883520105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.67, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 6058389775198643446}
   - {fileID: 6045932645396103647}
@@ -438,6 +438,7 @@ MonoBehaviour:
   meleeDamage: 0.1
   xpOnDeath: 5
   coinsOnDeath: 1
+  currentHealth: 0
 --- !u!1001 &7067210419981304585
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -24,11 +24,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4548622270383372721}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.3333331, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1.15, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: -0.009999976, z: 3.5742567}
+  m_LocalScale: {x: 0.10000011, y: 0.13800015, z: 1}
   m_Children: []
-  m_Father: {fileID: 3508892515343706373}
+  m_Father: {fileID: 4711011123109172897}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &7059884377016889040
@@ -108,7 +108,6 @@ Transform:
   m_LocalScale: {x: 0.12, y: 0.2, z: 1}
   m_Children:
   - {fileID: 7341767276239154364}
-  - {fileID: 7595512273980361121}
   m_Father: {fileID: 4711011123109172897}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -300,8 +299,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5596977696730418373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.65, y: 0, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 0}
   m_Children:
   - {fileID: 4711011123109172897}
   - {fileID: 5596977696512960883}
@@ -440,6 +439,7 @@ MonoBehaviour:
   meleeDamage: 0.25
   xpOnDeath: 25
   coinsOnDeath: 7
+  currentHealth: 0
 --- !u!114 &4808412085178796881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +561,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3508892515343706373}
+  - {fileID: 7595512273980361121}
   m_Father: {fileID: 5596977696730418369}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -58,16 +58,6 @@ public class PlayerGenerator : MonoBehaviour {
         weapon.SetupFirepoints();
     }
 
-    /*public void UpdateStripeVisuals(Color stripeColor) {
-        GameObject designElements = transform.Find("DesignElements").gameObject;
-        for (int i = 0; i < designElements.transform.childCount; i++) {
-            for (int j = 0; j < designElements.transform.GetChild(i).childCount; j++) {
-                SpriteRenderer element = designElements.transform.GetChild(i).GetChild(j).GetComponent<SpriteRenderer>();
-                element.color = stripeColor;
-            }
-        }
-    }*/
-
     public static float getSizeAtLevel(int level) {
         return Constants.Functions.getPlayerSizeAtLevel(level);
     }

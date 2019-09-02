@@ -6,10 +6,6 @@ public class GameplayManager : MonoBehaviour {
     //References
     private Referencer rf;
 
-    //Setup Variables
-    [Header("Setup Variables")]
-    public bool enableSavingSystem = false;
-
     //Runtime Variables
     private Constants.Gameplay.Manager.storeSource source;
     private Constants.Gameplay.Manager.gameState currentGameState;
@@ -20,36 +16,31 @@ public class GameplayManager : MonoBehaviour {
     }
 
     private void Start() {
-        Time.timeScale = 1;
         currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
         manageMenus();
         rf.ps.EstimateStats();
         rf.ps.RefillStats();
         rf.pm.resetMovement();
-        loadData();
-        if (RuntimeSpecs.mapLevel % 5 == 0 || RuntimeSpecs.mapLevel == 1)
+        SavingSystem.getInstance().LoadAll();
+        if ((RuntimeSpecs.mapLevel % 5 == 0 || RuntimeSpecs.mapLevel == 1) && Constants.Text.lastEnemyRemembered != (RuntimeSpecs.mapLevel / 5))
             NewEnemyFound();
         rf.es.BeginSpawning();
     }
 
     public void Pause() {
-        Time.timeScale = 0;
         currentGameState = Constants.Gameplay.Manager.gameState.PAUSE;
         manageMenus();
     }
 
     public void Resume() {
-        Time.timeScale = 1;
         currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
         manageMenus();
     }
 
     public void Restart() {
-        Time.timeScale = 1;
         currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
         manageMenus();
-        if (enableSavingSystem)
-            SavingSystem.SaveProgress();
+        SavingSystem.getInstance().Save(Constants.Data.dataTypes.PLAYER_MAP_DATA);
         SceneManager.LoadScene(Constants.Scenes.GAMEPLAY_SCENE_NAME);
     }
 
@@ -60,29 +51,24 @@ public class GameplayManager : MonoBehaviour {
         clearField();
         manageMenus();
         rf.pm.resetMovement();
-        if (RuntimeSpecs.ap > RuntimeSpecs.bap)
-            RuntimeSpecs.bap = RuntimeSpecs.ap;
-        if (enableSavingSystem)
-            SavingSystem.SaveProgress();
+        RuntimeSpecs.bap = Mathf.Max(RuntimeSpecs.ap, RuntimeSpecs.bap);
+        SavingSystem.getInstance().Save(Constants.Data.dataTypes.PLAYER_MAP_DATA);
     }
 
     public void CompleteLevel() {
-        Time.timeScale = 0;
+        source = Constants.Gameplay.Manager.storeSource.WIN_MENU;
+        currentGameState = Constants.Gameplay.Manager.gameState.WIN;
         gameObject.GetComponent<AudioManager>().Play("WinningSound");
         rf.levelCompleteText.text = "Level " + RuntimeSpecs.mapLevel + " Complete!";
+        rf.cs.FixedUpdate();
         RuntimeSpecs.mapLevel++;
-        RuntimeSpecs.enemiesKilled = 0;
-        RuntimeSpecs.enemiesSpawned = 0;
         clearField();
         rf.lg.EstimateLevel();
         rf.ps.RefillStats();
         rf.pm.resetMovement();
-        source = Constants.Gameplay.Manager.storeSource.WIN_MENU;
-        currentGameState = Constants.Gameplay.Manager.gameState.WIN;
         manageMenus();
         RuntimeSpecs.bap = 0f;
-        if (enableSavingSystem)
-            SavingSystem.SaveProgress();
+        SavingSystem.getInstance().Save(Constants.Data.dataTypes.PLAYER_MAP_DATA);
     }
 
     public void ProceedToNextLevel() {
@@ -90,7 +76,7 @@ public class GameplayManager : MonoBehaviour {
         currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
         manageMenus();
         rf.backgroundScript.ChangeBackgroundColor();
-        if (RuntimeSpecs.mapLevel % 5 == 0 || RuntimeSpecs.mapLevel == 1)
+        if ((RuntimeSpecs.mapLevel % 5 == 0 || RuntimeSpecs.mapLevel == 1) && Constants.Text.lastEnemyRemembered != (RuntimeSpecs.mapLevel / 5))
             NewEnemyFound();
     }
 
@@ -98,6 +84,7 @@ public class GameplayManager : MonoBehaviour {
         Time.timeScale = 0;
         currentGameState = Constants.Gameplay.Manager.gameState.NEW_ENEMY_FOUND;
         int index = (RuntimeSpecs.mapLevel / 5);
+        Constants.Text.lastEnemyRemembered = index;
         rf.enemyDescriptorPanelUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =  "\"" + Constants.Text.enemyNames[index] + "\"";
         rf.enemyDescriptorPanelUI.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = Constants.Text.enemyDescriptions[index];
         manageMenus();
@@ -110,31 +97,26 @@ public class GameplayManager : MonoBehaviour {
     }
 
     public void VisitStore() {
-        Time.timeScale = 0;
         currentGameState = Constants.Gameplay.Manager.gameState.STORE;
         manageMenus();
         rf.ss.forceRefresh();
     }
 
     public void ReturnToCompleteLevel() {
-        Time.timeScale = 0;
         currentGameState = Constants.Gameplay.Manager.gameState.WIN;
         manageMenus();
     }
 
     public void ExitStore() {
-        if (source == Constants.Gameplay.Manager.storeSource.WIN_MENU) {
-            ReturnToCompleteLevel();
-        } else if (source == Constants.Gameplay.Manager.storeSource.LOST_MENU) {
-            ReturnToLostMenu();
-        }
+        SavingSystem.getInstance().Save(Constants.Data.dataTypes.STORE_DATA);
         rf.ps.EstimateStats();
-        if (enableSavingSystem)
-            SavingSystem.SaveProgress();
+        if (source == Constants.Gameplay.Manager.storeSource.WIN_MENU)
+            ReturnToCompleteLevel();
+        else if (source == Constants.Gameplay.Manager.storeSource.LOST_MENU)
+            ReturnToLostMenu();
     }
 
     public void ReturnToLostMenu() {
-        Time.timeScale = 0;
         currentGameState = Constants.Gameplay.Manager.gameState.LOST;
         manageMenus();
     }
@@ -147,9 +129,11 @@ public class GameplayManager : MonoBehaviour {
 
     //Utility Methods
     private void manageMenus() {
+        Time.timeScale = 0;
         ShowSelectedLayers();
         switch (currentGameState) {
             case Constants.Gameplay.Manager.gameState.PLAY:
+                Time.timeScale = 1;
                 rf.scoreCoinsUI.SetActive(true);
                 rf.pauseMenuUI.SetActive(false);
                 rf.winMenuUI.SetActive(false);
@@ -254,30 +238,8 @@ public class GameplayManager : MonoBehaviour {
             if (tempPowerup.activeInHierarchy)
                 Destroy(tempPowerup);
         }
-    }
-
-    private void loadData() {
-        SavingSystem.SetPath();
-        if (SavingSystem.LoadData() != null && enableSavingSystem == true) {
-            Data loadedData = SavingSystem.LoadData();
-
-            //Loading Data
-            RuntimeSpecs.mapLevel = loadedData.mapLevel;
-            RuntimeSpecs.ap = loadedData.bestAttemptPercentage;
-            RuntimeSpecs.currentPlayerXP = loadedData.currentPlayerXP;
-            RuntimeSpecs.playerLevel = loadedData.playerLevel;
-            RuntimeSpecs.currentCoins = loadedData.currentCoins;
-
-            //Load Store Upgrades
-            for (int i = 0; i < rf.ss.upgrades.Length; i++) {
-                rf.ss.upgrades[i].counter = loadedData.storeUpgradesCounters[i];
-            }
-
-            rf.ss.forceRefresh();
-            rf.pg.Refresh();
-            rf.ps.EstimateStats();
-            rf.ps.RefillStats();
-        }
+        RuntimeSpecs.enemiesKilled = 0;
+        RuntimeSpecs.enemiesSpawned = 0;
     }
 
     public void hackPanelCompleteLevel() {

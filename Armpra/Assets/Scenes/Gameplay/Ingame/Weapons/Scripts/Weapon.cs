@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour {
     private Referencer rf;
 
     //Setup Stats
-    [HideInInspector] public float shootingTime;
+    public float shootingTime;
     private bool playerFires;
 
     //Runtime Variables
@@ -45,14 +45,13 @@ public class Weapon : MonoBehaviour {
                 if (head.activeSelf)
                     firepoints.Add(head.transform.GetChild(0));
             }
-        } else if (Vector2.Distance(target.GetComponent<Transform>().position, transform.position) <= range) {
+        } else if (Vector2.Distance(target.transform.position, transform.position) <= range) {
             Transform headSystem = gameObject.transform.GetChild(0);
             for (int i = 0; i < headSystem.childCount; i++) {
-                if (headSystem.GetChild(i).gameObject.activeInHierarchy) {
+                if (headSystem.GetChild(i).gameObject.activeInHierarchy && headSystem.GetChild(i).childCount == 1) {
                     Transform fp = headSystem.GetChild(i).GetChild(0);
-                    if (fp) {
+                    if (fp)
                         firepoints.Add(fp);
-                    }
                 }
             }
         }

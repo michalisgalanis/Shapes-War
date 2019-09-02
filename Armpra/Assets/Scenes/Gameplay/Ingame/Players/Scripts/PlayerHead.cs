@@ -1,20 +1,14 @@
 ﻿using UnityEngine;
 
 public class PlayerHead {
-    //References
-    private readonly Referencer rf;
-
     //Setup Variables
     public Constants.Gameplay.Player.headTypes headType;
-    //public Transform firepoint;
 
     //Runtime Variables
     public bool enabled;
 
     public PlayerHead(Constants.Gameplay.Player.headTypes headType) {
-        rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
         this.headType = headType;
-        //this.firepoint = firepoint;
         enabled = false;
     }
 
@@ -126,5 +120,4 @@ public class PlayerHead {
                 break;
         }
     }
-
 }

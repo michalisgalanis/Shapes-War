@@ -92,6 +92,17 @@ public class Constants {
         }
     }
 
+    public class Data {
+        public enum dataTypes { PLAYER_MAP_DATA, STORE_DATA };
+
+
+        public static readonly string PLAYER_MAP_DATA = "player_map.data";
+        public static readonly string STORE_DATA = "store.data";
+
+        public static readonly string WINDOWS_PATH_ROOT = Application.dataPath + "/Saves/";
+        public static readonly string ANDROID_PATH_ROOT = "/storage/emulated/0/Armpra/Saves/";
+    }
+
     public class Timers {
         public const float SHAPE_SPAWN_TIMER = 0.01f;
         public const float ENEMY_SPAWN_TIMER = 0.5f;
@@ -150,17 +161,10 @@ public class Constants {
         }
     }
 
-    public class FileLocations {
-        public static readonly string FILE_SUFFIX = "/Saves/progress.stpd";
-        public static readonly string WINDOWS_PATH = Application.dataPath + FILE_SUFFIX;
-        public static readonly string ANDROID_PATH = "/storage/emulated/0/Armpra" + FILE_SUFFIX;
-    }
-
     public class Text {
 
         public static string[] enemyNames = {
             "Scout", "Basic", "Double Head", "Bolt Action", "Shotgun", "Machine Gun", "Slower", "Kamikaze", "Tank", "Ninja" };//, "Pyro"
-
 
         public static string[] enemyDescriptions = {
             "This is a small devil, not dangerous but very agile. Try to stay away from it as much as possible.",
@@ -174,5 +178,7 @@ public class Constants {
             "This tough one takes a lot of time to take down. Be very patient.",
             "You can't see them. You won't know where they'll come from. You don't know their stats. Just run.",
             "This is a description. This is a description. This is a description. This is a description. This is a description."};
+
+        public static int lastEnemyRemembered = -1;
     }
 }
