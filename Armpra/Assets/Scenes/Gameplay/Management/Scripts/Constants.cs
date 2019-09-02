@@ -93,11 +93,12 @@ public class Constants {
     }
 
     public class Data {
-        public enum dataTypes { PLAYER_MAP_DATA, STORE_DATA };
+        public enum dataTypes { PLAYER_MAP_DATA, STORE_DATA, AUDIO_DATA };
 
 
         public static readonly string PLAYER_MAP_DATA = "player_map.data";
         public static readonly string STORE_DATA = "store.data";
+        public static readonly string AUDIO_DATA = "audio.data";
 
         public static readonly string WINDOWS_PATH_ROOT = Application.dataPath + "/Saves/";
         public static readonly string ANDROID_PATH_ROOT = "/storage/emulated/0/Armpra/Saves/";

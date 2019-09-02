@@ -57,4 +57,26 @@ public class Data {
             rf.ps.RefillStats();
         }
     }
+
+    [System.Serializable]
+    public class AudioData {
+        public float masterVolume;
+        public float musicVolume;
+        public float sfxVolume;
+        public float uiVolume;
+
+        public AudioData() {
+            masterVolume=   RuntimeSpecs.masterVolume;
+            musicVolume=    RuntimeSpecs.musicVolume;
+            sfxVolume=      RuntimeSpecs.sfxVolume;
+            uiVolume=       RuntimeSpecs.uiVolume;
+        }
+
+        public void Load() {
+            RuntimeSpecs.masterVolume = masterVolume;
+            RuntimeSpecs.musicVolume = musicVolume;
+            RuntimeSpecs.sfxVolume = sfxVolume;
+            RuntimeSpecs.uiVolume = uiVolume;
+        }
+    }
 }

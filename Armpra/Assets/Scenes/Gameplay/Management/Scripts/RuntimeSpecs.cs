@@ -23,7 +23,8 @@ public class RuntimeSpecs {
 
     //Audio
     public static float masterVolume=1;
-    public static float musicVolume = 1;
+    public static float musicVolume = 0.2f;
     public static float sfxVolume = 1;
     public static float uiVolume = 1;
+    public static bool startedBackgroundMusic = false;
 }

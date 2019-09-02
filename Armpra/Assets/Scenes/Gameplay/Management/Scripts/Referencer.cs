@@ -86,10 +86,17 @@ public class Referencer : MonoBehaviour {
     public ParticleSystem healingParticles;
     public GameObject shockwave;
 
+    [Header("                                       [Audio]")]
+    [Space(10)]
+    public GameObject audioManager;
+    public AudioManager audioManagerComp;
+
     public void Awake() {
         camScript = cam.GetComponent<Camera>();
         camFollowPlayer = cam.GetComponent<CameraFollowPlayer>();
         backgroundScript = background.GetComponent<DynamicBackground>();
+        audioManager = GameObject.Find("AudioManager");
+        audioManagerComp = audioManager.GetComponent<AudioManager>();
         shieldScript = shield.GetComponent<Shield>();
         player = GameObject.FindGameObjectWithTag(Constants.Tags.PLAYER_TAG); //TODO FindRightPlayer
         ps = player.GetComponent<PlayerStats>();
