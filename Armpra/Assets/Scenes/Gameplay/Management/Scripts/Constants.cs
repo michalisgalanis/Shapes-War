@@ -72,10 +72,9 @@ public class Constants {
                 WIN_MENU, LOST_MENU
             }
             public enum gameState {
-                PLAY, PAUSE, WIN, LOST, STORE
+                PLAY, PAUSE, WIN, LOST, STORE, NEW_ENEMY_FOUND
             }
         }
-
 
         public class Bullet {
             public enum bulletTypes {
@@ -159,16 +158,21 @@ public class Constants {
 
     public class Text {
 
-        public enum enemyNames {
-            SCOUT, BASIC, DOUBLE_HEAD, BOLT_ACTION, SHOTGUN, MACHINE_GUN, SLOWER, KAMIKAZE, TANK, NINJA
-        }
-        public string[] enemyDescriptions = {
+        public static string[] enemyNames = {
+            "Scout", "Basic", "Double Head", "Bolt Action", "Shotgun", "Machine Gun", "Slower", "Kamikaze", "Tank", "Ninja" };//, "Pyro"
+
+
+        public static string[] enemyDescriptions = {
             "This is a small devil, not dangerous but very agile. Try to stay away from it as much as possible.",
             "The first enemy that can actually shoot. Medium Speed, low-medium damage and a meh range.",
             "Double the number of heads, double the damage and even tankier. Do not underestimate it!",
             "This one can hit you from very far and deal a lot of damage. It will never stop until you do something about it.",
             "Low range - High damage enemy, It's one of those things you wouln't want them to lying around.",
-            "This enemy is weak, yet very powerful with a huge rate of fire. Don't let it statatatatatatatatatatatatatataart.",
-            "This one is boring, although supports the enemy team with great utility. It's bullets can slow you down."};
+            "This enemy is weak, yet very powerful with a huge rate of fire. Don't let it statatatatatatatatatatatatatatart.",
+            "This one is boring, although supports the enemy team with great utility. It's bullets can slow you down.",
+            "Nuff Said.",
+            "This tough one takes a lot of time to take down. Be very patient.",
+            "You can't see them. You won't know where they'll come from. You don't know their stats. Just run.",
+            "This is a description. This is a description. This is a description. This is a description. This is a description."};
     }
 }

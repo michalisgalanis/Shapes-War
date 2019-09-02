@@ -22,6 +22,7 @@ public class Referencer : MonoBehaviour {
     public GameObject debugPanelUI;
     public GameObject hackPanelUI;
     public GameObject ammoPanelUI;
+    public GameObject enemyDescriptorPanelUI;
     public Button[] ammoBulletButtons;
     public GameObject progressBar;
     [Space(5)]

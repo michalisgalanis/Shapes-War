@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameplayManager : MonoBehaviour {
     //References
@@ -26,6 +27,8 @@ public class GameplayManager : MonoBehaviour {
         rf.ps.RefillStats();
         rf.pm.resetMovement();
         loadData();
+        if (RuntimeSpecs.mapLevel % 5 == 0 || RuntimeSpecs.mapLevel == 1)
+            NewEnemyFound();
         rf.es.BeginSpawning();
     }
 
@@ -86,8 +89,24 @@ public class GameplayManager : MonoBehaviour {
         Time.timeScale = 1;
         currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
         manageMenus();
-
         rf.backgroundScript.ChangeBackgroundColor();
+        if (RuntimeSpecs.mapLevel % 5 == 0 || RuntimeSpecs.mapLevel == 1)
+            NewEnemyFound();
+    }
+
+    public void NewEnemyFound() {
+        Time.timeScale = 0;
+        currentGameState = Constants.Gameplay.Manager.gameState.NEW_ENEMY_FOUND;
+        int index = (RuntimeSpecs.mapLevel / 5);
+        rf.enemyDescriptorPanelUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =  "\"" + Constants.Text.enemyNames[index] + "\"";
+        rf.enemyDescriptorPanelUI.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = Constants.Text.enemyDescriptions[index];
+        manageMenus();
+    }
+
+    public void NewEnemyFoundContinue() {
+        Time.timeScale = 1;
+        currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
+        manageMenus();
     }
 
     public void VisitStore() {
@@ -138,11 +157,10 @@ public class GameplayManager : MonoBehaviour {
                 rf.storeMenuUI.SetActive(false);
                 rf.movementJoystickUI.SetActive(true);
                 rf.attackJoystickUI.SetActive(true);
-
                 rf.debugPanelUI.SetActive(false);
                 rf.hackPanelUI.SetActive(true);
                 rf.ammoPanelUI.SetActive(true);
-                ShowSelectedLayers();
+                rf.enemyDescriptorPanelUI.SetActive(false);
                 break;
             case Constants.Gameplay.Manager.gameState.PAUSE:
                 rf.scoreCoinsUI.SetActive(false);
@@ -152,10 +170,10 @@ public class GameplayManager : MonoBehaviour {
                 rf.storeMenuUI.SetActive(false);
                 rf.movementJoystickUI.SetActive(false);
                 rf.attackJoystickUI.SetActive(false);
-
                 rf.debugPanelUI.SetActive(false);
                 rf.hackPanelUI.SetActive(false);
                 rf.ammoPanelUI.SetActive(false);
+                rf.enemyDescriptorPanelUI.SetActive(false);
                 break;
             case Constants.Gameplay.Manager.gameState.WIN:
                 rf.scoreCoinsUI.SetActive(false);
@@ -165,10 +183,10 @@ public class GameplayManager : MonoBehaviour {
                 rf.storeMenuUI.SetActive(false);
                 rf.movementJoystickUI.SetActive(false);
                 rf.attackJoystickUI.SetActive(false);
-
                 rf.debugPanelUI.SetActive(false);
                 rf.hackPanelUI.SetActive(false);
                 rf.ammoPanelUI.SetActive(false);
+                rf.enemyDescriptorPanelUI.SetActive(false);
                 break;
             case Constants.Gameplay.Manager.gameState.LOST:
                 rf.scoreCoinsUI.SetActive(false);
@@ -178,10 +196,10 @@ public class GameplayManager : MonoBehaviour {
                 rf.storeMenuUI.SetActive(false);
                 rf.movementJoystickUI.SetActive(false);
                 rf.attackJoystickUI.SetActive(false);
-
                 rf.debugPanelUI.SetActive(false);
                 rf.hackPanelUI.SetActive(false);
                 rf.ammoPanelUI.SetActive(false);
+                rf.enemyDescriptorPanelUI.SetActive(false);
                 break;
             case Constants.Gameplay.Manager.gameState.STORE:
                 rf.scoreCoinsUI.SetActive(false);
@@ -191,13 +209,27 @@ public class GameplayManager : MonoBehaviour {
                 rf.storeMenuUI.SetActive(true);
                 rf.movementJoystickUI.SetActive(false);
                 rf.attackJoystickUI.SetActive(false);
-
                 rf.debugPanelUI.SetActive(false);
                 rf.hackPanelUI.SetActive(false);
                 rf.ammoPanelUI.SetActive(false);
+                rf.enemyDescriptorPanelUI.SetActive(false);
+                break;
+            case Constants.Gameplay.Manager.gameState.NEW_ENEMY_FOUND:
+                rf.scoreCoinsUI.SetActive(false);
+                rf.pauseMenuUI.SetActive(false);
+                rf.winMenuUI.SetActive(false);
+                rf.lostMenuUI.SetActive(false);
+                rf.storeMenuUI.SetActive(false);
+                rf.movementJoystickUI.SetActive(false);
+                rf.attackJoystickUI.SetActive(false);
+                rf.debugPanelUI.SetActive(false);
+                rf.hackPanelUI.SetActive(false);
+                rf.ammoPanelUI.SetActive(false);
+                rf.enemyDescriptorPanelUI.SetActive(true);
                 break;
         }
     }
+
     private void ShowSelectedLayers() {
         GameObject camera = rf.cam;
         switch (currentGameState) {
