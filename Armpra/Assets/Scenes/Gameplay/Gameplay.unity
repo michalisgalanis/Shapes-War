@@ -2334,6 +2334,11 @@ PrefabInstance:
       objectReference: {fileID: 638876380}
     - target: {fileID: 1038768626180292039, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
+      propertyPath: enemyDescriptorPanelUI
+      value: 
+      objectReference: {fileID: 893596021}
+    - target: {fileID: 1038768626180292039, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
       propertyPath: ammoBulletButtons.Array.data[0]
       value: 
       objectReference: {fileID: 27852765}
@@ -2692,11 +2697,6 @@ PrefabInstance:
       propertyPath: spawnedParticles
       value: 
       objectReference: {fileID: 1989011940}
-    - target: {fileID: 1038768626180292039, guid: ab378c802f2e1c94294275728b790b9c,
-        type: 3}
-      propertyPath: enemyDescriptorPanelUI
-      value: 
-      objectReference: {fileID: 893596021}
     - target: {fileID: 9222955369900606899, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: mapLevelText
@@ -2752,6 +2752,10 @@ PrefabInstance:
       propertyPath: currentHealthText
       value: 
       objectReference: {fileID: 271591306}
+    - target: {fileID: 1622379593, guid: ab378c802f2e1c94294275728b790b9c, type: 3}
+      propertyPath: sounds.Array.data[2].soundType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab378c802f2e1c94294275728b790b9c, type: 3}
 --- !u!114 &8643191347702228386 stripped
