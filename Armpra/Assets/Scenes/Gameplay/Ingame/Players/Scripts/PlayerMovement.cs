@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour {
             rotationValue = Vector2.SignedAngle(new Vector2(0, 1), totalAttackInput);
         }
 
-        
+
     }
 
     public void FixedUpdate() {

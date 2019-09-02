@@ -94,7 +94,7 @@ public class PlayerStats : MonoBehaviour {
 
     public float GetPowerupMultiplier(Constants.Gameplay.Powerups.overTimePowerupTypes powerupType) {
         foreach (GameObject tempPowerup in GameObject.FindGameObjectsWithTag(Constants.Tags.POWERUPS_TAG)) {
-            if  (tempPowerup.activeInHierarchy && tempPowerup.GetComponent<EffectOverTime>() != null  && tempPowerup.GetComponent<EffectOverTime>().typeSelected == powerupType && tempPowerup.GetComponent<EffectOverTime>().used) {
+            if (tempPowerup.activeInHierarchy && tempPowerup.GetComponent<EffectOverTime>() != null && tempPowerup.GetComponent<EffectOverTime>().typeSelected == powerupType && tempPowerup.GetComponent<EffectOverTime>().used) {
                 return tempPowerup.GetComponent<EffectOverTime>().powerupMultiplier;
             }
         }

@@ -23,7 +23,6 @@ public class Bullet : MonoBehaviour {
         if (bs.aoe) {
             bs.blastDamage = 0.2f * bs.damage;
             bs.blastRadius = 1.5f;
-            Debug.Log("Applied " + bs.blastDamage + " blast damage & " + bs.blastRadius + " blast radius");
         }
     }
 
@@ -44,14 +43,12 @@ public class Bullet : MonoBehaviour {
                         GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag(Constants.Tags.ENEMY_TAG);
                         foreach (GameObject activeEnemy in activeEnemies) {
                             if (activeEnemy.activeInHierarchy && activeEnemy.GetComponent<Enemy>() != null && bs.blastRadius >= Vector2.Distance(activeEnemy.transform.position, aoeExplosion.transform.position)) {
-                                Debug.Log(bs.blastDamage + " damage dealt caused by BLAST");
                                 activeEnemy.GetComponent<Enemy>().TakeDamage(bs.blastDamage);
                             }
                         }
-                        
+
                     }
                     enemy.TakeDamage(bs.damage);
-                    Debug.Log("Enemy Hit from Bullet");
                 }
                 Destroy(gameObject);
             } else if (hitInfo.CompareTag(Constants.Tags.SHIELD_TAG)) {

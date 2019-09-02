@@ -27,14 +27,14 @@ public static class SavingSystem {
     public static void SetPath() {
         switch (Application.platform) {
             case RuntimePlatform.WindowsPlayer:
-                path = Constants.FileLocations.WINDOWS_PATH;
-                break;
+            path = Constants.FileLocations.WINDOWS_PATH;
+            break;
             case RuntimePlatform.WindowsEditor:
-                path = Constants.FileLocations.WINDOWS_PATH;
-                break;
+            path = Constants.FileLocations.WINDOWS_PATH;
+            break;
             case RuntimePlatform.Android:
-                path = Constants.FileLocations.ANDROID_PATH;
-                break;
+            path = Constants.FileLocations.ANDROID_PATH;
+            break;
         }
     }
 }

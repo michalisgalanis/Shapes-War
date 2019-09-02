@@ -2,7 +2,7 @@
 
 public class PlayerHead {
     //References
-    private Referencer rf;
+    private readonly Referencer rf;
 
     //Setup Variables
     public Constants.Gameplay.Player.headTypes headType;

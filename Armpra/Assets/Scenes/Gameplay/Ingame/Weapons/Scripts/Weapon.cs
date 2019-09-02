@@ -44,7 +44,7 @@ public class Weapon : MonoBehaviour {
             foreach (GameObject head in rf.playerHeads) {
                 if (head.activeSelf) firepoints.Add(head.transform.GetChild(0));
             }
-        } else if  (Vector2.Distance(target.GetComponent<Transform>().position, transform.position) <= range) {
+        } else if (Vector2.Distance(target.GetComponent<Transform>().position, transform.position) <= range) {
             Transform headSystem = gameObject.transform.GetChild(0);
             for (int i = 0; i < headSystem.childCount; i++) {
                 if (headSystem.GetChild(i).gameObject.activeInHierarchy) {

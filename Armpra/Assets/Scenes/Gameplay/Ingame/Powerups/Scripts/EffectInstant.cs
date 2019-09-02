@@ -28,7 +28,7 @@ public class EffectInstant : MonoBehaviour {
             Vector3 initialScale = rf.healingParticles.transform.localScale;
             float sizeIncrease = Mathf.Max(PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1), 1);
             healingParticles = Instantiate(rf.healingParticles, rf.player.transform.localPosition, Quaternion.identity);
-            var main = healingParticles.main;
+            ParticleSystem.MainModule main = healingParticles.main;
             main.duration = 0.5f;
             main.startColor = new ParticleSystem.MinMaxGradient(rf.powerupTypes[1].transform.GetChild(0).GetComponent<SpriteRenderer>().color);
             healingParticles.Play();
@@ -36,10 +36,10 @@ public class EffectInstant : MonoBehaviour {
             healingParticles.transform.parent = rf.player.transform;
             break;
             case Constants.Gameplay.Powerups.instantPowerupTypes.COIN_PACK_POWERUP:
-            rf.cs.addCoins((int) (20 + 100 * RuntimeSpecs.playerLevel * powerupMultiplier));
+            rf.cs.addCoins((int)(20 + 100 * RuntimeSpecs.playerLevel * powerupMultiplier));
             break;
             case Constants.Gameplay.Powerups.instantPowerupTypes.XP_PACK_POWERUP:
-            rf.pe.addXP((double)(20 + 100 * RuntimeSpecs.playerLevel * powerupMultiplier));
+            rf.pe.addXP(20 + 100 * RuntimeSpecs.playerLevel * powerupMultiplier);
             break;
         }
         //DisplayEffectStats();

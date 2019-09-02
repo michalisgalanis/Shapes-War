@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-public class Debugger : MonoBehaviour
-{
+public class Debugger : MonoBehaviour {
     //References
     private Referencer rf;
 
@@ -12,9 +11,7 @@ public class Debugger : MonoBehaviour
         rf = GetComponent<Referencer>();
     }
 
-
-    void Update()
-    {
+    private void Update() {
         if (debugPlayerStats) Debug.Log(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH));
     }
 }

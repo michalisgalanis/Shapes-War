@@ -12,7 +12,7 @@ public class CameraFollowPlayer : MonoBehaviour {
     //Setup Variables
     private readonly float smoothSpeed = Constants.Gameplay.Camera.SMOOTH_SPEED;
     public float zoomAcceleration;
-    
+
     //Runtime Variables
     private Vector3 desiredPosition;
     private float lastPositionXNormal;

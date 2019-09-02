@@ -82,7 +82,7 @@ public class GameplayManager : MonoBehaviour {
         Time.timeScale = 1;
         currentGameState = Constants.Gameplay.Manager.gameState.PLAY;
         manageMenus();
-        
+
         rf.backgroundScript.ChangeBackgroundColor();
     }
 

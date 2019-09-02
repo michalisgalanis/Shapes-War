@@ -31,7 +31,7 @@ public class EffectOverTime : MonoBehaviour {
             }
         }
     }
-           
+
 
     public void EnableEffect() {
         used = true;
@@ -42,7 +42,7 @@ public class EffectOverTime : MonoBehaviour {
             Vector3 initialScale = rf.healingParticles.transform.localScale;
             float sizeIncrease = Mathf.Max(PlayerGenerator.getSizeAtLevel(RuntimeSpecs.playerLevel) / PlayerGenerator.getSizeAtLevel(1), 1);
             healingParticles = Instantiate(rf.healingParticles, rf.player.transform.localPosition, Quaternion.identity);
-            var main = healingParticles.main;
+            ParticleSystem.MainModule main = healingParticles.main;
             main.duration = GetComponent<PowerupDuration>().GetTimeLeft();
             main.startColor = new ParticleSystem.MinMaxGradient(rf.powerupTypes[1].transform.GetChild(0).GetComponent<SpriteRenderer>().color);
             healingParticles.Play();

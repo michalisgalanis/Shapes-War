@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -46,7 +46,7 @@ public class AmmoSystem : MonoBehaviour {
     }
 
     public void SelectFirstBullet() {
-        for (int i = 0; i < ammoItems.ToArray().Length; i++){
+        for (int i = 0; i < ammoItems.ToArray().Length; i++) {
             ammoItems[i].selected = false;
             rf.ammoBulletButtons[i].gameObject.SetActive(false);
         }
