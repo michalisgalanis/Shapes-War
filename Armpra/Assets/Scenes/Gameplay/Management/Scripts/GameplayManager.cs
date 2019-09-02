@@ -65,6 +65,7 @@ public class GameplayManager : MonoBehaviour {
 
     public void CompleteLevel() {
         Time.timeScale = 0;
+        gameObject.GetComponent<AudioManager>().Play("WinningSound");
         rf.levelCompleteText.text = "Level " + RuntimeSpecs.mapLevel + " Complete!";
         RuntimeSpecs.mapLevel++;
         RuntimeSpecs.enemiesKilled = 0;
