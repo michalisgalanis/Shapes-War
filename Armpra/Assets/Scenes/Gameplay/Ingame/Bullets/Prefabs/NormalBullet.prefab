@@ -5727,7 +5727,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 25
+        scalar: 15
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -9658,6 +9658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa669a635d5a12499685f480deac08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bs: {fileID: 0}
   playerFired: 1
 --- !u!212 &1431479657208786343
 SpriteRenderer:
@@ -9723,3 +9724,6 @@ MonoBehaviour:
   damage: 40
   acceleration: 1.5
   maxSpeed: 20
+  aoe: 0
+  blastDamage: 0
+  blastRadius: 0
