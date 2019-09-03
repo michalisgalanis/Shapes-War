@@ -359,11 +359,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7610971127455085484}
   - component: {fileID: 7610971127455085485}
-  - component: {fileID: 7610971127455085483}
-  - component: {fileID: 7610971127455085486}
   - component: {fileID: 7610971127455085487}
-  - component: {fileID: 5294033851809169581}
   - component: {fileID: 6594127279648815042}
+  - component: {fileID: 7610971127455085486}
+  - component: {fileID: 7610971127455085483}
+  - component: {fileID: 5294033851809169581}
   - component: {fileID: 7509751622316976888}
   m_Layer: 12
   m_Name: Slower
@@ -438,19 +438,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7610971127455085483
-MonoBehaviour:
+--- !u!58 &7610971127455085487
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7610971127455085480}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30b1947b9c70e242b20a0924b8cd820, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedFactor: 1.5
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 83b4bff9dda5e0f46b7deb892675c192, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.32
+--- !u!58 &6594127279648815042
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7610971127455085480}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.32
 --- !u!50 &7610971127455085486
 Rigidbody2D:
   serializedVersion: 4
@@ -472,22 +491,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &7610971127455085487
-CircleCollider2D:
+--- !u!114 &7610971127455085483
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7610971127455085480}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 83b4bff9dda5e0f46b7deb892675c192, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.32
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30b1947b9c70e242b20a0924b8cd820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedFactor: 1.5
 --- !u!114 &5294033851809169581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,22 +521,6 @@ MonoBehaviour:
   xpOnDeath: 20
   coinsOnDeath: 7
   currentHealth: 0
---- !u!58 &6594127279648815042
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7610971127455085480}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.32
 --- !u!114 &7509751622316976888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   shootingTime: 1
   activeBullet: {fileID: 1431479657208786360, guid: 8acf801dc133f9b49b544b0f75a55f67,
     type: 3}
-  range: 1.5
+  range: 2.5
 --- !u!1 &7763810772901823564
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +574,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7610971127455085484}
     m_Modifications:
+    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: m_Name
+      value: Trails
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7056273137654434148, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -628,21 +643,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
-        type: 3}
-      propertyPath: m_Name
-      value: Trails
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133207601596004943, guid: 805c87d8379d23941b30520d439825cc,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4810449611415909021, guid: 805c87d8379d23941b30520d439825cc,
         type: 3}

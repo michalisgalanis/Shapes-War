@@ -12,7 +12,6 @@ public class AudioManager : MonoBehaviour {
     public float uiVolume;
 
     private void Awake() {
-        DontDestroyOnLoad(gameObject);
         loadSoundData();
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -47,6 +46,7 @@ public class AudioManager : MonoBehaviour {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
     }
+
     public void UpdateSoundVolume(Sound s) {
         switch (s.soundType) {
             case Constants.Audio.soundTypes.MUSIC:

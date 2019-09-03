@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerGenerator : MonoBehaviour {
     //References
     private Referencer rf;
-    private PlayerWeapon weapon;
 
 
     //Setup Variables
@@ -16,7 +15,6 @@ public class PlayerGenerator : MonoBehaviour {
 
     public void Awake() {
         rf = GameObject.FindGameObjectWithTag(Constants.Tags.GAME_MANAGER_TAG).GetComponent<Referencer>();
-        weapon = GetComponent<PlayerWeapon>();
         playerHeads = new List<PlayerHead>();
 
     }
@@ -55,7 +53,7 @@ public class PlayerGenerator : MonoBehaviour {
             if (RuntimeSpecs.playerLevel >= 75)
                 rf.playerWings[3].SetActive(true);
         }
-        weapon.SetupFirepoints();
+        rf.wp.SetupFirepoints();
     }
 
     public static float getSizeAtLevel(int level) {

@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: -2059664982484728377}
   - component: {fileID: 2107116754607933120}
   - component: {fileID: 2107116754607933121}
-  - component: {fileID: 6070453714078794851}
   - component: {fileID: 829581828}
   - component: {fileID: 3579714925290494129}
   - component: {fileID: 4186314929307904992}
+  - component: {fileID: 5351771128411985804}
   m_Layer: 13
   m_Name: Player-level-1
   m_TagString: Player
@@ -107,20 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityFactor: 3.5
   currentSpeed: 0
---- !u!114 &6070453714078794851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107116754607933122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46123ef3b8f9d2b4fb1c96017a418e1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootingTime: 0.8
-  range: 100
 --- !u!114 &829581828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd6239af9e7cad4280a81ace5ef4c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5351771128411985804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107116754607933122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06687cad654b43c4b81f4dcabe84b914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootingTime: 0
 --- !u!1 &2369181511941167444
 GameObject:
   m_ObjectHideFlags: 0

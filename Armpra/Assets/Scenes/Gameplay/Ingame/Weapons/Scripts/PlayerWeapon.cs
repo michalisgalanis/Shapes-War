@@ -6,7 +6,7 @@ public class PlayerWeapon : MonoBehaviour {
     private Referencer rf;
 
     //Setup Stats
-    public float shootingTime;
+    [HideInInspector] public float shootingTime;
 
     //Runtime Variables
     private List<Transform> firepoints;
@@ -34,13 +34,13 @@ public class PlayerWeapon : MonoBehaviour {
     public void SetupFirepoints() {
         firepoints.Clear();
         foreach (GameObject head in rf.playerHeads) {
-            if (head.activeSelf)
+            if (head.activeInHierarchy)
                 firepoints.Add(head.transform.GetChild(0));
         }
     }
 
     private void Shoot() {
-        rf.gameManager.GetComponent<AudioManager>().Play("ShootingSound");
+        rf.audioManagerComp.Play("ShootingSound");
         foreach (Transform firepoint in firepoints) {
             rf.asy.ConsumeAmmo();
             GameObject bullet = Instantiate(activeBullet, firepoint.position, firepoint.rotation);

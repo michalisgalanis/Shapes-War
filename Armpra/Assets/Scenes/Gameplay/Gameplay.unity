@@ -1337,6 +1337,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 823116070}
+    - target: {fileID: 2643614489945061224, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61976362840632514, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280881705162739161, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8075176828329312776, guid: 5dbde5f525335d3449034fbbbe53e954,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dbde5f525335d3449034fbbbe53e954, type: 3}
 --- !u!1 &1468862022569705574 stripped
@@ -1688,7 +1708,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6070453714078794851, guid: 257e7ec0a2f5fad4797e11892f7cbd35, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 257e7ec0a2f5fad4797e11892f7cbd35, type: 3}
 --- !u!1 &2107116754085026048 stripped
 GameObject:
@@ -1846,21 +1867,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835013691163023836, guid: 056fa24de101ab346b0f2de8063c6290,
-        type: 3}
-      propertyPath: zoomOutFactor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835013691163023836, guid: 056fa24de101ab346b0f2de8063c6290,
-        type: 3}
-      propertyPath: maxZoomOutFactor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835013691163023836, guid: 056fa24de101ab346b0f2de8063c6290,
-        type: 3}
-      propertyPath: zoomAcceleration
-      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 056fa24de101ab346b0f2de8063c6290, type: 3}
@@ -2362,6 +2368,12 @@ PrefabInstance:
       propertyPath: spawnedParticles
       value: 
       objectReference: {fileID: 1989011940}
+    - target: {fileID: 1038768626180292039, guid: ab378c802f2e1c94294275728b790b9c,
+        type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 209694478920574828, guid: 8baa07e6e52f7d840af078947d20f7c8,
+        type: 3}
     - target: {fileID: 9222955369900606899, guid: ab378c802f2e1c94294275728b790b9c,
         type: 3}
       propertyPath: mapLevelText

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7386633775218412767}
   - component: {fileID: 7386633775218412576}
-  - component: {fileID: 7386633775218412578}
+  - component: {fileID: 1283868826808187200}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -75,7 +75,7 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7386633775218412578
+--- !u!81 &1283868826808187200
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

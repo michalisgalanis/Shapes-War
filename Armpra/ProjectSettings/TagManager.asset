@@ -20,6 +20,7 @@ TagManager:
   - UI/HackPanel
   - Canvas
   - Background
+  - AudioManager
   layers:
   - Default
   - TransparentFX

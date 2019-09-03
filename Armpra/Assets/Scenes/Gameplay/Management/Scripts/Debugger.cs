@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Debugger : MonoBehaviour {
     //References
@@ -13,7 +14,9 @@ public class Debugger : MonoBehaviour {
 
 
     void Update() {
-        if (debugPlayerStats)
-            Debug.Log(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MAX_HEALTH));
+        if (!debugPlayerStats) return;
+        Assert.AreEqual(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.ATTACK_SPEED), rf.wp.shootingTime);
+        Assert.AreEqual(rf.ps.GetStatValueOf(Constants.Gameplay.Player.playerStatTypes.MOVEMENT_SPEED), rf.pm.velocityFactor);
+
     }
 }

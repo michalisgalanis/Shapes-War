@@ -36,9 +36,7 @@ public class PowerUpsSpawner : MonoBehaviour {
         //Generating Powerup
         Vector3 temp = new Vector3(Random.Range(MIN_BORDER, MAX_BORDER), Random.Range(MIN_BORDER, MAX_BORDER), 0);
         GameObject newPowerup = Instantiate(rf.powerupTypes[Random.Range(0, rf.powerupTypes.Length)], temp, Quaternion.identity);
-        //GameObject newPowerup = Instantiate(rf.powerupTypes[9], temp, Quaternion.identity);
         newPowerup.transform.parent = transform;
-        //Resetting timer
         currentTimer = 0f;
     }
 }
