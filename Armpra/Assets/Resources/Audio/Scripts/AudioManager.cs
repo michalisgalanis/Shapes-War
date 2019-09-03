@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour {
             PickRandomMusic().source.Play();
         }
     }
-    public void ForceUpdate() {
+    public void FixedUpdate() {
         if (!music[music.Length - 1].source.isPlaying)
             PickRandomMusic().source.Play();
     }
@@ -84,7 +84,9 @@ public class AudioManager : MonoBehaviour {
         i = UnityEngine.Random.Range(0, music.Length - 2);
         Sound temp = music[music.Length-1];
         music[music.Length-1] = music[i];
+        music[music.Length - 1].source = music[i].source;
         music[i] = temp;
+        music[i].source = temp.source;
         return music[music.Length-1];
     }
 }
