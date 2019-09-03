@@ -82,6 +82,12 @@ public class SavingSystem {
         }
     }
 
+    public void DeleteProgress() {
+        File.Delete(pathRoot + Constants.Data.PLAYER_MAP_DATA);
+        File.Delete(pathRoot + Constants.Data.STORE_DATA);
+        //File.Delete(pathRoot + Constants.Data.AUDIO_DATA);
+    }
+
     public static SavingSystem getInstance() {
         return instance ?? new SavingSystem();
     }

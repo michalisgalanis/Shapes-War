@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Referencer : MonoBehaviour {
     [Header("                                   [Camera & Background]")]
     public GameObject cam;
@@ -95,7 +96,13 @@ public class Referencer : MonoBehaviour {
         camScript = cam.GetComponent<Camera>();
         camFollowPlayer = cam.GetComponent<CameraFollowPlayer>();
         backgroundScript = background.GetComponent<DynamicBackground>();
-        audioManager = GameObject.Find("AudioManager");
+
+
+        if (Constants.Audio.audioManager == null) {
+            Constants.Audio.audioManager = Instantiate(audioManager, transform.parent);
+            DontDestroyOnLoad(audioManager);
+        }
+        audioManager = Constants.Audio.audioManager;
         audioManagerComp = audioManager.GetComponent<AudioManager>();
         shieldScript = shield.GetComponent<Shield>();
         player = GameObject.FindGameObjectWithTag(Constants.Tags.PLAYER_TAG); //TODO FindRightPlayer
@@ -113,24 +120,5 @@ public class Referencer : MonoBehaviour {
         asy = gameManager.GetComponent<AmmoSystem>();
         movementJoystickUIInnerCircle = movementJoystickUI.transform.GetChild(2);
         attackJoystickUIInnerCircle = attackJoystickUI.transform.GetChild(2);
-    }
-
-    public void Start() {
-        foreach (TextMeshProUGUI text in xpTexts) {
-            text.fontStyle = FontStyles.Bold;
-            text.enableAutoSizing = true;
-        }
-        foreach (TextMeshProUGUI text in coinTexts) {
-            text.fontStyle = FontStyles.Bold;
-            text.enableAutoSizing = true;
-        }
-        foreach (TextMeshProUGUI text in levelTexts) {
-            text.fontStyle = FontStyles.Bold;
-            text.enableAutoSizing = true;
-        }
-        bapText.fontStyle = FontStyles.Bold;
-        bapText.enableAutoSizing = true;
-        enemiesRemainingText.fontStyle = FontStyles.Bold;
-        enemiesRemainingText.enableAutoSizing = true;
     }
 }

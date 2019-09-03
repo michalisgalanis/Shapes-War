@@ -12,8 +12,7 @@ public class AudioManager : MonoBehaviour {
     public float uiVolume;
 
     private void Awake() {
-        DontDestroyOnLoad(gameObject);
-        loadSoundData();
+        LoadSoundData();
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
             if (name == "ButtonClick")
@@ -47,6 +46,7 @@ public class AudioManager : MonoBehaviour {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
     }
+
     public void UpdateSoundVolume(Sound s) {
         switch (s.soundType) {
             case Constants.Audio.soundTypes.MUSIC:
@@ -67,15 +67,12 @@ public class AudioManager : MonoBehaviour {
         foreach (Sound s in music)
             UpdateSoundVolume(s);
     }
-    private void loadSoundData() {
+    private void LoadSoundData() {
         SavingSystem.getInstance().Load(Constants.Data.dataTypes.AUDIO_DATA);
         masterVolume = RuntimeSpecs.masterVolume;
         musicVolume = RuntimeSpecs.musicVolume;
         sfxVolume = RuntimeSpecs.sfxVolume;
         uiVolume = RuntimeSpecs.uiVolume;
-    }
-    public void saveSoundData() {
-        SavingSystem.getInstance().Save(Constants.Data.dataTypes.AUDIO_DATA);
     }
     public Sound PickRandomMusic() {
         int i = 0;

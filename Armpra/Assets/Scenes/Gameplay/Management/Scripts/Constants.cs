@@ -18,6 +18,7 @@ public class Constants {
         public const string SHIELD_TAG = "Shield";
         public const string MAP_BOUNDS_TAG = "MapBounds";
         public const string POWERUPS_TAG = "Powerups";
+        public const string AUDIO_MANAGER_TAG = "AudioManager";
     }
 
     public class Gameplay {
@@ -184,8 +185,9 @@ public class Constants {
     }
 
     public class Audio {
-        public enum soundTypes {
-            MUSIC, UI_SOUNDS, SFX 
-        }
+        public enum soundTypes { MUSIC, UI_SOUNDS, SFX };
+
+        public static bool musicPlaying = false;
+        public static GameObject audioManager = null;
     }
 }
