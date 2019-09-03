@@ -11,22 +11,22 @@ public class VolumeSliders : MonoBehaviour
         UpdateSliders();
     }
     public void ChangeMasterVolume() {
-        audioManager.masterVolume= GetComponent<Slider>().value;
+        audioManager.masterVolume= 0.1f * GetComponent<Slider>().value;
         RuntimeSpecs.masterVolume = audioManager.masterVolume;
         audioManager.UpdateVolume();
     }
     public void ChangeMusicVolume() {
-        audioManager.musicVolume = GetComponent<Slider>().value;
+        audioManager.musicVolume = 0.1f * GetComponent<Slider>().value;
         RuntimeSpecs.musicVolume = audioManager.musicVolume;
         audioManager.UpdateVolume();
     }
     public void ChangeSFXVolume() {
-        audioManager.sfxVolume = GetComponent<Slider>().value;
+        audioManager.sfxVolume = 0.1f * GetComponent<Slider>().value;
         RuntimeSpecs.sfxVolume = audioManager.sfxVolume;
         audioManager.UpdateVolume();
     }
     public void ChangeUIVolume() {
-        audioManager.uiVolume = GetComponent<Slider>().value;
+        audioManager.uiVolume = 0.1f * GetComponent<Slider>().value;
         RuntimeSpecs.uiVolume = audioManager.uiVolume;
         audioManager.UpdateVolume();
     }
@@ -34,16 +34,16 @@ public class VolumeSliders : MonoBehaviour
     public void UpdateSliders() {
         switch (gameObject.name) {
             case "MasterVolumeSlider":
-                GetComponent<Slider>().value = RuntimeSpecs.masterVolume;
+                GetComponent<Slider>().value = 10f * RuntimeSpecs.masterVolume;
                 break;
             case "MusicVolumeSlider":
-                GetComponent<Slider>().value = RuntimeSpecs.musicVolume;
+                GetComponent<Slider>().value = 10f * RuntimeSpecs.musicVolume;
                 break;
             case "SFXVolumeSlider":
-                GetComponent<Slider>().value = RuntimeSpecs.sfxVolume;
+                GetComponent<Slider>().value = 10f * RuntimeSpecs.sfxVolume;
                 break;
             case "UIVolumeSlider":
-                GetComponent<Slider>().value = RuntimeSpecs.uiVolume;
+                GetComponent<Slider>().value = 10f * RuntimeSpecs.uiVolume;
                 break;
         }
         

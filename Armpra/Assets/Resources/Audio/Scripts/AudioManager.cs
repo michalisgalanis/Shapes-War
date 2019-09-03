@@ -16,7 +16,6 @@ public class AudioManager : MonoBehaviour {
         loadSoundData();
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
-            //string name = s.clip.name;
             if (name == "ButtonClick")
                 s.soundType = Constants.Audio.soundTypes.UI_SOUNDS;
             else if (name == "ShootingSound" || name == "WinningSound") 
@@ -29,7 +28,6 @@ public class AudioManager : MonoBehaviour {
         foreach (Sound s in music) {
             s.source = gameObject.AddComponent<AudioSource>();
             s.soundType = Constants.Audio.soundTypes.MUSIC;
-            //string name = s.clip.name;
             s.source.clip = s.clip;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
