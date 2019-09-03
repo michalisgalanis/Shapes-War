@@ -25,6 +25,12 @@ public class VolumeSliders : MonoBehaviour
         RuntimeSpecs.sfxVolume = audioManager.sfxVolume;
         audioManager.UpdateVolume();
     }
+    public void ChangeUIVolume() {
+        audioManager.uiVolume = GetComponent<Slider>().value;
+        RuntimeSpecs.uiVolume = audioManager.uiVolume;
+        audioManager.UpdateVolume();
+    }
+
     public void UpdateSliders() {
         switch (gameObject.name) {
             case "MasterVolumeSlider":

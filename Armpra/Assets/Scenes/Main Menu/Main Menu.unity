@@ -156,34 +156,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: ShootingSound
+    soundType: 2
+    loop: 0
+    clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+    pitch: 1
+    source: {fileID: 0}
   - name: ButtonClick
     soundType: 1
     loop: 0
     clip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
     pitch: 1
     source: {fileID: 0}
-  - name: Music
-    soundType: 0
-    loop: 1
-    clip: {fileID: 8300000, guid: 11f55126b0970d14bbdfee5ecfb3c9d2, type: 3}
-    pitch: 1
-    source: {fileID: 0}
   - name: WinningSound
-    soundType: 0
+    soundType: 2
     loop: 0
     clip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
     pitch: 1
     source: {fileID: 0}
   - name: CoinSound
-    soundType: 0
+    soundType: 2
     loop: 0
     clip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
     pitch: 1
     source: {fileID: 0}
-  - name: ShootingSound
+  music:
+  - name: A Rising Wave
     soundType: 0
     loop: 0
-    clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+    clip: {fileID: 8300000, guid: 07a7ab76a5185e844a0923816ed1e503, type: 3}
+    pitch: 1
+    source: {fileID: 0}
+  - name: Desert Epic Cinematic
+    soundType: 0
+    loop: 0
+    clip: {fileID: 8300000, guid: 23f4e94b4a0f9cb46b7d1d60f88c8df9, type: 3}
+    pitch: 1
+    source: {fileID: 0}
+  - name: DX1000
+    soundType: 0
+    loop: 0
+    clip: {fileID: 8300000, guid: 978f587999e33a449a91abc5f83512f8, type: 3}
+    pitch: 1
+    source: {fileID: 0}
+  - name: Cyba Yellow
+    soundType: 0
+    loop: 0
+    clip: {fileID: 8300000, guid: 25da15a0753e39e409bdc013d2174570, type: 3}
+    pitch: 1
+    source: {fileID: 0}
+  - name: Desert Epic Cinematic
+    soundType: 0
+    loop: 0
+    clip: {fileID: 8300000, guid: 4929cfe002f4e6d45aa71d62010da521, type: 3}
     pitch: 1
     source: {fileID: 0}
   type: 0

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
     public Sound[] sounds;
+    public Sound[] music;
+
     public short type;
     public float masterVolume;
     public float musicVolume;
@@ -14,7 +16,7 @@ public class AudioManager : MonoBehaviour {
         loadSoundData();
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
-            string name = s.clip.name;
+            //string name = s.clip.name;
             if (name == "ButtonClick")
                 s.soundType = Constants.Audio.soundTypes.UI_SOUNDS;
             else if (name == "ShootingSound" || name == "WinningSound") 
@@ -24,10 +26,23 @@ public class AudioManager : MonoBehaviour {
             s.source.loop = s.loop;
             UpdateSoundVolume(s);
         }
+        foreach (Sound s in music) {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.soundType = Constants.Audio.soundTypes.MUSIC;
+            //string name = s.clip.name;
+            s.source.clip = s.clip;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+            UpdateSoundVolume(s);
+        }
         if (!RuntimeSpecs.startedBackgroundMusic) {
             RuntimeSpecs.startedBackgroundMusic = true;
-            Play("Music");
+            PickRandomMusic().source.Play();
         }
+    }
+    public void ForceUpdate() {
+        if (!music[music.Length - 1].source.isPlaying)
+            PickRandomMusic().source.Play();
     }
 
     public void Play(string name) {
@@ -47,11 +62,12 @@ public class AudioManager : MonoBehaviour {
                 break;
         }
     }
+
     public void UpdateVolume() {
-        foreach (Sound s in sounds) {
+        foreach (Sound s in sounds)
             UpdateSoundVolume(s);
-            //Debug.Log("Master Volume = " + masterVolume+" Source volume = " + s.source.volume);
-        }
+        foreach (Sound s in music)
+            UpdateSoundVolume(s);
     }
     private void loadSoundData() {
         SavingSystem.getInstance().Load(Constants.Data.dataTypes.AUDIO_DATA);
@@ -62,5 +78,13 @@ public class AudioManager : MonoBehaviour {
     }
     public void saveSoundData() {
         SavingSystem.getInstance().Save(Constants.Data.dataTypes.AUDIO_DATA);
+    }
+    public Sound PickRandomMusic() {
+        int i = 0;
+        i = UnityEngine.Random.Range(0, music.Length - 2);
+        Sound temp = music[music.Length-1];
+        music[music.Length-1] = music[i];
+        music[i] = temp;
+        return music[music.Length-1];
     }
 }
