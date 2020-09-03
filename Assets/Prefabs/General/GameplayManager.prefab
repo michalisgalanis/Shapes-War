@@ -1,0 +1,426 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3449992444365730748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3449992444365730752}
+  - component: {fileID: 6230853136475903079}
+  - component: {fileID: 3449992443273070768}
+  - component: {fileID: 3449992444365730750}
+  - component: {fileID: 3449992444365730751}
+  - component: {fileID: 3449992444365730753}
+  - component: {fileID: 6346167148199941662}
+  - component: {fileID: 6346167147553851319}
+  - component: {fileID: 9182439521385562834}
+  - component: {fileID: 6346167147667594053}
+  - component: {fileID: 731555474927135706}
+  m_Layer: 0
+  m_Name: GameplayManager
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3449992444365730752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6230853136475903079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9852232c3bff94c8319a5ce0f01a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  camFollowPlayer: {fileID: 0}
+  background: {fileID: 0}
+  backgroundShapes:
+  - {fileID: 1450495750344213492, guid: 5fb5f88eb63cc41408dc654e9cb16759, type: 3}
+  - {fileID: 2455091424838341642, guid: f6530453415b3b644a751c51dd3a2235, type: 3}
+  - {fileID: 4522036552737722265, guid: 3778d1e0ea963d249a6c893010e35128, type: 3}
+  - {fileID: 1229308910227278149, guid: dd65e4207c30e3446ad99db216fd8533, type: 3}
+  - {fileID: 1701293082978269740, guid: fe8c0adc40291ac4aa972b8e683b6860, type: 3}
+  - {fileID: 7881406401616248654, guid: bbb148cb741382b4395923190c67747d, type: 3}
+  - {fileID: 2830460525340730740, guid: 99ebd1baab721de408889d2047be1709, type: 3}
+  - {fileID: 7154346612229248551, guid: 683fc5da5f9ea26479ce1fb5e69e9e5e, type: 3}
+  backgroundScript: {fileID: 0}
+  backLayer: {fileID: 0}
+  backgroundParticles: {fileID: 0}
+  canvas: {fileID: 0}
+  gameplayHUD: {fileID: 0}
+  statsPanelUI: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
+  winMenuUI: {fileID: 0}
+  lostMenuUI: {fileID: 0}
+  storeMenuUI: {fileID: 0}
+  debugPanelUI: {fileID: 0}
+  performancePanelUI: {fileID: 0}
+  hackPanelUI: {fileID: 0}
+  ammoPanelUI: {fileID: 0}
+  enemyDescriptorPanelUI: {fileID: 0}
+  unlockMenuUI: {fileID: 0}
+  ammoBulletButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  progressBar: {fileID: 0}
+  bossProgressBar: {fileID: 0}
+  dualZoneJoystick: {fileID: 0}
+  normalJoystick: {fileID: 0}
+  unlockItemPrefab: {fileID: 2513582271844222787, guid: 03488da1499d4eb4bbf01d169c96ae16,
+    type: 3}
+  totalCoinsTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  totalLevelTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  totalXPTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  totalXPRemainingTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  coinsCollectedTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  levelsCollectedTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  xpCollectedTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  bapText: {fileID: 0}
+  enemiesRemainingText: {fileID: 0}
+  levelCompleteText: {fileID: 0}
+  storeUpgrades:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  player: {fileID: 0}
+  playerWings:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerHeads:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerSkins:
+  - {fileID: 7663756494789304892, guid: f4f23373b0d4ec44abc461f066b33449, type: 3}
+  - {fileID: 7039378887414524744, guid: 3ba20b3c105889148b72c1dba72e5dc6, type: 3}
+  gameManager: {fileID: 3449992444365730748}
+  shield: {fileID: 7923466100961731369, guid: 8465e23fe57cc6e4e95cac95c7ab0e6f, type: 3}
+  enemyTypes:
+  - {fileID: 6045932645883520105, guid: 919d40c11ddd8ba47b139b05da2f6095, type: 3}
+  - {fileID: 126859744367596400, guid: 101c3a3d644b9fe45a070e6ca264e66c, type: 3}
+  - {fileID: 8381024625815381993, guid: 5cdade90f5a7ad3408ddccbefc472b3c, type: 3}
+  - {fileID: 5596977696730418373, guid: 640dc4a560190444891f136f92216534, type: 3}
+  - {fileID: 9190259925475766161, guid: 9b54b820283b01d46b6202ea28360f8a, type: 3}
+  - {fileID: 3378765469095520131, guid: 3f955a184bda54949a83c2241f1fb0aa, type: 3}
+  - {fileID: 7610971127455085480, guid: cddf7400582e3bc44baee3b65f2e77a8, type: 3}
+  - {fileID: 3665446485796838555, guid: 2f9487c2f65bb4b48855d9be2922d434, type: 3}
+  - {fileID: 6053066784252498829, guid: 3210009e9a56b7c41a39a35cac5c811f, type: 3}
+  - {fileID: 7653881854433954202, guid: 4f9273ba41d79df4fae9b2e0d81875c9, type: 3}
+  bossTypes:
+  - {fileID: 1717588119454567041, guid: e3ad1819945a22843be632fbba9a7d31, type: 3}
+  - {fileID: 3567641227469317963, guid: 439382c8b91b2e549aa69bc843486e60, type: 3}
+  - {fileID: 5007627314903078664, guid: 65b2c4b9067960e4985d605ab9c053d1, type: 3}
+  - {fileID: 3966892128943521017, guid: 311cfc13f9d08eb4aba6e3ae4c6ba446, type: 3}
+  bulletTypes:
+  - {fileID: 6059641346692157312, guid: 682fee44e17c8944bbe68be879cb5951, type: 3}
+  - {fileID: 8360899131573263322, guid: 8273c50594438ca4c8df32067b209cc8, type: 3}
+  - {fileID: 4800776780047012184, guid: b3128fbe7234db348b4621c31c1dc91f, type: 3}
+  - {fileID: 1638571858521348888, guid: 126fdc587aca1b0438766f1c58dea439, type: 3}
+  - {fileID: 64836012039727344, guid: 5bb9c5a03b334c54085543ff18291088, type: 3}
+  - {fileID: 4547364616447646937, guid: 8506fab1968381848ad5f56f9a77877d, type: 3}
+  powerupTypes:
+  - {fileID: 3396940085168429807, guid: 7dd788bebb2efd446b6fbd75e5b9fbca, type: 3}
+  - {fileID: 4376832576236916223, guid: 8e7024e22bb855a40bc857a45a51c271, type: 3}
+  - {fileID: 3846954032451277862, guid: da9d7329f268e4a40959a4b11f531491, type: 3}
+  - {fileID: 9199731685675298012, guid: c588000ee988e474cadda841f6a93776, type: 3}
+  - {fileID: 5488035428199748708, guid: 15ce86f007041594fbcb3c9c6d9a0cd0, type: 3}
+  - {fileID: 8653061549976029955, guid: 8cacc47ff8cbc6843ac276719ac82242, type: 3}
+  - {fileID: 895830065856883668, guid: b8fbc5e1dafbae84db7f73ef2eaaaf2c, type: 3}
+  - {fileID: 6623530379065235679, guid: f0fe220658d7d5844a238a7baf13ab07, type: 3}
+  - {fileID: 320020332336328422, guid: 48703b7e659f08e4fb1a533475ac0936, type: 3}
+  - {fileID: 6406851221755829175, guid: fe252b463061a6649a8f7c15f61694fe, type: 3}
+  - {fileID: 8580988927685001689, guid: 3a1e7df55d0747e43bbb089067bbcb15, type: 3}
+  - {fileID: 513501425487329914, guid: ec9aafc602d034d46aa2e7fe782ced5f, type: 3}
+  - {fileID: 6696977904056899313, guid: 3143ec2e3982fb44f93ecc6232b772d9, type: 3}
+  - {fileID: 5847039977736205415, guid: daf33af60f2ea1a4590442635cac0aad, type: 3}
+  - {fileID: 8817753548852466310, guid: 96c23ddd8d8bcac4290a3c9b82bb258e, type: 3}
+  - {fileID: 7910078697072761270, guid: a66c34c922bcd4f428fc981bce8afaea, type: 3}
+  - {fileID: 8510107894636363122, guid: 38518c96dc726724dbe813e005d91c7e, type: 3}
+  activePowerupTypes: []
+  damageTypes:
+  - {fileID: 4588871343768694956, guid: 923eff7b16e32334cbc260ff41a12c73, type: 3}
+  - {fileID: 2661922555501472298, guid: ac4fb7324adeda94581db444cfb85e92, type: 3}
+  - {fileID: 2401890659512688716, guid: f98a93a0659ccb14a8c90a0e01963222, type: 3}
+  - {fileID: 709343155158527207, guid: 0e28f3be67cffaf4c8acb0968fd73d8d, type: 3}
+  - {fileID: 3868792897070228798, guid: 2597163ee76bab54a9b8197fbf9fc8ac, type: 3}
+  - {fileID: 5271554874480129315, guid: b5579dd594159cb429b48f64ff7c1409, type: 3}
+  - {fileID: 3475365077830466244, guid: 658d077982a30ab48917db76613cade3, type: 3}
+  spawnedShapes: {fileID: 0}
+  spawnedEnemies: {fileID: 0}
+  spawnedProjectiles: {fileID: 0}
+  spawnedParticles: {fileID: 0}
+  spawnedPowerups: {fileID: 0}
+  spawnedOther: {fileID: 0}
+  enemyTarget: {fileID: 0}
+  ps: {fileID: 0}
+  pg: {fileID: 0}
+  pm: {fileID: 0}
+  pe: {fileID: 0}
+  wp: {fileID: 0}
+  ss: {fileID: 0}
+  es: {fileID: 0}
+  gm: {fileID: 0}
+  asy: {fileID: 0}
+  pus: {fileID: 0}
+  shieldScript: {fileID: 0}
+  hitExplosionParticles: {fileID: 2720002162805827168, guid: 1fa619fc97f3a00409100fba5bed68cb,
+    type: 3}
+  enemyDeathExplosionParticles: {fileID: 2887149101418754539, guid: e3159d88712c2774289daf5801f1bbad,
+    type: 3}
+  bossDeathExplosionParticles: {fileID: 1837249798015298985, guid: e9e67608299f4ec4e8a2ec38fde243d3,
+    type: 3}
+  playerDeathExplosionParticles: {fileID: 5998843538783815061, guid: a83a4aebe6bad794e88c4364f7c2f361,
+    type: 3}
+  shieldDestroyExplosionParticles: {fileID: 1766086259938547595, guid: ed15474e90ebcc644823c32fd23a4a0b,
+    type: 3}
+  aoeExplosion: {fileID: 4136127275558606616, guid: 2b95cb35aa2991f4f830469896e26ba3,
+    type: 3}
+  levelUpParticles: {fileID: 5529174717530985782, guid: 014125df8a991f74b8fa1d990307f040,
+    type: 3}
+  healingParticles: {fileID: 3545393977878891877, guid: 4d012298faa0a8b4cb0dc18e4955cf71,
+    type: 3}
+  shockwave: {fileID: 5261163578460684603, guid: d6703ea4eba38c04d927a158feb5e6cd,
+    type: 3}
+  audioManager: {fileID: 209694478920574828, guid: 8baa07e6e52f7d840af078947d20f7c8,
+    type: 3}
+  audioManagerComp: {fileID: 0}
+  snapshotCamComp: {fileID: 0}
+  enemySprites:
+  - {fileID: 21300000, guid: 1e0ec49102b19904bb585248eaea4eb2, type: 3}
+  - {fileID: 21300000, guid: d5e3dacbb0cd7364db2c5e1b256864ae, type: 3}
+  - {fileID: 21300000, guid: 679c11a73a4bacf4fab33c532686735f, type: 3}
+  - {fileID: 21300000, guid: e89a28b1aa9c59c46aa7c7ee5f109c08, type: 3}
+  - {fileID: 21300000, guid: dedcc18c2a4836a49bb4d50c29bf5adb, type: 3}
+  - {fileID: 21300000, guid: 2aedbeb5bb95f0c48882450f4afc65b4, type: 3}
+  - {fileID: 21300000, guid: 8e2e062e1ba6c1e43ad2dea08d431445, type: 3}
+  - {fileID: 21300000, guid: ab17a7a1fd485a84987d3f35ab709c4e, type: 3}
+  - {fileID: 21300000, guid: 8489a2e6747d8c1428bd2840f7477565, type: 3}
+  - {fileID: 21300000, guid: 8df961bddbf64a9449a6d390e96e5026, type: 3}
+--- !u!114 &3449992443273070768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f877e9725c222644d80271af0d775110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adSource: 0
+  rewardedAdSource: 0
+--- !u!114 &3449992444365730750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &3449992444365730751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 20
+  m_RepeatDelay: 0
+  m_ForceModuleActive: 0
+--- !u!114 &3449992444365730753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ae98432cbe081469642a83866cd9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6346167148199941662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a8fe3748be7ee44a936e82d3c883bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6346167147553851319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7410dcdb4c5a04886b4a07dbbcfd6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9182439521385562834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51007dcd841dd84d97ef067c218e7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6346167147667594053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5bd0505985479489ef0a6adf9a494f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectValue: 0
+  overTimePowerUpsTimers:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  activeOvertimePowerups: 00000000000000000000000000
+  generalPowerupMultiplier: 0
+  particles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerPrefab: {fileID: 4099551602247374052, guid: 26ee535d6fb1dc748bc97f285b5b5470,
+    type: 3}
+--- !u!114 &731555474927135706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449992444365730748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149b8104acb84ec49ab45f3674e4d614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
